@@ -15,9 +15,9 @@ type ContainerProps<T extends ElementType = "div"> = ContainerOwnProps & {
 } & Omit<ComponentPropsWithoutRef<T>, keyof ContainerOwnProps | "as">;
 
 const sizeStyles: Record<ContainerSize, string> = {
-  narrow: "max-w-3xl", // ~768px
-  default: "max-w-6xl", // ~1152px
-  wide: "max-w-[1600px]", // editorial max
+  narrow: "max-w-3xl",
+  default: "max-w-6xl",
+  wide: "max-w-[1600px]",
   full: "max-w-none",
 };
 

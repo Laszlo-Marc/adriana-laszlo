@@ -10,13 +10,9 @@ type SectionBg =
 type SectionSpacing = "none" | "sm" | "md" | "lg" | "xl";
 
 type SectionOwnProps = {
-  /** Full-bleed background color. Alternate cream/white between sections for rhythm. */
   background?: SectionBg;
-  /** Vertical padding preset. Controls the breathing room above and below content. */
   spacing?: SectionSpacing;
-  /** Top-only spacing — useful when stacking sections that should touch. */
   spacingTop?: SectionSpacing;
-  /** Bottom-only spacing — same use case, opposite edge. */
   spacingBottom?: SectionSpacing;
   children: ReactNode;
   className?: string;
@@ -26,8 +22,6 @@ type SectionProps<T extends ElementType = "section"> = SectionOwnProps & {
   as?: T;
 } & Omit<ComponentPropsWithoutRef<T>, keyof SectionOwnProps | "as">;
 
-// Background colors — text color paired automatically for contrast.
-// Charcoal background flips the default text color so children inherit correctly.
 const bgStyles: Record<SectionBg, string> = {
   cream: "bg-cream text-charcoal",
   white: "bg-white text-charcoal",
@@ -75,9 +69,6 @@ export default function Section<T extends ElementType = "section">({
 }: SectionProps<T>) {
   const Component = (as ?? "section") as ElementType;
 
-  // If spacingTop or spacingBottom are explicitly set, they override `spacing`
-  // on that side. This lets you "break" the symmetry when two sections should
-  // touch (e.g., a CTA band flowing straight into a footer).
   const spacingClass =
     spacingTop || spacingBottom
       ? `${spacingT[spacingTop ?? spacing]} ${spacingB[spacingBottom ?? spacing]}`

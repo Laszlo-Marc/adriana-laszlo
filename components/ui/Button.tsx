@@ -44,17 +44,17 @@ const base = `
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-teal text-charcoal hover:bg-[#7fc9b8] hover:-translate-y-[1px] focus-visible:ring-teal shadow-[0_1px_0_rgba(44,44,44,0.04)]",
+    "bg-teal text-charcoal hover:bg-[#7fc9b8] hover:-translate-y-[1px] focus-visible:ring-teal shadow-[0_1px_0_rgba(44,44,44,0.04)] hover:cursor-pointer",
   secondary:
-    "bg-charcoal text-cream hover:bg-[#1a1a1a] hover:-translate-y-[1px] focus-visible:ring-charcoal",
+    "bg-charcoal text-cream hover:bg-[#1a1a1a] hover:-translate-y-[1px] focus-visible:ring-charcoal hover:cursor-pointer",
   outline:
-    "bg-transparent text-charcoal border border-[var(--color-border-strong)] hover:border-charcoal hover:bg-white focus-visible:ring-charcoal",
+    "bg-transparent text-charcoal border border-[var(--color-border-strong)] hover:border-charcoal hover:bg-white focus-visible:ring-charcoal hover:cursor-pointer",
   ghost:
-    "bg-transparent text-muted hover:text-charcoal hover:bg-[var(--color-teal-soft)] focus-visible:ring-teal",
+    "bg-transparent text-muted hover:text-charcoal hover:bg-[var(--color-teal-soft)] focus-visible:ring-teal hover:cursor-pointer",
   urgent:
-    "bg-gold text-charcoal hover:bg-[#c98a16] hover:-translate-y-[1px] focus-visible:ring-gold",
+    "bg-gold text-charcoal hover:bg-[#c98a16] hover:-translate-y-[1px] focus-visible:ring-gold hover:cursor-pointer",
   purple:
-    "bg-purple text-charcoal hover:bg-[#b87dc8] hover:-translate-y-[1px] focus-visible:ring-purple",
+    "bg-purple text-charcoal hover:bg-[#b87dc8] hover:-translate-y-[1px] focus-visible:ring-purple hover:cursor-pointer",
 };
 
 const sizes: Record<ButtonSize, string> = {

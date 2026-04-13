@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import Image from "next/image";
+import Heading from "./Heading";
 type LogoProps = {
   /** Visual size — scales the wordmark proportionally */
   size?: "sm" | "md" | "lg";
@@ -28,17 +29,13 @@ export default function Logo({
       : "text-charcoal hover:text-teal";
 
   const content = (
-    <span
-      className={`
-        font-display font-medium uppercase tracking-[0.18em] leading-none
-        transition-colors duration-200
-        ${sizeClasses[size]}
-        ${colorClass}
-        ${className}
-      `}
+    <Heading
+      as="h1"
+      size="h2"
+      className={`${colorClass} ${sizeClasses[size]} ${className}`}
     >
-      Adriana Laszlo
-    </span>
+      ADRIANA LASZLO
+    </Heading>
   );
 
   if (asText) return content;

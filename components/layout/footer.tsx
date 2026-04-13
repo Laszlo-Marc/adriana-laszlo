@@ -1,87 +1,70 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import Image from "next/image";
+import { Phone, MapPin, Mail, MessageCircle } from "lucide-react";
+import Button from "@/components/ui/Button";
+import Logo from "@/components/ui/Logo";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import {
+  navLinks,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+} from "@/components/layout/navbar/NavLinks";
+import Text from "../ui/Text";
+import Heading from "../ui/Heading";
 
-const quickLinks = [
-  { href: "/", label: "Acasă" },
-  { href: "/servicii", label: "Servicii" },
-  { href: "/blog", label: "Blog" },
-  { href: "/evenimente", label: "Evenimente" },
-  { href: "/contact", label: "Contact" },
-];
-
-const serviceLinks = [
-  { href: "/servicii#emdr", label: "Terapie EMDR" },
-  { href: "/servicii#eft", label: "Terapie EFT" },
-  { href: "/servicii#online", label: "Ședințe online" },
-  { href: "/servicii#cuplu", label: "Terapie de cuplu" },
-];
+const EMAIL = "adrianalaszlo@gmail.com";
+const EMAIL_HREF = `mailto:${EMAIL}`;
+const WHATSAPP_HREF = "https://wa.me/40744123456";
+const MAPS_HREF = "https://maps.app.goo.gl/Vm8iqJT8wFqDtZa86";
+const LOCATION_LABEL = "Trauma Center Cluj";
+const LOCATION_TEXT = "Strada Artelor 35, Cluj-Napoca, România";
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal text-cream/80">
-      {/* Main footer */}
-      <div className="section-container pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-5">
-              <div className="flex flex-col leading-none">
-                <span className="font-display text-base text-cream tracking-[0.15em] font-medium uppercase">
-                  Adriana
-                </span>
-                <span className="font-display text-base text-cream tracking-[0.15em] font-medium uppercase">
-                  Laszlo
-                </span>
-              </div>
-            </Link>
-            <p className="text-sm leading-relaxed text-cream/60 mb-6 max-w-[280px]">
-              Psiholog-psihoterapeut cu peste 15 ani de experiență. Specializare
-              în EMDR și EFT pentru tratarea traumelor.
-            </p>
-            {/* Social links */}
-            <div className="flex gap-3">
+    <footer
+      className="border-t border-border bg-cream"
+      aria-label="Subsol site"
+    >
+      <div className="mx-auto max-w-450 px-6 py-12 md:px-8 md:py-16">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.1fr_0.8fr_1fr_1.1fr]">
+          <div className="space-y-5">
+            <Logo size="md" />
+
+            <Text>
+              Psihoterapie integrativă într-un spațiu sigur, calm și atent,
+              orientat spre claritate, echilibru și vindecare.
+            </Text>
+
+            <div className="flex items-center gap-3">
               <a
-                href="https://www.facebook.com/psiholg/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-teal hover:border-teal/40 transition-all"
-                aria-label="Facebook"
-              >
-                <FaFacebookF size={14} />
-              </a>
-              <a
-                href="https://www.instagram.com/trauma_center_cluj/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-teal hover:border-teal/40 transition-all"
+                href="#"
                 aria-label="Instagram"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-charcoal transition-colors hover:border-gold hover:text-gold"
               >
-                <FaInstagram size={15} />
+                <FaInstagram size={24} strokeWidth={2} />
               </a>
+
               <a
-                href="https://www.linkedin.com/in/psihologadrianalaszlo/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-teal hover:border-teal/40 transition-all"
-                aria-label="LinkedIn"
+                href="#"
+                aria-label="Facebook"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border text-charcoal transition-colors hover:border-gold hover:text-gold"
               >
-                <FaLinkedinIn size={14} />
+                <FaFacebookF size={24} strokeWidth={2} />
               </a>
             </div>
           </div>
 
-          {/* Quick links */}
           <div>
-            <h4 className="font-display text-xs font-medium text-cream tracking-[0.15em] uppercase mb-5">
+            <Heading as="h4" size="h3" className="mb-4">
               Navigare
-            </h4>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
+            </Heading>
+
+            <ul className="space-y-3">
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-body text-sm text-cream/50 hover:text-cream transition-colors"
+                    className="text-lg text-muted transition-colors hover:text-charcoal"
                   >
                     {link.label}
                   </Link>
@@ -90,97 +73,84 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="font-display text-xs font-medium text-cream tracking-[0.15em] uppercase mb-5">
-              Servicii
-            </h4>
-            <ul className="space-y-2.5">
-              {serviceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="font-body text-sm text-cream/50 hover:text-cream transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact info */}
-          <div>
-            <h4 className="font-display text-xs font-medium text-cream tracking-[0.15em] uppercase mb-5">
+            <Heading as="h4" size="h3" className="mb-4">
               Contact
-            </h4>
-            <ul className="space-y-3.5">
-              <li>
-                <a
-                  href="tel:+40744473869"
-                  className="flex items-start gap-3 text-sm text-cream/50 hover:text-cream transition-colors group"
-                >
-                  <Phone
-                    size={15}
-                    strokeWidth={1.5}
-                    className="mt-0.5 flex-shrink-0 text-gold group-hover:text-gold-200"
-                  />
-                  <span>+40 744 473 869</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:adrianalaszlo@gmail.com"
-                  className="flex items-start gap-3 text-sm text-cream/50 hover:text-cream transition-colors group"
-                >
-                  <Mail
-                    size={15}
-                    strokeWidth={1.5}
-                    className="mt-0.5 flex-shrink-0 text-gold group-hover:text-gold-200"
-                  />
-                  <span>adrianalaszlo@gmail.com</span>
-                </a>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-sm text-cream/50">
-                  <MapPin
-                    size={15}
-                    strokeWidth={1.5}
-                    className="mt-0.5 flex-shrink-0 text-gold"
-                  />
-                  <span>Str. Artelor 35, Cluj-Napoca</span>
-                </div>
-              </li>
-            </ul>
+            </Heading>
 
-            {/* Trauma Center reference */}
-            <div className="mt-6 pt-5 border-t border-cream/10">
-              <p className="text-[0.65rem] text-cream/35 mb-1.5 uppercase tracking-[0.12em]">
-                Fondator
-              </p>
-              <a
-                href="https://traumacenter.ro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-sm text-cream/50 hover:text-teal transition-colors"
+            <div className="flex max-w-xs flex-col gap-3">
+              <Button
+                href={PHONE_HREF}
+                variant="primary"
+                size="md"
+                fullWidth
+                leftIcon={<Phone size={20} strokeWidth={2} />}
               >
-                Trauma Center Cluj-Napoca ↗
-              </a>
+                {PHONE_DISPLAY}
+              </Button>
+
+              <Button
+                href={WHATSAPP_HREF}
+                variant="purple"
+                size="md"
+                fullWidth
+                leftIcon={<MessageCircle size={20} strokeWidth={2} />}
+              >
+                WhatsApp
+              </Button>
             </div>
+
+            <a
+              href={EMAIL_HREF}
+              className="mt-4 inline-flex items-center gap-2 text-md text-muted transition-colors hover:text-charcoal"
+            >
+              <Mail size={16} strokeWidth={1.75} />
+              <span>{EMAIL}</span>
+            </a>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Heading as="h4" size="h3" className="mb-4">
+                {LOCATION_LABEL}
+              </Heading>
+              <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted">
+                <MapPin size={16} strokeWidth={1.75} />
+                <span>{LOCATION_TEXT}</span>
+              </p>
+            </div>
+
+            <a
+              href={MAPS_HREF}
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-muted transition-colors hover:text-charcoal"
+            >
+              Vezi pe Google Maps
+            </a>
           </div>
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-cream/10">
-        <div className="section-container py-5 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-cream/30">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted md:mt-12 md:flex-row md:items-center md:justify-between">
+          <p>
             © {new Date().getFullYear()} Adriana Laszlo. Toate drepturile
             rezervate.
           </p>
-          <p className="text-xs text-cream/30 uppercase tracking-[0.08em]">
-            Colegiul Psihologilor din România · ARPI
-          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/politica-de-confidentialitate"
+              className="transition-colors hover:text-charcoal"
+            >
+              Politica de confidențialitate
+            </Link>
+            <Link
+              href="/cookies"
+              className="transition-colors hover:text-charcoal"
+            >
+              Politica cookies
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

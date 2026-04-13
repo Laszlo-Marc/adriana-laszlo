@@ -54,7 +54,9 @@ export default function RootLayout({
   return (
     <html lang="ro" className={`${cinzel.variable} ${poppins.variable}`}>
       <body>
+        <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
