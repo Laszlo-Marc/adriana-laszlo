@@ -1,42 +1,50 @@
+"use client";
+
 type MobileNavToggleProps = {
   open: boolean;
   onClick: () => void;
+  ariaControls?: string;
 };
 
-export function MobileNavToggle({ open, onClick }: MobileNavToggleProps) {
+export function MobileNavToggle({
+  open,
+  onClick,
+  ariaControls,
+}: MobileNavToggleProps) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={open ? "Închide meniul" : "Deschide meniul"}
       aria-expanded={open}
-      aria-controls="mobile-nav-panel"
-      className="relative inline-flex h-11 w-11 items-center justify-center rounded-soft text-charcoal transition-colors hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+      aria-controls={ariaControls}
+      className={[
+        "relative inline-flex h-12 w-12 items-center justify-center rounded-full",
+        "border border-border/70 bg-cream text-charcoal transition-colors",
+        "hover:border-charcoal/30 hover:bg-surface focus:outline-none focus:ring-2 focus:ring-teal/40",
+      ].join(" ")}
     >
       <span className="sr-only">
         {open ? "Închide meniul" : "Deschide meniul"}
       </span>
 
-      <span className="relative block h-5 w-6">
+      <span className="relative block h-4 w-5">
         <span
           className={[
-            "absolute left-0 top-0 h-[1.5px] w-6 origin-center rounded-full bg-current",
-            "transition-transform duration-300 ease-out",
-            open ? "translate-y-2.25 rotate-45" : "translate-y-0 rotate-0",
+            "absolute left-0 top-0 h-[1.5px] w-5 rounded-full bg-current transition-all duration-300",
+            open ? "translate-y-[7px] rotate-45" : "translate-y-0",
           ].join(" ")}
         />
         <span
           className={[
-            "absolute left-0 top-2.25 h-[1.5px] w-6 rounded-full bg-current",
-            "transition-opacity duration-200 ease-out",
+            "absolute left-0 top-[7px] h-[1.5px] w-5 rounded-full bg-current transition-all duration-300",
             open ? "opacity-0" : "opacity-100",
           ].join(" ")}
         />
         <span
           className={[
-            "absolute left-0 top-4.5 h-[1.5px] w-6 origin-center rounded-full bg-current",
-            "transition-transform duration-300 ease-out",
-            open ? "-translate-y-2.25 -rotate-45" : "translate-y-0 rotate-0",
+            "absolute left-0 top-[14px] h-[1.5px] w-5 rounded-full bg-current transition-all duration-300",
+            open ? "-translate-y-[7px] -rotate-45" : "translate-y-0",
           ].join(" ")}
         />
       </span>

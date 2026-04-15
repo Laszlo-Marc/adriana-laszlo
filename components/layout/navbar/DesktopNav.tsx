@@ -5,7 +5,6 @@ import { Mail, Phone } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import { navLinks, PHONE_DISPLAY, PHONE_HREF } from "./NavLinks";
-import { GiChatBubble } from "react-icons/gi";
 
 type DesktopNavProps = {
   pathname: string;
@@ -14,16 +13,14 @@ type DesktopNavProps = {
 export default function DesktopNav({ pathname }: DesktopNavProps) {
   return (
     <nav
-      className="hidden lg:hidden xl:grid grid-cols-3 items-center h-30 px-8 py-6"
+      className="hidden xl:grid grid-cols-[auto_1fr_auto] items-center gap-8 px-8 py-6 2xl:px-10"
       aria-label="Navigație principală"
     >
-      {/* LEFT — Logo */}
       <div className="justify-self-start">
         <Logo size="md" />
       </div>
 
-      {/* CENTER — Navigation */}
-      <ul className="flex items-center gap-9 justify-self-center">
+      <ul className="flex items-center justify-center gap-7 2xl:gap-9">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
 
@@ -32,30 +29,23 @@ export default function DesktopNav({ pathname }: DesktopNavProps) {
               <Link
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`
-                  group relative py-1
-                  font-body text-lg uppercase tracking-[0.14em]
-                  transition-colors
-                  ${
-                    isActive
-                      ? "text-charcoal"
-                      : "text-muted hover:text-charcoal"
-                  }
-                `}
+                className={[
+                  "group relative py-1",
+                  "font-body text-sm 2xl:text-base uppercase tracking-[0.14em]",
+                  "transition-colors",
+                  isActive ? "text-charcoal" : "text-muted hover:text-charcoal",
+                ].join(" ")}
               >
                 {link.label}
 
-                {/* underline */}
                 <span
-                  className={`
-                    pointer-events-none absolute left-0 -bottom-1 h-[1.5px] w-full bg-teal rounded-full
-                    origin-left transition-transform duration-300 ease-out
-                    ${
-                      isActive
-                        ? "scale-x-100"
-                        : "scale-x-0 group-hover:scale-x-100"
-                    }
-                  `}
+                  className={[
+                    "pointer-events-none absolute left-0 -bottom-1 h-[1.5px] w-full rounded-full bg-teal",
+                    "origin-left transition-transform duration-300 ease-out",
+                    isActive
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100",
+                  ].join(" ")}
                 />
               </Link>
             </li>
@@ -63,8 +53,7 @@ export default function DesktopNav({ pathname }: DesktopNavProps) {
         })}
       </ul>
 
-      {/* RIGHT — Actions */}
-      <div className="flex items-center gap-3 justify-self-end">
+      <div className="flex items-center justify-self-end gap-3">
         <Button
           href={PHONE_HREF}
           variant="primary"
@@ -82,7 +71,7 @@ export default function DesktopNav({ pathname }: DesktopNavProps) {
           leftIcon={<Mail size={18} />}
           aria-label="Programează o consultație"
         >
-          Programează
+          Contact
         </Button>
       </div>
     </nav>
