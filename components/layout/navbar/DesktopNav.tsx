@@ -14,7 +14,7 @@ type DesktopNavProps = {
 export default function DesktopNav({ pathname }: DesktopNavProps) {
   return (
     <nav
-      className="hidden md:grid grid-cols-3 items-center h-26 px-8 py-6"
+      className="hidden lg:hidden xl:grid grid-cols-3 items-center h-30 px-8 py-6"
       aria-label="Navigație principală"
     >
       {/* LEFT — Logo */}

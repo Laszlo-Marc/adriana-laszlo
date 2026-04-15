@@ -6,11 +6,8 @@ import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import { PHONE_DISPLAY, PHONE_HREF } from "../layout/navbar/NavLinks";
-const trustItems = [
-  "Specializare AF-EMDR",
-  "15+ ani experiență",
-  "Fondator Trauma Center",
-] as const;
+
+const trustBadges = ["Specializare AF-EMDR", "15+ ani experiență"] as const;
 
 export default function Hero() {
   return (
@@ -21,115 +18,119 @@ export default function Hero() {
       className="overflow-hidden"
     >
       <Container size="wide" padding="default">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
-          {/* Left: content */}
-          <div className="order-2 max-w-4xl lg:order-1">
-            <Text
-              as="p"
-              size="sm"
-              color="muted-teal"
-              weight="medium"
-              transform="upper"
-              className="mb-5 tracking-[0.18em]"
-            >
-              Psiholog · Psihoterapeut · Specialist AF-EMDR · Cluj-Napoca
-            </Text>
-
-            <Heading as="h1" size="h2" case="normal">
-              Psihoterapie specializată în traumă, cu focus pe AF-EMDR
-            </Heading>
-
-            <Text size="lg" color="muted" balance className="mt-6 max-w-xl">
-              Sprijin psihoterapeutic pentru trauma de atașament, traume majore
-              din viața adultă, anxietate și blocaje emoționale, într-un spațiu
-              sigur, atent și orientat spre vindecare profundă.
-            </Text>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href="/contact" variant="urgent" size="lg">
-                Programează o ședință
-              </Button>
-
-              <Button
-                href={PHONE_HREF}
-                variant="outline"
-                size="lg"
-                leftIcon={<Phone size={16} strokeWidth={1.75} />}
-                aria-label={`Sună la ${PHONE_DISPLAY}`}
+        <div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 xl:gap-18">
+          <div className="order-2 lg:order-1">
+            <div className="max-w-4xl bg-cream px-0 py-2 sm:py-4 lg:pt-0 lg:pb-4">
+              <Text
+                as="p"
+                size="sm"
+                color="muted-teal"
+                weight="medium"
+                transform="upper"
+                className="mb-4 tracking-[0.14em]"
               >
-                {PHONE_DISPLAY}
-              </Button>
-            </div>
+                AF-EMDR · Traumă · Atașament · Cluj-Napoca
+              </Text>
 
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-              {trustItems.map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span
-                    aria-hidden="true"
-                    className="h-1.5 w-1.5 rounded-full bg-teal"
-                  />
-                  <Text
-                    as="span"
-                    size="sm"
-                    color="muted"
-                    weight="medium"
-                    transform="upper"
-                    className="tracking-[0.12em]"
+              <Heading as="h1" size="h1" case="normal">
+                Terapie pentru traumă și atașament
+              </Heading>
+
+              <Text size="lg" color="muted" balance className="mt-5 max-w-xl">
+                Sprijin psihoterapeutic pentru experiențe dificile de viață,
+                traumă de atașament, anxietate și blocaje emoționale, într-un
+                cadru sigur, profesionist și orientat spre schimbare profundă.
+              </Text>
+
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button href="/contact" variant="primary" size="lg">
+                  Programează o ședință
+                </Button>
+
+                <Button
+                  href={PHONE_HREF}
+                  variant="outline"
+                  size="lg"
+                  leftIcon={<Phone size={16} strokeWidth={1.75} />}
+                  aria-label={`Sună la ${PHONE_DISPLAY}`}
+                >
+                  {PHONE_DISPLAY}
+                </Button>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4">
+                {trustBadges.map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center rounded-full border border-border/70 bg-teal-soft px-4 py-4 shadow-[0_4px_14px_rgba(44,44,44,0.04)]"
                   >
-                    {item}
-                  </Text>
-                </li>
-              ))}
-            </ul>
+                    <Text as="span" size="sm" color="charcoal" weight="medium">
+                      {item}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Right: portrait */}
           <div className="order-1 lg:order-2">
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="relative  aspect-4/5 overflow-hidden rounded-softer border border-border/80 bg-sand shadow-[0_20px_60px_rgba(44,44,44,0.08)]">
-                <Image
-                  src="/adriana.jpg"
-                  alt="Adriana Laszlo, psiholog și psihoterapeut specializat în AF-EMDR"
-                  fill
-                  priority
-                  sizes="(min-width: 1280px) 35vw, (min-width: 1024px) 46vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative mx-auto flex w-full max-w-136 items-end justify-center lg:max-w-none">
+              <div
+                aria-hidden="true"
+                className="absolute left-1/2 top-[12%] h-[78%] w-[78%] -translate-x-1/2 rounded-full bg-teal-soft"
+              />
 
               <div
                 aria-hidden="true"
-                className="absolute -right-4 -bottom-4 -z-10 hidden h-40 w-40 rounded-full bg-teal-soft blur-2xl lg:block"
+                className="absolute right-[8%] top-[16%] h-28 w-28 rounded-full bg-teal-soft/70 blur-2xl"
               />
 
-              <div className="absolute inset-x-4 bottom-4 sm:inset-x-auto sm:right-4 sm:bottom-4 sm:max-w-[18rem]">
-                <div className="rounded-softer border border-white/60 bg-white/88 p-4 shadow-[0_12px_30px_rgba(44,44,44,0.10)] backdrop-blur-md">
-                  <Text
-                    as="p"
-                    size="xs"
-                    color="muted-teal"
-                    weight="semibold"
-                    transform="upper"
-                    className="tracking-[0.16em]"
-                  >
-                    Specializare
-                  </Text>
+              <div className="relative z-10 aspect-4/5 w-full max-w-140 overflow-hidden rounded-[32px]">
+                <Image
+                  src="/adriana8.webp"
+                  alt="Adriana Laszlo, psiholog și psihoterapeut specializat în AF-EMDR"
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 42vw, 90vw"
+                  className="object-contain object-bottom"
+                />
+              </div>
 
-                  <Heading as="h2" size="h4" case="normal" className="mt-2">
-                    AF-EMDR pentru traumă și atașament
-                  </Heading>
+              <div className="absolute bottom-0 left-0 z-20 max-w-80 sm:max-w-76 lg:left-[0%]">
+                <div className="rounded-[22px] border border-white/70 bg-white/90 p-4 shadow-[0_12px_30px_rgba(44,44,44,0.10)] backdrop-blur-md sm:p-5">
+                  <div className="mt-3 flex items-center gap-3">
+                    <Image
+                      src="/tc-logo.svg"
+                      alt="Trauma Center"
+                      width={48}
+                      height={48}
+                      className="h-14 w-14 shrink-0 object-contain"
+                    />
 
-                  <Text size="sm" color="muted" className="mt-2">
-                    Abordare integrativă orientată spre reglare emoțională,
-                    siguranță relațională și vindecare în profunzime.
-                  </Text>
-
-                  <div className="mt-4 inline-flex items-center gap-2 text-charcoal">
-                    <Text as="span" size="sm" weight="medium">
-                      Despre abordare
-                    </Text>
-                    <ArrowRight size={15} strokeWidth={1.75} />
+                    <Heading as="h2" size="h4" case="normal">
+                      Trauma Center
+                    </Heading>
                   </div>
+
+                  <Text size="sm" color="muted" className="mt-3">
+                    Un spațiu dedicat lucrului terapeutic cu trauma, atașamentul
+                    și reglarea emoțională, fondat pentru intervenție
+                    specializată și siguranță relațională.
+                  </Text>
+
+                  <Button
+                    href="https://traumacenter.ro"
+                    variant="purple"
+                    size="sm"
+                    className="mt-4"
+                  >
+                    <div className="inline-flex items-center gap-2 text-charcoal">
+                      <Text as="span" size="sm" weight="medium">
+                        Descoperă Centrul
+                      </Text>
+                      <ArrowRight size={15} strokeWidth={1.75} />
+                    </div>
+                  </Button>
                 </div>
               </div>
             </div>

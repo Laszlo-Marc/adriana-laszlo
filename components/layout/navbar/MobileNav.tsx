@@ -52,7 +52,7 @@ export default function MobileNav({
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="xl:hidden">
       <div className="relative z-50 flex h-20 items-center justify-between px-6 py-6">
         <Logo size="lg" />
         <MobileNavToggle open={open} onClick={onToggle} />
