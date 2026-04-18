@@ -1,9 +1,11 @@
 import AboutSection from "@/components/sections/About";
 import Hero from "@/components/sections/Hero";
-export default function ShowcasePage() {
+import ValueBanner from "@/components/sections/value-banner/ValueBanner";
+export default function HomePage() {
   return (
     <main id="main">
       <Hero />
+      <ValueBanner />
       <AboutSection />
     </main>
   );

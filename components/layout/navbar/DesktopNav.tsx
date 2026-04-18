@@ -5,6 +5,7 @@ import { Mail, Phone } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import { navLinks, PHONE_DISPLAY, PHONE_HREF } from "./NavLinks";
+import { FaWhatsapp } from "react-icons/fa";
 
 type DesktopNavProps = {
   pathname: string;
@@ -55,13 +56,13 @@ export default function DesktopNav({ pathname }: DesktopNavProps) {
 
       <div className="flex items-center justify-self-end gap-3">
         <Button
-          href={PHONE_HREF}
+          href="https://wa.me/40775214338"
           variant="primary"
           size="lg"
-          leftIcon={<Phone size={18} strokeWidth={1.75} />}
+          leftIcon={<FaWhatsapp size={18} strokeWidth={1.75} />}
           aria-label={`Sună la ${PHONE_DISPLAY}`}
         >
-          {PHONE_DISPLAY}
+          WhatsApp
         </Button>
 
         <Button

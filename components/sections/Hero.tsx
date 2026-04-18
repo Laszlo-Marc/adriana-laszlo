@@ -15,7 +15,7 @@ export default function Hero() {
       background="cream"
       spacing="sm"
       aria-labelledby="hero-heading"
-      className="overflow-hidden"
+      className="mt-20"
     >
       <Container size="wide" padding="default">
         <div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 xl:gap-18">
@@ -56,19 +56,6 @@ export default function Hero() {
                 >
                   {PHONE_DISPLAY}
                 </Button>
-              </div>
-
-              <div className="mt-10 flex flex-wrap items-center gap-3 sm:gap-4">
-                {trustBadges.map((item) => (
-                  <div
-                    key={item}
-                    className="inline-flex items-center rounded-full border border-border/70 bg-teal-soft px-4 py-4 shadow-[0_4px_14px_rgba(44,44,44,0.04)]"
-                  >
-                    <Text as="span" size="sm" color="charcoal" weight="medium">
-                      {item}
-                    </Text>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
