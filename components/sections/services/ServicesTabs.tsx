@@ -106,7 +106,7 @@ export function ServicesTabs({
           })}
         </div>
 
-        <div className="mt-3 overflow-hidden rounded-[24px] border border-charcoal/10 bg-cream/70">
+        <div className="mt-3 overflow-hidden rounded-3xl border border-charcoal/10 bg-cream/70">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeItem.id}
@@ -210,8 +210,8 @@ export function ServicesTabs({
                     className={cn(
                       "mt-4 inline-flex min-h-11 items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
                       activeItem.highlight
-                        ? "bg-gold text-white hover:translate-y-[-1px] hover:opacity-95"
-                        : "bg-charcoal text-white hover:translate-y-[-1px] hover:opacity-95",
+                        ? "bg-gold text-white hover:-translate-y-px hover:opacity-95"
+                        : "bg-charcoal text-white hover:-translate-y-px hover:opacity-95",
                     )}
                   >
                     {activeItem.ctaLabel}

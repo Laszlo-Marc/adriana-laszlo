@@ -7,8 +7,6 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import { PHONE_DISPLAY, PHONE_HREF } from "../layout/navbar/NavLinks";
 
-const trustBadges = ["Specializare AF-EMDR", "15+ ani experiență"] as const;
-
 export default function Hero() {
   return (
     <Section
@@ -72,7 +70,7 @@ export default function Hero() {
                 className="absolute right-[8%] top-[16%] h-28 w-28 rounded-full bg-teal-soft/70 blur-2xl"
               />
 
-              <div className="relative z-10 aspect-4/5 w-full max-w-140 overflow-hidden rounded-[32px]">
+              <div className="relative z-10 aspect-4/5 w-full max-w-140 overflow-hidden rounded-4xl">
                 <Image
                   src="/adriana8.webp"
                   alt="Adriana Laszlo, psiholog și psihoterapeut specializat în AF-EMDR"

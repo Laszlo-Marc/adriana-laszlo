@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
-import { navLinks, PHONE_DISPLAY, PHONE_HREF } from "./NavLinks";
+import { navLinks, PHONE_DISPLAY } from "./NavLinks";
 import { FaWhatsapp } from "react-icons/fa";
 
 type DesktopNavProps = {

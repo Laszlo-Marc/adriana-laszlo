@@ -101,7 +101,7 @@ export default function ServicesSection() {
   return (
     <Section
       id="servicii"
-      background="cream"
+      background="white"
       spacing="lg"
       aria-labelledby="services-heading"
     >
