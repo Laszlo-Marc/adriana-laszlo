@@ -1,26 +1,34 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+type ServiceDetail = {
+  label: string;
+  value: string;
+};
+
+type ServiceImage = {
+  src: string;
+  alt: string;
+};
 
 export type ServiceTabItem = {
   id: string;
   label: string;
-  eyebrow?: string;
-  badge?: string;
   title: string;
   description: string;
-  forWho: string;
-  benefits: string[];
-  details: Array<{
-    label: string;
-    value: string;
-  }>;
+  chips: string[];
+  outcomes: string[];
+  details: ServiceDetail[];
   ctaLabel: string;
   ctaHref: string;
+  image: ServiceImage;
+  featuredNote?: string;
   highlight?: boolean;
 };
 
@@ -51,12 +59,12 @@ export function ServicesTabs({
 
   return (
     <div className={cn("w-full", className)}>
-      <div
-        className="rounded-[28px] border border-charcoal/10 bg-white/80 p-2 shadow-[0_14px_50px_rgba(0,0,0,0.05)]"
-        role="tablist"
-        aria-label="Servicii disponibile"
-      >
-        <div className="flex flex-wrap gap-2">
+      <div className="overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          className="inline-flex min-w-full gap-2 rounded-3xl border border-charcoal/10 bg-white/80 p-2 shadow-[0_14px_50px_rgba(0,0,0,0.05)] md:flex md:min-w-0 md:flex-wrap"
+          role="tablist"
+          aria-label="Servicii disponibile"
+        >
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
 
@@ -70,33 +78,33 @@ export function ServicesTabs({
                 id={`service-tab-${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
-                  "relative inline-flex min-h-11 items-center rounded-2xl px-4 py-2.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                  "relative inline-flex min-h-11 shrink-0 items-center rounded-2xl px-4 py-2.5 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-gold/50",
                   isActive
                     ? "text-charcoal"
                     : "text-charcoal/72 hover:text-charcoal",
                 )}
               >
-                {isActive && (
+                {isActive ? (
                   <motion.div
-                    layoutId="services-active-pill"
+                    layoutId="services-active-tab"
                     className={cn(
                       "absolute inset-0 rounded-2xl border",
                       tab.highlight
-                        ? "border-gold/30 bg-gold/12"
+                        ? "border-gold/30 bg-gold/10"
                         : "border-charcoal/10 bg-cream",
                     )}
                     transition={{
                       type: "spring",
-                      stiffness: 380,
-                      damping: 32,
+                      stiffness: 420,
+                      damping: 34,
                     }}
                   />
-                )}
+                ) : null}
 
                 <span className="relative z-10 flex items-center gap-2">
                   {tab.label}
                   {tab.highlight ? (
-                    <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+                    <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">
                       EMDR
                     </span>
                   ) : null}
@@ -105,109 +113,132 @@ export function ServicesTabs({
             );
           })}
         </div>
+      </div>
 
-        <div className="mt-3 overflow-hidden rounded-3xl border border-charcoal/10 bg-cream/70">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={activeItem.id}
-              id={`service-panel-${activeItem.id}`}
-              role="tabpanel"
-              aria-labelledby={`service-tab-${activeItem.id}`}
-              initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -6, filter: "blur(6px)" }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]"
-            >
-              <div className="px-5 py-6 md:px-8 md:py-8">
-                <h3 className="mt-4 font-display text-3xl leading-tight text-charcoal md:text-[2rem]">
-                  {activeItem.title}
-                </h3>
-
-                <p className="mt-4 max-w-2xl text-base leading-8 text-charcoal/80">
-                  {activeItem.description}
-                </p>
-
-                <div className="mt-6 rounded-2xl border border-charcoal/10 bg-white px-4 py-4">
-                  <p className="text-sm font-semibold text-charcoal">
-                    Cui i se potrivește
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-charcoal/72">
-                    {activeItem.forWho}
+      <div className="mt-4 overflow-hidden rounded-[28px] border border-charcoal/10 bg-white/80 shadow-[0_18px_60px_rgba(0,0,0,0.06)]">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activeItem.id}
+            id={`service-panel-${activeItem.id}`}
+            role="tabpanel"
+            aria-labelledby={`service-tab-${activeItem.id}`}
+            initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -8, filter: "blur(6px)" }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            className="grid lg:grid-cols-[1.08fr_0.92fr]"
+          >
+            <div className="px-5 py-6 md:px-8 md:py-7 lg:px-10 lg:py-8">
+              {activeItem.highlight && activeItem.featuredNote ? (
+                <div className="mb-5 rounded-2xl border border-gold/20 bg-gold/8 px-4 py-3">
+                  <p className="text-sm font-medium leading-7 text-charcoal/80">
+                    {activeItem.featuredNote}
                   </p>
                 </div>
+              ) : null}
 
-                <div className="mt-6">
-                  <p className="text-sm font-semibold text-charcoal">
-                    Ce poți obține prin acest tip de lucru
-                  </p>
+              <h3 className="font-display text-3xl leading-tight text-charcoal md:text-[2rem]">
+                {activeItem.title}
+              </h3>
 
-                  <ul className="mt-3 space-y-3">
-                    {activeItem.benefits.map((benefit) => (
-                      <li
-                        key={benefit}
-                        className="flex items-start gap-3 text-sm leading-7 text-charcoal/78"
-                      >
-                        <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/12 text-gold">
-                          <Check className="h-3.5 w-3.5" />
-                        </span>
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-charcoal/78">
+                {activeItem.description}
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {activeItem.details.map((detail) => (
+                  <div
+                    key={detail.label}
+                    className="rounded-2xl border border-charcoal/10 bg-white/80 px-4 py-3"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal/56">
+                      {detail.label}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-charcoal">
+                      {detail.value}
+                    </p>
+                  </div>
+                ))}
               </div>
 
-              <div
-                className={cn(
-                  "flex h-full flex-col justify-between border-t border-charcoal/10 px-5 py-6 lg:border-l lg:border-t-0 md:px-8 md:py-8",
-                  activeItem.highlight ? "bg-gold/8" : "bg-white/70",
-                )}
-              >
-                <div>
-                  <p className="text-sm font-semibold text-charcoal">Detalii</p>
-
-                  <div className="mt-4 space-y-3">
-                    {activeItem.details.map((detail) => (
-                      <div
-                        key={detail.label}
-                        className="flex items-center justify-between gap-4 rounded-2xl border border-charcoal/10 bg-white px-4 py-3"
-                      >
-                        <span className="text-sm text-charcoal/68">
-                          {detail.label}
-                        </span>
-                        <span className="text-sm font-semibold text-charcoal">
-                          {detail.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-8 rounded-2xl border border-charcoal/10 bg-white px-4 py-4">
-                  <p className="text-sm leading-7 text-charcoal/72">
-                    Dacă nu știi încă ce format ți se potrivește cel mai bine,
-                    poți începe cu o primă programare și stabilim împreună cea
-                    mai potrivită direcție de lucru.
-                  </p>
-
-                  <Link
-                    href={activeItem.ctaHref}
+              <div className="mt-6 flex flex-wrap gap-2">
+                {activeItem.chips.map((chip) => (
+                  <span
+                    key={chip}
                     className={cn(
-                      "mt-4 inline-flex min-h-11 items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                      "rounded-full px-3 py-1.5 text-sm font-medium",
                       activeItem.highlight
-                        ? "bg-gold text-white hover:-translate-y-px hover:opacity-95"
-                        : "bg-charcoal text-white hover:-translate-y-px hover:opacity-95",
+                        ? "bg-gold/10 text-charcoal"
+                        : "bg-cream text-charcoal/84",
                     )}
                   >
-                    {activeItem.ctaLabel}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-charcoal/68">
+                  Te poate ajuta să
+                </p>
+
+                <ul className="mt-4 space-y-3">
+                  {activeItem.outcomes.map((outcome) => (
+                    <li
+                      key={outcome}
+                      className="flex items-start gap-3 text-sm leading-7 text-charcoal/80 md:text-base"
+                    >
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/12 text-gold">
+                        <Check className="h-3.5 w-3.5" />
+                      </span>
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className={cn(
+                "border-t border-charcoal/10 px-5 py-5 lg:border-l lg:border-t-0 lg:px-8 lg:py-8",
+                activeItem.highlight ? "bg-gold/6" : "bg-cream/40",
+              )}
+            >
+              <div className="relative overflow-hidden rounded-3xl border border-charcoal/10 bg-white">
+                <div className="relative aspect-4/3">
+                  <Image
+                    src={activeItem.image.src}
+                    alt={activeItem.image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+
+              <div className="mt-5 rounded-2xl border border-charcoal/10 bg-white px-4 py-4">
+                <p className="text-sm leading-7 text-charcoal/72">
+                  Dacă nu știi încă ce format ți se potrivește, putem clarifica
+                  împreună la primul contact cea mai potrivită direcție de
+                  lucru.
+                </p>
+
+                <Link
+                  href={activeItem.ctaHref}
+                  className={cn(
+                    "mt-4 inline-flex min-h-11 items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50",
+                    activeItem.highlight
+                      ? "bg-gold hover:-translate-y-px hover:opacity-95"
+                      : "bg-charcoal hover:-translate-y-px hover:opacity-95",
+                  )}
+                >
+                  {activeItem.ctaLabel}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

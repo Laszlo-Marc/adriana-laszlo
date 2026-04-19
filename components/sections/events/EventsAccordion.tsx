@@ -63,14 +63,10 @@ function AccordionCard({ item, isActive, onActivate }: AccordionCardProps) {
               {item.title}
             </h3>
 
-            <Button
-              variant="urgent"
-              size="sm"
-              className="mt-4"
-              rightIcon={<ArrowRight className="h-4 w-4" />}
-            >
+            <span className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-white bg-gold/90 px-3 py-1 rounded-full">
               {item.ctaLabel}
-            </Button>
+              <ArrowRight className="h-4 w-4" />
+            </span>
           </div>
         ) : (
           <div className="flex min-h-55 items-end justify-center">

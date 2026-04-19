@@ -34,7 +34,7 @@ export default function BlogPostCard({ post, className }: BlogPostCardProps) {
         className="flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2"
         aria-label={`Citește articolul: ${post.title}`}
       >
-        <div className="relative aspect-[16/10] overflow-hidden">
+        <div className="relative aspect-16/10 overflow-hidden">
           <Image
             src={post.image.src}
             alt={post.image.alt}
@@ -42,7 +42,7 @@ export default function BlogPostCard({ post, className }: BlogPostCardProps) {
             sizes="(max-width: 767px) 88vw, (max-width: 1023px) 44vw, 30vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
         </div>
 
         <div className="flex flex-1 flex-col p-5 sm:p-6">

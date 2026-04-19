@@ -12,7 +12,7 @@ import { Mail } from "lucide-react";
 export default function HomeEventsSection() {
   return (
     <Section
-      background="white"
+      background="cream"
       spacing="lg"
       aria-labelledby="home-events-heading"
     >

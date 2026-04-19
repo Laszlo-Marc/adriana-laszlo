@@ -70,14 +70,15 @@ export default function Hero() {
                 className="absolute right-[8%] top-[16%] h-28 w-28 rounded-full bg-teal-soft/70 blur-2xl"
               />
 
-              <div className="relative z-10 aspect-4/5 w-full max-w-140 overflow-hidden rounded-4xl">
+              <div className="relative z-10 w-full max-w-md sm:max-w-124 lg:max-w-136">
                 <Image
                   src="/adriana8.webp"
                   alt="Adriana Laszlo, psiholog și psihoterapeut specializat în AF-EMDR"
-                  fill
+                  width={800}
+                  height={800}
                   priority
-                  sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 42vw, 90vw"
-                  className="object-contain object-bottom"
+                  sizes="(min-width: 1280px) 34rem, (min-width: 1024px) 42vw, 90vw"
+                  className="h-auto w-full rounded-[28px] object-contain"
                 />
               </div>
 

@@ -4,7 +4,7 @@ import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 import { PHONE_HREF } from "@/components/layout/navbar/NavLinks";
-import { MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 export default function FinalCTA() {
   return (
@@ -28,11 +28,16 @@ export default function FinalCTA() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Button size="lg" rightIcon={<MessageCircle />} variant="primary">
+            <Button size="lg" leftIcon={<MessageCircle />} variant="primary">
               Trimite un mesaj
             </Button>
 
-            <Button size="lg" variant="purple">
+            <Button
+              size="lg"
+              variant="purple"
+              leftIcon={<Mail />}
+              aria-label="Programează o discuție"
+            >
               <a href={PHONE_HREF}>Programează o discuție</a>
             </Button>
           </div>

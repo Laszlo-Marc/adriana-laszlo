@@ -22,10 +22,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="border-t border-border bg-white"
-      aria-label="Subsol site"
-    >
+    <footer className=" bg-teal-soft" aria-label="Subsol site">
       <div className="mx-auto max-w-450 px-6 py-10 md:px-8 md:py-12 xl:py-14">
         <div className="grid gap-8 xl:grid-cols-[1.15fr_0.95fr_0.9fr_1fr] xl:gap-10">
           <div className="space-y-8 xl:space-y-0 xl:contents">
@@ -41,7 +38,7 @@ export default function Footer() {
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-charcoal transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
                 >
                   <FaInstagram size={20} />
                 </a>
@@ -49,7 +46,7 @@ export default function Footer() {
                 <a
                   href="#"
                   aria-label="Facebook"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-charcoal transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
                 >
                   <FaFacebookF size={18} />
                 </a>

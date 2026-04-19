@@ -2,22 +2,19 @@ import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
-import { ServicesTabs, ServiceTabItem } from "./ServicesTabs";
+import { ServicesTabs, type ServiceTabItem } from "./ServicesTabs";
 
 const services: ServiceTabItem[] = [
   {
     id: "af-emdr",
     label: "AF-EMDR",
-    eyebrow: "Diferențiator",
-    badge: "Specializare avansată",
     title: "Terapie AF-EMDR pentru procesarea traumelor",
     description:
-      "AF-EMDR este o abordare avansată care ajută la reprocesarea experiențelor dificile, reducerea intensității emoționale și recâștigarea unui sentiment de siguranță interioară.",
-    forWho:
-      "Potrivită dacă te confrunți cu efectele unor relații abuzive, traumă relațională, anxietate puternică, blocaje emoționale sau tipare repetitive greu de înțeles și schimbat.",
-    benefits: [
-      "Reduce încărcătura emoțională a amintirilor dureroase",
-      "Te ajută să înțelegi rădăcina tiparelor care te blochează",
+      "O abordare specializată pentru lucrul cu experiențe dificile, traumă relațională și blocaje emoționale care continuă să influențeze prezentul.",
+    chips: ["Traumă relațională", "Anxietate", "Blocaje emoționale"],
+    outcomes: [
+      "Reduce intensitatea emoțională a amintirilor dureroase",
+      "Ajută la înțelegerea rădăcinii tiparelor repetitive",
       "Susține reglarea emoțională și recâștigarea clarității",
     ],
     details: [
@@ -27,18 +24,22 @@ const services: ServiceTabItem[] = [
     ],
     ctaLabel: "Programează o ședință AF-EMDR",
     ctaHref: "#contact",
+    image: {
+      src: "/services/af-emdr.webp",
+      alt: "Psihoterapie AF-EMDR într-un cadru calm și sigur",
+    },
+    featuredNote:
+      "Abordare specializată pentru procesarea traumelor, integrată ca direcție distinctivă a practicii.",
     highlight: true,
   },
   {
     id: "individuala",
     label: "Psihoterapie individuală",
-    eyebrow: "Serviciu",
     title: "Psihoterapie individuală în cabinet",
     description:
-      "Un spațiu sigur și structurat în care poți înțelege mai bine ceea ce trăiești, lucra asupra dificultăților emoționale și construi schimbări reale, într-un ritm potrivit pentru tine.",
-    forWho:
-      "Potrivită pentru persoane care se confruntă cu anxietate, dificultăți relaționale, stimă de sine scăzută, suferință emoțională sau perioade de confuzie și blocaj.",
-    benefits: [
+      "Un spațiu sigur și structurat în care poți înțelege mai bine ceea ce trăiești, lucra asupra dificultăților emoționale și construi schimbări reale.",
+    chips: ["Relații dificile", "Stimă de sine", "Confuzie emoțională"],
+    outcomes: [
       "Clarifici problemele cu care te confrunți",
       "Înțelegi mai bine reacțiile și tiparele tale",
       "Construiești resurse interioare mai stabile",
@@ -50,17 +51,19 @@ const services: ServiceTabItem[] = [
     ],
     ctaLabel: "Programează o ședință",
     ctaHref: "#contact",
+    image: {
+      src: "/services/individuala.webp",
+      alt: "Ședință de psihoterapie individuală într-un cabinet primitor",
+    },
   },
   {
     id: "online",
     label: "Psihoterapie online",
-    eyebrow: "Serviciu",
     title: "Psihoterapie online, de oriunde te afli",
     description:
-      "Terapia online oferă flexibilitate și accesibilitate, păstrând claritatea procesului terapeutic și continuitatea lucrului, chiar dacă nu poți ajunge fizic la cabinet.",
-    forWho:
-      "Potrivită dacă locuiești în alt oraș sau în străinătate, ai un program încărcat sau ai nevoie de un format mai flexibil și ușor de integrat în viața de zi cu zi.",
-    benefits: [
+      "Terapia online oferă flexibilitate și continuitate, păstrând claritatea procesului terapeutic și accesul mai ușor la sprijin specializat.",
+    chips: ["Program încărcat", "Alt oraș", "Flexibilitate"],
+    outcomes: [
       "Acces mai ușor la terapie, indiferent de locație",
       "Continuitate și flexibilitate în programare",
       "Confortul de a lucra din propriul tău spațiu",
@@ -72,20 +75,22 @@ const services: ServiceTabItem[] = [
     ],
     ctaLabel: "Programează online",
     ctaHref: "#contact",
+    image: {
+      src: "/services/online.webp",
+      alt: "Psihoterapie online într-un cadru liniștit și profesionist",
+    },
   },
   {
     id: "international",
     label: "Internațional",
-    eyebrow: "Serviciu",
     title: "Psihoterapie pentru românii din străinătate",
     description:
-      "Un format dedicat persoanelor care locuiesc în afara țării și își doresc să lucreze terapeutic în limba română, într-un cadru profesionist și familiar.",
-    forWho:
-      "Potrivită dacă locuiești în afara României și cauți sprijin terapeutic în limba română, cu un terapeut care înțelege contextul tău cultural și emoțional.",
-    benefits: [
+      "Un format dedicat celor care locuiesc în afara țării și își doresc terapie în limba română, într-un cadru profesionist și familiar.",
+    chips: ["Diaspora", "În limba română", "Online"],
+    outcomes: [
       "Lucrezi în limba română, într-un cadru familiar",
-      "Accesibilitate indiferent de țara în care locuiești",
-      "Susținere pentru dificultăți relaționale și emoționale complexe",
+      "Ai acces la terapie indiferent de țara în care locuiești",
+      "Primești susținere pentru dificultăți relaționale și emoționale complexe",
     ],
     details: [
       { label: "Durată", value: "50 minute" },
@@ -94,6 +99,10 @@ const services: ServiceTabItem[] = [
     ],
     ctaLabel: "Solicită o programare",
     ctaHref: "#contact",
+    image: {
+      src: "/services/online.webp",
+      alt: "Psihoterapie online pentru românii din străinătate",
+    },
   },
 ];
 
@@ -109,23 +118,17 @@ export default function ServicesSection() {
         <div className="mx-auto max-w-full text-center">
           <Text
             as="p"
-            className="font-body text-md font-semibold uppercase tracking-[0.22em] text-gold"
+            className="font-body text-sm font-semibold uppercase tracking-[0.22em] text-gold"
           >
             Servicii
           </Text>
 
           <Heading as="h2" size="h2" className="mt-3 text-charcoal">
-            Sprijin terapeutic clar, calm și adaptat nevoilor tale
+            Forme de lucru clare, adaptate nevoilor tale
           </Heading>
-
-          <Text className="mt-4 text-base leading-8 text-charcoal/78 md:text-lg">
-            Fie că ai nevoie de psihoterapie individuală, terapie online sau de
-            o abordare specializată pentru procesarea traumelor, scopul este să
-            găsim împreună forma de lucru potrivită pentru tine.
-          </Text>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-10">
           <ServicesTabs tabs={services} defaultTab="af-emdr" />
         </div>
       </Container>

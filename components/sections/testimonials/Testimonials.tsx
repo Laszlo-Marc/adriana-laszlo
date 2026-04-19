@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export type TestimonialItem = {
   id: string;
@@ -61,11 +62,13 @@ function TestimonialsCard({ item, position, isActive, onMove }: CardProps) {
     >
       <div className="mb-5 flex items-center gap-4">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-charcoal/10 bg-sand/30">
-          <img
+          <Image
             src={item.imageSrc}
             alt={item.imageAlt ?? item.name}
             className="h-full w-full object-cover"
             loading={isActive ? "eager" : "lazy"}
+            width={100}
+            height={100}
           />
         </div>
 
@@ -155,7 +158,7 @@ export default function TestimonialsStack({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-gradient-to-b from-cream to-white py-16 sm:py-20",
+        "relative overflow-hidden bg-linear-to-b from-cream to-white py-16 sm:py-20",
         className,
       )}
       aria-labelledby="testimonials-heading"
@@ -176,7 +179,7 @@ export default function TestimonialsStack({
           </p>
         </div>
 
-        <div className="relative mt-14 h-[30rem] overflow-hidden sm:h-[32rem]">
+        <div className="relative mt-14 h-120 overflow-hidden sm:h-128">
           {visibleItems.map(({ item }, index) => {
             let position = index - centerIndex;
 
