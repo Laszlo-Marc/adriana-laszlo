@@ -120,20 +120,6 @@ export function ServicesTabs({
               className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]"
             >
               <div className="px-5 py-6 md:px-8 md:py-8">
-                <div className="flex flex-wrap items-center gap-3">
-                  {activeItem.eyebrow ? (
-                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                      {activeItem.eyebrow}
-                    </span>
-                  ) : null}
-
-                  {activeItem.badge ? (
-                    <span className="rounded-full border border-gold/20 bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal/78">
-                      {activeItem.badge}
-                    </span>
-                  ) : null}
-                </div>
-
                 <h3 className="mt-4 font-display text-3xl leading-tight text-charcoal md:text-[2rem]">
                   {activeItem.title}
                 </h3>

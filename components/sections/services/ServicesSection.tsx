@@ -101,8 +101,8 @@ export default function ServicesSection() {
   return (
     <Section
       id="servicii"
-      background="white"
-      spacing="lg"
+      background="cream"
+      spacing="md"
       aria-labelledby="services-heading"
     >
       <Container size="wide" padding="default">
@@ -125,52 +125,8 @@ export default function ServicesSection() {
           </Text>
         </div>
 
-        <div className="mt-8 rounded-3xl border border-gold/20 bg-white/70 px-5 py-4 shadow-[0_10px_40px_rgba(0,0,0,0.04)] backdrop-blur-sm md:px-6">
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <Text className="text-sm font-medium text-charcoal">
-              Specializare distinctivă
-            </Text>
-            <Text className="text-sm leading-7 text-charcoal/72">
-              AF-EMDR este una dintre abordările centrale ale practicii și
-              merită evidențiată ca diferențiator principal în această secțiune.
-            </Text>
-          </div>
-        </div>
-
         <div className="mt-8">
           <ServicesTabs tabs={services} defaultTab="af-emdr" />
-        </div>
-
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl border border-charcoal/10 bg-white px-5 py-5">
-            <Text className="text-sm font-semibold text-charcoal">
-              1. Discuție inițială
-            </Text>
-            <Text className="mt-2 text-sm leading-7 text-charcoal/72">
-              Clarificăm dificultățile cu care te confrunți și ce îți dorești să
-              schimbi.
-            </Text>
-          </div>
-
-          <div className="rounded-2xl border border-charcoal/10 bg-white px-5 py-5">
-            <Text className="text-sm font-semibold text-charcoal">
-              2. Stabilim direcția de lucru
-            </Text>
-            <Text className="mt-2 text-sm leading-7 text-charcoal/72">
-              Alegem împreună abordarea potrivită și construim un cadru sigur și
-              clar.
-            </Text>
-          </div>
-
-          <div className="rounded-2xl border border-charcoal/10 bg-white px-5 py-5">
-            <Text className="text-sm font-semibold text-charcoal">
-              3. Lucrăm în ritmul tău
-            </Text>
-            <Text className="mt-2 text-sm leading-7 text-charcoal/72">
-              Procesul terapeutic respectă ritmul, resursele și nevoile tale
-              reale.
-            </Text>
-          </div>
         </div>
       </Container>
     </Section>

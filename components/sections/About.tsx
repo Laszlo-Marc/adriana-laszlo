@@ -50,20 +50,20 @@ export default function AboutSection() {
   return (
     <Section
       aria-labelledby="about-heading"
-      background="cream"
+      background="white"
       className="py-20 md:py-28"
     >
       <Container size="wide" padding="default">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16">
           <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-muted/30">
-            <div className="relative aspect-square w-full">
+            <div className="relative aspect-4/5 w-full max-h-190">
               <Image
                 src="/adriana10.webp"
                 alt="Portret Adriana Laszlo"
                 fill
                 loading="eager"
                 className="object-cover"
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                sizes="(min-width: 1024px) 40vw, 90vw"
               />
             </div>
           </div>

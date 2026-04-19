@@ -1,4 +1,3 @@
-// TrustItemsRow.tsx
 import { Brain, Award, Building2, ShieldCheck } from "lucide-react";
 
 const items = [

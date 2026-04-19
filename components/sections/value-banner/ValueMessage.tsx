@@ -1,10 +1,9 @@
 import Heading from "../../ui/Heading";
 import Text from "../../ui/Text";
 
-// ValueMessage.tsx
 export default function ValueMessage() {
   return (
-    <div className="max-w-400 mx-auto mb-8">
+    <div className="max-w-full">
       <Heading as="h1" size="h1" align="center" className="mb-10">
         Vindecarea începe atunci când înțelegi ce ți se întâmplă
       </Heading>

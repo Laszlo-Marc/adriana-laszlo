@@ -1,4 +1,6 @@
 import AboutSection from "@/components/sections/About";
+import BlogPostsSection from "@/components/sections/blog/BlogPostSection";
+import FinalCTA from "@/components/sections/CTABanner";
 import HomeEventsSection from "@/components/sections/events/EventsSection";
 import Hero from "@/components/sections/Hero";
 import ServicesSection from "@/components/sections/services/ServicesSection";
@@ -12,11 +14,12 @@ export default function HomePage() {
       <Hero />
       <ValueBanner />
       <AboutSection />
-
       <ServicesSection />
       <TraumaCenterBanner />
       <HomeEventsSection />
       <TestimonialsStack items={testimonialItems} />
+      <BlogPostsSection />
+      <FinalCTA />
     </main>
   );
 }

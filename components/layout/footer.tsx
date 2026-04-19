@@ -23,7 +23,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="border-t border-border bg-cream"
+      className="border-t border-border bg-white"
       aria-label="Subsol site"
     >
       <div className="mx-auto max-w-450 px-6 py-10 md:px-8 md:py-12 xl:py-14">

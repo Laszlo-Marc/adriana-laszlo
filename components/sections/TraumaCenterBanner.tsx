@@ -13,7 +13,7 @@ export default function TraumaCenterBanner() {
     <Section
       spacing="sm"
       aria-labelledby="trauma-center-heading"
-      className="border-y border-border bg-purple/10"
+      background="purple-soft"
     >
       <Container size="full">
         <Link
@@ -47,7 +47,7 @@ export default function TraumaCenterBanner() {
             </Text>
 
             <Button
-              variant="urgent"
+              variant="primary"
               size="lg"
               className="mt-6"
               rightIcon={<ArrowRight size={15} />}

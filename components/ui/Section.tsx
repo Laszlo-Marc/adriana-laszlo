@@ -31,8 +31,6 @@ const bgStyles: Record<SectionBg, string> = {
   "purple-soft": "bg-purple-soft text-charcoal",
 };
 
-// Vertical rhythm — mobile first, comfortable on desktop.
-// Keep the scale intentional; resist the urge to add more options.
 const spacingY: Record<SectionSpacing, string> = {
   none: "py-0",
   sm: "py-10 md:py-14",
