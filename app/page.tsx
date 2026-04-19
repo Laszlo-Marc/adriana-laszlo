@@ -2,7 +2,7 @@ import AboutSignatureSection from "@/components/sections/about/AboutSection";
 import BlogPostsSection from "@/components/sections/blog/BlogPostSection";
 import FinalCTA from "@/components/sections/CTABanner";
 import HomeEventsSection from "@/components/sections/events/EventsSection";
-import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/hero/HeroSection";
 import ServicesSection from "@/components/sections/services/ServicesSection";
 import TestimonialsStack from "@/components/sections/testimonials/Testimonials";
 import { testimonialItems } from "@/components/sections/testimonials/testimonials-data";

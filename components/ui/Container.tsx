@@ -1,6 +1,6 @@
 import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react";
 
-type ContainerSize = "narrow" | "default" | "wide" | "full";
+type ContainerSize = "narrow" | "default" | "wide" | "wider" | "full";
 type ContainerPadding = "none" | "sm" | "default" | "lg";
 
 type ContainerOwnProps = {
@@ -18,6 +18,7 @@ const sizeStyles: Record<ContainerSize, string> = {
   narrow: "max-w-3xl",
   default: "max-w-6xl",
   wide: "max-w-[1600px]",
+  wider: "max-w-[1800px]",
   full: "max-w-none",
 };
 
