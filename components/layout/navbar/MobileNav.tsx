@@ -1,28 +1,29 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { useEffect, useId } from "react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
-import { navLinks, PHONE_DISPLAY, PHONE_HREF } from "./NavLinks";
+import { PHONE_DISPLAY, PHONE_HREF } from "./NavLinks";
+import { Phone } from "lucide-react";
 import { MobileNavToggle } from "./MobileNavToggle";
 import { MobileDrawerPanel } from "./MobileDrawerPanel";
 import { TabletDropdownPanel } from "./TabletDropdownPanel";
 
 type MobileNavProps = {
   pathname: string;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
-const HEADER_HEIGHT_MOBILE = "5rem";
-const HEADER_HEIGHT_TABLET = "5rem";
-
-export default function MobileNav({ pathname }: MobileNavProps) {
-  const [open, setOpen] = useState(false);
+export default function MobileNav({
+  pathname,
+  open,
+  onOpenChange,
+}: MobileNavProps) {
   const panelId = useId();
 
-  const closeMenu = () => setOpen(false);
-  const toggleMenu = () => setOpen((prev) => !prev);
+  const closeMenu = () => onOpenChange(false);
+  const toggleMenu = () => onOpenChange(!open);
 
   useEffect(() => {
     if (!open) return;

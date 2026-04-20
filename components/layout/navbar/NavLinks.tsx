@@ -1,7 +1,9 @@
 export const navLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/blog", label: "Blog" },
+  { href: "/despre", label: "Despre" },
+  { href: "/servicii", label: "Servicii" },
   { href: "/evenimente", label: "Evenimente" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

@@ -3,6 +3,14 @@ import { Cinzel, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import { Allura } from "next/font/google";
+
+const allura = Allura({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-allura",
+  display: "swap",
+});
 
 const cinzel = Cinzel({
   subsets: ["latin", "latin-ext"],
@@ -52,7 +60,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ro" className={`${cinzel.variable} ${poppins.variable}`}>
+    <html
+      lang="ro"
+      className={`${cinzel.variable} ${poppins.variable} ${allura.variable}`}
+    >
       <body>
         <Navbar />
         <main>{children}</main>

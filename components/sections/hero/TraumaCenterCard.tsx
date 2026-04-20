@@ -30,12 +30,7 @@ export function TraumaCenterCard({ compact = false }: { compact?: boolean }) {
         </Heading>
       </div>
 
-      <Text
-        size="sm"
-        color="muted"
-        className="mt-3 lg:text-left"
-        align="center"
-      >
+      <Text size="sm" color="muted" className="mt-3" align="center">
         {compact
           ? "Un spațiu dedicat intervenției specializate în traumă, atașament și reglare emoțională."
           : "Un spațiu dedicat lucrului terapeutic cu trauma, atașamentul și reglarea emoțională, fondat pentru intervenție specializată și siguranță relațională."}

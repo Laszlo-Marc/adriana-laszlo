@@ -28,6 +28,7 @@
   /* --- Font families --- */
   --font-display: "Cinzel", Georgia, serif;
   --font-body: "Poppins", system-ui, sans-serif;
+  --font-accent: var(--font-allura);
 
   /* --- Border radius --- */
   --radius-soft: 0.625rem;
