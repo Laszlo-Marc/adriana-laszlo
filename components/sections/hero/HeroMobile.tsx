@@ -1,16 +1,11 @@
 import Image from "next/image";
 import { Phone } from "lucide-react";
-
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
-import { TraumaCenterCard } from "./TraumaCenterCard";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/components/layout/navbar/NavLinks";
 import AccentText from "@/components/ui/AccentText";
-
-const heroPills = ["AF-EMDR", "Traumă", "Atașament"] as const;
 
 const certificationLogos = [
   {
@@ -45,14 +40,14 @@ export default function HeroMobile() {
                 height={1500}
                 priority
                 sizes="(min-width: 768px) 42rem, 92vw"
-                className="h-[23rem] w-full object-cover object-center sm:h-[28rem]"
+                className="h-92 w-full object-cover object-center sm:h-112"
               />
 
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-charcoal/18 via-charcoal/8 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-linear-to-b from-charcoal/18 via-charcoal/8 to-transparent" />
             </div>
 
             <div className="relative z-10 -mt-20 px-4 sm:px-6">
-              <div className="rounded-[24px] items-center justify-center bg-white/70 px-5 py-5 shadow-[0_14px_34px_rgba(44,44,44,0.08)] ring-1 ring-charcoal/6 sm:px-6 sm:py-6">
+              <div className="rounded-3xl items-center justify-center bg-white/70 px-5 py-5 shadow-[0_14px_34px_rgba(44,44,44,0.08)] ring-1 ring-charcoal/6 sm:px-6 sm:py-6">
                 <AccentText as="div" className="text-center text-[3rem]">
                   Terapia Traumei
                 </AccentText>
@@ -103,9 +98,9 @@ export default function HeroMobile() {
               {certificationLogos.map((logo) => (
                 <div
                   key={logo.label}
-                  className="flex min-h-[10.5rem] items-center justify-center rounded-[24px] bg-white p-4 shadow-[0_10px_24px_rgba(44,44,44,0.05)] ring-1 ring-charcoal/6"
+                  className="flex min-h-42 items-center justify-center rounded-3xl bg-white p-4 shadow-[0_10px_24px_rgba(44,44,44,0.05)] ring-1 ring-charcoal/6"
                 >
-                  <div className="relative w-full max-w-[10rem]">
+                  <div className="relative w-full max-w-40">
                     <Image
                       src={logo.src}
                       alt={logo.alt}

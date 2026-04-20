@@ -1,0 +1,265 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import Button from "@/components/ui/Button";
+
+type ServiceAccordionImage = {
+  src: string;
+  alt: string;
+};
+
+type ServiceAccent = {
+  overlayActive: string;
+  overlayInactive: string;
+  borderActive: string;
+  pillBg: string;
+  pillText: string;
+  mobileRow: string;
+  mobileRowActive: string;
+};
+export type ServiceAccordionItem = {
+  id: string;
+  title: string;
+  subtitle: string;
+  href: string;
+  image: ServiceAccordionImage;
+  label: string;
+  accent: ServiceAccent;
+};
+
+type ServicesAccordionProps = {
+  items: ServiceAccordionItem[];
+  className?: string;
+};
+
+export function ServicesAccordion({
+  items,
+  className,
+}: ServicesAccordionProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [revealedItems, setRevealedItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    const timers = items.map((_, index) =>
+      window.setTimeout(() => {
+        setRevealedItems((prev) =>
+          prev.includes(index) ? prev : [...prev, index],
+        );
+      }, 120 * index),
+    );
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [items]);
+
+  const safeActiveIndex = activeIndex >= 0 ? activeIndex : 0;
+
+  const activeItem = useMemo(
+    () => items[safeActiveIndex] ?? items[0],
+    [items, safeActiveIndex],
+  );
+
+  if (!items.length || !activeItem) return null;
+
+  return (
+    <div className={cn("w-full", className)}>
+      <div className="hidden gap-3 lg:flex lg:h-125">
+        {items.map((item, index) => {
+          const isActive = index === safeActiveIndex;
+          const isVisible = revealedItems.includes(index);
+
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              className={cn(
+                "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none transition-[flex-grow,transform,box-shadow,border-color] duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50",
+                isActive
+                  ? cn(
+                      "flex-6 shadow-[0_20px_60px_rgba(44,44,44,0.14)]",
+                      item.accent.borderActive,
+                    )
+                  : "flex-[1.2] border-charcoal/10 shadow-[0_10px_30px_rgba(44,44,44,0.08)] hover:border-charcoal/20",
+              )}
+              aria-pressed={isActive}
+              aria-label={item.title}
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateX(0)" : "translateX(-24px)",
+              }}
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 100vw"
+                  className={cn(
+                    "object-cover transition-transform duration-700 ease-out",
+                    isActive
+                      ? "scale-[1.02]"
+                      : "scale-[1.08] grayscale-[0.2] brightness-[0.85]",
+                  )}
+                />
+              </div>
+
+              <div
+                className={cn(
+                  "absolute inset-0 bg-linear-to-t transition-opacity duration-500",
+                  isActive
+                    ? item.accent.overlayActive
+                    : item.accent.overlayInactive,
+                )}
+              />
+
+              <div className="absolute left-4 top-4 z-20">
+                <span
+                  className={cn(
+                    "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm",
+                    item.accent.pillBg,
+                    item.accent.pillText,
+                  )}
+                >
+                  {item.label}
+                </span>
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 z-20 p-5">
+                <div className="flex items-end gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/18 bg-white/14 text-sm font-semibold text-white backdrop-blur-sm">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                  <div
+                    className={cn(
+                      "min-w-0 transition-all duration-500",
+                      isActive
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-2 opacity-0 lg:pointer-events-none",
+                    )}
+                  >
+                    <h3 className="font-display text-[1.7rem] leading-tight text-white">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-2 max-w-xl text-sm leading-6 text-white/88">
+                      {item.subtitle}
+                    </p>
+
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white">
+                      Descoperă serviciul
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="lg:hidden">
+        {items.map((item, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <div key={item.id} className="py-1">
+              <button
+                type="button"
+                onClick={() => setActiveIndex(isActive ? -1 : index)}
+                className={cn(
+                  "flex w-full items-center justify-between gap-4 rounded-xl px-3 py-4 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold/50",
+                  isActive
+                    ? item.accent.mobileRowActive
+                    : item.accent.mobileRow,
+                )}
+                aria-expanded={isActive}
+                aria-controls={`mobile-service-panel-${item.id}`}
+                id={`mobile-service-trigger-${item.id}`}
+              >
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-display text-lg leading-tight text-charcoal">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <motion.span
+                  animate={{ rotate: isActive ? 180 : 0 }}
+                  transition={{ duration: 0.22, ease: "easeOut" }}
+                  className="shrink-0 text-charcoal/50"
+                >
+                  <ChevronDown className="h-5 w-5" />
+                </motion.span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isActive ? (
+                  <motion.div
+                    id={`mobile-service-panel-${item.id}`}
+                    aria-labelledby={`mobile-service-trigger-${item.id}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="pb-6"
+                  >
+                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-[20px] mt-10">
+                      <Image
+                        src={item.image.src}
+                        alt={item.image.alt}
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-linear-to-t",
+                          item.accent.overlayInactive,
+                        )}
+                      />
+                    </div>
+
+                    <div className="mt-5">
+                      <h4 className="font-display text-2xl leading-tight text-charcoal">
+                        {item.title}
+                      </h4>
+
+                      <p className="mt-3 max-w-[34ch] text-base leading-7 text-charcoal/75">
+                        {item.subtitle}
+                      </p>
+
+                      <Link
+                        href={item.href}
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-charcoal transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+                      >
+                        Vezi detalii
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <Button size="lg" variant="urgent" href="/servicii">
+          Vezi toate serviciile
+        </Button>
+      </div>
+    </div>
+  );
+}

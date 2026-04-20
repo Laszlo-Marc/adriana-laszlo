@@ -6,8 +6,6 @@ import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
-import { TraumaCenterCard } from "./TraumaCenterCard";
-import { CertificationBadges } from "./CertificationBadges";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/components/layout/navbar/NavLinks";
 import Heading from "@/components/ui/Heading";
 
@@ -21,7 +19,7 @@ export default function HeroDesktop() {
         className="mt-20 hidden lg:block overflow-hidden"
       >
         <Container size="full" padding="none">
-          <div className="relative mx-auto min-h-[820px] max-w-[1600px] px-8 pb-20 pt-24 xl:min-h-[880px] xl:px-12 xl:pt-28">
+          <div className="relative mx-auto min-h-205 max-w-400 px-8 pb-20 pt-24 xl:min-h-220 xl:px-12 xl:pt-28">
             {/* soft ambient shapes */}
             <div
               aria-hidden="true"
@@ -66,7 +64,7 @@ export default function HeroDesktop() {
             </div>
 
             {/* Main content */}
-            <div className="relative z-10 mx-auto flex min-h-[620px] max-w-4xl flex-col items-center justify-center text-center">
+            <div className="relative z-10 mx-auto flex min-h-155 max-w-4xl flex-col items-center justify-center text-center">
               <Text
                 as="p"
                 size="sm"
