@@ -14,11 +14,26 @@ export default function HomeAboutTeaserDesktop() {
 
   return (
     <div className="hidden lg:block">
-      <div ref={sectionRef} className="relative h-svh">
+      <div ref={sectionRef} className="relative h-svh ">
         <div className="sticky top-0 h-svh">
           <div className="grid h-full grid-cols-[1.05fr_0.64fr_1fr]">
-            <div className="flex bg-teal/18">
-              <div className="flex w-full items-center px-10 py-20 xl:px-16">
+            {/* Left panel */}
+            <div className="relative flex bg-teal/18">
+              {/* Left ornament */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 left-[25%] z-0 w-[15rem] opacity-20 xl:w-[17rem]"
+              >
+                <Image
+                  src="/backgrounds/single.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1280px) 272px, 240px"
+                  className="object-contain object-left-top"
+                />
+              </div>
+
+              <div className="relative z-10 flex w-full items-center px-10 py-20 xl:px-16">
                 <div className="max-w-xl">
                   <Heading as="h2" size="h2" className="text-charcoal">
                     Despre mine
@@ -41,7 +56,8 @@ export default function HomeAboutTeaserDesktop() {
               </div>
             </div>
 
-            <div className="relative min-h-svh  bg-cream">
+            {/* Center portrait */}
+            <div className="relative min-h-svh bg-cream">
               <Image
                 src="/adriana8.webp"
                 alt="Portret Adriana Laszlo"
@@ -58,6 +74,7 @@ export default function HomeAboutTeaserDesktop() {
                   <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
                     Bine ai venit,
                   </AccentText>
+
                   <div className="-mt-2 flex items-end gap-3 pl-2">
                     <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
                       eu sunt
@@ -71,42 +88,59 @@ export default function HomeAboutTeaserDesktop() {
               </div>
             </div>
 
+            {/* Right panel */}
             <div className="relative  bg-purple/18">
-              <AboutFloatingWords
-                targetRef={sectionRef}
-                words={[
-                  {
-                    text: "Redescoperire",
-                    className: "left-8 top-[-2%]",
-                    startY: 40,
-                    endY: -200,
-                  },
-                  {
-                    text: "Prezență",
-                    className: "right-8 top-[24%]",
-                    startY: 0,
-                    endY: -200,
-                  },
-                  {
-                    text: "Siguranță",
-                    className: "left-8 top-[48%]",
-                    startY: 30,
-                    endY: -220,
-                  },
-                  {
-                    text: "Vindecare",
-                    className: "right-6 bottom-[10%]",
-                    startY: 60,
-                    endY: -240,
-                  },
-                  {
-                    text: "Autenticitate",
-                    className: "left-6 bottom-[-10%]",
-                    startY: 60,
-                    endY: -260,
-                  },
-                ]}
-              />
+              {/* Right ornament */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-[-12%] top-[0%] bottom-[-8%] z-0 w-[25rem] opacity-22 xl:w-[28rem]"
+              >
+                <Image
+                  src="/backgrounds/double-df.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1280px) 448px, 400px"
+                  className="object-contain object-right-top"
+                />
+              </div>
+
+              <div className="relative z-10 h-full">
+                <AboutFloatingWords
+                  targetRef={sectionRef}
+                  words={[
+                    {
+                      text: "Redescoperire",
+                      className: "left-8 top-[-2%]",
+                      startY: 40,
+                      endY: -200,
+                    },
+                    {
+                      text: "Prezență",
+                      className: "right-8 top-[24%]",
+                      startY: 0,
+                      endY: -200,
+                    },
+                    {
+                      text: "Siguranță",
+                      className: "left-8 top-[48%]",
+                      startY: 30,
+                      endY: -220,
+                    },
+                    {
+                      text: "Vindecare",
+                      className: "right-6 bottom-[10%]",
+                      startY: 60,
+                      endY: -240,
+                    },
+                    {
+                      text: "Autenticitate",
+                      className: "left-6 bottom-[-10%]",
+                      startY: 60,
+                      endY: -260,
+                    },
+                  ]}
+                />
+              </div>
             </div>
           </div>
         </div>

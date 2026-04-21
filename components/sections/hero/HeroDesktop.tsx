@@ -19,19 +19,32 @@ export default function HeroDesktop() {
     >
       <Container size="full" padding="none">
         <div className="relative mx-auto min-h-205 max-w-400 px-8 pb-20 pt-24 xl:min-h-220 xl:px-12 xl:pt-28">
-          {/* Center decorative brand element */}
+          {/* Brand thread ornaments */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 bottom-0 z-[1] flex justify-center"
+            className="pointer-events-none absolute inset-0 z-[1]"
           >
-            <div className="relative h-full w-[15rem] xl:w-[17rem]">
+            {/* Left thread */}
+            <div className="absolute -left-8 -top-18 w-[15rem] opacity-45 xl:-left-4 xl:w-[17rem]">
               <Image
-                src="/backgrounds/double-simple.png"
+                src="/backgrounds/single.png"
                 alt=""
-                fill
-                priority={false}
+                width={480}
+                height={2048}
                 sizes="(min-width: 1280px) 272px, 240px"
-                className="object-contain object-top opacity-40"
+                className="h-auto w-full"
+              />
+            </div>
+
+            {/* Right thread */}
+            <div className="absolute -right-8 -top-18 w-[15rem] scale-x-[-1] opacity-45 xl:-right-4 xl:w-[17rem]">
+              <Image
+                src="/backgrounds/single.png"
+                alt=""
+                width={480}
+                height={2048}
+                sizes="(min-width: 1280px) 272px, 240px"
+                className="h-auto w-full"
               />
             </div>
           </div>
