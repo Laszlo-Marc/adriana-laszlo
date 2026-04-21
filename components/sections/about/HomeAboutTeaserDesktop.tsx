@@ -41,7 +41,7 @@ export default function HomeAboutTeaserDesktop() {
               </div>
             </div>
 
-            <div className="relative min-h-svh overflow-hidden bg-cream">
+            <div className="relative min-h-svh  bg-cream">
               <Image
                 src="/adriana8.webp"
                 alt="Portret Adriana Laszlo"
@@ -53,14 +53,25 @@ export default function HomeAboutTeaserDesktop() {
 
               <div className="absolute inset-0 bg-linear-to-t from-charcoal/10 via-transparent to-transparent" />
 
-              <div className="absolute left-2 top-2 z-10 max-w-full ">
-                <AccentText className="text-5xl">
-                  Bun venit, eu sunt Adriana
-                </AccentText>
+              <div className="absolute -left-80 -top-4 z-10 rotate-[-10deg] text-charcoal">
+                <div className="flex flex-col leading-none">
+                  <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
+                    Bine ai venit,
+                  </AccentText>
+                  <div className="-mt-2 flex items-end gap-3 pl-2">
+                    <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
+                      eu sunt
+                    </AccentText>
+
+                    <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
+                      Adriana
+                    </AccentText>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="relative overflow-hidden bg-purple/18">
+            <div className="relative  bg-purple/18">
               <AboutFloatingWords
                 targetRef={sectionRef}
                 words={[
@@ -68,31 +79,31 @@ export default function HomeAboutTeaserDesktop() {
                     text: "Redescoperire",
                     className: "left-8 top-[-2%]",
                     startY: 40,
-                    endY: -120,
+                    endY: -200,
                   },
                   {
                     text: "Prezență",
                     className: "right-8 top-[24%]",
                     startY: 0,
-                    endY: -90,
+                    endY: -200,
                   },
                   {
                     text: "Siguranță",
                     className: "left-8 top-[48%]",
                     startY: 30,
-                    endY: -140,
+                    endY: -220,
                   },
                   {
                     text: "Vindecare",
                     className: "right-6 bottom-[10%]",
                     startY: 60,
-                    endY: -180,
+                    endY: -240,
                   },
                   {
                     text: "Autenticitate",
                     className: "left-6 bottom-[-10%]",
                     startY: 60,
-                    endY: -180,
+                    endY: -260,
                   },
                 ]}
               />

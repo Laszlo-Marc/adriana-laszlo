@@ -7,6 +7,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
+import Heading from "@/components/ui/Heading";
 
 type ServiceAccordionImage = {
   src: string;
@@ -230,22 +231,20 @@ export function ServicesAccordion({
                       />
                     </div>
 
-                    <div className="mt-5">
-                      <h4 className="font-display text-2xl leading-tight text-charcoal">
+                    <div className="mt-5 flex flex-col items-center gap-4 px-2 text-center">
+                      <Heading as="h4" size="h3" align="center">
                         {item.title}
-                      </h4>
+                      </Heading>
 
-                      <p className="mt-3 max-w-[34ch] text-base leading-7 text-charcoal/75">
+                      <p className="mt-3 max-w-[34ch] text-base leading-7 text-charcoal/75 text-center">
                         {item.subtitle}
                       </p>
 
-                      <Link
-                        href={item.href}
-                        className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-charcoal transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
-                      >
-                        Vezi detalii
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
+                      <div className="mt-3 flex justify-center">
+                        <Button href={item.href} variant="outline">
+                          Vezi detalii
+                        </Button>
+                      </div>
                     </div>
                   </motion.div>
                 ) : null}

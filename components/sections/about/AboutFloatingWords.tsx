@@ -59,10 +59,7 @@ export default function AboutFloatingWords({
   className,
 }: AboutFloatingWordsProps) {
   return (
-    <div
-      className={cn("absolute inset-0 overflow-hidden", className)}
-      aria-hidden="true"
-    >
+    <div className={cn("absolute inset-0 ", className)} aria-hidden="true">
       {words.map((word) => (
         <FloatingWordItem key={word.text} {...word} targetRef={targetRef} />
       ))}
