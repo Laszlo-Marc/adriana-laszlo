@@ -22,13 +22,13 @@ export default function HomeProgramsAndCenterSection() {
     >
       <Container size="full" padding="default">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <div className="relative h-28 w-28 ">
+          <div className="relative h-40 w-50 sm:h-44 sm:w-44 lg:h-48 lg:w-60">
             <Image
               src="/home-page/tc-banner.svg"
               alt="Trauma Center"
               fill
-              className="object-contain"
-              sizes="(max-width: 640px) 112px, (max-width: 1024px) 128px, 160px"
+              className="object-cover"
+              sizes="(max-width: 640px) 160px, (max-width: 1024px) 176px, 192px"
               priority={false}
             />
           </div>
@@ -47,21 +47,40 @@ export default function HomeProgramsAndCenterSection() {
 
           <ProgramsImageMarquee
             images={homeProgramsCarouselImages}
-            className="mt-10 w-screen relative left-1/2 -translate-x-1/2 sm:mt-12 lg:mt-14"
+            className="relative  mt-10 w-screen  sm:mt-12 lg:mt-14"
           />
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row">
-            <Button variant="primary" leftIcon={<Calendar />} size="lg">
-              <Link href="/evenimente">Vezi toate evenimentele</Link>
+          <div className="mt-10 grid w-full max-w-md grid-cols-2 gap-3 sm:mt-12 sm:max-w-xl">
+            <Button
+              variant="primary"
+              leftIcon={<Calendar className="hidden sm:block" />}
+              size="lg"
+              className="w-full min-w-0 px-3 text-[11px] sm:px-5 sm:text-sm"
+            >
+              <Link href="/evenimente" className="block w-full truncate">
+                <span className="sm:hidden">Evenimente</span>
+                <span className="hidden sm:inline">
+                  Vezi toate evenimentele
+                </span>
+              </Link>
             </Button>
 
-            <Button variant="purple" rightIcon={<ArrowRight />} size="lg">
+            <Button
+              variant="purple"
+              rightIcon={<ArrowRight className="hidden sm:block" />}
+              size="lg"
+              className="w-full min-w-0 px-3 text-[11px] sm:px-5 sm:text-sm"
+            >
               <Link
                 href="https://traumacenter.ro"
                 target="_blank"
                 rel="noreferrer"
+                className="block w-full truncate"
               >
-                Descoperă Trauma Center
+                <span className="sm:hidden">Trauma Center</span>
+                <span className="hidden sm:inline">
+                  Descoperă Trauma Center
+                </span>
               </Link>
             </Button>
           </div>
