@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -23,6 +22,7 @@ type ServiceAccent = {
   mobileRow: string;
   mobileRowActive: string;
 };
+
 export type ServiceAccordionItem = {
   id: string;
   title: string;
@@ -42,7 +42,8 @@ export function ServicesAccordion({
   items,
   className,
 }: ServicesAccordionProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [desktopActiveIndex, setDesktopActiveIndex] = useState(0);
+  const [openIndexes, setOpenIndexes] = useState<number[]>([0]);
   const [revealedItems, setRevealedItems] = useState<number[]>([]);
 
   useEffect(() => {
@@ -59,11 +60,17 @@ export function ServicesAccordion({
     };
   }, [items]);
 
-  const safeActiveIndex = activeIndex >= 0 ? activeIndex : 0;
+  const toggleMobileItem = (index: number) => {
+    setOpenIndexes((prev) =>
+      prev.includes(index)
+        ? prev.filter((item) => item !== index)
+        : [...prev, index],
+    );
+  };
 
   const activeItem = useMemo(
-    () => items[safeActiveIndex] ?? items[0],
-    [items, safeActiveIndex],
+    () => items[desktopActiveIndex] ?? items[0],
+    [items, desktopActiveIndex],
   );
 
   if (!items.length || !activeItem) return null;
@@ -72,15 +79,15 @@ export function ServicesAccordion({
     <div className={cn("w-full", className)}>
       <div className="hidden gap-3 lg:flex lg:h-125">
         {items.map((item, index) => {
-          const isActive = index === safeActiveIndex;
+          const isActive = index === desktopActiveIndex;
           const isVisible = revealedItems.includes(index);
 
           return (
             <button
               key={item.id}
               type="button"
-              onClick={() => setActiveIndex(index)}
-              onFocus={() => setActiveIndex(index)}
+              onClick={() => setDesktopActiveIndex(index)}
+              onFocus={() => setDesktopActiveIndex(index)}
               className={cn(
                 "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none transition-[flex-grow,transform,box-shadow,border-color] duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50",
                 isActive
@@ -169,13 +176,13 @@ export function ServicesAccordion({
 
       <div className="lg:hidden">
         {items.map((item, index) => {
-          const isActive = index === activeIndex;
+          const isActive = openIndexes.includes(index);
 
           return (
             <div key={item.id} className="py-1">
               <button
                 type="button"
-                onClick={() => setActiveIndex(isActive ? -1 : index)}
+                onClick={() => toggleMobileItem(index)}
                 className={cn(
                   "flex w-full items-center justify-between gap-4 rounded-xl px-3 py-4 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold/50",
                   isActive
@@ -208,42 +215,44 @@ export function ServicesAccordion({
                   <motion.div
                     id={`mobile-service-panel-${item.id}`}
                     aria-labelledby={`mobile-service-trigger-${item.id}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="pb-6"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.32, ease: "easeOut" }}
+                    className="overflow-hidden"
                   >
-                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-[20px] mt-10">
-                      <Image
-                        src={item.image.src}
-                        alt={item.image.alt}
-                        fill
-                        sizes="100vw"
-                        className="object-cover"
-                      />
+                    <div className="pb-6">
+                      <div className="relative mt-10 aspect-4/3 w-full overflow-hidden rounded-[20px]">
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          fill
+                          sizes="100vw"
+                          className="object-cover"
+                        />
 
-                      <div
-                        className={cn(
-                          "absolute inset-0 bg-linear-to-t",
-                          item.accent.overlayInactive,
-                        )}
-                      />
-                    </div>
+                        <div
+                          className={cn(
+                            "absolute inset-0 bg-linear-to-t",
+                            item.accent.overlayInactive,
+                          )}
+                        />
+                      </div>
 
-                    <div className="mt-5 flex flex-col items-center gap-4 px-2 text-center">
-                      <Heading as="h4" size="h3" align="center">
-                        {item.title}
-                      </Heading>
+                      <div className="mt-5 flex flex-col items-center gap-4 px-2 text-center">
+                        <Heading as="h4" size="h3" align="center">
+                          {item.title}
+                        </Heading>
 
-                      <p className="mt-3 max-w-[34ch] text-base leading-7 text-charcoal/75 text-center">
-                        {item.subtitle}
-                      </p>
+                        <p className="max-w-[34ch] text-base leading-7 text-charcoal/75 text-center">
+                          {item.subtitle}
+                        </p>
 
-                      <div className="mt-3 flex justify-center">
-                        <Button href={item.href} variant="outline">
-                          Vezi detalii
-                        </Button>
+                        <div className="mt-3 flex justify-center">
+                          <Button href={item.href} variant="outline">
+                            Vezi detalii
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </motion.div>

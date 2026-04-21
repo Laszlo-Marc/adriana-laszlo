@@ -1,57 +1,45 @@
-export type EventItem = {
+export type ProgramsCarouselImage = {
   id: string;
-  title: string;
-  eyebrow: string;
-  description: string;
-  image: string;
-  href: string;
-  ctaLabel: string;
-  meta: string;
+  src: string;
+  alt: string;
+  href?: string;
 };
 
-export const homeEventItems: EventItem[] = [
+export const homeProgramsCarouselImages: ProgramsCarouselImage[] = [
   {
-    id: "af-emdr-workshops",
-    eyebrow: "Workshopuri",
-    title: "Workshopuri",
-    description:
-      "Întâlniri ghidate pentru reglare emoțională, înțelegerea traumelor relaționale și reconectare cu resursele interioare.",
-    image: "/events/emdr.webp",
+    id: "poster-1",
+    src: "/events/emdr.webp",
+    alt: "Poster workshop EMDR",
     href: "/evenimente",
-    ctaLabel: "Vezi workshopurile",
-    meta: "În persoană • Grup restrâns",
   },
   {
-    id: "group-programs",
-    eyebrow: "Programe de grup",
-    title: "Programe de grup",
-    description:
-      "Spații sigure și atent structurate pentru vindecare, claritate și lucru profund pe tipare relaționale și traumă de atașament.",
-    image: "/events/constelatii.webp",
+    id: "event-1",
+    src: "/events/event-photo-1.webp",
+    alt: "Participanți la un eveniment Trauma Center",
     href: "/evenimente",
-    ctaLabel: "Descoperă programele",
-    meta: "Serii tematice • Locuri limitate",
   },
   {
-    id: "creative-atelier",
-    eyebrow: "Ateliere",
-    title: "Ateliere",
-    description:
-      "Experiențe blânde care combină expresia creativă cu tehnici de reglaj emoțional pentru mai multă prezență și siguranță interioară.",
-    image: "/events/flame.webp",
+    id: "poster-2",
+    src: "/events/flame.webp",
+    alt: "Poster atelier experiențial",
     href: "/evenimente",
-    ctaLabel: "Vezi atelierele",
-    meta: "Experiențial • Practic",
   },
   {
-    id: "community-events",
-    eyebrow: "Comunitate",
-    title: "Evenimente",
-    description:
-      "Întâlniri create pentru educație, conectare și sprijin, dedicate celor care își doresc un cadru clar și uman pentru creștere.",
-    image: "/events/emotii-creatii.webp",
+    id: "event-2",
+    src: "/events/event-photo-2.webp",
+    alt: "Cadru dintr-un atelier Trauma Center",
     href: "/evenimente",
-    ctaLabel: "Vezi evenimentele",
-    meta: "Educație • Conectare",
+  },
+  {
+    id: "poster-3",
+    src: "/events/constelatii.webp",
+    alt: "Poster program de grup",
+    href: "/evenimente",
+  },
+  {
+    id: "event-3",
+    src: "/events/event-photo-3.webp",
+    alt: "Participanți într-un workshop de grup",
+    href: "/evenimente",
   },
 ];
