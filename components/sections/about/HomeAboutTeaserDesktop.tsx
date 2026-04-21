@@ -22,14 +22,14 @@ export default function HomeAboutTeaserDesktop() {
               {/* Left ornament */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 left-[25%] z-0 w-[15rem] opacity-20 xl:w-[17rem]"
+                className="pointer-events-none absolute inset-y-0 left-[25%] z-0 w-60 opacity-20 xl:w-68"
               >
                 <Image
                   src="/backgrounds/single.png"
                   alt=""
                   fill
                   sizes="(min-width: 1280px) 272px, 240px"
-                  className="object-contain object-left-top"
+                  className="object-contain object-top-left"
                 />
               </div>
 
@@ -93,14 +93,14 @@ export default function HomeAboutTeaserDesktop() {
               {/* Right ornament */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute right-[-12%] top-[0%] bottom-[-8%] z-0 w-[25rem] opacity-22 xl:w-[28rem]"
+                className="pointer-events-none absolute right-[-12%] top-[0%] bottom-[-8%] z-0 w-100 opacity-22 xl:w-md"
               >
                 <Image
                   src="/backgrounds/double-df.png"
                   alt=""
                   fill
                   sizes="(min-width: 1280px) 448px, 400px"
-                  className="object-contain object-right-top"
+                  className="object-contain object-top-right"
                 />
               </div>
 

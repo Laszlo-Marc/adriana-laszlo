@@ -31,11 +31,11 @@ export default function ProgramsImageMarquee({
         }
       `}</style>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-cream to-transparent sm:w-20 lg:w-28" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-cream to-transparent sm:w-20 lg:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-cream to-transparent sm:w-20 lg:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-cream to-transparent sm:w-20 lg:w-28" />
 
-      <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="group flex w-max items-start gap-5 px-5 [animation:programs-marquee_32s_linear_infinite] hover:[animation-play-state:paused] sm:gap-6 sm:px-8 lg:gap-8 lg:px-10">
+      <div className="mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="group flex w-max items-start gap-5 px-5 animate-[programs-marquee_32s_linear_infinite] hover:[animation-play-state:paused] sm:gap-6 sm:px-8 lg:gap-8 lg:px-10">
           {duplicatedImages.map((image, index) => {
             const offsetClass =
               index % 3 === 0
@@ -47,7 +47,7 @@ export default function ProgramsImageMarquee({
             const card = (
               <div
                 className={cn(
-                  "relative h-[260px] w-[190px] shrink-0 overflow-hidden rounded-[24px] bg-sand/30 ring-1 ring-charcoal/6 shadow-[0_14px_36px_rgba(44,44,44,0.08)] transition-transform duration-300 ease-out group-hover:[&:not(:hover)]:scale-[0.985] hover:z-10 hover:scale-[1.02] sm:h-[320px] sm:w-[230px] lg:h-[420px] lg:w-[300px]",
+                  "relative h-65 w-47.5 shrink-0 overflow-hidden rounded-3xl bg-sand/30 ring-1 ring-charcoal/6 shadow-[0_14px_36px_rgba(44,44,44,0.08)] transition-transform duration-300 ease-out group-hover:not-[&:hover]:scale-[0.985] hover:z-10 hover:scale-[1.02] sm:h-80 sm:w-57.5 lg:h-105 lg:w-75",
                   offsetClass,
                 )}
               >
