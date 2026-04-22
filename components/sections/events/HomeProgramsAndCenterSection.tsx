@@ -32,14 +32,12 @@ export default function HomeProgramsAndCenterSection() {
               priority={false}
             />
           </div>
-          <Text align="center" size="lg" color="teal" weight="medium">
-            Workshopuri, ateliere și programe de grup
-          </Text>
+
           <Heading as="h2" size="h1" className="mt-6 " align="center">
             Evenimentele <AccentText>Trauma Center</AccentText>
           </Heading>
 
-          <Text className="mt-5 " align="center">
+          <Text className="mt-2 " align="center">
             Trauma Center este spațiul fondat de Adriana László pentru lucru
             atent ghidat cu trauma, reglare emoțională și experiențe de grup
             desfășurate într-un cadru profesionist, cald și conținător.

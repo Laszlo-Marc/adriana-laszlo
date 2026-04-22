@@ -47,30 +47,30 @@ const values: ValueItem[] = [
 
 function ValueCard({ title, description, Icon, tone }: ValueItem) {
   const iconShellClassName =
-    tone === "teal" ? "bg-teal/80 text-charcoal" : "bg-purple/80 text-charcoal";
+    tone === "teal" ? "bg-teal/70 text-charcoal" : "bg-purple/70 text-charcoal";
 
   return (
-    <article className="group relative flex h-full flex-col items-center text-center">
+    <article className="relative flex h-full flex-col items-center text-center">
       <div
         className={[
-          "mb-5 flex h-18 w-18 items-center justify-center rounded-[1.75rem] border border-charcoal/6 backdrop-blur-[2px]",
+          "mb-4 flex h-16 w-16 items-center justify-center rounded-3xl border border-charcoal/8 backdrop-blur-[2px] sm:h-18 sm:w-18",
           iconShellClassName,
         ].join(" ")}
       >
-        <Icon className="h-7 w-7" />
+        <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
       </div>
 
-      <h3 className="text-[1.05rem] font-medium uppercase tracking-[0.18em] text-charcoal sm:text-[1.1rem]">
+      <h3 className="text-[0.95rem] font-medium uppercase tracking-[0.18em] text-charcoal sm:text-[1.05rem]">
         {title}
       </h3>
 
-      <div className="mt-4 h-px w-10 bg-teal/70" />
+      <div className="mt-3 h-px w-10 bg-teal/70" />
 
       <Text
         size="base"
         color="muted"
         align="center"
-        className="mt-5 max-w-[20rem] leading-8"
+        className="mt-4 max-w-88 text-[0.98rem] leading-7"
       >
         {description}
       </Text>
@@ -82,70 +82,95 @@ export default function HomeValuesDividerSection() {
   return (
     <Section
       background="cream"
+      spacingTop="sm"
       spacing="none"
       aria-labelledby="home-values-heading"
-      className="relative isolate overflow-hidden mt-20"
+      className="relative isolate mt-20 overflow-hidden"
     >
-      {/* soft inner wash */}
-      <div className="absolute inset-0 bg-linear-to-b from-sand/90 via-sand/75 to-cream/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-sand/95 via-sand/80 to-cream/90" />
 
-      {/* decorative brand assets */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        {/* left large dragonfly */}
-        <div className="absolute -left-14 top-14 hidden opacity-[20] lg:block xl:-left-4">
+        {/* MOBILE: centered botanical behind content */}
+        <div className="absolute inset-x-0 top-0 flex justify-center md:hidden">
+          <Image
+            src="/backgrounds/double-simple.png"
+            alt=""
+            width={320}
+            height={900}
+            className="h-auto w-36 opacity-[0.6]"
+          />
+        </div>
+
+        {/* MOBILE: dragonflies in quiet spaces */}
+        <div className="absolute -left-9 top-10 md:hidden">
+          <Image
+            src="/backgrounds/dragonfly.png"
+            alt=""
+            width={220}
+            height={220}
+            className="h-auto w-28 opacity-[0.6]"
+          />
+        </div>
+
+        <div className="absolute bottom-10 -right-6 md:hidden">
+          <Image
+            src="/backgrounds/dragonfly.png"
+            alt=""
+            width={160}
+            height={160}
+            className="h-auto w-20 rotate-22 opacity-[0.6]"
+          />
+        </div>
+
+        {/* DESKTOP/TABLET assets */}
+        <div className="absolute -left-14 top-14 hidden lg:block xl:-left-4">
           <Image
             src="/backgrounds/dragonfly.png"
             alt=""
             width={360}
             height={360}
-            className="h-auto w-[18rem] xl:w-84"
+            className="h-auto w-[18rem] opacity-[0.6] xl:w-60"
           />
         </div>
 
-        {/* left stem */}
-        <div className="absolute -bottom-24 -left-4 hidden opacity-[20] md:block lg:left-0">
+        <div className="absolute -bottom-14 -left-4 hidden lg:block">
           <Image
             src="/backgrounds/single.png"
             alt=""
             width={240}
             height={1200}
-            className="h-auto w-32 lg:w-40"
+            className="h-auto w-32 opacity-[0.6] lg:w-40"
           />
         </div>
 
-        {/* right curved botanical */}
-        <div className="absolute -right-8 top-4 hidden opacity-[20] md:block lg:-right-4">
+        <div className="absolute right-8 top-0 hidden md:block lg:right-10">
           <Image
             src="/backgrounds/double-simple.png"
             alt=""
             width={280}
             height={1200}
-            className="h-auto w-32 lg:w-40 xl:w-44"
+            className="h-auto w-28 opacity-[0.6] lg:w-40 xl:w-44"
           />
         </div>
 
-        {/* right lower botanical with dragonflies */}
-        <div className="absolute -bottom-32 -right-8 hidden opacity-[20] lg:block">
+        <div className="absolute -bottom-32 -right-8 hidden lg:block">
           <Image
             src="/backgrounds/double-df.png"
             alt=""
             width={340}
             height={1600}
-            className="h-auto w-44 xl:w-52"
+            className="h-auto w-44 opacity-[0.6] xl:w-52"
           />
         </div>
-
-        {/* small mobile decorative wash */}
-        <div className="absolute left-1/2 top-8 h-40 w-40 -translate-x-1/2 rounded-full bg-teal/8 blur-3xl md:hidden" />
       </div>
 
-      <Container size="full" padding="default" className="relative z-10">
-        <div className="mx-auto  px-1 py-20">
+      <Container size="full" padding="lg" className="relative z-10">
+        <div className="mx-auto px-1 py-14 sm:py-16 lg:py-10">
           <div className="mx-auto  text-center">
-            <AccentText className="justify-center text-center text-purple text-4xl">
+            <AccentText className="justify-center text-center text-purple text-3xl sm:text-4xl">
               Valorile mele
             </AccentText>
 
@@ -153,7 +178,7 @@ export default function HomeValuesDividerSection() {
               as="h2"
               size="h2"
               align="center"
-              className="mx-auto mt-5 text-balance"
+              className="mx-auto mt-4  text-balance"
             >
               Valorile care ghidează fiecare pas al procesului terapeutic
             </Heading>
@@ -162,23 +187,50 @@ export default function HomeValuesDividerSection() {
               size="lg"
               color="muted"
               align="center"
-              className="mx-auto mt-6 max-w-2xl text-balance leading-8"
+              className="mx-auto mt-5  text-balance leading-7 sm:leading-8"
             >
               Un cadru terapeutic sigur se construiește prin prezență,
               claritate, respect și grijă autentică față de ritmul fiecărei
               persoane.
             </Text>
+          </div>
 
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <span className="h-px w-14 bg-teal/70" />
-              <Heart className="h-5 w-5 text-teal/80" strokeWidth={1.6} />
-              <span className="h-px w-14 bg-teal/70" />
+          {/* MOBILE: snap glider */}
+          <div className="relative mt-6 md:hidden">
+            <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {values.map((value) => (
+                <div
+                  key={value.title}
+                  className="w-[82%] shrink-0 snap-center px-5 py-7"
+                >
+                  <ValueCard {...value} />
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 flex items-center justify-center gap-4 md:hidden">
+              {/* left arrow */}
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/10 bg-cream/60 backdrop-blur">
+                <span className="text-lg text-charcoal/70">←</span>
+              </div>
+
+              {/* hint text */}
+              <span className="text-xs tracking-wide text-charcoal/50">
+                Glisează pentru a descoperi
+              </span>
+
+              {/* right arrow */}
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/10 bg-cream/60 backdrop-blur">
+                <span className="text-lg text-charcoal/70">→</span>
+              </div>
             </div>
           </div>
 
-          <div className="mt-6 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-x-10">
+          {/* DESKTOP/TABLET: grid */}
+          <div className="mt-12 hidden gap-x-8 gap-y-12 sm:grid sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-x-10">
             {values.map((value) => (
-              <ValueCard key={value.title} {...value} />
+              <div key={value.title}>
+                <ValueCard {...value} />
+              </div>
             ))}
           </div>
         </div>
