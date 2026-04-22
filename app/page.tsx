@@ -5,6 +5,7 @@ import HomeProgramsAndCenterSection from "@/components/sections/events/HomeProgr
 import Hero from "@/components/sections/hero/Hero";
 import HomeValuesDividerSection from "@/components/sections/HomeValueBanner";
 import ServicesTeaserSection from "@/components/sections/services/ServicesTeaserSection";
+import HomeSocialSection from "@/components/sections/social/HomeSocialSection";
 import TestimonialsStack from "@/components/sections/testimonials/Testimonials";
 import { testimonialItems } from "@/components/sections/testimonials/testimonials-data";
 import UpcomingProgramsSection from "@/components/sections/UpcomingProgramSection";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <HomeValuesDividerSection />
       <HomeProgramsAndCenterSection />
       <UpcomingProgramsSection />
+      <HomeSocialSection />
       <FinalCTA />
     </main>
   );

@@ -58,26 +58,22 @@ export default function Footer() {
                 Contact
               </Heading>
 
-              <div className="flex max-w-md flex-col gap-3 sm:max-w-none sm:flex-row xl:max-w-xs xl:flex-col">
-                <Button
-                  href={PHONE_HREF}
-                  variant="primary"
-                  size="md"
-                  fullWidth
-                  leftIcon={<Phone size={18} strokeWidth={1.9} />}
+              <div className="flex max-w-md mt-6 flex-col gap-3 sm:max-w-none sm:flex-row xl:max-w-xs xl:flex-col">
+                <a
+                  href={EMAIL_HREF}
+                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-charcoal md:text-base"
                 >
-                  {PHONE_DISPLAY}
-                </Button>
+                  <Mail size={16} strokeWidth={1.75} />
+                  <span className="break-all">info@traumacenter.ro</span>
+                </a>
 
-                <Button
-                  href={WHATSAPP_HREF}
-                  variant="purple"
-                  size="md"
-                  fullWidth
-                  leftIcon={<MessageCircle size={18} strokeWidth={1.9} />}
+                <a
+                  href={PHONE_HREF}
+                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-charcoal md:text-base"
                 >
-                  WhatsApp
-                </Button>
+                  <Phone size={16} strokeWidth={1.75} />
+                  <span className="break-all">{PHONE_DISPLAY}</span>
+                </a>
               </div>
 
               <a
