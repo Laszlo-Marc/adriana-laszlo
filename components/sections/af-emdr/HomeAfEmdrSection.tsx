@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -16,8 +16,8 @@ const certifications = [
     logoAlt: "Parnell Institute",
     title: "Attachment-Focused EMDR Basic Training",
     issuer: "Parnell Institute",
-    description:
-      "Formare completă în AF-EMDR, incluzând părțile 1, 2 și 3, plus ore de consultare clinică.",
+    imageSrc: "/certifications/parnell-diploma.jpeg",
+    imageAlt: "Certificat Attachment-Focused EMDR Basic Training",
   },
   {
     id: "arpi",
@@ -25,8 +25,8 @@ const certifications = [
     logoAlt: "Asociația Română de Psihoterapie Integrativă",
     title: "Psihoterapeut autonom în psihoterapie integrativă",
     issuer: "ARPI",
-    description:
-      "Formare profesională recunoscută, baza din care Adriana își construiește practica relațională și orientată spre vindecarea traumei.",
+    imageSrc: "/certifications/arpi-diploma.jpeg",
+    imageAlt: "Diplomă psihoterapie integrativă",
   },
 ] as const;
 
@@ -39,7 +39,7 @@ export default function HomeAfEmdrBannerSection() {
       className="relative overflow-hidden"
     >
       <Container size="full" padding="default">
-        <div className="relative   px-6 py-14 text-center  sm:px-8 sm:py-16 lg:px-14 lg:py-20">
+        <div className="relative px-6 py-14 text-center sm:px-8 sm:py-16 lg:px-14 lg:py-20">
           {/* background brand elements */}
           <div
             aria-hidden="true"
@@ -49,8 +49,8 @@ export default function HomeAfEmdrBannerSection() {
               src="/backgrounds/single.png"
               alt=""
               fill
-              className="object-contain object-left-top"
-              sizes="(min-width: 1024px) 144px, 112px"
+              className="object-contain object-top-left"
+              sizes="(min-width: 1024px) 180px, 112px"
             />
           </div>
 
@@ -63,9 +63,10 @@ export default function HomeAfEmdrBannerSection() {
               alt=""
               fill
               className="object-contain object-top-right"
-              sizes="(min-width: 1024px) 144px, 112px"
+              sizes="(min-width: 1024px) 180px, 160px"
             />
           </div>
+
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -left-6 top-10 hidden lg:block opacity-60"
@@ -104,6 +105,7 @@ export default function HomeAfEmdrBannerSection() {
               className="object-contain"
             />
           </div>
+
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-4 bottom-6 hidden lg:block opacity-60"
@@ -135,7 +137,7 @@ export default function HomeAfEmdrBannerSection() {
             <Text
               size="lg"
               align="center"
-              className="mx-auto mt-4 "
+              className="mx-auto mt-4 max-w-8xl"
               color="cream"
             >
               AF-EMDR este o formă de lucru orientată spre traumă și atașament,
@@ -146,51 +148,32 @@ export default function HomeAfEmdrBannerSection() {
             <Text
               align="center"
               color="cream"
-              className="mx-auto max-w-6xl mt-5  text-charcoal/72"
+              className="mx-auto mt-5 max-w-6xl text-white/90"
             >
               În practica Adrianei, această metodă susține procesarea
               experiențelor dificile într-un cadru care pune accent pe
               siguranță, reglare emoțională, relație terapeutică și integrare
-              profundă — nu doar pe reducerea simptomelor pe termen scurt.
+              profundă, nu doar pe reducerea simptomelor pe termen scurt.
             </Text>
           </div>
 
-          <div className="relative mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
+          <div className="relative mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
             {certifications.map((item) => (
-              <article
-                key={item.id}
-                className="rounded-[1.75rem] bg-white/88 p-5 text-left shadow-[0_12px_30px_rgba(44,44,44,0.06)] ring-1 ring-white/40 backdrop-blur-sm"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl bg-sand/50 ring-1 ring-charcoal/8">
-                    <Image
-                      src={item.logoSrc}
-                      alt={item.logoAlt}
-                      fill
-                      className="object-contain p-2"
-                      sizes="56px"
-                    />
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-charcoal/50">
-                      {item.issuer}
-                    </p>
-
-                    <h3 className="mt-2 text-lg font-semibold leading-snug text-charcoal">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-charcoal/72">
-                      {item.description}
-                    </p>
-                  </div>
+              <article key={item.id} className="text-left">
+                <div className="relative aspect-[1.6/1] w-full rounded-4xl">
+                  <Image
+                    src={item.imageSrc}
+                    alt={item.imageAlt}
+                    fill
+                    className="object-fill object-center rounded-lg "
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
               </article>
             ))}
           </div>
 
-          <div className="relative mx-auto mt-8 flex max-w-3xl  items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="relative mx-auto mt-8 flex max-w-3xl items-center justify-center gap-4">
             <Button
               leftIcon={<Mail className="h-4 w-4" />}
               variant="primary"

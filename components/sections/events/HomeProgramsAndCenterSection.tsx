@@ -16,7 +16,7 @@ export default function HomeProgramsAndCenterSection() {
   return (
     <Section
       background="cream"
-      spacing="none"
+      spacing="md"
       aria-labelledby="programs-center-heading"
       className="overflow-hidden"
     >
