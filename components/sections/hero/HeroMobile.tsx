@@ -34,7 +34,7 @@ export default function HeroMobile() {
           <div className="relative px-6 pt-6 pb-6 text-center">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-0 z-0 -translate-x-1/2"
+              className="pointer-events-none absolute left-20 top-0 z-0 -translate-x-1/2"
             >
               <Image
                 src="/backgrounds/double-df.png"
@@ -42,7 +42,7 @@ export default function HeroMobile() {
                 width={1000}
                 height={1400}
                 sizes="220px"
-                className="h-auto w-[15rem] max-w-none opacity-40 sm:w-[20rem]"
+                className="h-auto w-70 max-w-none opacity-40 sm:w-[20rem]"
               />
             </div>
 

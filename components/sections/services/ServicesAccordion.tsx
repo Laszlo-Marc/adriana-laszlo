@@ -109,12 +109,13 @@ export function ServicesAccordion({
                   src={item.image.src}
                   alt={item.image.alt}
                   fill
-                  sizes="(min-width: 1024px) 25vw, 100vw"
+                  loading="eager"
+                  sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 50vw, 100vw"
                   className={cn(
                     "object-cover transition-transform duration-700 ease-out",
                     isActive
-                      ? "scale-[1.02]"
-                      : "scale-[1.08] grayscale-[0.2] brightness-[0.85]",
+                      ? "scale-100"
+                      : "scale-[1.03] grayscale-[0.12] brightness-[0.9]",
                   )}
                 />
               </div>

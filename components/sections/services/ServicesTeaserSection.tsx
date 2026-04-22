@@ -65,6 +65,26 @@ const services = [
       mobileRowActive: "bg-[#94d6c8]",
     },
   },
+  {
+    id: "events",
+    title: "Evenimente și workshopuri",
+    subtitle: "Oportunități de învățare și dezvoltare personală.",
+    href: "/servicii#evenimente",
+    label: "Evenimente",
+    image: {
+      src: "/events/ec-photo.webp",
+      alt: "Evenimente și workshopuri de dezvoltare personală",
+    },
+    accent: {
+      overlayActive: "from-[#77c6b5]/72 via-[#77c6b5]/28 to-transparent",
+      overlayInactive: "from-[#77c6b5]/66 via-[#77c6b5]/20 to-transparent",
+      borderActive: "border-[#77c6b5]/45",
+      pillBg: "bg-[#94d6c8]/85",
+      pillText: "text-charcoal",
+      mobileRow: "bg-[#94d6c8]/50",
+      mobileRowActive: "bg-[#94d6c8]",
+    },
+  },
 ];
 
 export default function ServicesTeaserSection() {

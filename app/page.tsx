@@ -1,4 +1,5 @@
 import HomeAboutTeaser from "@/components/sections/about/HomeAboutTeaser";
+import HomeAfEmdrSection from "@/components/sections/af-emdr/HomeAfEmdrSection";
 import BlogPostsSection from "@/components/sections/blog/BlogPostSection";
 import FinalCTA from "@/components/sections/CTABanner";
 import HomeProgramsAndCenterSection from "@/components/sections/events/HomeProgramsAndCenterSection";
@@ -14,10 +15,10 @@ export default function HomePage() {
       <Hero />
       <HomeAboutTeaser />
       <ServicesTeaserSection />
+      <HomeAfEmdrSection />
       <HomeProgramsAndCenterSection />
       <HomeValuesDividerSection />
       <TestimonialsStack items={testimonialItems} />
-      <BlogPostsSection />
       <FinalCTA />
     </main>
   );

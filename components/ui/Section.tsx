@@ -6,7 +6,9 @@ type SectionBg =
   | "charcoal"
   | "sand"
   | "teal-soft"
-  | "purple-soft";
+  | "purple-soft"
+  | "teal-muted";
+
 type SectionSpacing = "none" | "sm" | "md" | "lg" | "xl";
 
 type SectionOwnProps = {
@@ -29,6 +31,7 @@ const bgStyles: Record<SectionBg, string> = {
   sand: "bg-sand text-charcoal",
   "teal-soft": "bg-teal-soft text-charcoal",
   "purple-soft": "bg-purple-soft text-charcoal",
+  "teal-muted": "bg-muted-teal text-charcoal",
 };
 
 const spacingY: Record<SectionSpacing, string> = {
