@@ -1,44 +1,44 @@
-import { TestimonialItem } from "./Testimonials";
+import { TestimonialItem } from "./TestimonialContent";
 
 export const testimonialItems: TestimonialItem[] = [
   {
     id: "1",
     quote:
-      "Am simțit pentru prima dată că cineva înțelege cu adevărat ce se întâmplă în corpul și în mintea mea după traumă.",
-    name: "A.",
-    role: "clientă, 38 ani",
-    imageSrc: "/images/testimonials/testimonial-1.jpg",
+      "Procesul m-a ajutat să mă înțeleg mai profund și să fac pași reali spre obiectivele mele. Adriana este un om cald și foarte prezent — exact ce aveam nevoie.",
+    name: "Mihaela",
+    role: "clientă",
+    imageSrc: "/testimonials/nuaela-mihaela.png",
   },
   {
     id: "2",
     quote:
-      "Procesul a fost blând, clar și profund. M-a ajutat să înțeleg rădăcina reacțiilor mele și să mă simt mai în siguranță cu mine.",
-    name: "M.",
-    role: "clientă, 44 ani",
-    imageSrc: "/images/testimonials/testimonial-2.jpg",
+      "EMDR cu Adriana a fost diferit — mai profund și mai ancorat în corp. Am învățat să-mi reglez emoțiile și să-mi pun limite sănătoase. O recomand cu încredere.",
+    name: "Diana",
+    role: "clientă",
+    imageSrc: "/testimonials/diana-mera.png",
   },
   {
     id: "3",
     quote:
-      "Am venit cu multă anxietate și confuzie. Acum am mai multă stabilitate și pot pune limite fără aceeași vinovăție.",
-    name: "C.",
-    role: "clientă, 35 ani",
-    imageSrc: "/images/testimonials/testimonial-3.jpg",
+      "Terapia EMDR cu Adriana a fost mult mai eficientă decât alte experiențe. M-a ajutat să ajung la liniște și stabilitate reală în viața de zi cu zi.",
+    name: "Alexandru",
+    role: "client",
+    imageSrc: "/testimonials/alexandru-males.png",
   },
   {
     id: "4",
     quote:
-      "M-am simțit în siguranță pe tot parcursul procesului. Pentru mine asta a făcut diferența.",
-    name: "D.",
+      "O experiență intensă și eliberatoare. Acum mă simt mai sigură pe mine și pot lua decizii sănătoase. Mulțumesc pentru ghidare și susținere.",
+    name: "Simona",
     role: "clientă, 41 ani",
-    imageSrc: "/images/testimonials/testimonial-4.jpg",
+    imageSrc: "/testimonials/simo-tranda.png",
   },
   {
     id: "5",
     quote:
-      "Abordarea a fost foarte diferită de tot ce încercasem înainte. Mai clară, mai profundă și mult mai eficientă.",
-    name: "R.",
-    role: "clientă, 32 ani",
-    imageSrc: "/images/testimonials/testimonial-5.jpg",
+      "Am reușit să depășesc blocaje profunde cu ajutorul Adrianei. Profesionalism, empatie și un spațiu în care te simți în siguranță din prima clipă.",
+    name: "Bogdan",
+    role: "client",
+    imageSrc: "/testimonials/bogdan.png",
   },
 ];

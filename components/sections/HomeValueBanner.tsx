@@ -100,7 +100,7 @@ export default function HomeValuesDividerSection() {
             alt=""
             width={320}
             height={900}
-            className="h-auto w-36 opacity-[0.6]"
+            className="h-auto w-44 opacity-[0.6]"
           />
         </div>
 
