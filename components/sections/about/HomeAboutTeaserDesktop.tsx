@@ -69,7 +69,7 @@ export default function HomeAboutTeaserDesktop() {
 
               <div className="absolute inset-0 bg-linear-to-t from-charcoal/10 via-transparent to-transparent" />
 
-              <div className="absolute -left-80 -top-4 z-10 rotate-[-10deg] text-charcoal">
+              {/* <div className="absolute -left-80 -top-4 z-10 rotate-[-10deg] text-charcoal">
                 <div className="flex flex-col leading-none">
                   <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
                     Bine ai venit,
@@ -85,7 +85,7 @@ export default function HomeAboutTeaserDesktop() {
                     </AccentText>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Right panel */}

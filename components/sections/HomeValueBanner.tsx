@@ -81,11 +81,12 @@ function ValueCard({ title, description, Icon, tone }: ValueItem) {
 export default function HomeValuesDividerSection() {
   return (
     <Section
-      background="sand"
+      background="cream"
       spacing="sm"
       aria-labelledby="home-values-heading"
       className="relative isolate  overflow-hidden"
     >
+      <div className="absolute inset-0 bg-linear-to-b from-sand/95 via-sand/80 to-cream/90" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
