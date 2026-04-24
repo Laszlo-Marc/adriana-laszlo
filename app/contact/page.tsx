@@ -70,7 +70,7 @@ export default function ContactPage() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-[-120px] top-[220px] hidden opacity-[0.5] lg:block"
+          className="pointer-events-none absolute -left-30 top-55 hidden opacity-[0.5] lg:block"
         >
           <Image
             src="/backgrounds/double-simple.png"
@@ -83,7 +83,7 @@ export default function ContactPage() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-[5%] top-[120px] hidden opacity-[0.55] xl:block"
+          className="pointer-events-none absolute right-[5%] top-30 hidden opacity-[0.55] xl:block"
         >
           <Image
             src="/backgrounds/dragonfly.png"
@@ -131,7 +131,7 @@ export default function ContactPage() {
             </div>
 
             {/* RIGHT: INFO */}
-            <div className="rounded-[32px] border border-charcoal/8 bg-sand/35 p-5 sm:p-7 lg:p-8">
+            <div className="rounded-4xl border border-charcoal/8 bg-sand/35 p-5 sm:p-7 lg:p-8">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute right-10 bottom-8 hidden opacity-[0.5] lg:block"
@@ -160,7 +160,7 @@ export default function ContactPage() {
                   {contactItems.map((item) => {
                     const Icon = item.icon;
                     const content = (
-                      <div className="flex items-start gap-4 rounded-[24px] border border-charcoal/8 bg-white/75 p-4 transition-shadow hover:shadow-[0_10px_28px_rgba(44,44,44,0.05)]">
+                      <div className="flex items-start gap-4 rounded-3xl border border-charcoal/8 bg-white/75 p-4 transition-shadow hover:shadow-[0_10px_28px_rgba(44,44,44,0.05)]">
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
                           <Icon className="h-5 w-5" />
                         </div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                   })}
                 </div>
 
-                <div className="rounded-[24px] border border-charcoal/8 bg-cream/80 p-5">
+                <div className="rounded-3xl border border-charcoal/8 bg-cream/80 p-5">
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple/10 text-purple">
                       <Clock3 className="h-5 w-5" />
@@ -274,8 +274,8 @@ export default function ContactPage() {
             </Text>
           </div>
 
-          <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[32px] border border-charcoal/8 bg-white shadow-[0_16px_42px_rgba(44,44,44,0.06)]">
-            <div className="aspect-[16/7] min-h-[320px] w-full">
+          <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-4xl border border-charcoal/8 bg-white shadow-[0_16px_42px_rgba(44,44,44,0.06)]">
+            <div className="aspect-16/7 min-h-80 w-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.6015433081316!2d23.61199571213928!3d46.77274997100512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473805ced1efe1e9%3A0x7930e24e27ac6c75!2sTrauma%20Center%2C%20Centru%20de%20Psihoterapie!5e0!3m2!1sen!2sro!4v1776946732223!5m2!1sen!2sro"
                 className="h-full w-full"
