@@ -35,6 +35,19 @@ export default function HomeAboutTeaserMobile() {
               className="h-auto w-40 max-w-none opacity-40 "
             />
           </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-50 z-0 -translate-x-1/2"
+          >
+            <Image
+              src="/backgrounds/dragonfly.png"
+              alt=""
+              width={140}
+              height={140}
+              sizes="180px"
+              className="h-auto w-30 max-w-none opacity-40 "
+            />
+          </div>
 
           <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
             <AccentText className="text-[2.5rem] leading-none text-charcoal">

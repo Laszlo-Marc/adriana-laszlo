@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Mail, MessageCircle } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { Phone, MapPin, Mail } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import {
@@ -13,7 +12,6 @@ import Heading from "../ui/Heading";
 
 const EMAIL = "adrianalaszlo@gmail.com";
 const EMAIL_HREF = `mailto:${EMAIL}`;
-const WHATSAPP_HREF = "https://wa.me/40744123456";
 const MAPS_HREF = "https://maps.app.goo.gl/Vm8iqJT8wFqDtZa86";
 const LOCATION_LABEL = "Trauma Center Cluj";
 const LOCATION_TEXT = "Strada Artelor 35, Cluj-Napoca, România";

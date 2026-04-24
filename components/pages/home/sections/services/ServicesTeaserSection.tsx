@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
@@ -94,9 +96,9 @@ export default function ServicesTeaserSection() {
       background="cream"
       spacing="md"
       aria-labelledby="services-teaser-heading"
-      className="overflow-hidden"
+      className="relative overflow-hidden"
     >
-      <Container size="wide" padding="default">
+      <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-none text-center">
           <Heading
             as="h2"

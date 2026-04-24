@@ -1,14 +1,14 @@
-import HomeAboutTeaser from "@/components/sections/about/HomeAboutTeaser";
-import HomeAfEmdrSection from "@/components/sections/af-emdr/HomeAfEmdrSection";
-import FinalCTA from "@/components/sections/CTABanner";
-import HomeProgramsAndCenterSection from "@/components/sections/events/HomeProgramsAndCenterSection";
-import Hero from "@/components/sections/hero/Hero";
-import HomeValuesDividerSection from "@/components/sections/HomeValueBanner";
-import ServicesTeaserSection from "@/components/sections/services/ServicesTeaserSection";
-import HomeSocialSection from "@/components/sections/social/HomeSocialSection";
-import TestimonialsStack from "@/components/sections/testimonials/Testimonials";
-import { testimonialItems } from "@/components/sections/testimonials/testimonials-data";
-import UpcomingProgramsSection from "@/components/sections/UpcomingProgramSection";
+import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
+import HomeAfEmdrSection from "@/components/pages/home/sections/af-emdr/HomeAfEmdrSection";
+import FinalCTA from "@/components/pages/home/sections/CTABanner";
+import HomeProgramsAndCenterSection from "@/components/pages/home/sections/events/HomeProgramsAndCenterSection";
+import Hero from "@/components/pages/home/sections/hero/Hero";
+import HomeValuesDividerSection from "@/components/pages/home/sections/HomeValueBanner";
+import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
+import HomeSocialSection from "@/components/pages/home/sections/social/HomeSocialSection";
+import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
+import { testimonialItems } from "@/components/pages/home/sections/testimonials/testimonials-data";
+import UpcomingProgramsSection from "@/components/pages/home/sections/UpcomingProgramSection";
 
 export default function HomePage() {
   return (

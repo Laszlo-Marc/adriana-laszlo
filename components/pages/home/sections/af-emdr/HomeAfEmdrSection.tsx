@@ -16,7 +16,7 @@ const certifications = [
     logoAlt: "Parnell Institute",
     title: "Attachment-Focused EMDR Basic Training",
     issuer: "Parnell Institute",
-    imageSrc: "/certifications/parnell-diploma.jpeg",
+    imageSrc: "/certifications/parnell.JPG",
     imageAlt: "Certificat Attachment-Focused EMDR Basic Training",
   },
   {
@@ -38,9 +38,33 @@ export default function HomeAfEmdrBannerSection() {
       aria-labelledby="af-emdr-heading"
       className="relative overflow-hidden"
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-20 z-0 w-70 top-0 opacity-[0.4] md:hidden"
+      >
+        <Image
+          src="/backgrounds/double-simple.png"
+          alt=""
+          fill
+          className="object-contain object-center"
+          sizes="300px"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-60 z-0 w-50  -top-50 opacity-[0.4] md:hidden"
+      >
+        <Image
+          src="/backgrounds/df-purple-up.png"
+          alt=""
+          fill
+          className="object-contain object-center"
+          sizes="300px"
+        />
+      </div>
       <Container size="full" padding="default">
-        <div className="relative px-6 py-14 text-center sm:px-8 sm:py-16 lg:px-14 lg:py-20">
-          {/* background brand elements */}
+        <div className="relative px-5 py-12 text-center sm:px-8 sm:py-16 lg:px-14 lg:py-20">
+          {/* desktop decorative elements */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-0 top-0 hidden h-full w-28 opacity-60 md:block lg:w-45"
@@ -119,7 +143,7 @@ export default function HomeAfEmdrBannerSection() {
             />
           </div>
 
-          <div className="relative mx-auto ">
+          <div className="relative z-10 mx-auto ">
             <AccentText className="justify-center text-center text-white/90">
               Specializare în AF-EMDR
             </AccentText>
@@ -128,19 +152,19 @@ export default function HomeAfEmdrBannerSection() {
               as="h2"
               size="h2"
               align="center"
-              className="mt-6"
+              className="mt-4 text-[2rem] leading-[1.12] sm:mt-6 text-white"
               color="cream"
             >
-              O abordare atentă pentru trauma care are rădăcini mai adânci
+              O abordare atentă pentru trauma profundă
             </Heading>
 
             <Text
               size="lg"
               align="center"
-              className="mx-auto mt-4 max-w-8xl"
+              className="mx-auto mt-4 text-white/95"
               color="cream"
             >
-              AF-EMDR este o formă de lucru orientată spre traumă și atașament,
+              AF-EMDR este o abordare orientată spre traumă și atașament,
               folosită într-un mod blând, structurat și adaptat ritmului
               fiecărei persoane.
             </Text>
@@ -148,24 +172,23 @@ export default function HomeAfEmdrBannerSection() {
             <Text
               align="center"
               color="cream"
-              className="mx-auto mt-5 max-w-6xl text-white/90"
+              className="mx-auto mt-4  text-sm leading-7 text-white/85 sm:text-base"
             >
               În practica Adrianei, această metodă susține procesarea
-              experiențelor dificile într-un cadru care pune accent pe
-              siguranță, reglare emoțională, relație terapeutică și integrare
-              profundă, nu doar pe reducerea simptomelor pe termen scurt.
+              experiențelor dificile într-un cadru bazat pe siguranță, reglare
+              emoțională și relație terapeutică.
             </Text>
           </div>
 
-          <div className="relative mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="relative z-10 mx-auto mt-8 grid max-w-4xl gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
             {certifications.map((item) => (
               <article key={item.id} className="text-left">
-                <div className="relative aspect-[1.6/1] w-full rounded-4xl">
+                <div className="relative aspect-[1.4/1] w-full overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 sm:rounded-2xl">
                   <Image
                     src={item.imageSrc}
                     alt={item.imageAlt}
                     fill
-                    className="object-fill object-center rounded-lg "
+                    className="rounded-[20px] object-fill object-center sm:rounded-lg"
                     sizes="(min-width: 768px) 50vw, 100vw"
                   />
                 </div>
@@ -173,7 +196,7 @@ export default function HomeAfEmdrBannerSection() {
             ))}
           </div>
 
-          <div className="relative mx-auto mt-8 flex max-w-3xl items-center justify-center gap-4">
+          <div className="relative z-10 mx-auto mt-6 flex max-w-3xl items-center justify-center gap-4 sm:mt-8">
             <Button
               leftIcon={<Mail className="h-4 w-4" />}
               variant="primary"

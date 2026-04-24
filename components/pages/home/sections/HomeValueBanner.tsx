@@ -82,7 +82,7 @@ export default function HomeValuesDividerSection() {
   return (
     <Section
       background="cream"
-      spacing="sm"
+      spacing="md"
       aria-labelledby="home-values-heading"
       className="relative isolate  overflow-hidden"
     >
@@ -94,7 +94,7 @@ export default function HomeValuesDividerSection() {
         {/* MOBILE: centered botanical behind content */}
         <div className="absolute inset-x-0 top-0 flex justify-center md:hidden">
           <Image
-            src="/backgrounds/double-simple.png"
+            src="/backgrounds/double-split.png"
             alt=""
             width={320}
             height={900}
@@ -154,7 +154,7 @@ export default function HomeValuesDividerSection() {
           />
         </div>
 
-        <div className="absolute -bottom-32 -right-8 hidden lg:block">
+        <div className="absolute -bottom-10 right-8 hidden lg:block">
           <Image
             src="/backgrounds/double-df.png"
             alt=""

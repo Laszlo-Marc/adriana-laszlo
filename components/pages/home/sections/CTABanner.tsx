@@ -58,7 +58,7 @@ export default function FinalCTA() {
 
       <Container size="wide" className="relative z-10">
         <div className="mx-auto max-w-5xl">
-          <div className="relative rounded-[2rem] border border-white/20 bg-charcoal/72 px-6 py-12 text-center shadow-[0_30px_80px_rgba(32,24,43,0.22)] backdrop-blur-md sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+          <div className="relative rounded-4xl border border-white/20 bg-white px-6 py-12 text-center shadow-[0_30px_80px_rgba(32,24,43,0.22)] backdrop-blur-md sm:px-10 sm:py-14 lg:px-16 lg:py-16">
             {/* subtle inner decorative layer */}
             <div
               aria-hidden="true"
@@ -79,15 +79,11 @@ export default function FinalCTA() {
             </div>
 
             <div className="relative mx-auto max-w-3xl">
-              <Heading as="h2" size="h2" align="center" className="text-white">
+              <Heading as="h2" size="h2" align="center">
                 Poți începe să lucrezi cu trauma ta, în siguranță.
               </Heading>
 
-              <Text
-                size="lg"
-                align="center"
-                className="mx-auto mt-5 max-w-2xl text-white/82"
-              >
+              <Text size="lg" align="center" className="mx-auto mt-5 ">
                 Îți ofer un spațiu sigur, ghidat, în care putem lucra împreună
                 asupra traumelor și tiparelor care te blochează, în ritmul tău.
               </Text>
@@ -110,10 +106,6 @@ export default function FinalCTA() {
                   <a href={PHONE_HREF}>Programează o discuție</a>
                 </Button>
               </div>
-
-              <p className="mt-5 text-sm tracking-[0.14em] text-white/64 uppercase">
-                Răspund personal · Fără presiune · Confidențial
-              </p>
             </div>
           </div>
         </div>
