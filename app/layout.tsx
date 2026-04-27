@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { Allura } from "next/font/google";
+import PageTransition from "@/components/layout/PageTransition";
 
 const allura = Allura({
   subsets: ["latin"],
@@ -66,7 +67,9 @@ export default function RootLayout({
     >
       <body>
         <Navbar />
-        <main>{children}</main>
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
         <Footer />
       </body>
     </html>

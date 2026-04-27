@@ -1,7 +1,15 @@
+import AboutStoryPathTimeline from "@/components/pages/about/AboutStoryTimelineSection";
+import AboutTimeline from "@/components/pages/about/AboutStoryTimelineSection";
+
+import AboutHeroSection from "@/components/pages/about/Hero";
+import AboutStatsStrip from "@/components/pages/about/StatsStrip";
+
 export default function AboutPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Despre mine coming soon...</h1>
-    </main>
+    <>
+      <AboutHeroSection />
+      <AboutStatsStrip />
+      <AboutStoryPathTimeline />
+    </>
   );
 }
