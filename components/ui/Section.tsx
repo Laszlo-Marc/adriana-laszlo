@@ -1,3 +1,4 @@
+import Image, { type StaticImageData } from "next/image";
 import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react";
 
 type SectionBg =
@@ -8,17 +9,28 @@ type SectionBg =
   | "teal-soft"
   | "purple-soft"
   | "teal-muted"
-  | "purple";
+  | "purple"
+  | "none";
 
 type SectionSpacing = "none" | "sm" | "md" | "lg" | "xl";
+
+type BackgroundImage = {
+  src: string | StaticImageData;
+  alt?: string;
+  priority?: boolean;
+  className?: string;
+  overlayClassName?: string;
+};
 
 type SectionOwnProps = {
   background?: SectionBg;
   spacing?: SectionSpacing;
   spacingTop?: SectionSpacing;
   spacingBottom?: SectionSpacing;
+  backgroundImage?: BackgroundImage;
   children: ReactNode;
   className?: string;
+  innerClassName?: string;
 };
 
 type SectionProps<T extends ElementType = "section"> = SectionOwnProps & {
@@ -34,6 +46,7 @@ const bgStyles: Record<SectionBg, string> = {
   "purple-soft": "bg-purple-soft text-charcoal",
   "teal-muted": "bg-muted-teal text-charcoal",
   purple: "bg-purple text-cream",
+  none: "",
 };
 
 const spacingY: Record<SectionSpacing, string> = {
@@ -66,8 +79,10 @@ export default function Section<T extends ElementType = "section">({
   spacing = "md",
   spacingTop,
   spacingBottom,
+  backgroundImage,
   children,
   className = "",
+  innerClassName = "",
   ...rest
 }: SectionProps<T>) {
   const Component = (as ?? "section") as ElementType;
@@ -80,14 +95,39 @@ export default function Section<T extends ElementType = "section">({
   return (
     <Component
       className={`
-        relative
+        relative isolate overflow-hidden
         ${bgStyles[background]}
         ${spacingClass}
         ${className}
       `}
       {...rest}
     >
-      {children}
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage.src}
+            alt={backgroundImage.alt ?? ""}
+            fill
+            priority={backgroundImage.priority}
+            sizes="100vw"
+            aria-hidden={backgroundImage.alt ? undefined : true}
+            className={`
+              pointer-events-none absolute inset-0 -z-20 object-cover
+              ${backgroundImage.className ?? ""}
+            `}
+          />
+
+          <div
+            aria-hidden="true"
+            className={`
+              pointer-events-none absolute inset-0 -z-10
+              ${backgroundImage.overlayClassName ?? "bg-cream/70"}
+            `}
+          />
+        </>
+      )}
+
+      <div className={`relative z-10 ${innerClassName}`}>{children}</div>
     </Component>
   );
 }
