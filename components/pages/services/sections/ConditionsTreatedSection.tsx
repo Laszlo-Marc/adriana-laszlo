@@ -79,7 +79,7 @@ export default function ConditionsTreatedSection() {
           {conditions.map(({ label, Icon }) => (
             <div
               key={label}
-              className="group rounded-[1.5rem] border border-charcoal/10 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal/25 hover:bg-white"
+              className="group rounded-3xl border border-charcoal/10 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal/25 hover:bg-white"
             >
               <div className="flex size-11 items-center justify-center rounded-full bg-teal/10 text-teal">
                 <Icon className="size-5" aria-hidden="true" />

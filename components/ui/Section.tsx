@@ -31,6 +31,7 @@ type SectionOwnProps = {
   children: ReactNode;
   className?: string;
   innerClassName?: string;
+  allowOverflow?: boolean;
 };
 
 type SectionProps<T extends ElementType = "section"> = SectionOwnProps & {
@@ -83,6 +84,7 @@ export default function Section<T extends ElementType = "section">({
   children,
   className = "",
   innerClassName = "",
+  allowOverflow = false,
   ...rest
 }: SectionProps<T>) {
   const Component = (as ?? "section") as ElementType;
@@ -95,7 +97,7 @@ export default function Section<T extends ElementType = "section">({
   return (
     <Component
       className={`
-        relative isolate overflow-hidden
+        relative isolate ${allowOverflow ? "overflow-visible" : "overflow-hidden"}
         ${bgStyles[background]}
         ${spacingClass}
         ${className}

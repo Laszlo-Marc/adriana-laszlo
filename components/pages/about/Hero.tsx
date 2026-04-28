@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, ShieldCheck } from "lucide-react";
-
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
@@ -22,7 +20,7 @@ export default function AboutHeroSection() {
           {/* soft background atmosphere */}
           <div
             aria-hidden="true"
-            className="absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-2xl"
+            className="absolute left-1/2 top-1/2 h-136 w-136 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-2xl"
           />
           <div
             aria-hidden="true"
@@ -38,20 +36,20 @@ export default function AboutHeroSection() {
             </div>
 
             {/* Center cutout image */}
-            <div className="relative z-10 order-1 flex min-h-[420px] items-end justify-center lg:order-2 lg:min-h-[720px]">
+            <div className="relative z-10 order-1 flex min-h-105 items-end justify-center lg:order-2 lg:min-h-180">
               <div
                 aria-hidden="true"
-                className="absolute bottom-20 left-1/2 h-[22rem] w-[22rem] -translate-x-1/2 rounded-full bg-teal/25 sm:h-[28rem] sm:w-[28rem] lg:h-[34rem] lg:w-[34rem]"
+                className="absolute bottom-20 left-1/2 h-88 w-88 -translate-x-1/2 rounded-full bg-teal/25 sm:h-112 sm:w-md lg:h-136 lg:w-136"
               />
 
               <Image
-                src="/cutout.png"
+                src="/about-cutout.png"
                 alt="Adriana Laszlo, psihoterapeut specializat în traumă și Attachment-Focused EMDR"
                 width={620}
                 height={820}
                 priority
                 sizes="(min-width: 1024px) 38vw, 90vw"
-                className="relative z-10 h-auto w-[78vw] max-w-[420px] object-contain drop-shadow-2xl sm:max-w-[500px] lg:max-w-[620px]"
+                className="relative z-10 h-auto w-[78vw] max-w-105 object-contain drop-shadow-2xl sm:max-w-125 lg:max-w-155"
               />
             </div>
 

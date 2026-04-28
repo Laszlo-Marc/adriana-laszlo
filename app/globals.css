@@ -43,13 +43,13 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--color-charcoal);
   background-color: var(--color-cream);
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100dvh;
 }

@@ -51,8 +51,8 @@ export default function ServicesFAQSection() {
       <Container size="wide">
         <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="relative w-full max-w-md">
-            <div className="relative overflow-hidden rounded-[2rem] bg-sand/40 shadow-sm ring-1 ring-charcoal/10">
-              <div className="relative aspect-[4/5]">
+            <div className="relative overflow-hidden rounded-4xl bg-sand/40 shadow-sm ring-1 ring-charcoal/10">
+              <div className="relative aspect-4/5">
                 <Image
                   src="/services/faq.jpg"
                   alt="Cadru calm pentru proces terapeutic"
@@ -76,7 +76,7 @@ export default function ServicesFAQSection() {
               clarificări care te pot ajuta să înțelegi mai bine procesul.
             </Text>
 
-            <div className="mt-8 divide-y divide-charcoal/10 rounded-[1.5rem] border border-charcoal/10 bg-cream/50">
+            <div className="mt-8 divide-y divide-charcoal/10 rounded-3xl border border-charcoal/10 bg-cream/50">
               {faqs.map((item, index) => {
                 const isOpen = openIndex === index;
 

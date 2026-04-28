@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -7,7 +6,6 @@ import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import AboutFloatingWords from "./AboutFloatingWords";
-import AccentText from "@/components/ui/AccentText";
 
 export default function HomeAboutTeaserDesktop() {
   const sectionRef = useRef<HTMLDivElement | null>(null);

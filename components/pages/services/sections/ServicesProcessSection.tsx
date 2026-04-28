@@ -58,7 +58,7 @@ export default function ServicesProcessSection() {
           {steps.map(({ title, description, Icon }, index) => (
             <div
               key={title}
-              className="relative rounded-[1.5rem] border border-charcoal/10 bg-white/70 p-6 shadow-sm"
+              className="relative rounded-3xl border border-charcoal/10 bg-white/70 p-6 shadow-sm"
             >
               <div className="flex items-center justify-between gap-4">
                 <div className="flex size-11 items-center justify-center rounded-full bg-teal/10 text-teal">

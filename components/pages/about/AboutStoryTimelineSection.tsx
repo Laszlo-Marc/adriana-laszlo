@@ -131,7 +131,7 @@ export default function AboutStoryPathTimeline() {
               aria-hidden="true"
               viewBox="0 0 420 1160"
               preserveAspectRatio="none"
-              className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-[420px] -translate-x-1/2 lg:block"
+              className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-105 -translate-x-1/2 lg:block"
             >
               <path
                 d={pathD}
