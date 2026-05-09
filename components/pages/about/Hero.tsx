@@ -11,6 +11,7 @@ export default function AboutHeroSection() {
   return (
     <Section
       background="cream"
+      spacingTop="lg"
       spacing="none"
       aria-labelledby="about-hero-heading"
       className="relative overflow-hidden"
@@ -35,21 +36,20 @@ export default function AboutHeroSection() {
               </p>
             </div>
 
-            {/* Center cutout image */}
-            <div className="relative z-10 order-1 flex min-h-105 items-end justify-center lg:order-2 lg:min-h-180">
+            <div className="relative z-10 order-1 flex min-h-105 items-end justify-center lg:order-2 lg:min-h-[620px]">
               <div
                 aria-hidden="true"
-                className="absolute bottom-20 left-1/2 h-88 w-88 -translate-x-1/2 rounded-full bg-teal/25 sm:h-112 sm:w-md lg:h-136 lg:w-136"
+                className="absolute bottom-16 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-teal/25 sm:h-96 sm:w-96 lg:h-[460px] lg:w-[460px]"
               />
 
               <Image
-                src="/about-cutout.png"
+                src="/adriana-hero.png"
                 alt="Adriana Laszlo, psihoterapeut specializat în traumă și Attachment-Focused EMDR"
                 width={620}
                 height={820}
                 priority
-                sizes="(min-width: 1024px) 38vw, 90vw"
-                className="relative z-10 h-auto w-[78vw] max-w-105 object-contain drop-shadow-2xl sm:max-w-125 lg:max-w-155"
+                sizes="(min-width: 1024px) 32vw, 80vw"
+                className="relative z-10 h-auto w-[70vw] max-w-[380px] object-contain drop-shadow-2xl sm:max-w-[440px] lg:max-w-[500px]"
               />
             </div>
 
