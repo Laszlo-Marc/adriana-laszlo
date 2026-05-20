@@ -21,7 +21,7 @@ const SWIPE_THRESHOLD = 44;
 export default function TestimonialsStack({
   items,
   className,
-  title = "Experiențele persoanelor care au lucrat cu Adriana",
+  title = "Ce spun clienții",
   description = "Un spațiu terapeutic sigur începe cu încredere, claritate și sentimentul că ești cu adevărat înțeles.",
 }: TestimonialsStackProps) {
   const [orderedItems, setOrderedItems] = React.useState(items);

@@ -1,27 +1,59 @@
 import Image from "next/image";
-import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
+import Heading from "@/components/ui/Heading";
 
 export default function HomeAboutTeaserMobile() {
   return (
-    <div className="relative lg:hidden">
+    <div className="relative overflow-hidden lg:hidden">
       <div className="mx-auto max-w-xl">
-        <div className="relative aspect-5/6 rounded-[1.75rem] bg-sand/30">
+        {/* Image header */}
+        <div className="relative -mx-4 h-[460px] overflow-hidden bg-sand/30 sm:-mx-6 sm:h-[520px]">
           <Image
             src="/adriana8.PNG"
             alt="Portret Adriana Laszlo"
             fill
-            className="object-cover object-[center_20%]"
-            sizes="120vw"
+            className="object-cover object-[center_18%]"
+            sizes="100vw"
             priority={false}
           />
 
-          <div className="absolute inset-0 bg-linear-to-t from-charcoal/10 via-transparent to-transparent" />
+          {/* subtle top shade */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-charcoal/15 to-transparent"
+          />
+
+          {/* strong image fade into section background */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-purple-soft/60 to-purple-soft/18"
+          />
+
+          {/* readability veil behind title */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent to-purple-soft/85"
+          />
+
+          {/* section label over fade */}
+          <div className="absolute inset-x-0 bottom-0 z-10 px-6 text-center">
+            <Heading
+              as="h2"
+              size="h1"
+              color="charcoal"
+              case="upper"
+              className="tracking-[0.16em]"
+              align="center"
+            >
+              Despre mine
+            </Heading>
+          </div>
         </div>
 
-        <div className="relative overflow-hidden bg-purple/18 px-6 py-10 sm:px-8 sm:py-12">
+        {/* Content */}
+        <div className="relative overflow-hidden bg-purple/18 px-6 pb-10 pt-4 sm:px-8 sm:pb-12">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-[25%] top-0 z-0 -translate-x-1/2"
@@ -32,9 +64,10 @@ export default function HomeAboutTeaserMobile() {
               width={180}
               height={1100}
               sizes="180px"
-              className="h-auto w-40 max-w-none opacity-40 "
+              className="h-auto w-40 max-w-none opacity-35"
             />
           </div>
+
           <div
             aria-hidden="true"
             className="pointer-events-none absolute right-0 top-50 z-0 -translate-x-1/2"
@@ -45,7 +78,7 @@ export default function HomeAboutTeaserMobile() {
               width={140}
               height={140}
               sizes="180px"
-              className="h-auto w-30 max-w-none opacity-40 "
+              className="h-auto w-30 max-w-none opacity-35"
             />
           </div>
 

@@ -20,7 +20,7 @@ export default function HeroMobile() {
         <div className="mx-auto max-w-2xl">
           {/* Image */}
           <div className="-mx-4 sm:-mx-6">
-            <div className="relative h-[540px] overflow-hidden bg-sand/20 sm:h-[520px]">
+            <div className="relative h-[500px] overflow-hidden bg-sand/20 sm:h-[520px]">
               <Image
                 src="/home-page/hero-mobile.jpg"
                 alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
