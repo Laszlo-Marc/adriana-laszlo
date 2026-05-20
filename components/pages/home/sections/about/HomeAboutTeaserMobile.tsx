@@ -28,13 +28,13 @@ export default function HomeAboutTeaserMobile() {
           {/* strong image fade into section background */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-purple-soft/60 to-purple-soft/18"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/60 to-cream/18"
           />
 
           {/* readability veil behind title */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent to-purple-soft/85"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent to-cream/85"
           />
 
           {/* section label over fade */}
@@ -53,7 +53,7 @@ export default function HomeAboutTeaserMobile() {
         </div>
 
         {/* Content */}
-        <div className="relative overflow-hidden bg-purple/18 px-6 pb-10 pt-4 sm:px-8 sm:pb-12">
+        <div className="relative overflow-hidden bg-cream px-6 pb-10 pt-4 sm:px-8 sm:pb-12">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute left-[25%] top-0 z-0 -translate-x-1/2"

@@ -1,6 +1,7 @@
+import FinalCTA from "@/components/pages/about/AboutCTA";
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import HomeAfEmdrSection from "@/components/pages/home/sections/af-emdr/HomeAfEmdrSection";
-import FinalCTA from "@/components/pages/home/sections/CTABanner";
+
 import HomeProgramsAndCenterSection from "@/components/pages/home/sections/events/HomeProgramsAndCenterSection";
 import Hero from "@/components/pages/home/sections/hero/Hero";
 import HomeValuesDividerSection from "@/components/pages/home/sections/HomeValueBanner";

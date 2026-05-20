@@ -11,21 +11,21 @@ export default function FinalCTA() {
     <Section background="white" spacing="xl" className="relative text-center">
       {/* subtle brand decoration */}
       <Image
-        src="/df-purple-down.png"
+        src="/backgrounds/df-purple-up.png"
         alt=""
         width={140}
         height={140}
         aria-hidden="true"
-        className="pointer-events-none absolute left-10 top-10 opacity-15"
+        className="pointer-events-none absolute left-10 top-10 opacity-30"
       />
 
       <Image
-        src="/df-teal-down.png"
+        src="/backgrounds/df-teal-down.png"
         alt=""
         width={120}
         height={120}
         aria-hidden="true"
-        className="pointer-events-none absolute right-12 bottom-10 opacity-20"
+        className="pointer-events-none absolute right-12 bottom-10 opacity-30"
       />
 
       <Container size="narrow">
