@@ -20,8 +20,6 @@ export function MobileNavToggle({
       aria-controls={ariaControls}
       className={[
         "relative inline-flex h-12 w-12 items-center justify-center rounded-full",
-        "border border-border/70 bg-cream text-charcoal transition-colors",
-        "hover:border-charcoal/30 hover:bg-surface focus:outline-none focus:ring-2 focus:ring-teal/40",
       ].join(" ")}
     >
       <span className="sr-only">

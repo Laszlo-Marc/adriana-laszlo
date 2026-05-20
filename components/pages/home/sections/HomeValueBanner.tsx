@@ -81,8 +81,8 @@ function ValueCard({ title, description, Icon, tone }: ValueItem) {
 export default function HomeValuesDividerSection() {
   return (
     <Section
-      background="cream"
-      spacing="md"
+      background="white"
+      spacing="none"
       aria-labelledby="home-values-heading"
       className="relative isolate  overflow-hidden"
     >
