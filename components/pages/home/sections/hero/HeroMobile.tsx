@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
@@ -52,7 +52,7 @@ export default function HeroMobile() {
           </div>
 
           {/* Content */}
-          <div className="relative -mt-36 px-6 text-center">
+          <div className="relative -mt-40 px-6 text-center">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-0 top-10 z-0 w-70 opacity-25"
@@ -84,7 +84,7 @@ export default function HeroMobile() {
                 <h1 id="hero-heading-mobile">
                   <AccentText
                     as="span"
-                    className="block text-[4rem] leading-[0.86] text-charcoal"
+                    className="block text-[3.7rem] leading-[0.86] text-charcoal"
                   >
                     Terapia Traumei
                   </AccentText>
@@ -115,6 +115,7 @@ export default function HeroMobile() {
                     variant="primary"
                     size="lg"
                     className="w-full shadow-sm"
+                    leftIcon={<Mail size={20} />}
                   >
                     Programează o ședință
                   </Button>

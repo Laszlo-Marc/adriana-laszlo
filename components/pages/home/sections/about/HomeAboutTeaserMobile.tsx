@@ -33,10 +33,6 @@ export default function HomeAboutTeaserMobile() {
           >
             Despre mine
           </Heading>
-
-          <AccentText className="mx-auto mt-6 block max-w-sm text-[2.25rem] leading-[1.05] text-charcoal">
-            Un spațiu sigur, construit pentru vindecare.
-          </AccentText>
         </div>
 
         {/* Editorial portrait composition */}
@@ -72,8 +68,8 @@ export default function HomeAboutTeaserMobile() {
           </div>
 
           {/* image */}
-          <div className="relative z-20 mx-auto aspect-[4/5] w-[72%] max-w-[19rem] overflow-hidden rounded-[2.5rem] bg-white/70 p-2 shadow-[0_24px_70px_rgba(44,44,44,0.12)]">
-            <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+          <div className="relative z-20 mx-auto aspect-4/5 w-[72%] max-w-84 overflow-hidden rounded-[2.5rem] bg-white/70 p-2 shadow-[0_24px_70px_rgba(44,44,44,0.12)]">
+            <div className="relative h-full w-full overflow-hidden rounded-4xl">
               <Image
                 src="/home-page/about.jpg"
                 alt="Portret Adriana Laszlo"
@@ -84,6 +80,10 @@ export default function HomeAboutTeaserMobile() {
               />
             </div>
           </div>
+
+          <AccentText className="mx-auto mt-6 block max-w-sm text-[2.25rem] leading-[1.05] text-charcoal text-center">
+            Un spațiu sigur, construit pentru vindecare.
+          </AccentText>
         </div>
 
         {/* Text */}
@@ -92,14 +92,6 @@ export default function HomeAboutTeaserMobile() {
             Terapia începe cu o relație în care te poți simți văzut, înțeles și
             susținut — mai ales atunci când lucrurile sunt greu de pus în
             cuvinte.
-          </Text>
-
-          <Text
-            className="mt-5 text-sm leading-7 text-charcoal/65"
-            align="center"
-          >
-            Lucrăm în ritmul tău, cu grijă, claritate și metode adaptate
-            nevoilor tale.
           </Text>
 
           <div className="mt-8">

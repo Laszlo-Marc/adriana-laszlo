@@ -130,23 +130,12 @@ function HomeProcessMobile() {
 
             <Heading
               as="h2"
-              size="h2"
+              size="h1"
               align="center"
-              className="mx-auto max-w-sm text-balance text-charcoal"
+              className="mx-auto  text-balance text-charcoal"
             >
               Cum începem, fără presiune
             </Heading>
-
-            <Text
-              size="base"
-              color="muted"
-              align="center"
-              className="mx-auto mt-5 max-w-md text-pretty leading-7"
-            >
-              Nu trebuie să vii cu toate răspunsurile pregătite. Începem prin a
-              înțelege unde ești acum, ce ai nevoie și ce formă de sprijin ți se
-              potrivește.
-            </Text>
           </div>
 
           <ProcessImageBlock />
@@ -303,12 +292,6 @@ export default function HomeProcessSection() {
 
       <HomeProcessMobile />
       <HomeProcessDesktop />
-
-      {/* fade into next section */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-28 bg-gradient-to-b from-transparent via-cream/85 to-cream"
-      />
     </Section>
   );
 }

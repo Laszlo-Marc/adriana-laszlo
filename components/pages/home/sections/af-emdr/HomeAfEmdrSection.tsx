@@ -60,7 +60,7 @@ function HomeAfEmdrMobile() {
         </div>
       </div>
 
-      <div className="px-6 pb-16 pt-2 text-center">
+      <div className="px-6 pb-16 pt-10 text-center">
         <Text
           align="center"
           color="muted"
