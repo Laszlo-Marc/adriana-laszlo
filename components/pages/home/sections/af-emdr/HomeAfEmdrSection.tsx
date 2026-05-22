@@ -33,15 +33,6 @@ function HomeAfEmdrMobile() {
         >
           {afEmdrContent.title}
         </Heading>
-
-        <Text
-          size="lg"
-          align="center"
-          color="muted"
-          className="mx-auto mt-5 max-w-md leading-8"
-        >
-          {afEmdrContent.lead}
-        </Text>
       </div>
 
       <div className="relative mt-12 pb-8">
@@ -134,14 +125,22 @@ function HomeAfEmdrDesktop() {
           </div>
 
           <div className="relative">
+            {/* editorial teal panel */}
             <div
               aria-hidden="true"
-              className="absolute left-[-5rem] top-1/2 h-[22rem] w-[calc(100%+8rem)] -translate-y-1/2 bg-teal/45"
+              className="absolute left-[-5rem] top-1/2 h-[20rem] w-[calc(100%+8rem)] -translate-y-1/2 bg-teal/38"
             />
 
+            {/* soft cream glow behind image */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute right-[-3rem] top-1/2 z-10 h-80 w-44 -translate-y-1/2 opacity-35"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream/55 blur-3xl"
+            />
+
+            {/* brand element */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute right-[-2.5rem] top-1/2 z-10 h-80 w-44 -translate-y-1/2 opacity-28"
             >
               <Image
                 src="/backgrounds/single.png"
@@ -152,20 +151,23 @@ function HomeAfEmdrDesktop() {
               />
             </div>
 
-            <div className="relative z-20 mx-auto aspect-[4/5] w-[58%] max-w-[25rem] overflow-hidden rounded-t-[11rem] rounded-b-[2rem] bg-sand/20 shadow-[0_30px_90px_rgba(44,44,44,0.16)]">
-              <Image
-                src="/home-page/certifications.jpg"
-                alt="Certificate și diplome profesionale în cabinetul Adrianei Laszlo"
-                fill
-                priority={false}
-                className="object-contain object-center"
-                sizes="400px"
-              />
+            {/* image frame */}
+            <div className="relative z-20 mx-auto w-[78%] max-w-[34rem] overflow-hidden rounded-[2rem] bg-cream/70 p-3 shadow-[0_30px_90px_rgba(44,44,44,0.14)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.55rem] bg-sand/20">
+                <Image
+                  src="/home-page/certifications.jpg"
+                  alt="Certificate și diplome profesionale în cabinetul Adrianei Laszlo"
+                  fill
+                  priority={false}
+                  className="object-cover object-center"
+                  sizes="540px"
+                />
 
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/10"
-              />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/10"
+                />
+              </div>
             </div>
           </div>
         </div>

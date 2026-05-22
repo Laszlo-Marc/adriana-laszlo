@@ -53,3 +53,40 @@ body {
   overflow-x: clip;
   min-height: 100dvh;
 }
+
+@keyframes resource-flip-top {
+  0% {
+    transform: rotateX(0deg);
+  }
+  45%,
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes resource-flip-bottom {
+  0%,
+  45% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.animate-resource-flip-top {
+  animation: resource-flip-top 720ms cubic-bezier(0.76, 0, 0.24, 1) both;
+  backface-visibility: hidden;
+}
+
+.animate-resource-flip-bottom {
+  animation: resource-flip-bottom 720ms cubic-bezier(0.76, 0, 0.24, 1) both;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-resource-flip-top,
+  .animate-resource-flip-bottom {
+    animation: none;
+  }
+}

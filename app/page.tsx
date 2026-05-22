@@ -2,15 +2,12 @@ import FinalCTA from "@/components/pages/about/AboutCTA";
 import HomeProblemsSection from "@/components/pages/home/HomeProblemsSection";
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import HomeAfEmdrSection from "@/components/pages/home/sections/af-emdr/HomeAfEmdrSection";
-
-import HomeProgramsAndCenterSection from "@/components/pages/home/sections/events/HomeProgramsAndCenterSection";
 import Hero from "@/components/pages/home/sections/hero/Hero";
-import HomeValuesDividerSection from "@/components/pages/home/sections/HomeValueBanner";
+import HomeProcessSection from "@/components/pages/home/sections/HomeProcessSection";
+import HomeResourcesSection from "@/components/pages/home/sections/resources/HomeResourcesSection";
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
-import HomeSocialSection from "@/components/pages/home/sections/social/HomeSocialSection";
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
 import { testimonialItems } from "@/components/pages/home/sections/testimonials/testimonials-data";
-import UpcomingProgramsSection from "@/components/pages/home/sections/UpcomingProgramSection";
 
 export default function HomePage() {
   return (
@@ -20,11 +17,9 @@ export default function HomePage() {
       <HomeAboutTeaser />
       <HomeAfEmdrSection />
       <ServicesTeaserSection />
+      <HomeProcessSection />
       <TestimonialsStack items={testimonialItems} />
-      <HomeValuesDividerSection />
-
-      <UpcomingProgramsSection />
-      <HomeSocialSection />
+      <HomeResourcesSection />
       <FinalCTA />
     </main>
   );

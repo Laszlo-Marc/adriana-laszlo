@@ -69,7 +69,7 @@ export const services: ServiceItem[] = [
     href: "/servicii#evenimente",
     label: "Evenimente",
     image: {
-      src: "/home-page/services/evenimente.jpg",
+      src: "/home-page/services/events.jpg",
       alt: "Evenimente și workshopuri de dezvoltare personală",
     },
     accent: {

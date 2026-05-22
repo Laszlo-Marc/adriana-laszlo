@@ -114,16 +114,6 @@ export default function HomeProblemsSection() {
                   relații sau senzația că trebuie să fii mereu pregătit/ă pentru
                   ceva.
                 </Text>
-
-                <Text
-                  size="base"
-                  color="muted"
-                  className="leading-8"
-                  align="center"
-                >
-                  Poate ai înțeles multe despre tine, dar ceva din interior
-                  continuă să reacționeze ca și cum pericolul nu s-a terminat.
-                </Text>
               </div>
             </div>
             {/* Closing bridge */}

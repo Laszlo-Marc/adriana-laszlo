@@ -35,7 +35,7 @@ export default function HomeAboutTeaserMobile() {
           </Heading>
 
           <AccentText className="mx-auto mt-6 block max-w-sm text-[2.25rem] leading-[1.05] text-charcoal">
-            Un spațiu sigur, fără grabă și fără judecată.
+            Un spațiu sigur, construit pentru vindecare.
           </AccentText>
         </div>
 

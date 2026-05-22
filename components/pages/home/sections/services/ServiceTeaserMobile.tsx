@@ -8,7 +8,7 @@ import { eventsService, therapyServices } from "./data";
 export default function ServicesTeaserMobile() {
   return (
     <div className="lg:hidden">
-      <Container size="wider" padding="none" className="relative z-10">
+      <Container size="wider" padding="none" className="relative z-10 pb-10">
         <div className="px-6 pt-16 text-center">
           <Text
             as="p"
@@ -30,17 +30,6 @@ export default function ServicesTeaserMobile() {
           >
             Forme de sprijin pentru ritmul și nevoile tale
           </Heading>
-
-          <Text
-            size="base"
-            color="muted"
-            align="center"
-            className="mx-auto mt-5 max-w-md text-pretty leading-7"
-          >
-            Poți lucra individual, online sau printr-o abordare specializată
-            pentru traumă. Iar prin Trauma Center, poți descoperi și experiențe
-            de grup.
-          </Text>
         </div>
 
         <div className="mt-10">
@@ -52,18 +41,6 @@ export default function ServicesTeaserMobile() {
         </div>
 
         <TraumaCenterMobileBlock service={eventsService} />
-
-        <div className="px-6 pb-20 pt-12">
-          <Text
-            size="sm"
-            color="muted"
-            align="center"
-            className="mx-auto max-w-sm text-pretty leading-7"
-          >
-            Nu trebuie să alegi perfect de la început. Putem clarifica împreună
-            forma de sprijin potrivită pentru tine.
-          </Text>
-        </div>
       </Container>
     </div>
   );

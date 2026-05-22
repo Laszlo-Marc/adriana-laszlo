@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CalendarDays } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
@@ -17,59 +16,91 @@ export default function TraumaCenterMobileBlock({
 
   return (
     <div className="relative mt-14 px-6">
+      {/* soft background panel behind image only */}
       <div
         aria-hidden="true"
-        className="absolute left-0 top-12 h-[16rem] w-full bg-purple/20"
+        className="absolute left-0 top-14 h-[15rem] w-full bg-purple/18"
       />
 
-      <div className="relative z-20 overflow-hidden rounded-[2rem] bg-cream shadow-[0_24px_80px_rgba(44,44,44,0.12)]">
-        <div className="relative h-64 overflow-hidden">
+      {/* subtle brand continuity */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-12 top-8 z-10 w-36 opacity-20"
+      >
+        <Image
+          src="/backgrounds/single.png"
+          alt=""
+          width={700}
+          height={1100}
+          sizes="144px"
+          className="h-auto w-full max-w-none"
+        />
+      </div>
+
+      {/* image */}
+      <div className="relative z-20 mx-auto h-100 overflow-hidden flex flex-col items-center bg-sand/20">
+        <Image
+          src={service.image.src}
+          alt={service.image.alt}
+          fill
+          sizes="calc(100vw - 3rem)"
+          className="object-cover object-center"
+        />
+
+        {/* top readability gradient */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-charcoal/78 via-charcoal/34 to-transparent"
+        />
+
+        {/* bottom depth only */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-charcoal/30 to-transparent"
+        />
+
+        <div className="absolute left-5 right-5 top-5 flex flex-col items-center text-white">
           <Image
-            src={service.image.src}
-            alt={service.image.alt}
-            fill
-            sizes="100vw"
-            className="object-cover"
+            src="/home-page/tc-banner.svg"
+            alt="Trauma Center"
+            width={180}
+            height={44}
+            sizes="180px"
+            className="h-auto w-40"
           />
 
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-charcoal/65 via-charcoal/18 to-transparent"
-          />
-
-          <div className="absolute bottom-5 left-5 right-5 text-white">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/18 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.16em] backdrop-blur-sm">
-              <CalendarDays className="h-3.5 w-3.5" />
-              Trauma Center
-            </div>
-
-            <Heading as="h3" size="h3" className="mt-4 text-balance text-white">
-              Evenimente și programe de grup
-            </Heading>
-          </div>
+          <Heading
+            as="h3"
+            size="h2"
+            className=" text-balance text-white"
+            align="center"
+          >
+            Evenimente și programe de grup
+          </Heading>
         </div>
+      </div>
 
-        <div className="px-5 pb-6 pt-5">
-          <Text size="sm" color="muted" className="leading-7">
-            Prin Trauma Center, Adriana coordonează programe, workshopuri și
-            experiențe dedicate reglării emoționale, lucrului cu trauma și
-            reconectării într-un cadru sigur.
-          </Text>
+      {/* text + buttons outside image, directly on cream */}
+      <div className="relative z-20 mx-auto max-w-md px-1 pt-7 text-center">
+        <Text size="lg" color="muted" align="center" className="leading-7">
+          Prin Trauma Center, Adriana coordonează programe, workshopuri și
+          experiențe dedicate reglării emoționale, lucrului cu trauma și
+          reconectării într-un cadru sigur.
+        </Text>
 
-          <div className="mt-6 grid gap-3">
-            <Button href="/evenimente" size="lg" className="w-full">
-              Vezi toate evenimentele
-            </Button>
+        <div className="mt-7 grid gap-3">
+          <Button href="/evenimente" size="lg" className="w-full">
+            Vezi toate evenimentele
+          </Button>
 
-            <Button
-              href="/trauma-center"
-              variant="outline"
-              size="lg"
-              className="w-full bg-cream/70"
-            >
-              Descoperă Trauma Center
-            </Button>
-          </div>
+          <Button
+            href="/trauma-center"
+            variant="outline"
+            size="lg"
+            className="w-full bg-cream/70"
+          >
+            Descoperă Trauma Center
+          </Button>
         </div>
       </div>
     </div>
