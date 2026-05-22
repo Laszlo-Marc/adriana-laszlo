@@ -34,17 +34,6 @@ function HomeResourcesMobile() {
             >
               Continuă procesul în ritmul tău
             </Heading>
-
-            <Text
-              size="base"
-              color="muted"
-              align="center"
-              className="mx-auto mt-5 max-w-md text-pretty leading-7"
-            >
-              Între ședințe sau înainte de a începe terapia, poți explora
-              resurse care te ajută să înțelegi mai bine trauma, atașamentul și
-              reglarea emoțională.
-            </Text>
           </div>
 
           <div className="relative mt-11">
@@ -52,20 +41,6 @@ function HomeResourcesMobile() {
               aria-hidden="true"
               className="absolute left-[-1.5rem] top-20 h-[18rem] w-[calc(100%+3rem)] bg-teal/18"
             />
-
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-14 top-4 z-10 w-36 opacity-22"
-            >
-              <Image
-                src="/backgrounds/single.png"
-                alt=""
-                width={700}
-                height={1100}
-                sizes="144px"
-                className="h-auto w-full max-w-none"
-              />
-            </div>
 
             <div className="relative z-20">
               <ResourcesFlipReveal panels={resourcePanels} />

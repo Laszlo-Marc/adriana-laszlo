@@ -7,7 +7,8 @@ type ButtonVariant =
   | "outline"
   | "ghost"
   | "urgent"
-  | "purple";
+  | "purple"
+  | "cream";
 type ButtonSize = "sm" | "md" | "lg" | "xl";
 
 type BaseProps = {
@@ -55,6 +56,7 @@ const variants: Record<ButtonVariant, string> = {
     "bg-gold text-charcoal hover:bg-[#c98a16] hover:-translate-y-[1px] focus-visible:ring-gold hover:cursor-pointer",
   purple:
     "bg-purple text-charcoal hover:bg-[#b87dc8] hover:-translate-y-[1px] focus-visible:ring-purple hover:cursor-pointer",
+  cream: "bg-cream text-charcoal",
 };
 
 const sizes: Record<ButtonSize, string> = {
