@@ -25,7 +25,7 @@ export default function HeroDesktop() {
             className="pointer-events-none absolute inset-0 z-1"
           >
             {/* Left thread */}
-            <div className="absolute -left-8 -top-18 w-60 opacity-45 xl:-left-4 xl:w-68">
+            <div className="absolute -left-8 -top-18 w-60 opacity-45 xl:-left-4 xl:w-65">
               <Image
                 src="/backgrounds/single.png"
                 alt=""
@@ -37,7 +37,7 @@ export default function HeroDesktop() {
             </div>
 
             {/* Right thread */}
-            <div className="absolute -right-8 -top-18 w-60 scale-x-[-1] opacity-45 xl:-right-4 xl:w-68">
+            <div className="absolute -right-15 -top-18 w-60 scale-x-[-1] opacity-45 xl:-right-3 xl:w-65">
               <Image
                 src="/backgrounds/single.png"
                 alt=""
@@ -64,7 +64,7 @@ export default function HeroDesktop() {
             <div className="absolute left-0 top-37.5 w-[23vw] max-w-90 min-w-60 xl:top-37.5 xl:max-w-100">
               <div className="overflow-hidden rounded-md bg-white/40 shadow-[0_20px_60px_rgba(44,44,44,0.06)]">
                 <Image
-                  src="/home-page/left-image.jpg"
+                  src="/home-page/left-hero.jpg"
                   alt="Cadru interior calm și luminos"
                   width={700}
                   height={920}
@@ -78,7 +78,7 @@ export default function HeroDesktop() {
             <div className="absolute right-0 top-37.5 w-[23vw] max-w-90 min-w-60 xl:top-37.5 xl:max-w-100">
               <div className="overflow-hidden rounded-md bg-white/40 shadow-[0_20px_60px_rgba(44,44,44,0.06)]">
                 <Image
-                  src="/home-page/right-hero.jpg"
+                  src="/home-page/hero-mobile.jpg"
                   alt="Element natural în tonuri calme de verde și bej"
                   width={700}
                   height={920}

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Mail } from "lucide-react";
 
 import Container from "@/components/ui/Container";
@@ -9,157 +8,187 @@ import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 import Button from "@/components/ui/Button";
 
-export default function HomeAfEmdrBannerSection() {
+const afEmdrContent = {
+  eyebrow: "Formare profesională specializată",
+  title: "Specializare în traumă și AF-EMDR",
+  lead: "O abordare blândă și structurată pentru procesarea traumelor, adaptată ritmului și siguranței fiecărei persoane.",
+  body: "În cabinet, formarea profesională se traduce într-un cadru terapeutic atent, bazat pe reglare emoțională, relație și înțelegerea profundă a experiențelor dificile.",
+  cta: "Programează o discuție",
+};
+
+function HomeAfEmdrMobile() {
   return (
-    <Section
-      background="teal-muted"
-      spacing="none"
-      aria-labelledby="af-emdr-heading"
-      className="relative overflow-hidden"
-    >
-      {/* Mobile decorative background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-16 top-[420px] z-0 h-[520px] w-56 opacity-30 md:hidden"
-      >
-        <Image
-          src="/backgrounds/double-simple.png"
-          alt=""
-          fill
-          className="object-contain object-top"
-          sizes="224px"
-        />
+    <div className="lg:hidden">
+      <div className="px-6 pt-14 text-center">
+        <AccentText className="justify-center text-center text-gold">
+          {afEmdrContent.eyebrow}
+        </AccentText>
+
+        <Heading
+          as="h2"
+          size="h1"
+          align="center"
+          color="charcoal"
+          className="mt-4 text-[2.15rem] leading-[1.05]"
+        >
+          {afEmdrContent.title}
+        </Heading>
+
+        <Text
+          size="lg"
+          align="center"
+          color="muted"
+          className="mx-auto mt-5 max-w-md leading-8"
+        >
+          {afEmdrContent.lead}
+        </Text>
       </div>
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-[520px] z-0 h-60 w-36 opacity-35 md:hidden"
-      >
-        <Image
-          src="/backgrounds/df-purple-up.png"
-          alt=""
-          fill
-          className="object-contain"
-          sizes="144px"
+      <div className="relative mt-12 pb-8">
+        {/* colored editorial panel */}
+        <div
+          aria-hidden="true"
+          className="absolute left-0 top-12 h-[15.5rem] w-full bg-teal/45"
         />
+
+        {/* image */}
+        <div className="relative z-20 mx-auto aspect-[4/3] w-[82%] max-w-[22rem] overflow-hidden rounded-[2rem] bg-sand/20 shadow-[0_24px_70px_rgba(44,44,44,0.14)]">
+          {" "}
+          <Image
+            src="/home-page/certifications.jpg"
+            alt="Certificate și diplome profesionale în cabinetul Adrianei Laszlo"
+            fill
+            priority={false}
+            className="object-cover object-center"
+            sizes="72vw"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/10"
+          />
+        </div>
       </div>
 
-      <Container size="full" padding="none">
-        <div className="relative z-10 lg:grid lg:min-h-[720px] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch">
-          {/* Mobile image header / Desktop image right */}
-          <div className="relative h-[460px] overflow-hidden bg-charcoal/10 md:h-[520px] lg:order-2 lg:h-auto lg:min-h-[720px]">
-            <Image
-              src="/home-page/certifications.jpg"
-              alt="Certificate și diplome profesionale în cabinetul Adrianei Laszlo"
-              fill
-              priority={false}
-              className="object-cover object-center lg:object-[center_center]"
-              sizes="(min-width: 1024px) 55vw, 100vw"
-            />
+      <div className="px-6 pb-16 pt-2 text-center">
+        <Text
+          align="center"
+          color="muted"
+          className="mx-auto max-w-md text-sm leading-7 sm:text-base"
+        >
+          {afEmdrContent.body}
+        </Text>
 
-            {/* General darkening for better mood */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-charcoal/15"
-            />
+        <div className="mt-8">
+          <Button
+            href="/contact"
+            leftIcon={<Mail className="h-4 w-4" />}
+            variant="primary"
+            size="lg"
+            className="w-full sm:w-auto"
+          >
+            {afEmdrContent.cta}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-            {/* Mobile fade into section background */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-muted-teal/60 to-muted-teal lg:hidden"
-            />
+function HomeAfEmdrDesktop() {
+  return (
+    <div className="hidden lg:block">
+      <Container size="wider" padding="default">
+        <div className="grid min-h-[680px] grid-cols-[0.9fr_1.1fr] items-center gap-16 py-28">
+          <div className="relative z-10 max-w-xl">
+            <AccentText className="justify-start text-left text-gold">
+              {afEmdrContent.eyebrow}
+            </AccentText>
 
-            {/* Desktop fade from text side into image */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 hidden w-48 bg-gradient-to-r from-muted-teal via-muted-teal/80 to-transparent lg:block"
-            />
+            <Heading
+              as="h2"
+              size="h1"
+              color="charcoal"
+              className="mt-4 leading-[1.05]"
+            >
+              {afEmdrContent.title}
+            </Heading>
 
-            {/* Desktop bottom fade */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-b from-transparent to-muted-teal/75 lg:block"
-            />
+            <Text size="lg" color="muted" className="mt-6 leading-8">
+              {afEmdrContent.lead}
+            </Text>
+
+            <Text color="muted" className="mt-5 leading-7">
+              {afEmdrContent.body}
+            </Text>
+
+            <div className="mt-9">
+              <Button
+                href="/contact"
+                leftIcon={<Mail className="h-4 w-4" />}
+                variant="primary"
+                size="lg"
+              >
+                {afEmdrContent.cta}
+              </Button>
+            </div>
           </div>
 
-          {/* Content */}
-          <div className="relative px-6 pb-12 pt-0 text-center sm:px-8 lg:order-1 lg:flex lg:items-center lg:px-14 lg:py-24 lg:text-left xl:px-20">
-            {/* Desktop decorative elements */}
+          <div className="relative">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute left-0 top-0 z-0 hidden h-full w-60 opacity-45 lg:block"
+              className="absolute left-[-5rem] top-1/2 h-[22rem] w-[calc(100%+8rem)] -translate-y-1/2 bg-teal/45"
+            />
+
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute right-[-3rem] top-1/2 z-10 h-80 w-44 -translate-y-1/2 opacity-35"
             >
               <Image
                 src="/backgrounds/single.png"
                 alt=""
                 fill
-                className="object-contain object-left-top"
-                sizes="144px"
+                className="object-contain object-center"
+                sizes="176px"
               />
             </div>
 
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute bottom-8 left-10 z-0 hidden h-36 w-36 opacity-45 lg:block"
-            >
+            <div className="relative z-20 mx-auto aspect-[4/5] w-[58%] max-w-[25rem] overflow-hidden rounded-t-[11rem] rounded-b-[2rem] bg-sand/20 shadow-[0_30px_90px_rgba(44,44,44,0.16)]">
               <Image
-                src="/backgrounds/df-purple-up.png"
-                alt=""
+                src="/home-page/certifications.jpg"
+                alt="Certificate și diplome profesionale în cabinetul Adrianei Laszlo"
                 fill
-                className="object-contain"
-                sizes="144px"
+                priority={false}
+                className="object-contain object-center"
+                sizes="400px"
               />
-            </div>
 
-            <div className="relative z-10 mx-auto -mt-10 max-w-2xl lg:mt-0 lg:mx-0">
-              <AccentText className="justify-center text-center text-white/90 lg:justify-start lg:text-left">
-                Formare profesională specializată
-              </AccentText>
-
-              <Heading
-                as="h2"
-                size="h1"
-                align="center"
-                color="cream"
-                className="mt-4 text-[2.15rem] leading-[1.05] text-white lg:text-left"
-              >
-                Specializare în traumă și AF-EMDR
-              </Heading>
-
-              <Text
-                size="lg"
-                align="center"
-                color="cream"
-                className="mx-auto mt-5 text-white/95 lg:mx-0 lg:text-left"
-              >
-                O abordare blândă și structurată pentru procesarea traumelor,
-                adaptată ritmului și siguranței fiecărei persoane.
-              </Text>
-
-              <Text
-                align="center"
-                color="cream"
-                className="mx-auto mt-5 text-sm leading-7 text-white/85 sm:text-base lg:mx-0 lg:text-left"
-              >
-                În cabinet, formarea profesională se traduce într-un cadru
-                terapeutic atent, bazat pe reglare emoțională, relație și
-                înțelegerea profundă a experiențelor dificile.
-              </Text>
-              <div className="mt-8 flex justify-center lg:justify-start">
-                <Button
-                  href="/contact"
-                  leftIcon={<Mail className="h-4 w-4" />}
-                  variant="primary"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  Programează o discuție
-                </Button>
-              </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/10"
+              />
             </div>
           </div>
         </div>
       </Container>
+    </div>
+  );
+}
+
+export default function HomeAfEmdrSection() {
+  return (
+    <Section
+      background="cream"
+      spacing="none"
+      aria-labelledby="af-emdr-heading"
+      className="relative overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 top-32 h-72 w-72 rounded-full bg-teal/10 blur-3xl"
+      />
+
+      <HomeAfEmdrMobile />
+      <HomeAfEmdrDesktop />
     </Section>
   );
 }

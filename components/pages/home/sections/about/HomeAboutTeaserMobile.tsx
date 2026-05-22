@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
@@ -6,117 +7,105 @@ import Heading from "@/components/ui/Heading";
 
 export default function HomeAboutTeaserMobile() {
   return (
-    <div className="relative overflow-hidden lg:hidden">
-      <div className="mx-auto max-w-xl">
-        {/* Image header */}
-        <div className="relative -mx-4 h-[460px] overflow-hidden bg-sand/30 sm:-mx-6 sm:h-[520px]">
-          <Image
-            src="/adriana8.PNG"
-            alt="Portret Adriana Laszlo"
-            fill
-            className="object-cover object-[center_18%]"
-            sizes="100vw"
-            priority={false}
-          />
+    <div className="relative overflow-hidden bg-cream lg:hidden">
+      <div className="mx-auto max-w-xl px-6 pb-20 pt-12">
+        {/* Intro copy */}
+        <div className="relative z-10 text-center">
+          <Text
+            as="p"
+            size="xs"
+            color="gold"
+            weight="medium"
+            transform="upper"
+            align="center"
+            className="mb-4 tracking-[0.16em]"
+          >
+            Despre Adriana
+          </Text>
 
-          {/* subtle top shade */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-charcoal/15 to-transparent"
-          />
+          <Heading
+            as="h2"
+            size="h1"
+            color="charcoal"
+            align="center"
+            case="upper"
+            className="tracking-[0.14em]"
+          >
+            Despre mine
+          </Heading>
 
-          {/* strong image fade into section background */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/60 to-cream/18"
-          />
-
-          {/* readability veil behind title */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent to-cream/85"
-          />
-
-          {/* section label over fade */}
-          <div className="absolute inset-x-0 bottom-0 z-10 px-6 text-center">
-            <Heading
-              as="h2"
-              size="h1"
-              color="charcoal"
-              case="upper"
-              className="tracking-[0.16em]"
-              align="center"
-            >
-              Despre mine
-            </Heading>
-          </div>
+          <AccentText className="mx-auto mt-6 block max-w-sm text-[2.25rem] leading-[1.05] text-charcoal">
+            Un spațiu sigur, fără grabă și fără judecată.
+          </AccentText>
         </div>
 
-        {/* Content */}
-        <div className="relative overflow-hidden bg-cream px-6 pb-10 pt-4 sm:px-8 sm:pb-12">
+        {/* Editorial portrait composition */}
+        <div className="relative mt-11 pb-8">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-[25%] top-0 z-0 -translate-x-1/2"
-          >
-            <Image
-              src="/backgrounds/double-split.png"
-              alt=""
-              width={180}
-              height={1100}
-              sizes="180px"
-              className="h-auto w-40 max-w-none opacity-35"
-            />
-          </div>
+            className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-purple/16 blur-3xl"
+          />
 
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute right-0 top-50 z-0 -translate-x-1/2"
+            className="absolute right-4 top-20 h-32 w-32 rounded-full bg-teal/10 blur-2xl"
+          />
+          {/* subtle teal glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 top-2 h-52 w-52 rounded-full bg-teal/12 blur-3xl"
+          />
+
+          {/* dragonfly accent */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-2 top-[13.5rem] z-30 w-24 opacity-30"
           >
             <Image
               src="/backgrounds/dragonfly.png"
               alt=""
               width={140}
               height={140}
-              sizes="180px"
-              className="h-auto w-30 max-w-none opacity-35"
+              sizes="96px"
+              className="h-auto w-full max-w-none"
             />
           </div>
 
-          <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
-            <AccentText className="text-[2.5rem] leading-none text-charcoal">
-              Un spațiu în care poți fi tu, fără presiune.
-            </AccentText>
-
-            <Text
-              className="mt-6 text-base leading-7 text-charcoal/80"
-              align="center"
-            >
-              Terapia nu înseamnă doar tehnică. Înseamnă o relație în care te
-              poți simți în siguranță, înțeles și susținut, chiar și atunci când
-              lucrurile sunt dificile.
-            </Text>
-
-            <Text
-              className="text-sm italic leading-6 text-charcoal/60"
-              align="center"
-            >
-              Fără grabă. Fără judecată.
-            </Text>
-
-            <AccentText className="text-[2.5rem] leading-none text-charcoal">
-              Lucrăm împreună pentru a înțelege și a vindeca.
-            </AccentText>
-
-            <Text className="text-sm leading-6 text-charcoal/70" align="center">
-              În ritmul tău, cu metode adaptate nevoilor tale – inclusiv
-              abordarea AF-EMDR pentru procesarea traumelor.
-            </Text>
-
-            <div className="mt-8">
-              <Button href="/despre" size="lg" className="w-full sm:w-auto">
-                Citește povestea completă
-              </Button>
+          {/* image */}
+          <div className="relative z-20 mx-auto aspect-[4/5] w-[72%] max-w-[19rem] overflow-hidden rounded-[2.5rem] bg-white/70 p-2 shadow-[0_24px_70px_rgba(44,44,44,0.12)]">
+            <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+              <Image
+                src="/home-page/about.jpg"
+                alt="Portret Adriana Laszlo"
+                fill
+                className="object-cover object-[center_18%]"
+                sizes="72vw"
+                priority={false}
+              />
             </div>
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="relative z-10 mx-auto mt-2 max-w-md text-center">
+          <Text className="text-base leading-8 text-charcoal/80" align="center">
+            Terapia începe cu o relație în care te poți simți văzut, înțeles și
+            susținut — mai ales atunci când lucrurile sunt greu de pus în
+            cuvinte.
+          </Text>
+
+          <Text
+            className="mt-5 text-sm leading-7 text-charcoal/65"
+            align="center"
+          >
+            Lucrăm în ritmul tău, cu grijă, claritate și metode adaptate
+            nevoilor tale.
+          </Text>
+
+          <div className="mt-8">
+            <Button href="/despre" size="lg" className="w-full sm:w-auto">
+              Citește povestea completă
+            </Button>
           </div>
         </div>
       </div>

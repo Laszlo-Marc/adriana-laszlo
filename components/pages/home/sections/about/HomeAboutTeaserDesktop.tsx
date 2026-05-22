@@ -14,7 +14,7 @@ export default function HomeAboutTeaserDesktop() {
     <div className="hidden lg:block">
       <div ref={sectionRef} className="relative h-svh ">
         <div className="sticky top-0 h-svh">
-          <div className="grid h-full grid-cols-[1.05fr_0.64fr_1fr]">
+          <div className="grid h-full grid-cols-[1fr_0.7fr_1fr]">
             {/* Left panel */}
             <div className="relative flex bg-teal/18">
               {/* Left ornament */}
@@ -57,7 +57,7 @@ export default function HomeAboutTeaserDesktop() {
             {/* Center portrait */}
             <div className="relative min-h-svh bg-cream">
               <Image
-                src="/adriana8.webp"
+                src="/home-page/about.jpg"
                 alt="Portret Adriana Laszlo"
                 fill
                 priority={false}
@@ -66,24 +66,6 @@ export default function HomeAboutTeaserDesktop() {
               />
 
               <div className="absolute inset-0 bg-linear-to-t from-charcoal/10 via-transparent to-transparent" />
-
-              {/* <div className="absolute -left-80 -top-4 z-10 rotate-[-10deg] text-charcoal">
-                <div className="flex flex-col leading-none">
-                  <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
-                    Bine ai venit,
-                  </AccentText>
-
-                  <div className="-mt-2 flex items-end gap-3 pl-2">
-                    <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
-                      eu sunt
-                    </AccentText>
-
-                    <AccentText className="translate-y-1 text-[5.2rem] leading-none text-charcoal">
-                      Adriana
-                    </AccentText>
-                  </div>
-                </div>
-              </div> */}
             </div>
 
             {/* Right panel */}

@@ -14,13 +14,14 @@ export default function HeroMobile() {
       background="cream"
       spacing="none"
       aria-labelledby="hero-heading-mobile"
-      className="relative overflow-hidden lg:hidden"
+      className="relative  lg:hidden"
+      allowOverflow
     >
       <Container size="wider" padding="none">
         <div className="mx-auto max-w-2xl">
           {/* Image */}
           <div className="-mx-4 sm:-mx-6">
-            <div className="relative h-[500px] overflow-hidden bg-sand/20 sm:h-[520px]">
+            <div className="relative h-135  bg-sand/20 sm:h-145">
               <Image
                 src="/home-page/hero-mobile.jpg"
                 alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
@@ -30,38 +31,43 @@ export default function HeroMobile() {
                 className="object-cover object-center"
               />
 
-              {/* soft fade into cream background */}
+              {/* top depth */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-cream/80 to-cream"
+                className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-charcoal/20 via-charcoal/5 to-transparent"
               />
 
-              {/* subtle top shade for image depth */}
+              {/* stronger image-to-cream fade */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-charcoal/20 to-transparent"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/88 to-cream"
+              />
+
+              {/* slight warm wash so the image blends with the page */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-cream/5"
               />
             </div>
           </div>
 
           {/* Content */}
-          <div className="relative -mt-28 px-6 pb-8 text-center">
+          <div className="relative -mt-36 px-6 text-center">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute left-20 top-8 z-0 -translate-x-1/2"
+              className="pointer-events-none absolute left-0 top-10 z-0 w-70 opacity-25"
             >
               <Image
                 src="/backgrounds/double-df.png"
                 alt=""
                 width={1000}
                 height={1400}
-                sizes="220px"
-                className="h-auto w-full max-w-none opacity-35 sm:w-[20rem]"
+                sizes="260px"
+                className="h-auto w-full max-w-none"
               />
             </div>
 
             <div className="relative z-10">
-              {/* Overlapping title group */}
               <div className="mx-auto max-w-xl">
                 <Text
                   as="p"
@@ -69,7 +75,7 @@ export default function HeroMobile() {
                   color="muted-teal"
                   weight="medium"
                   transform="upper"
-                  className="mb-4 tracking-[0.14em]"
+                  className="mb-4 tracking-[0.16em]"
                   align="center"
                 >
                   AF-EMDR · Traumă · Atașament
@@ -78,7 +84,7 @@ export default function HeroMobile() {
                 <h1 id="hero-heading-mobile">
                   <AccentText
                     as="span"
-                    className="block text-[4.35rem] leading-[0.86] text-charcoal"
+                    className="block text-[4rem] leading-[0.86] text-charcoal"
                   >
                     Terapia Traumei
                   </AccentText>
@@ -92,7 +98,6 @@ export default function HeroMobile() {
                 </h1>
               </div>
 
-              {/* Main copy + CTA */}
               <div className="mx-auto mt-6 max-w-xl">
                 <Text
                   size="base"
@@ -104,12 +109,12 @@ export default function HeroMobile() {
                   sigur, profesionist și orientat spre schimbare profundă.
                 </Text>
 
-                <div className="mt-6 grid grid-cols-1 gap-3">
+                <div className="mt-7 grid grid-cols-1 gap-3">
                   <Button
                     href="/contact"
                     variant="primary"
                     size="lg"
-                    className="w-full"
+                    className="w-full shadow-sm"
                   >
                     Programează o ședință
                   </Button>
@@ -120,7 +125,7 @@ export default function HeroMobile() {
                     size="lg"
                     leftIcon={<Phone size={16} strokeWidth={1.75} />}
                     aria-label={`Sună la ${PHONE_DISPLAY}`}
-                    className="w-full"
+                    className="w-full bg-cream/70 backdrop-blur-sm"
                   >
                     {PHONE_DISPLAY}
                   </Button>

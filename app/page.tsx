@@ -1,4 +1,5 @@
 import FinalCTA from "@/components/pages/about/AboutCTA";
+import HomeProblemsSection from "@/components/pages/home/HomeProblemsSection";
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import HomeAfEmdrSection from "@/components/pages/home/sections/af-emdr/HomeAfEmdrSection";
 
@@ -15,12 +16,13 @@ export default function HomePage() {
   return (
     <main id="main">
       <Hero />
+      <HomeProblemsSection />
       <HomeAboutTeaser />
-      <ServicesTeaserSection />
       <HomeAfEmdrSection />
+      <ServicesTeaserSection />
       <TestimonialsStack items={testimonialItems} />
       <HomeValuesDividerSection />
-      <HomeProgramsAndCenterSection />
+
       <UpcomingProgramsSection />
       <HomeSocialSection />
       <FinalCTA />
