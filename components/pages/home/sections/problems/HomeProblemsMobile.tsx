@@ -40,7 +40,7 @@ function StoryPanel({
 
 export default function HomeProblemsMobileStory() {
   return (
-    <div className="relative -mt-20 lg:hidden">
+    <div className="relative lg:hidden">
       {/* Sticky visual stage */}
       <div className="sticky top-0 h-svh overflow-hidden bg-cream">
         <Image
@@ -106,8 +106,8 @@ export default function HomeProblemsMobileStory() {
           <StoryPanel key={sign.number}>
             <Text
               as="p"
-              size="xs"
-              color="gold"
+              size="base"
+              color="charcoal"
               weight="medium"
               transform="upper"
               align="center"
@@ -118,10 +118,9 @@ export default function HomeProblemsMobileStory() {
 
             <Text
               as="p"
-              size="lg"
-              color="charcoal"
+              size="xl"
               align="center"
-              className="mx-auto max-w-xs text-balance leading-8"
+              className="mx-auto max-w-xs text-balance leading-8 font-semibold"
             >
               {sign.text}
             </Text>

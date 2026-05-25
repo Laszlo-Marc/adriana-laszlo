@@ -17,7 +17,7 @@ export default function HeroMobile() {
       allowOverflow
     >
       <Container size="full" padding="none">
-        <div className="relative min-h-[calc(100svh-4.75rem)] overflow-hidden">
+        <div className="relative min-h-svh overflow-hidden">
           <Image
             src="/home-page/hero/hero-mobile.jpg"
             alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
