@@ -4,8 +4,8 @@ import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
-import { PHONE_HREF } from "@/components/layout/navbar/NavLinks";
 import { Mail, MessageCircle } from "lucide-react";
+import { PHONE_HREF } from "@/components/layout/NavLinks";
 
 export default function FinalCTA() {
   return (
