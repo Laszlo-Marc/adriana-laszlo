@@ -1,12 +1,29 @@
 export const problemsContent = {
-  eyebrow: "Când trauma nu mai este doar trecut",
+  eyebrow: "Când trauma rămâne prezentă",
   title: "Poate te regăsești aici",
   description:
-    "Uneori, ceea ce ai trăit nu apare ca o amintire clară. Apare ca tensiune în corp, reacții pe care nu le poți opri, frică în relații sau senzația că trebuie să fii mereu pregătit/ă pentru ceva.",
-  closing:
-    "În terapie, nu forțăm răspunsuri. Începem cu siguranță, ritm și înțelegerea felului în care corpul tău a învățat să te protejeze.",
+    "Uneori, trauma nu apare ca o amintire clară. Apare în corp, în relații sau în reacții pe care nu le poți opri ușor.",
+  signs: [
+    {
+      number: "01",
+      text: "Corpul rămâne în alertă, chiar și când ești în siguranță.",
+    },
+    {
+      number: "02",
+      text: "Reacțiile devin intense înainte să le poți înțelege.",
+    },
+    {
+      number: "03",
+      text: "Apropierea poate aduce frică, retragere sau control.",
+    },
+    {
+      number: "04",
+      text: "Oboseala vine și din tot ce ai fost nevoit/ă să duci.",
+    },
+  ],
+  closing: "În terapie, începem cu siguranță, ritm și înțelegere.",
   image: {
     src: "/home-page/problems.jpg",
     alt: "Moment de liniște și reflecție într-un proces terapeutic",
   },
-};
+} as const;

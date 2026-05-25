@@ -1,63 +1,133 @@
-import Image from "next/image";
+"use client";
 
-import Container from "@/components/ui/Container";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
-import { problemsContent } from "./problemsContent";
 import AccentText from "@/components/ui/AccentText";
+import { problemsContent } from "./problemsContent";
 
-export default function HomeProblemsMobile() {
+function StoryPanel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="relative z-10 lg:hidden">
-      <Container size="full" padding="none">
-        <div className="px-6 pb-16 pt-8">
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="absolute -left-6 top-12 h-60 w-[calc(100%+3rem)] bg-teal/45"
-            />
+    <section
+      className={[
+        "relative flex min-h-[62svh] items-center justify-center px-6 py-16 text-center",
+        className,
+      ].join(" ")}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.58 }}
+        transition={{
+          duration: 0.65,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="mx-auto max-w-sm"
+      >
+        {children}
+      </motion.div>
+    </section>
+  );
+}
 
-            <div className="relative z-20 mx-auto aspect-[4/5] w-[78%] max-w-[21rem] overflow-hidden rounded-t-[10rem] rounded-b-[1.75rem] bg-sand/20 shadow-[0_24px_70px_rgba(44,44,44,0.14)]">
-              <Image
-                src={problemsContent.image.src}
-                alt={problemsContent.image.alt}
-                fill
-                sizes="78vw"
-                className="object-cover object-center"
-              />
+export default function HomeProblemsMobileStory() {
+  return (
+    <div className="relative -mt-20 lg:hidden">
+      {/* Sticky visual stage */}
+      <div className="sticky top-0 h-svh overflow-hidden bg-cream">
+        <Image
+          src={problemsContent.image.src}
+          alt={problemsContent.image.alt}
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
 
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/10"
-              />
-            </div>
-          </div>
+        {/* Soft atmospheric treatment */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cream/42"
+        />
 
-          <div className="relative z-10  mt-10 text-center">
-            <AccentText className="justify-center text-center text-2xl mb-4 text-gold">
-              {problemsContent.eyebrow}
-            </AccentText>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,250,242,0.18)_0%,rgba(255,250,242,0.62)_58%,rgba(255,250,242,0.96)_100%)]"
+        />
 
-            <Heading
-              as="h2"
-              size="h1"
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-cream via-cream/76 to-transparent"
+        />
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/82 to-cream"
+        />
+      </div>
+
+      {/* Scroll content over the sticky stage */}
+      <div className="relative z-10 -mt-[100svh]">
+        {/* Intro */}
+        <StoryPanel className="min-h-svh">
+          <AccentText className="mb-5 block text-2xl leading-none text-gold">
+            {problemsContent.eyebrow}
+          </AccentText>
+
+          <Heading
+            as="h2"
+            size="h1"
+            align="center"
+            className="mx-auto max-w-sm text-balance text-charcoal"
+          >
+            {problemsContent.title}
+          </Heading>
+
+          <Text
+            as="p"
+            size="sm"
+            color="muted"
+            align="center"
+            className="mx-auto mt-5 max-w-xs text-pretty leading-6"
+          >
+            {problemsContent.description}
+          </Text>
+        </StoryPanel>
+
+        {/* Cues */}
+        {problemsContent.signs.map((sign) => (
+          <StoryPanel key={sign.number}>
+            <Text
+              as="p"
+              size="xs"
+              color="gold"
+              weight="medium"
+              transform="upper"
               align="center"
-              className="text-balance mt-4 text-charcoal"
+              className="mb-5 tracking-[0.24em]"
             >
-              {problemsContent.title}
-            </Heading>
+              {sign.number}
+            </Text>
 
             <Text
-              size="base"
-              color="muted"
+              as="p"
+              size="lg"
+              color="charcoal"
               align="center"
-              className="mt-7 leading-8"
+              className="mx-auto max-w-xs text-balance leading-8"
             >
-              {problemsContent.description}
+              {sign.text}
             </Text>
-          </div>
-        </div>
-      </Container>
+          </StoryPanel>
+        ))}
+      </div>
     </div>
   );
 }

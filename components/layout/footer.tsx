@@ -5,18 +5,14 @@ import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import Logo from "@/components/ui/Logo";
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
-import {
-  navLinks,
-  PHONE_DISPLAY,
-  PHONE_HREF,
-} from "@/components/layout/navbar/NavLinks";
+
 import Button from "../ui/Button";
+import { PHONE_DISPLAY, PHONE_HREF } from "./navbar/data";
+import { navLinks } from "./NavLinks";
 
 const TRAUMA_EMAIL = "info@traumacenter.ro";
-const PERSONAL_EMAIL = "adrianalaszlo@gmail.com";
 
 const TRAUMA_EMAIL_HREF = `mailto:${TRAUMA_EMAIL}`;
-const PERSONAL_EMAIL_HREF = `mailto:${PERSONAL_EMAIL}`;
 
 const LOCATION_LABEL = "Trauma Center Cluj";
 const LOCATION_TEXT = "Strada Artelor 35, Cluj-Napoca, România";

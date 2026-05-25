@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
-import { PHONE_DISPLAY, PHONE_HREF } from "@/components/layout/navbar/NavLinks";
 
 export default function HeroMobile() {
   return (
@@ -17,101 +16,91 @@ export default function HeroMobile() {
       className="relative lg:hidden"
       allowOverflow
     >
-      <Container size="wider" padding="none">
-        <div className="mx-auto max-w-2xl">
-          <div className="-mx-4 sm:-mx-6">
-            <div className="relative h-135 bg-sand/20 sm:h-145">
-              <Image
-                src="/home-page/hero/hero-mobile.jpg"
-                alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center"
-              />
+      <Container size="full" padding="none">
+        <div className="relative min-h-[calc(100svh-4.75rem)] overflow-hidden">
+          <Image
+            src="/home-page/hero/hero-mobile.jpg"
+            alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
 
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-charcoal/20 via-charcoal/5 to-transparent"
-              />
+          {/* Readability overlays */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-cream/18"
+          />
 
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/88 to-cream"
-              />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,250,242,0.18)_0%,rgba(255,250,242,0.52)_52%,rgba(255,250,242,0.88)_100%)]"
+          />
 
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-cream/5"
-              />
-            </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cream via-cream/70 to-transparent"
+          />
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/78 to-cream"
+          />
+
+          {/* Optional brand ornament behind text */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-[49%] z-0 h-[440px] w-[300px] -translate-x-1/2 -translate-y-1/2 opacity-[0.09]"
+          >
+            <Image
+              src="/brand/double-vine.png"
+              alt=""
+              fill
+              sizes="300px"
+              className="object-contain"
+            />
           </div>
 
-          <div className="relative -mt-40 px-6 pb-14 text-center">
-            <div className="relative z-10">
-              <div className="mx-auto max-w-xl">
-                <Text
-                  as="p"
-                  size="xs"
-                  color="muted-teal"
-                  weight="medium"
-                  transform="upper"
-                  className="mb-4 tracking-[0.16em]"
-                  align="center"
+          {/* Content */}
+          <div className="relative z-10 flex min-h-svh items-center justify-center px-6 pb-14 pt-10 text-center">
+            <div className="mx-auto max-w-sm">
+              <Text
+                as="p"
+                size="xs"
+                weight="medium"
+                transform="upper"
+                className="mb-5 tracking-[0.18em]"
+                align="center"
+              >
+                AF-EMDR · Traumă · Atașament
+              </Text>
+
+              <h1 id="hero-heading-mobile">
+                <AccentText
+                  as="span"
+                  className="block text-[7rem] leading-[0.82] text-charcoal"
                 >
-                  AF-EMDR · Traumă · Atașament
-                </Text>
-
-                <h1 id="hero-heading-mobile">
-                  <AccentText
-                    as="span"
-                    className="block text-[3.7rem] leading-[0.86] text-charcoal"
-                  >
-                    Terapia Traumei
-                  </AccentText>
-
-                  <AccentText
-                    as="span"
-                    className="mt-5 block text-2xl leading-none text-charcoal"
-                  >
-                    În Cluj-Napoca
-                  </AccentText>
-                </h1>
-              </div>
-
-              <div className="mx-auto mt-6 max-w-xl">
-                <Text
-                  size="base"
-                  color="muted"
-                  className="text-pretty leading-7"
-                  align="center"
+                  Terapia Traumei
+                </AccentText>
+                <AccentText
+                  as="span"
+                  className="mb-5 block text-[1.85rem] leading-none text-charcoal"
                 >
-                  Sprijin pentru traumă, anxietate și atașament, într-un cadru
-                  sigur, profesionist și orientat spre schimbare profundă.
-                </Text>
+                  În Cluj-Napoca
+                </AccentText>
+              </h1>
 
-                <div className="mt-7 grid grid-cols-1 gap-3">
-                  <Button
-                    href="/contact"
-                    variant="primary"
-                    size="lg"
-                    className="w-full shadow-sm"
-                    leftIcon={<Mail size={20} />}
-                  >
-                    Programează o ședință
-                  </Button>
-
-                  <Button
-                    href={PHONE_HREF}
-                    variant="outline"
-                    size="lg"
-                    leftIcon={<Phone size={16} strokeWidth={1.75} />}
-                    aria-label={`Sună la ${PHONE_DISPLAY}`}
-                    className="w-full bg-cream/70 backdrop-blur-sm"
-                  >
-                    {PHONE_DISPLAY}
-                  </Button>
-                </div>
+              <div className="mx-auto mt-12 max-w-xs">
+                <Button
+                  href="/contact"
+                  variant="primary"
+                  size="lg"
+                  className="w-full shadow-sm"
+                  leftIcon={<Mail size={20} />}
+                >
+                  Programează o discuție
+                </Button>
               </div>
             </div>
           </div>
