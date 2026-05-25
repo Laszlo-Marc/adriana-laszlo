@@ -7,6 +7,7 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/components/layout/navbar/NavLinks";
+import BrandOrnament from "@/components/ui/BrandOrnament";
 
 export default function HeroMobile() {
   return (
@@ -14,14 +15,13 @@ export default function HeroMobile() {
       background="cream"
       spacing="none"
       aria-labelledby="hero-heading-mobile"
-      className="relative  lg:hidden"
+      className="relative lg:hidden"
       allowOverflow
     >
       <Container size="wider" padding="none">
         <div className="mx-auto max-w-2xl">
-          {/* Image */}
           <div className="-mx-4 sm:-mx-6">
-            <div className="relative h-135  bg-sand/20 sm:h-145">
+            <div className="relative h-135 bg-sand/20 sm:h-145">
               <Image
                 src="/home-page/hero-mobile.jpg"
                 alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
@@ -31,19 +31,16 @@ export default function HeroMobile() {
                 className="object-cover object-center"
               />
 
-              {/* top depth */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-charcoal/20 via-charcoal/5 to-transparent"
               />
 
-              {/* stronger image-to-cream fade */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-cream/88 to-cream"
               />
 
-              {/* slight warm wash so the image blends with the page */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-cream/5"
@@ -51,21 +48,12 @@ export default function HeroMobile() {
             </div>
           </div>
 
-          {/* Content */}
-          <div className="relative -mt-40 px-6 text-center">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-0 top-10 z-0 w-70 opacity-25"
-            >
-              <Image
-                src="/backgrounds/double-df.png"
-                alt=""
-                width={1000}
-                height={1400}
-                sizes="260px"
-                className="h-auto w-full max-w-none"
-              />
-            </div>
+          <div className="relative -mt-40 px-6 pb-14 text-center">
+            <BrandOrnament
+              variant="double-df"
+              className="-left-16 top-3 w-76 opacity-[0.22]"
+              sizes="304px"
+            />
 
             <div className="relative z-10">
               <div className="mx-auto max-w-xl">

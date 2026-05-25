@@ -68,7 +68,6 @@ export default function HeroDesktop() {
                   alt="Cadru interior calm și luminos"
                   width={700}
                   height={920}
-                  priority
                   sizes="(min-width: 1280px) 400px, 23vw"
                   className="h-auto w-full object-cover"
                 />
@@ -82,7 +81,6 @@ export default function HeroDesktop() {
                   alt="Element natural în tonuri calme de verde și bej"
                   width={700}
                   height={920}
-                  priority
                   sizes="(min-width: 1280px) 400px, 23vw"
                   className="h-auto w-full object-cover"
                 />

@@ -8,6 +8,20 @@ import Heading from "@/components/ui/Heading";
 export default function HomeAboutTeaserMobile() {
   return (
     <div className="relative overflow-hidden bg-cream lg:hidden">
+      {/* Mobile continuity thread */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-22 -top-90 z-0 w-68 opacity-30 lg:hidden"
+      >
+        <Image
+          src="/backgrounds/double-simple.png"
+          alt=""
+          width={1000}
+          height={1400}
+          sizes="288px"
+          className="h-auto w-full max-w-none "
+        />
+      </div>
       <div className="mx-auto max-w-xl px-6 pb-20 pt-12">
         {/* Intro copy */}
         <div className="relative z-10 text-center">
