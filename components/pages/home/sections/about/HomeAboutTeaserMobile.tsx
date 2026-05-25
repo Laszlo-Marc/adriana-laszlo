@@ -11,17 +11,9 @@ export default function HomeAboutTeaserMobile() {
       <div className="mx-auto max-w-xl px-6 pb-20 pt-12">
         {/* Intro copy */}
         <div className="relative z-10 text-center">
-          <Text
-            as="p"
-            size="xs"
-            color="gold"
-            weight="medium"
-            transform="upper"
-            align="center"
-            className="mb-4 tracking-[0.16em]"
-          >
-            Despre Adriana
-          </Text>
+          <AccentText className="justify-center  text-2xl text-center text-gold">
+            Povestea mea
+          </AccentText>
 
           <Heading
             as="h2"
@@ -29,7 +21,7 @@ export default function HomeAboutTeaserMobile() {
             color="charcoal"
             align="center"
             case="upper"
-            className="tracking-[0.14em]"
+            className="mt-4"
           >
             Despre mine
           </Heading>

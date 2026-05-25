@@ -7,30 +7,23 @@ import Text from "@/components/ui/Text";
 
 import { resourcePanels } from "./data";
 import ResourcesFlipReveal from "./ResourceFlipReveal";
+import AccentText from "@/components/ui/AccentText";
 
 function HomeResourcesMobile() {
   return (
     <div className="lg:hidden ">
-      <Container size="wider" padding="none">
-        <div className="px-6 pb-20 pt-16">
+      <Container size="full" padding="none">
+        <div className="px-4 pb-10 pt-10">
           <div className="relative z-10 text-center">
-            <Text
-              as="p"
-              size="xs"
-              color="gold"
-              weight="medium"
-              transform="upper"
-              align="center"
-              className="mb-4 tracking-[0.16em]"
-            >
+            <AccentText className="justify-center text-center text-2xl text-gold">
               Resurse
-            </Text>
+            </AccentText>
 
             <Heading
               as="h2"
               size="h1"
               align="center"
-              className="mx-auto text-balance "
+              className=" mt-4 text-balance "
             >
               Continuă procesul
             </Heading>
@@ -39,7 +32,7 @@ function HomeResourcesMobile() {
           <div className="relative mt-11">
             <div
               aria-hidden="true"
-              className="absolute left-[-1.5rem] top-20 h-[18rem] w-[calc(100%+3rem)] bg-teal/18"
+              className="absolute -left-6 top-20 h-72 w-[calc(100%+3rem)] bg-teal/18"
             />
 
             <div className="relative z-20">

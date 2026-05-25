@@ -7,6 +7,7 @@ import { TestimonialItem } from "./TestimonialContent";
 import { TestimonialsMobileCard } from "./TestimonialMobileCard";
 import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
 import Heading from "@/components/ui/Heading";
+import AccentText from "@/components/ui/AccentText";
 
 type TestimonialsStackProps = {
   items: TestimonialItem[];
@@ -190,11 +191,16 @@ export default function TestimonialsStack({
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-teal/80">
+          <AccentText className="justify-center text-2xl text-center text-gold">
             Testimoniale
-          </p>
+          </AccentText>
 
-          <Heading as="h2" size="h1" className="font-playfair " align="center">
+          <Heading
+            as="h2"
+            size="h1"
+            className="font-playfair mt-4 "
+            align="center"
+          >
             {title}
           </Heading>
         </div>

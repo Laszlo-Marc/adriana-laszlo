@@ -10,6 +10,7 @@ import {
   PHONE_DISPLAY,
   PHONE_HREF,
 } from "@/components/layout/navbar/NavLinks";
+import Button from "../ui/Button";
 
 const TRAUMA_EMAIL = "info@traumacenter.ro";
 const PERSONAL_EMAIL = "adrianalaszlo@gmail.com";
@@ -31,7 +32,10 @@ export default function Footer() {
           <div className="mx-auto flex max-w-sm flex-col items-center text-center xl:mx-0 xl:items-start xl:text-left">
             <Logo size="md" />
 
-            <Text className="mt-5 max-w-[34ch] text-sm leading-6 md:text-base">
+            <Text
+              className="mt-5 max-w-[34ch] text-sm leading-6 md:text-base md:text-start"
+              align="center"
+            >
               Psihoterapie integrativă într-un spațiu sigur, calm și atent,
               orientat spre claritate, echilibru și vindecare.
             </Text>
@@ -56,49 +60,32 @@ export default function Footer() {
           </div>
 
           {/* Mobile: contact + navigation on same row */}
-          <div className="grid grid-cols-2 gap-8 items-center justify-center xl:contents">
+          <div className="grid grid-cols-2 gap-4 xl:contents">
             {/* Contact */}
             <div className="space-y-3 xl:space-y-4">
-              <Heading as="h4" size="h3" className="mb-3" align="center">
+              <Heading as="h4" size="h3" className="mb-6 ">
                 Contact
               </Heading>
 
-              <div className="flex flex-col gap-3">
-                <a
+              <div className="flex flex-col gap-6">
+                <Button
+                  leftIcon={<Mail size={14} />}
+                  variant="primary"
+                  size="md"
                   href={TRAUMA_EMAIL_HREF}
-                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
+                  className="md:max-w-1/2"
                 >
-                  <Mail
-                    size={16}
-                    strokeWidth={1.75}
-                    className="mt-1 shrink-0"
-                  />
-                  <span className="break-all">{TRAUMA_EMAIL}</span>
-                </a>
-
-                <a
+                  E-mail
+                </Button>
+                <Button
+                  leftIcon={<Phone size={14} />}
+                  variant="purple"
+                  size="md"
                   href={PHONE_HREF}
-                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
+                  className="md:max-w-1/2"
                 >
-                  <Phone
-                    size={16}
-                    strokeWidth={1.75}
-                    className="mt-1 shrink-0"
-                  />
-                  <span>{PHONE_DISPLAY}</span>
-                </a>
-
-                <a
-                  href={PERSONAL_EMAIL_HREF}
-                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
-                >
-                  <Mail
-                    size={16}
-                    strokeWidth={1.75}
-                    className="mt-1 shrink-0"
-                  />
-                  <span className="break-all">{PERSONAL_EMAIL}</span>
-                </a>
+                  {PHONE_DISPLAY}
+                </Button>
               </div>
             </div>
 
@@ -107,7 +94,7 @@ export default function Footer() {
               <Heading
                 as="h4"
                 size="h3"
-                className="mb-3 md:mb-4"
+                className="mb-3 md:mb-4 md:text-start"
                 align="center"
               >
                 Navigare
@@ -115,7 +102,7 @@ export default function Footer() {
 
               <ul className="space-y-2 md:space-y-3">
                 {navLinks.map((link) => (
-                  <li key={link.href} className="text-center">
+                  <li key={link.href} className="text-center md:text-start">
                     <Link
                       href={link.href}
                       className="text-sm text-muted transition-colors hover:text-charcoal md:text-base "

@@ -7,7 +7,6 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ServiceItem } from "./types";
 
-
 type ServicesAccordionProps = {
   items: ServiceItem[];
   className?: string;
@@ -52,13 +51,10 @@ export function ServicesAccordion({
               aria-pressed={isActive}
               aria-label={item.title}
               className={cn(
-                "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none transition-[flex-grow,transform,box-shadow,border-color] duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50",
+                "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none  duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50",
                 isActive
-                  ? cn(
-                      "flex-6 shadow-[0_20px_60px_rgba(44,44,44,0.14)]",
-                      item.accent.borderActive,
-                    )
-                  : "flex-[1.2] border-charcoal/10 shadow-[0_10px_30px_rgba(44,44,44,0.08)] hover:border-charcoal/20",
+                  ? cn("flex-6 ", item.accent.borderActive)
+                  : "flex-[1.2] border-charcoal/10  hover:border-charcoal/20",
               )}
               style={{
                 opacity: isVisible ? 1 : 0,
@@ -117,7 +113,7 @@ function AccordionLabel({ item }: { item: ServiceItem }) {
     <div className="absolute left-4 top-4 z-20">
       <span
         className={cn(
-          "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] backdrop-blur-sm",
+          "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ",
           item.accent.pillBg,
           item.accent.pillText,
         )}
@@ -140,7 +136,7 @@ function AccordionContent({
   return (
     <div className="absolute inset-x-0 bottom-0 z-20 p-5">
       <div className="flex items-end gap-4">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/18 bg-white/14 text-sm font-semibold text-white backdrop-blur-sm">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/18 bg-white/14 text-sm font-semibold text-white ">
           {String(index + 1).padStart(2, "0")}
         </div>
 

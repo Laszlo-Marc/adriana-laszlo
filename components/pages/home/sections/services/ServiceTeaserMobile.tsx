@@ -4,31 +4,24 @@ import Text from "@/components/ui/Text";
 import MobileServiceCard from "./MobileServiceCard";
 import TraumaCenterMobileBlock from "./TraumaCenterMobileBlock";
 import { eventsService, therapyServices } from "./data";
+import AccentText from "@/components/ui/AccentText";
 
 export default function ServicesTeaserMobile() {
   return (
     <div className="lg:hidden">
       <Container size="wider" padding="none" className="relative z-10 pb-10">
         <div className="px-6 pt-16 text-center">
-          <Text
-            as="p"
-            size="xs"
-            color="gold"
-            weight="medium"
-            transform="upper"
-            align="center"
-            className="mb-4 tracking-[0.16em]"
-          >
-            Moduri de lucru
-          </Text>
+          <AccentText className="justify-center text-2xl text-center text-gold">
+            Servicii
+          </AccentText>
 
           <Heading
             as="h2"
-            size="h2"
-            className="text-balance text-charcoal"
+            size="h1"
+            className="text-balance mt-4 "
             align="center"
           >
-            Forme de sprijin pentru ritmul și nevoile tale
+            Forme de sprijin
           </Heading>
         </div>
 

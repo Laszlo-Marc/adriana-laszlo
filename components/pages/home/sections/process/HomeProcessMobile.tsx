@@ -5,6 +5,7 @@ import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 import { ProcessImageBlock } from "./ProcessImageBlock";
 import { ProcessRows } from "./ProcessRows";
+import AccentText from "@/components/ui/AccentText";
 
 export function HomeProcessMobile() {
   return (
@@ -12,25 +13,17 @@ export function HomeProcessMobile() {
       <Container size="wider" padding="none">
         <div className="px-6 pb-20 pt-16">
           <div className="relative z-10 text-center">
-            <Text
-              as="p"
-              size="xs"
-              color="gold"
-              weight="medium"
-              transform="upper"
-              align="center"
-              className="mb-4 tracking-[0.16em]"
-            >
+            <AccentText className="justify-center text-center text-2xl text-gold">
               Primii pași
-            </Text>
+            </AccentText>
 
             <Heading
               as="h2"
               size="h1"
               align="center"
-              className="mx-auto  text-balance text-charcoal"
+              className="mx-auto mt-4 text-balance text-charcoal"
             >
-              Cum începem, fără presiune
+              Cum începem
             </Heading>
           </div>
 

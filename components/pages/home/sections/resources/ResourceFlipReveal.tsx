@@ -141,7 +141,7 @@ export default function ResourcesFlipReveal({
   return (
     <div className="relative">
       <div className="mb-7 flex justify-center">
-        <div className="inline-flex rounded-full border border-border/70 bg-white/55 p-1 shadow-sm backdrop-blur-sm">
+        <div className="inline-flex rounded-full border border-border/70 bg-white/55 p-1 ">
           {panels.map((panel, index) => {
             const isActive = index === currentIndex;
 
@@ -168,7 +168,7 @@ export default function ResourcesFlipReveal({
 
       <div
         ref={galleryRef}
-        className="resource-flip-gallery relative mx-auto h-[31rem] max-w-md overflow-hidden rounded-[2rem] bg-sand/20 shadow-[0_24px_80px_rgba(44,44,44,0.11)]"
+        className="resource-flip-gallery relative mx-auto h-[31rem] max-w-md overflow-hidden rounded-[2rem] bg-sand/20 "
         style={{ perspective: "900px" }}
       >
         <div className="resource-flip-top resource-flip-unite" />

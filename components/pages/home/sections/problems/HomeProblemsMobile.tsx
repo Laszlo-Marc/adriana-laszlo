@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
 import { problemsContent } from "./problemsContent";
+import AccentText from "@/components/ui/AccentText";
 
 export default function HomeProblemsMobile() {
   return (
@@ -32,24 +33,16 @@ export default function HomeProblemsMobile() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-4 mt-10 text-center">
-            <Text
-              as="p"
-              size="xs"
-              color="gold"
-              weight="medium"
-              transform="upper"
-              align="center"
-              className="mb-4 tracking-[0.16em]"
-            >
+          <div className="relative z-10  mt-10 text-center">
+            <AccentText className="justify-center text-center text-2xl mb-4 text-gold">
               {problemsContent.eyebrow}
-            </Text>
+            </AccentText>
 
             <Heading
               as="h2"
               size="h1"
               align="center"
-              className="text-balance text-charcoal"
+              className="text-balance mt-4 text-charcoal"
             >
               {problemsContent.title}
             </Heading>

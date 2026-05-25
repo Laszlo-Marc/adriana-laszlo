@@ -20,7 +20,7 @@ function HomeAfEmdrMobile() {
   return (
     <div className="lg:hidden">
       <div className="px-4 pt-10 text-center">
-        <AccentText className="justify-center text-center text-gold">
+        <AccentText className="justify-center text-2xl text-center text-gold">
           {afEmdrContent.eyebrow}
         </AccentText>
 
