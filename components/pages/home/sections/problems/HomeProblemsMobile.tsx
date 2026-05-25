@@ -18,19 +18,19 @@ function StoryPanel({
   return (
     <section
       className={[
-        "relative flex min-h-[62svh] items-center justify-center px-6 py-16 text-center",
+        "relative flex min-h-[56dvh] items-center justify-center px-6 py-14 text-center",
         className,
       ].join(" ")}
     >
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.58 }}
+        viewport={{ once: false, amount: 0.62 }}
         transition={{
-          duration: 0.65,
+          duration: 0.55,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="mx-auto max-w-sm"
+        className="mx-auto max-w-sm transform-gpu will-change-transform"
       >
         {children}
       </motion.div>
@@ -40,18 +40,19 @@ function StoryPanel({
 
 export default function HomeProblemsMobileStory() {
   return (
-    <div className="relative lg:hidden">
-      {/* Sticky visual stage */}
-      <div className="sticky top-0 h-svh overflow-hidden bg-cream">
-        <Image
-          src={problemsContent.image.src}
-          alt={problemsContent.image.alt}
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+    <div className="relative -mt-20 lg:hidden">
+      {/* Stable sticky visual stage */}
+      <div className="sticky top-0 h-[100dvh] overflow-hidden bg-cream [backface-visibility:hidden]">
+        <div className="absolute inset-0">
+          <Image
+            src={problemsContent.image.src}
+            alt={problemsContent.image.alt}
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
-        {/* Soft atmospheric treatment */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-cream/42"
@@ -73,10 +74,9 @@ export default function HomeProblemsMobileStory() {
         />
       </div>
 
-      {/* Scroll content over the sticky stage */}
-      <div className="relative z-10 -mt-[100svh]">
-        {/* Intro */}
-        <StoryPanel className="min-h-svh">
+      {/* Scroll content over sticky stage */}
+      <div className="relative z-10 -mt-[100dvh]">
+        <StoryPanel className="min-h-[100dvh]">
           <AccentText className="mb-5 block text-2xl leading-none text-gold">
             {problemsContent.eyebrow}
           </AccentText>
@@ -92,8 +92,8 @@ export default function HomeProblemsMobileStory() {
 
           <Text
             as="p"
-            size="sm"
-            color="muted"
+            size="lg"
+            color="charcoal"
             align="center"
             className="mx-auto mt-5 max-w-xs text-pretty leading-6"
           >
@@ -101,7 +101,6 @@ export default function HomeProblemsMobileStory() {
           </Text>
         </StoryPanel>
 
-        {/* Cues */}
         {problemsContent.signs.map((sign) => (
           <StoryPanel key={sign.number}>
             <Text
@@ -119,13 +118,28 @@ export default function HomeProblemsMobileStory() {
             <Text
               as="p"
               size="xl"
+              color="charcoal"
               align="center"
-              className="mx-auto max-w-xs text-balance leading-8 font-semibold"
+              className="mx-auto max-w-xs font-semibold text-balance leading-8"
             >
               {sign.text}
             </Text>
           </StoryPanel>
         ))}
+
+        <StoryPanel className="min-h-[68dvh]">
+          <div className="mx-auto mb-6 h-px w-28 bg-gold/45" />
+
+          <Text
+            as="p"
+            size="base"
+            color="charcoal"
+            align="center"
+            className="mx-auto max-w-xs text-balance leading-7"
+          >
+            {problemsContent.closing}
+          </Text>
+        </StoryPanel>
       </div>
     </div>
   );
