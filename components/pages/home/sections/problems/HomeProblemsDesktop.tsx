@@ -21,7 +21,7 @@ function CueColumnDecor({ side }: CueColumnDecorProps) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden "
     >
       {/* Vine */}
       <div
@@ -119,7 +119,7 @@ export default function HomeProblemsDesktop() {
   const rightSigns = problemsContent.signs.slice(2, 4);
 
   return (
-    <div className="relative z-10 hidden lg:block">
+    <div className="relative z-10 hidden  lg:block">
       <Container size="full" padding="none">
         <div className="px-8   ">
           <div className="mx-auto grid max-w-[92rem] grid-cols-[minmax(17rem,0.9fr)_minmax(420px,0.95fr)_minmax(17rem,0.9fr)] items-center gap-16 xl:gap-28 2xl:gap-32">

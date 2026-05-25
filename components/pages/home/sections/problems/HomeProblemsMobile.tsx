@@ -40,7 +40,7 @@ function StoryPanel({
 
 export default function HomeProblemsMobileStory() {
   return (
-    <div className="relative -mt-20 lg:hidden">
+    <div className="relative  lg:hidden">
       {/* Stable sticky visual stage */}
       <div className="sticky top-0 h-[100dvh] overflow-hidden bg-cream [backface-visibility:hidden]">
         <div className="absolute inset-0">

@@ -1,11 +1,19 @@
-import HomeAboutTeaserDesktop from "./HomeAboutTeaserDesktop";
-import HomeAboutTeaserMobile from "./HomeAboutTeaserMobile";
+import Section from "@/components/ui/Section";
 
-export default function HomeAboutTeaser() {
+import HomeAboutTeaserMobile from "./HomeAboutTeaserMobile";
+import HomeAboutTeaserDesktopStory from "./HomeAboutTeaserDesktop";
+
+export default function HomeAboutTeaserSection() {
   return (
-    <>
-      <HomeAboutTeaserDesktop />
+    <Section
+      background="cream"
+      spacing="none"
+      aria-labelledby="home-about-title"
+      className="relative overflow-x-clip"
+      allowOverflow
+    >
       <HomeAboutTeaserMobile />
-    </>
+      <HomeAboutTeaserDesktopStory />
+    </Section>
   );
 }
