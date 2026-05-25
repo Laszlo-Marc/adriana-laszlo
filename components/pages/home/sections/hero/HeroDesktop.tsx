@@ -19,46 +19,6 @@ export default function HeroDesktop() {
     >
       <Container size="full" padding="none">
         <div className="relative mx-auto min-h-205 max-w-400 px-8 pb-20 pt-24 xl:min-h-220 xl:px-12 xl:pt-28">
-          {/* Brand thread ornaments */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-1"
-          >
-            {/* Left thread */}
-            <div className="absolute -left-8 -top-18 w-60 opacity-45 xl:-left-4 xl:w-65">
-              <Image
-                src="/backgrounds/single.png"
-                alt=""
-                width={480}
-                height={2048}
-                sizes="(min-width: 1280px) 272px, 240px"
-                className="h-auto w-full"
-              />
-            </div>
-
-            {/* Right thread */}
-            <div className="absolute -right-15 -top-18 w-60 scale-x-[-1] opacity-45 xl:-right-3 xl:w-65">
-              <Image
-                src="/backgrounds/single.png"
-                alt=""
-                width={480}
-                height={2048}
-                sizes="(min-width: 1280px) 272px, 240px"
-                className="h-auto w-full"
-              />
-            </div>
-          </div>
-
-          {/* soft ambient shapes */}
-          <div
-            aria-hidden="true"
-            className="absolute left-[18%] top-[18%] z-0 h-72 w-72 rounded-full bg-teal-soft/40 blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute right-[14%] top-[22%] z-0 h-80 w-80 rounded-full bg-sand/60 blur-3xl"
-          />
-
           {/* Side visuals */}
           <div className="pointer-events-none absolute inset-0 z-2">
             <div className="absolute left-0 top-37.5 w-[23vw] max-w-90 min-w-60 xl:top-37.5 xl:max-w-100">

@@ -28,11 +28,11 @@ function HomeResourcesMobile() {
 
             <Heading
               as="h2"
-              size="h2"
+              size="h1"
               align="center"
-              className="mx-auto max-w-sm text-balance text-charcoal"
+              className="mx-auto text-balance "
             >
-              Continuă procesul în ritmul tău
+              Continuă procesul
             </Heading>
           </div>
 

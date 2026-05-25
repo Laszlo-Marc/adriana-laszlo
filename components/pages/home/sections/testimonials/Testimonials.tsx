@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { TestimonialItem } from "./TestimonialContent";
 import { TestimonialsMobileCard } from "./TestimonialMobileCard";
 import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
+import Heading from "@/components/ui/Heading";
 
 type TestimonialsStackProps = {
   items: TestimonialItem[];
@@ -193,16 +194,9 @@ export default function TestimonialsStack({
             Testimoniale
           </p>
 
-          <h2
-            id="testimonials-heading"
-            className="font-heading text-3xl leading-tight text-charcoal sm:text-4xl"
-          >
+          <Heading as="h2" size="h1" className="font-playfair " align="center">
             {title}
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-charcoal/75">
-            {description}
-          </p>
+          </Heading>
         </div>
 
         <div className="mt-12 md:hidden">
@@ -286,10 +280,6 @@ export default function TestimonialsStack({
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
-
-          <p className="mt-4 text-center text-sm text-charcoal/55">
-            Glisează pentru a vedea mai multe testimoniale
-          </p>
         </div>
 
         <div className="relative mt-14 hidden h-120 overflow-hidden md:block sm:h-128">

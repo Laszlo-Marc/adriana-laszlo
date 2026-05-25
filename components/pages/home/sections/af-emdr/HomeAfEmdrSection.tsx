@@ -19,7 +19,7 @@ const afEmdrContent = {
 function HomeAfEmdrMobile() {
   return (
     <div className="lg:hidden">
-      <div className="px-6 pt-14 text-center">
+      <div className="px-4 pt-10 text-center">
         <AccentText className="justify-center text-center text-gold">
           {afEmdrContent.eyebrow}
         </AccentText>
@@ -29,7 +29,7 @@ function HomeAfEmdrMobile() {
           size="h1"
           align="center"
           color="charcoal"
-          className="mt-4 text-[2.15rem] leading-[1.05]"
+          className="mt-4  leading-[1.05]"
         >
           {afEmdrContent.title}
         </Heading>

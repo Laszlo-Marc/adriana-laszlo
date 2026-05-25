@@ -1,10 +1,9 @@
 import FinalCTA from "@/components/pages/about/AboutCTA";
-
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import HomeAfEmdrSection from "@/components/pages/home/sections/af-emdr/HomeAfEmdrSection";
 import Hero from "@/components/pages/home/sections/hero/Hero";
-import HomeProcessSection from "@/components/pages/home/sections/HomeProcessSection";
 import HomeProblemsSection from "@/components/pages/home/sections/problems/HomeProblemsSection";
+import HomeProcessSection from "@/components/pages/home/sections/process/HomeProcessSection";
 import HomeResourcesSection from "@/components/pages/home/sections/resources/HomeResourcesSection";
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";

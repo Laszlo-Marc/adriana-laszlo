@@ -65,7 +65,7 @@ export default function HomeProblemsDesktop() {
               </Text>
             </div>
 
-            <div className="col-span-2 mx-auto mt-16 max-w-3xl">
+            <div className="col-span-2 mx-auto mt-4 max-w-3xl">
               <div className="relative border-t border-gold/50 pt-6 text-center">
                 <Text
                   size="base"

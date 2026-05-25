@@ -22,21 +22,6 @@ export default function TraumaCenterMobileBlock({
         className="absolute left-0 top-14 h-[15rem] w-full bg-purple/18"
       />
 
-      {/* subtle brand continuity */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-12 top-8 z-10 w-36 opacity-20"
-      >
-        <Image
-          src="/backgrounds/single.png"
-          alt=""
-          width={700}
-          height={1100}
-          sizes="144px"
-          className="h-auto w-full max-w-none"
-        />
-      </div>
-
       {/* image */}
       <div className="relative z-20 mx-auto h-100 overflow-hidden flex flex-col items-center bg-sand/20">
         <Image

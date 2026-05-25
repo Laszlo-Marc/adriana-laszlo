@@ -8,12 +8,12 @@ import { problemsContent } from "./problemsContent";
 export default function HomeProblemsMobile() {
   return (
     <div className="relative z-10 lg:hidden">
-      <Container size="wider" padding="none">
+      <Container size="full" padding="none">
         <div className="px-6 pb-16 pt-8">
           <div className="relative">
             <div
               aria-hidden="true"
-              className="absolute left-[-1.5rem] top-12 h-[15rem] w-[calc(100%+3rem)] bg-teal/45"
+              className="absolute -left-6 top-12 h-60 w-[calc(100%+3rem)] bg-teal/45"
             />
 
             <div className="relative z-20 mx-auto aspect-[4/5] w-[78%] max-w-[21rem] overflow-hidden rounded-t-[10rem] rounded-b-[1.75rem] bg-sand/20 shadow-[0_24px_70px_rgba(44,44,44,0.14)]">
@@ -32,7 +32,7 @@ export default function HomeProblemsMobile() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-8 mt-10 text-center">
+          <div className="relative z-10 mx-4 mt-10 text-center">
             <Text
               as="p"
               size="xs"
@@ -62,19 +62,6 @@ export default function HomeProblemsMobile() {
             >
               {problemsContent.description}
             </Text>
-          </div>
-
-          <div className="relative mt-10">
-            <div className="relative border-l border-gold/50 pl-5">
-              <Text
-                size="base"
-                color="charcoal"
-                align="center"
-                className="text-pretty leading-8"
-              >
-                {problemsContent.closing}
-              </Text>
-            </div>
           </div>
         </div>
       </Container>

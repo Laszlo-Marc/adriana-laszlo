@@ -1,18 +1,22 @@
 import Link from "next/link";
 import { Phone, MapPin, Mail } from "lucide-react";
-import Logo from "@/components/ui/Logo";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+
+import Logo from "@/components/ui/Logo";
+import Text from "@/components/ui/Text";
+import Heading from "@/components/ui/Heading";
 import {
   navLinks,
   PHONE_DISPLAY,
   PHONE_HREF,
 } from "@/components/layout/navbar/NavLinks";
-import Text from "../ui/Text";
-import Heading from "../ui/Heading";
 
-const EMAIL = "adrianalaszlo@gmail.com";
-const EMAIL_HREF = `mailto:${EMAIL}`;
-const MAPS_HREF = "https://maps.app.goo.gl/Vm8iqJT8wFqDtZa86";
+const TRAUMA_EMAIL = "info@traumacenter.ro";
+const PERSONAL_EMAIL = "adrianalaszlo@gmail.com";
+
+const TRAUMA_EMAIL_HREF = `mailto:${TRAUMA_EMAIL}`;
+const PERSONAL_EMAIL_HREF = `mailto:${PERSONAL_EMAIL}`;
+
 const LOCATION_LABEL = "Trauma Center Cluj";
 const LOCATION_TEXT = "Strada Artelor 35, Cluj-Napoca, România";
 
@@ -20,123 +24,146 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className=" bg-cream" aria-label="Subsol site">
+    <footer className="bg-cream" aria-label="Subsol site">
       <div className="mx-auto max-w-450 px-6 py-10 md:px-8 md:py-12 xl:py-14">
-        <div className="grid gap-8 xl:grid-cols-[1.15fr_0.95fr_0.9fr_1fr] xl:gap-10">
-          <div className="space-y-8 xl:space-y-0 xl:contents">
-            <div className="space-y-4 xl:space-y-5">
-              <Logo size="md" />
+        <div className="grid gap-10 xl:grid-cols-[1.15fr_0.9fr_0.8fr_1fr] xl:items-start xl:gap-10">
+          {/* Brand block */}
+          <div className="mx-auto flex max-w-sm flex-col items-center text-center xl:mx-0 xl:items-start xl:text-left">
+            <Logo size="md" />
 
-              <Text className="max-w-[34ch] text-sm leading-6 md:text-base">
-                Psihoterapie integrativă într-un spațiu sigur, calm și atent,
-                orientat spre claritate, echilibru și vindecare.
-              </Text>
+            <Text className="mt-5 max-w-[34ch] text-sm leading-6 md:text-base">
+              Psihoterapie integrativă într-un spațiu sigur, calm și atent,
+              orientat spre claritate, echilibru și vindecare.
+            </Text>
 
-              <div className="flex items-center gap-3">
-                <a
-                  href="#"
-                  aria-label="Instagram"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
-                >
-                  <FaInstagram size={20} />
-                </a>
+            <div className="mt-5 flex items-center justify-center gap-3 xl:justify-start">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
+              >
+                <FaInstagram size={20} />
+              </a>
 
-                <a
-                  href="#"
-                  aria-label="Facebook"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
-                >
-                  <FaFacebookF size={18} />
-                </a>
-              </div>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
+              >
+                <FaFacebookF size={18} />
+              </a>
             </div>
+          </div>
 
+          {/* Mobile: contact + navigation on same row */}
+          <div className="grid grid-cols-2 gap-8 items-center justify-center xl:contents">
+            {/* Contact */}
             <div className="space-y-3 xl:space-y-4">
-              <Heading as="h4" size="h3" className="mb-0">
+              <Heading as="h4" size="h3" className="mb-3" align="center">
                 Contact
               </Heading>
 
-              <div className="flex max-w-md mt-6 flex-col gap-3 sm:max-w-none sm:flex-row xl:max-w-xs xl:flex-col">
+              <div className="flex flex-col gap-3">
                 <a
-                  href={EMAIL_HREF}
-                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-charcoal md:text-base"
+                  href={TRAUMA_EMAIL_HREF}
+                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
                 >
-                  <Mail size={16} strokeWidth={1.75} />
-                  <span className="break-all">info@traumacenter.ro</span>
+                  <Mail
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-1 shrink-0"
+                  />
+                  <span className="break-all">{TRAUMA_EMAIL}</span>
                 </a>
 
                 <a
                   href={PHONE_HREF}
-                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-charcoal md:text-base"
+                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
                 >
-                  <Phone size={16} strokeWidth={1.75} />
-                  <span className="break-all">{PHONE_DISPLAY}</span>
+                  <Phone
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-1 shrink-0"
+                  />
+                  <span>{PHONE_DISPLAY}</span>
                 </a>
-              </div>
-
-              <a
-                href={EMAIL_HREF}
-                className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-charcoal md:text-base"
-              >
-                <Mail size={16} strokeWidth={1.75} />
-                <span className="break-all">{EMAIL}</span>
-              </a>
-            </div>
-
-            <div className="grid grid-cols-2 gap-x-8 gap-y-8 xl:contents">
-              <div>
-                <Heading as="h4" size="h3" className="mb-3 md:mb-4">
-                  Navigare
-                </Heading>
-
-                <ul className="space-y-2 md:space-y-3">
-                  {navLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-muted transition-colors hover:text-charcoal md:text-base"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="space-y-3 md:space-y-4">
-                <div>
-                  <Heading as="h4" size="h3" className="mb-3 md:mb-4">
-                    {LOCATION_LABEL}
-                  </Heading>
-
-                  <p className="inline-flex items-start gap-2 text-sm leading-6 text-muted md:text-base">
-                    <MapPin
-                      size={16}
-                      strokeWidth={1.75}
-                      className="mt-1 shrink-0"
-                    />
-                    <span>{LOCATION_TEXT}</span>
-                  </p>
-                </div>
 
                 <a
-                  href={MAPS_HREF}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-block text-sm text-muted transition-colors hover:text-charcoal md:text-base"
+                  href={PERSONAL_EMAIL_HREF}
+                  className="inline-flex items-start gap-2 text-sm leading-6 text-muted transition-colors hover:text-charcoal md:text-base"
                 >
-                  Vezi pe Google Maps
+                  <Mail
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-1 shrink-0"
+                  />
+                  <span className="break-all">{PERSONAL_EMAIL}</span>
                 </a>
               </div>
+            </div>
+
+            {/* Navigation */}
+            <nav aria-label="Navigare footer">
+              <Heading
+                as="h4"
+                size="h3"
+                className="mb-3 md:mb-4"
+                align="center"
+              >
+                Navigare
+              </Heading>
+
+              <ul className="space-y-2 md:space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.href} className="text-center">
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted transition-colors hover:text-charcoal md:text-base "
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Location / map */}
+          <div className="mx-auto w-full max-w-md text-center xl:mx-0 xl:max-w-none xl:text-left">
+            <Heading as="h4" size="h3" className="mb-3 md:mb-4" align="center">
+              {LOCATION_LABEL}
+            </Heading>
+
+            <p className="mx-auto inline-flex  items-start justify-center gap-2 text-sm leading-6 text-muted md:text-base xl:mx-0 xl:justify-start">
+              <MapPin size={16} strokeWidth={1.75} className="mt-1 shrink-0" />
+              <span>{LOCATION_TEXT}</span>
+            </p>
+
+            <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-white/40">
+              <iframe
+                title="Hartă Trauma Center Cluj"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.6015433081316!2d23.61199571213928!3d46.77274997100512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473805ced1efe1e9%3A0x7930e24e27ac6c75!2sTrauma%20Center%2C%20Centru%20de%20Psihoterapie!5e0!3m2!1sen!2sro!4v1779696924636!5m2!1sen!2sro"
+                className="h-40 w-full border-0 md:h-44"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>
 
+        {/* Bottom row */}
         <div className="mt-8 border-t border-border pt-5 text-sm text-muted md:mt-10 md:pt-6">
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-4">
+          <div className="flex flex-col items-center gap-3 text-center md:flex-row md:items-center md:justify-between md:text-left">
             <p>© {year} Adriana Laszlo. Toate drepturile rezervate.</p>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:justify-end">
+              <Link
+                href="https://marclaszlo.dev/"
+                className="transition-colors hover:text-charcoal"
+              >
+                Developed by Marc Laszlo
+              </Link>
+
               <Link
                 href="/politica-de-confidentialitate"
                 className="transition-colors hover:text-charcoal"

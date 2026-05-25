@@ -7,7 +7,6 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/components/layout/navbar/NavLinks";
-import BrandOrnament from "@/components/ui/BrandOrnament";
 
 export default function HeroMobile() {
   return (
@@ -23,7 +22,7 @@ export default function HeroMobile() {
           <div className="-mx-4 sm:-mx-6">
             <div className="relative h-135 bg-sand/20 sm:h-145">
               <Image
-                src="/home-page/hero-mobile.jpg"
+                src="/home-page/hero/hero-mobile.jpg"
                 alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
                 fill
                 priority
@@ -49,12 +48,6 @@ export default function HeroMobile() {
           </div>
 
           <div className="relative -mt-40 px-6 pb-14 text-center">
-            <BrandOrnament
-              variant="double-df"
-              className="-left-16 top-3 w-76 opacity-[0.22]"
-              sizes="304px"
-            />
-
             <div className="relative z-10">
               <div className="mx-auto max-w-xl">
                 <Text
