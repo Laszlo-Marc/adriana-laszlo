@@ -82,7 +82,7 @@ export default function HomeAboutTeaserMobile() {
           </div>
 
           {/* Animated slogan */}
-          <div className="relative z-20 mt-8 text-center">
+          <div className="relative z-20 mt-8 ">
             <AccentText className="block text-[3.15rem] leading-[0.95] text-charcoal">
               {aboutMobileCopy.accentStart}{" "}
               <AnimatedTextCycle
@@ -134,7 +134,7 @@ export default function HomeAboutTeaserMobile() {
               href={aboutStoryContent.cta.href}
               size="lg"
               className="w-full"
-              variant="urgent"
+              variant="primary"
             >
               {aboutStoryContent.cta.label}
             </Button>

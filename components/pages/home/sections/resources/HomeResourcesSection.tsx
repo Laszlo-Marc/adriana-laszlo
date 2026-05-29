@@ -86,7 +86,7 @@ function HomeResourcesDesktopPlaceholder() {
 export default function HomeResourcesSection() {
   return (
     <Section
-      background="white"
+      background="cream"
       spacing="none"
       className="relative overflow-hidden"
     >

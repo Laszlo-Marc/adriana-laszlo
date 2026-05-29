@@ -205,7 +205,7 @@ export default function ResourcesFlipReveal({
             weight="medium"
             transform="upper"
             align="center"
-            className="mb-3 tracking-[0.16em] text-white/72"
+            className="mb-3 tracking-[0.16em] text-white"
           >
             {activePanel.label}
           </Text>
@@ -228,15 +228,15 @@ export default function ResourcesFlipReveal({
           </Text>
 
           {isExternal ? (
-            <Link
+            <Button
               href={activePanel.href}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-cream/90 px-4 py-3 text-xs font-medium uppercase tracking-[0.14em] text-charcoal shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-cream"
+              variant="cream"
+              className="mt-5"
             >
               {activePanel.cta}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            </Button>
           ) : (
             <Button variant="cream" href={activePanel.href} className="mt-5">
               {activePanel.cta}

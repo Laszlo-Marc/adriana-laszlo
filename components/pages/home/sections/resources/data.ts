@@ -23,7 +23,7 @@ export const resourcePanels: ResourcePanel[] = [
     href: "/resurse",
     cta: "Vezi resursele gratuite",
     image: {
-      src: "/home-page/resources/ghid.webp",
+      src: "/home-page/resources/resurse2.jpg",
       alt: "Materiale de lucru și exerciții pentru reflecție și reglare emoțională",
     },
   },

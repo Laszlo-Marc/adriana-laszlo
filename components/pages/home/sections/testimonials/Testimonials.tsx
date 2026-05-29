@@ -184,7 +184,7 @@ export default function TestimonialsStack({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-cream to-white py-16 sm:py-20",
+        "relative overflow-hidden bg-cream py-16 sm:py-20",
         className,
       )}
       aria-labelledby="testimonials-heading"

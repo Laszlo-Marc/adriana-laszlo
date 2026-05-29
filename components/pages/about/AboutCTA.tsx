@@ -8,7 +8,7 @@ import Button from "@/components/ui/Button";
 
 export default function FinalCTA() {
   return (
-    <Section background="white" spacing="xl" className="relative text-center">
+    <Section background="cream" spacing="xl" className="relative text-center">
       {/* subtle brand decoration */}
       <Image
         src="/backgrounds/df-purple-up.png"
