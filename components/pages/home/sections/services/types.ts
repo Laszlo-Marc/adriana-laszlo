@@ -8,6 +8,10 @@ export type ServiceItem = {
     src: string;
     alt: string;
   };
+  mobile?: {
+    description: string;
+    ctaLabel?: string;
+  };
   accent: {
     overlayActive: string;
     overlayInactive: string;

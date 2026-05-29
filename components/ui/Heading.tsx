@@ -52,7 +52,7 @@ export default function Heading({
   className = "",
 }: HeadingProps) {
   const fontFamily = size === "eyebrow" ? "" : "font-display font-medium";
-  const caseClass = textCase === "upper" ? "uppercase" : "";
+  const caseClass = textCase === "upper" ? "uppercase" : "normal";
 
   const classes = `
     ${fontFamily}

@@ -5,7 +5,9 @@ import Hero from "@/components/pages/home/sections/hero/Hero";
 import HomeProblemsSection from "@/components/pages/home/sections/problems/HomeProblemsSection";
 import HomeProcessSection from "@/components/pages/home/sections/process/HomeProcessSection";
 import HomeResourcesSection from "@/components/pages/home/sections/resources/HomeResourcesSection";
+import { eventsService } from "@/components/pages/home/sections/services/data";
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
+import TraumaCenterMobileBlock from "@/components/pages/home/sections/services/TraumaCenterMobileBlock";
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
 import { testimonialItems } from "@/components/pages/home/sections/testimonials/testimonials-data";
 
@@ -15,8 +17,8 @@ export default function HomePage() {
       <Hero />
       <HomeProblemsSection />
       <HomeAboutTeaser />
-      <HomeAfEmdrSection />
       <ServicesTeaserSection />
+
       <HomeProcessSection />
       <TestimonialsStack items={testimonialItems} />
       <HomeResourcesSection />

@@ -8,7 +8,7 @@ export const aboutStoryContent = {
     alt: "Cabinet de psihoterapie calm și luminos",
   },
   cta: {
-    label: "Citește povestea completă",
+    label: "Află mai multe despre mine",
     href: "/despre",
   },
   chapters: [

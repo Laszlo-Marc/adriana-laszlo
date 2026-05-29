@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
+import AccentText from "@/components/ui/AccentText";
 import type { ServiceItem } from "./types";
 
 type TraumaCenterMobileBlockProps = {
@@ -15,79 +16,88 @@ export default function TraumaCenterMobileBlock({
   if (!service) return null;
 
   return (
-    <div className="relative mt-14 px-6">
-      {/* soft background panel behind image only */}
-      <div
-        aria-hidden="true"
-        className="absolute left-0 top-14 h-[15rem] w-full bg-purple/18"
+    <section className="relative mt-10 min-h-svh overflow-hidden bg-cream lg:hidden">
+      {/* Background image */}
+      <Image
+        src={service.image.src}
+        alt={service.image.alt}
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
       />
 
-      {/* image */}
-      <div className="relative z-20 mx-auto h-100 overflow-hidden flex flex-col items-center bg-sand/20">
-        <Image
-          src={service.image.src}
-          alt={service.image.alt}
-          fill
-          sizes="calc(100vw - 3rem)"
-          className="object-cover object-center"
-        />
+      {/* Very light cream wash - keep image visible */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-cream/8"
+      />
 
-        {/* top readability gradient */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-charcoal/78 via-charcoal/34 to-transparent"
-        />
+      {/* Top fade into previous cream section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-1 h-20 bg-gradient-to-b from-cream via-cream/82 to-transparent"
+      />
 
-        {/* bottom depth only */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-charcoal/30 to-transparent"
-        />
+      {/* Bottom fade into next cream section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-1 h-26 bg-gradient-to-b from-transparent via-cream/78 to-cream"
+      />
 
-        <div className="absolute left-5 right-5 top-5 flex flex-col items-center text-white">
-          <Image
-            src="/home-page/tc-banner.svg"
-            alt="Trauma Center"
-            width={180}
-            height={44}
-            sizes="180px"
-            className="h-auto w-40"
-          />
+      {/* Slight vignette so the image has depth */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,250,242,0.48)_0%,rgba(255,250,242,0.28)_36%,rgba(255,250,242,0.08)_62%,rgba(255,250,242,0)_100%)]"
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex min-h-svh items-center px-6 py-24">
+        <div className="mx-auto w-full max-w-sm text-center">
+          <div className="mx-auto mb-9 flex justify-center">
+            <Image
+              src="/home-page/tc-banner.svg"
+              alt="Trauma Center"
+              width={220}
+              height={54}
+              sizes="220px"
+              className="h-auto w-44"
+            />
+          </div>
 
           <Heading
             as="h3"
-            size="h2"
-            className=" text-balance text-white"
+            size="h1"
+            color="charcoal"
             align="center"
+            case="upper"
+            className="mx-auto max-w-sm text-balance leading-[1.02]"
           >
-            Evenimente și programe de grup
+            Evenimente și workshopuri
           </Heading>
-        </div>
-      </div>
 
-      {/* text + buttons outside image, directly on cream */}
-      <div className="relative z-20 mx-auto max-w-md px-1 pt-7 text-center">
-        <Text size="lg" color="muted" align="center" className="leading-7">
-          Prin Trauma Center, Adriana coordonează programe, workshopuri și
-          experiențe dedicate reglării emoționale, lucrului cu trauma și
-          reconectării într-un cadru sigur.
-        </Text>
-
-        <div className="mt-7 grid gap-3">
-          <Button href="/evenimente" size="lg" className="w-full">
-            Vezi toate evenimentele
-          </Button>
-
-          <Button
-            href="/trauma-center"
-            variant="outline"
+          <Text
+            as="p"
             size="lg"
-            className="w-full bg-cream/70"
+            color="charcoal"
+            align="center"
+            className=" mt-6  text-pretty leading-7"
           >
-            Descoperă Trauma Center
-          </Button>
+            Prin Trauma Center, Adriana coordonează programe, workshopuri și
+            experiențe dedicate reglării emoționale, lucrului cu trauma și
+            reconectării într-un cadru sigur.
+          </Text>
+
+          <div className="mt-12 grid gap-3">
+            <Button href="/evenimente" size="lg" className="w-full">
+              Vezi toate evenimentele
+            </Button>
+
+            <Button href="/trauma-center" variant="purple" size="lg">
+              Descoperă Trauma Center
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -11,11 +11,6 @@ export default function ServicesTeaserSection() {
       spacing="none"
       className="relative overflow-hidden"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-28 top-72 h-72 w-72 rounded-full bg-teal/10 blur-3xl"
-      />
-
       <ServicesTeaserMobile />
       <ServicesTeaserDesktop />
     </Section>
