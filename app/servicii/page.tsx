@@ -1,4 +1,4 @@
-import FinalCTA from "@/components/pages/home/sections/CTABanner";
+import FinalCTA from "@/components/pages/about/AboutCTA";
 import AFEmdrServiceSection from "@/components/pages/services/sections/AfEmdrSection";
 import ConditionsTreatedSection from "@/components/pages/services/sections/ConditionsTreatedSection";
 import EventsServiceSection from "@/components/pages/services/sections/EventsSection";

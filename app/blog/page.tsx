@@ -1,3 +1,4 @@
+import FinalCTA from "@/components/pages/about/AboutCTA";
 import {
   blogPosts,
   freeResources,
@@ -5,7 +6,7 @@ import {
 import BlogGridSection from "@/components/pages/blog/BlogGridSection";
 import BlogHero from "@/components/pages/blog/BlogHero";
 import ResourcesGridSection from "@/components/pages/blog/ResourceGridSection";
-import FinalCTA from "@/components/pages/home/sections/CTABanner";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
