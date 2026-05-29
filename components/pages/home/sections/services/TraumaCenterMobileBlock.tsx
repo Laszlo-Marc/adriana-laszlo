@@ -32,18 +32,6 @@ export default function TraumaCenterMobileBlock({
         className="pointer-events-none absolute inset-0 bg-cream/8"
       />
 
-      {/* Top fade into previous cream section */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-1 h-20 bg-gradient-to-b from-cream via-cream/82 to-transparent"
-      />
-
-      {/* Bottom fade into next cream section */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-1 h-26 bg-gradient-to-b from-transparent via-cream/78 to-cream"
-      />
-
       {/* Slight vignette so the image has depth */}
       <div
         aria-hidden="true"

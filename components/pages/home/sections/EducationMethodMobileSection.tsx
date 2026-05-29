@@ -20,7 +20,7 @@ const educationMethodCopy = {
 export default function EducationMethodMobileSection() {
   return (
     <section className="relative overflow-hidden bg-cream lg:hidden">
-      <div className="relative min-h-[42rem]">
+      <div className="relative min-h-168">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
@@ -29,20 +29,6 @@ export default function EducationMethodMobileSection() {
             fill
             sizes="100vw"
             className="object-cover object-center"
-          />
-
-          {/* readability overlays */}
-          <div aria-hidden="true" className="absolute inset-0 bg-charcoal/12" />
-          <div aria-hidden="true" className="absolute inset-0 bg-cream/28" />
-
-          {/* top + bottom fade */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-cream via-cream/70 to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-cream via-cream/75 to-transparent"
           />
         </div>
 
