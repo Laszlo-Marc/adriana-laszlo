@@ -38,7 +38,7 @@ export default function MobileServicesAccordion({
   );
 
   return (
-    <div className="mt-10  overflow-hidden bg-cream">
+    <div className="  overflow-hidden bg-cream">
       {services.map((service, index) => {
         const isActive = activeId === service.id;
 

@@ -33,11 +33,6 @@ export function TestimonialContent({ item, priority = false }: BaseCardProps) {
           <p className="font-heading text-lg leading-tight text-charcoal">
             {item.name}
           </p>
-          {item.role ? (
-            <p className="mt-1 text-sm leading-snug text-charcoal/70">
-              {item.role}
-            </p>
-          ) : null}
         </div>
       </div>
 

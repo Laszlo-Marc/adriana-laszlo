@@ -11,7 +11,7 @@ export default function HomeProblemsSection() {
       background="cream"
       spacing="none"
       aria-labelledby="home-problems-title"
-      className="relative overflow-x-clip "
+      className="relative  "
       allowOverflow
     >
       <span id="home-problems-title" className="sr-only">

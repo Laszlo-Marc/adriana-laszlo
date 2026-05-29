@@ -8,11 +8,7 @@ import MobileServicesAccordion from "./MobileServicesAccordion";
 export default function ServicesTeaserMobile() {
   return (
     <div className="lg:hidden">
-      <Container
-        size="wider"
-        padding="none"
-        className="relative z-10 pb-20 mt-20"
-      >
+      <Container size="wider" padding="none" className="relative z-10 pb-20 ">
         <MobileServicesAccordion services={therapyServices} />
 
         <TraumaCenterMobileBlock service={eventsService} />

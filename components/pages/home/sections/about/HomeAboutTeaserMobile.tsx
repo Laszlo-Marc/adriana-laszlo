@@ -44,11 +44,48 @@ const aboutMobileCopy = {
 
 export default function HomeAboutTeaserMobile() {
   return (
-    <div className="relative mt-10 overflow-hidden bg-white lg:hidden">
+    <div className="relative mt-10 overflow-hidden bg-cream lg:hidden">
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-44 bg-teal"
       />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-10 top-90 z-20 w-30  opacity-70"
+      >
+        <Image
+          src="/backgrounds/df-teal-down.png"
+          alt=""
+          width={48}
+          height={48}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-10 bottom-40 z-20 w-30  opacity-70"
+      >
+        <Image
+          src="/backgrounds/df-teal-down.png"
+          alt=""
+          width={48}
+          height={48}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-20 z-0 w-80  -translate-x-1/2 opacity-40"
+      >
+        <Image
+          src="/backgrounds/double-split.png"
+          alt=""
+          width={160}
+          height={500}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+
       <div className="mx-auto max-w-xl px-6 pb-20 pt-6">
         <div className="relative mx-auto max-w-sm">
           {/* Welcome text */}

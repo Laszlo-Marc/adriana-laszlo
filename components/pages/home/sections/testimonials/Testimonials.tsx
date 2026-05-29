@@ -8,7 +8,7 @@ import { TestimonialsMobileCard } from "./TestimonialMobileCard";
 import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
 import Heading from "@/components/ui/Heading";
 import AccentText from "@/components/ui/AccentText";
-
+import Image from "next/image";
 type TestimonialsStackProps = {
   items: TestimonialItem[];
   className?: string;
@@ -184,11 +184,35 @@ export default function TestimonialsStack({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-cream py-16 sm:py-20",
+        "relative overflow-hidden bg-cream py-10 sm:py-16",
         className,
       )}
       aria-labelledby="testimonials-heading"
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-5 top-5 z-20 w-20  opacity-70"
+      >
+        <Image
+          src="/backgrounds/df-teal-down.png"
+          alt=""
+          width={48}
+          height={48}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-5 z-20 w-20  opacity-70"
+      >
+        <Image
+          src="/backgrounds/df-purple-down.png"
+          alt=""
+          width={48}
+          height={48}
+          className="h-auto w-full object-contain rotate-x-180"
+        />
+      </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <AccentText className="justify-center text-2xl text-center text-gold">

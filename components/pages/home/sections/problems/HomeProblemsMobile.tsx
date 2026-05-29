@@ -23,9 +23,9 @@ const problemsMobileCopy = {
 
 export default function HomeProblemsMobileStory() {
   return (
-    <div className="relative overflow-hidden bg-cream lg:hidden">
+    <div className="relative  bg-cream lg:hidden">
       {/* Editorial image opening */}
-      <div className="relative pb-12 pt-14">
+      <div className="relative  pt-14">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-44 bg-purple-soft"
@@ -33,13 +33,41 @@ export default function HomeProblemsMobileStory() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-20 top-24 h-48 w-48 rounded-full bg-teal/10 blur-3xl"
-        />
+          className="pointer-events-none absolute left-1/2 top-30 z-0 w-45 h-60 -translate-x-1/2 opacity-40"
+        >
+          <Image
+            src="/backgrounds/double-split.png"
+            alt=""
+            width={160}
+            height={500}
+            className="h-auto w-full object-contain"
+          />
+        </div>
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-4 top-10 h-44 w-44 rounded-full bg-purple/12 blur-3xl"
-        />
+          className="pointer-events-none absolute right-7 top-36 z-20 w-20 rotate-12 opacity-70"
+        >
+          <Image
+            src="/backgrounds/dragonfly.png"
+            alt=""
+            width={48}
+            height={48}
+            className="h-auto w-full object-contain"
+          />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-5 top-10 z-20 w-25  opacity-70"
+        >
+          <Image
+            src="/backgrounds/df-teal-down.png"
+            alt=""
+            width={48}
+            height={48}
+            className="h-auto w-full object-contain"
+          />
+        </div>
 
         <div className="relative z-10 mx-auto h-60 w-48 overflow-hidden shadow-[0_18px_55px_rgba(44,44,44,0.16)]">
           <Image
@@ -49,22 +77,12 @@ export default function HomeProblemsMobileStory() {
             sizes="192px"
             className="object-cover object-center"
           />
-
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-charcoal/8"
-          />
         </div>
-
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-20 h-56 w-56 -translate-x-1/2 rounded-full bg-cream/40 blur-3xl"
-        />
       </div>
 
       {/* Editorial text composition */}
       <div className="relative z-10 mx-auto px-6 ">
-        <AccentText className="block  text-[2.5rem] leading-[1.02] text-charcoal">
+        <AccentText className="block  mt-6 text-[2.5rem] leading-[1.02] text-charcoal">
           Trauma nu este mereu{" "}
           <span className="font-semibold text-purple">evidentă.</span>
         </AccentText>
