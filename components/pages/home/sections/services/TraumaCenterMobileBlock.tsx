@@ -16,7 +16,7 @@ export default function TraumaCenterMobileBlock({
   if (!service) return null;
 
   return (
-    <section className="relative mt-10 min-h-svh overflow-hidden bg-cream lg:hidden">
+    <section className="relative mt-20 min-h-svh overflow-hidden bg-cream lg:hidden">
       {/* Background image */}
       <Image
         src={service.image.src}

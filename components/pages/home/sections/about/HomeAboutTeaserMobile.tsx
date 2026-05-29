@@ -44,7 +44,7 @@ const aboutMobileCopy = {
 
 export default function HomeAboutTeaserMobile() {
   return (
-    <div className="relative mt-10 overflow-hidden bg-cream lg:hidden">
+    <div className="relative mt-10 overflow-hidden bg-white lg:hidden">
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-44 bg-teal"
