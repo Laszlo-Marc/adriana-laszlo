@@ -191,7 +191,7 @@ export default function TestimonialsStack({
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-5 z-20 w-20  opacity-70"
+        className="pointer-events-none absolute right-5 top-5 z-20 w-20  opacity-70 lg:hidden"
       >
         <Image
           src="/backgrounds/df-teal-down.png"
@@ -203,7 +203,7 @@ export default function TestimonialsStack({
       </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-5 top-5 z-20 w-20  opacity-70"
+        className="pointer-events-none absolute left-5 top-5 z-20 w-20  opacity-70 lg:hidden"
       >
         <Image
           src="/backgrounds/df-purple-down.png"
@@ -222,8 +222,9 @@ export default function TestimonialsStack({
           <Heading
             as="h2"
             size="h1"
-            className="font-playfair mt-4 "
+            className=" mt-4 "
             align="center"
+            font="display"
           >
             {title}
           </Heading>

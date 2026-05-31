@@ -42,10 +42,10 @@ export default function HeroDesktop() {
               />
 
               {/* Soft fade at bottom */}
-              <div
+              {/* <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream/80"
-              />
+              /> */}
             </div>
 
             {/* Center content */}
@@ -99,12 +99,7 @@ export default function HeroDesktop() {
                   AF-EMDR · Traumă · Atașament
                 </Text>
 
-                <Heading
-                  as="h1"
-                  size="display"
-                  case="normal"
-                  className="mx-auto"
-                >
+                <Heading as="h1" size="display" className="mx-auto">
                   <AccentText className="inline-block text-[1.45em] leading-none">
                     Terapia Traumei
                   </AccentText>
@@ -150,10 +145,10 @@ export default function HeroDesktop() {
               />
 
               {/* Soft fade at bottom */}
-              <div
+              {/* <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream/80"
-              />
+              /> */}
             </div>
           </div>
         </div>

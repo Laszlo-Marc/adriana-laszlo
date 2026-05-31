@@ -57,7 +57,7 @@ export default function TraumaCenterMobileBlock({
             size="h1"
             color="charcoal"
             align="center"
-            case="upper"
+            textCase="none"
             className="mx-auto max-w-sm text-balance leading-[1.02]"
           >
             Evenimente și workshopuri

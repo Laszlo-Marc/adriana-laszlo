@@ -1,18 +1,47 @@
+import Image from "next/image";
+
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import AccentText from "@/components/ui/AccentText";
 
 import { services } from "./data";
 import { ServicesAccordion } from "./ServicesAccordion";
-import AccentText from "@/components/ui/AccentText";
 
 export default function ServicesTeaserDesktop() {
   return (
-    <div className="hidden lg:block">
+    <div className="relative hidden overflow-hidden lg:block">
+      {/* subtle dragonfly near heading */}
+      <Image
+        src="/backgrounds/df-teal-down.png"
+        alt=""
+        aria-hidden="true"
+        width={140}
+        height={140}
+        className="pointer-events-none absolute right-[10%] top-5 z-0 rotate-[-12deg] opacity-25"
+      />
+
+      {/* secondary small dragonfly */}
+      <Image
+        src="/backgrounds/df-purple-up.png"
+        alt=""
+        aria-hidden="true"
+        width={110}
+        height={110}
+        className="pointer-events-none absolute left-[10%] top-10 z-0 rotate-[10deg] opacity-40"
+      />
+
+      {/* very soft atmosphere behind accordion */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[58%] z-0 h-96 w-96 -translate-x-1/2 rounded-full bg-teal/10 blur-3xl"
+      />
+
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-none text-center">
           <AccentText className="justify-center text-center text-4xl text-gold">
             Servicii
           </AccentText>
+
           <Heading
             as="h2"
             size="h2"
@@ -23,7 +52,7 @@ export default function ServicesTeaserDesktop() {
           </Heading>
         </div>
 
-        <div className="mt-10">
+        <div className="relative mt-10">
           <ServicesAccordion items={services} />
         </div>
       </Container>
