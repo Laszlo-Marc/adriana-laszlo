@@ -38,17 +38,13 @@ export default function ServicesTeaserDesktop() {
 
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-none text-center">
-          <AccentText className="justify-center text-center text-4xl text-gold">
-            Servicii
-          </AccentText>
-
           <Heading
             as="h2"
             size="h2"
             className="mt-3 text-charcoal"
             align="center"
           >
-            Forme de lucru gândite pentru nevoi diferite
+            Servicii Oferite
           </Heading>
         </div>
 

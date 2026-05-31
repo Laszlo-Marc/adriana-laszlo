@@ -29,7 +29,7 @@ export default function DesktopNavbar({
   return (
     <div className="hidden h-20 grid-cols-[auto_1fr_auto] items-center gap-8 xl:grid lg:h-30">
       <div className="justify-self-start">
-        <Logo size="md" />
+        <Logo size="sm" />
       </div>
 
       <div className="flex justify-center">

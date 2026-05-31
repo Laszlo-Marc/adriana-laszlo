@@ -8,7 +8,7 @@ export default function ServicesTeaserSection() {
     <Section
       id="servicii"
       background="cream"
-      spacing="none"
+      spacing="md"
       className="relative overflow-hidden"
     >
       <ServicesTeaserMobile />

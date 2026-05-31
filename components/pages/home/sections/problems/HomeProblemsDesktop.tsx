@@ -177,10 +177,6 @@ export default function HomeProblemsDesktop() {
                 {/* Readability card */}
                 <div className="relative z-20 w-full px-8">
                   <div className="mx-auto max-w-[30rem] rounded-[2rem] border border-white/45 bg-cream/68 px-8 py-8 text-center shadow-[0_18px_50px_rgba(44,44,44,0.10)] backdrop-blur-lg">
-                    <AccentText className="mb-4 block text-2xl leading-none text-gold">
-                      {problemsContent.eyebrow}
-                    </AccentText>
-
                     <Heading
                       as="h2"
                       size="h2"

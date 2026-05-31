@@ -49,7 +49,6 @@ export default function BlogCard({
             as="h2"
             size="h4"
             className="transition group-hover:text-purple sm:text-2xl"
-            case="normal"
           >
             {title}
           </Heading>

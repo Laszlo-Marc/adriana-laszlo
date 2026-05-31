@@ -2,11 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Heading from "./Heading";
 type LogoProps = {
-  /** Visual size — scales the wordmark proportionally */
   size?: "sm" | "md" | "lg";
-  /** Color variant — use 'light' on dark backgrounds (footer, dark sections) */
   variant?: "dark" | "light";
-  /** When true, renders as plain text (no link) — use inside footers or headers where the parent already links */
   asText?: boolean;
   className?: string;
 };
