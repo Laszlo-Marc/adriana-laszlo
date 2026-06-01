@@ -1,8 +1,12 @@
+// components/pages/about/timeline/data.ts
+
 export type StoryItem = {
   year: string;
   title: string;
   description: string;
   side: "left" | "right";
+  image: string;
+  tag?: string;
 };
 
 export const pathD =
@@ -15,6 +19,8 @@ export const storyItems: StoryItem[] = [
     description:
       "Un parcurs profesional construit în jurul înțelegerii omului, a relației terapeutice și a modului în care experiențele dificile influențează prezentul.",
     side: "left",
+    image: "/images/about/timeline-beginning.webp",
+    tag: "Formare",
   },
   {
     year: "2018",
@@ -22,6 +28,8 @@ export const storyItems: StoryItem[] = [
     description:
       "Practica s-a conturat tot mai clar în jurul lucrului cu trauma, reglarea emoțională, relațiile și siguranța interioară.",
     side: "right",
+    image: "/images/about/timeline-trauma.webp",
+    tag: "Traumă",
   },
   {
     year: "2020",
@@ -29,6 +37,8 @@ export const storyItems: StoryItem[] = [
     description:
       "Formarea în AF-EMDR a devenit un reper central în felul în care lucrează cu trauma, atașamentul și procesarea experiențelor dificile.",
     side: "left",
+    image: "/services/af-emdr.webp",
+    tag: "AF-EMDR",
   },
   {
     year: "Astăzi",
@@ -36,5 +46,7 @@ export const storyItems: StoryItem[] = [
     description:
       "Procesul terapeutic este adaptat ritmului fiecărei persoane, cu atenție la siguranță, claritate și stabilitate emoțională.",
     side: "right",
+    image: "/images/about/timeline-present.webp",
+    tag: "Prezent",
   },
 ];

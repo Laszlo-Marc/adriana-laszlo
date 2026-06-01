@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
 
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -155,6 +157,56 @@ function StatCard({
     </motion.article>
   );
 }
+function MobileStatsCarousel({ shouldAnimate }: { shouldAnimate: boolean }) {
+  return (
+    <div className="relative -mx-4 overflow-hidden pb-5 pt-12 lg:hidden">
+      <Swiper
+        modules={[Autoplay, EffectCoverflow]}
+        effect="coverflow"
+        centeredSlides
+        loop
+        grabCursor
+        slidesPerView="auto"
+        spaceBetween={18}
+        speed={750}
+        autoplay={{
+          delay: 1800,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 90,
+          modifier: 1.8,
+          slideShadows: false,
+        }}
+        className="about-stats-swiper !overflow-visible"
+      >
+        {stats.map((stat, index) => (
+          <SwiperSlide key={stat.label} className="about-stats-slide !h-auto">
+            <StatCard stat={stat} index={index} shouldAnimate={shouldAnimate} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+}
+
+function DesktopStatsGrid({ shouldAnimate }: { shouldAnimate: boolean }) {
+  return (
+    <div className="hidden grid-cols-4 gap-8 pt-10 lg:grid">
+      {stats.map((stat, index) => (
+        <StatCard
+          key={stat.label}
+          stat={stat}
+          index={index}
+          shouldAnimate={shouldAnimate}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function AboutStatsStrip() {
   const statsRef = useRef<HTMLDivElement | null>(null);
@@ -178,35 +230,8 @@ export default function AboutStatsStrip() {
         />
 
         <Container size="wide" className="relative z-10">
-          {/* Mobile snap carousel */}
-          <div className="-mx-4 overflow-x-auto px-4 pb-4 pt-10 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:hidden">
-            <div className="flex snap-x snap-mandatory gap-4">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className="min-w-[78%] snap-center first:pl-0 last:pr-4"
-                >
-                  <StatCard
-                    stat={stat}
-                    index={index}
-                    shouldAnimate={isStatsInView}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop grid */}
-          <div className="hidden grid-cols-4 gap-8 pt-10 lg:grid">
-            {stats.map((stat, index) => (
-              <StatCard
-                key={stat.label}
-                stat={stat}
-                index={index}
-                shouldAnimate={isStatsInView}
-              />
-            ))}
-          </div>
+          <MobileStatsCarousel shouldAnimate={isStatsInView} />
+          <DesktopStatsGrid shouldAnimate={isStatsInView} />
         </Container>
       </div>
     </Section>

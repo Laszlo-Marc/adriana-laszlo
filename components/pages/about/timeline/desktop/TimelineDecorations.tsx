@@ -9,35 +9,35 @@ export function TimelineDecorations() {
       <Image
         src="/backgrounds/df-purple-down.png"
         alt=""
-        width={110}
+        width={150}
         height={110}
         className="absolute right-[18%] top-10 rotate-12 opacity-40"
       />
       <Image
         src="/backgrounds/single.png"
         alt=""
-        width={110}
+        width={200}
         height={110}
         className="absolute left-[18%] top-60  opacity-40"
       />
       <Image
         src="/backgrounds/df-purple-down.png"
         alt=""
-        width={110}
+        width={150}
         height={110}
-        className="absolute left-[18%] top-70 rotate-12 opacity-40"
+        className="absolute left-[18%] top-80 rotate-12 opacity-40"
       />
       <Image
         src="/backgrounds/df-teal-down.png"
         alt=""
-        width={96}
+        width={120}
         height={96}
-        className="absolute right-[17%] bottom-82 -rotate-12 opacity-40"
+        className="absolute right-[17%] bottom-92 -rotate-12 opacity-40"
       />
       <Image
         src="/backgrounds/single.png"
         alt=""
-        width={120}
+        width={200}
         height={120}
         className="absolute right-[17%] bottom-72  opacity-40"
       />
@@ -45,7 +45,7 @@ export function TimelineDecorations() {
       <Image
         src="/backgrounds/df-teal-down.png"
         alt=""
-        width={96}
+        width={140}
         height={96}
         className="absolute left-[17%] bottom-32 -rotate-12 opacity-40"
       />

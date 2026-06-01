@@ -1,5 +1,6 @@
 @import "tailwindcss";
-
+@import "swiper/css";
+@import "swiper/css/effect-coverflow";
 /* ============================================
    THEME — design tokens Tailwind v4 reads to
    generate utilities (bg-teal, font-display, etc.)
@@ -95,4 +96,16 @@ body {
     transition: none !important;
     animation: none !important;
   }
+}
+.about-stats-swiper {
+  width: 100%;
+}
+
+.about-stats-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.about-stats-slide {
+  width: 78% !important;
+  max-width: 20rem;
 }
