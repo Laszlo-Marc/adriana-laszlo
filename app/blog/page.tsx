@@ -1,11 +1,9 @@
 import FinalCTA from "@/components/pages/about/AboutCTA";
-import {
-  blogPosts,
-  freeResources,
-} from "@/components/pages/blog/blog-page-data";
-import BlogGridSection from "@/components/pages/blog/BlogGridSection";
 import BlogHero from "@/components/pages/blog/BlogHero";
-import ResourcesGridSection from "@/components/pages/blog/ResourceGridSection";
+import BlogPostsCarousel from "@/components/pages/blog/posts/BlogPostCarousel";
+import { featuredBlogPosts } from "@/components/pages/blog/posts/blogPostsContent";
+import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
+import BlogSocialSection from "@/components/pages/blog/social/BlogSocialSection";
 
 import type { Metadata } from "next";
 
@@ -17,11 +15,12 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main>
+    <>
       <BlogHero />
-      <BlogGridSection posts={blogPosts} />
-      <ResourcesGridSection resources={freeResources} />
+      <BlogPostsCarousel posts={featuredBlogPosts} />
+      <DownloadResourcesSection />
+      <BlogSocialSection />
       <FinalCTA />
-    </main>
+    </>
   );
 }

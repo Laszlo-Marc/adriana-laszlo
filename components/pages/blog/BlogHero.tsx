@@ -9,67 +9,63 @@ import AccentText from "@/components/ui/AccentText";
 export default function BlogHero() {
   return (
     <Section
-      background="cream"
-      spacing="lg"
+      background="none"
+      spacing="none"
       aria-labelledby="blog-hero-heading"
-      className="relative overflow-hidden mt-20"
+      className="relative overflow-hidden"
     >
-      {/* Background brand elements */}
-      <Image
-        src="/backgrounds/single.png"
-        alt=""
-        width={220}
-        height={680}
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-16 top-10 hidden h-auto w-40 opacity-35 lg:block"
-      />
-      <Image
-        src="/backgrounds/df-purple-down.png"
-        alt=""
-        width={260}
-        height={260}
-        aria-hidden="true"
-        className="pointer-events-none absolute left-[8%] top-12 hidden h-auto w-32 rotate-12 opacity-45 md:block lg:w-40"
-      />
-      <Image
-        src="/backgrounds/dragonfly.png"
-        alt=""
-        width={260}
-        height={260}
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[8%] top-12 hidden h-auto w-32 rotate-12 opacity-45 md:block lg:w-40"
-      />
+      <div className="relative min-h-[65svh] overflow-hidden lg:min-h-[78svh]">
+        <Image
+          src="/blogs/blog-hero.jpg"
+          alt="Spațiu calm de reflecție, cu lumină naturală"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right lg:object-center"
+        />
 
-      <Image
-        src="/backgrounds/double-simple.png"
-        alt=""
-        width={260}
-        height={760}
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-20 bottom-0 hidden h-auto w-44 opacity-30 lg:block"
-      />
+        {/* Image readability overlay */}
+        <div aria-hidden="true" className="absolute inset-0 bg-cream/30" />
 
-      <Container size="wide" className="relative" padding="default">
-        <div className="mx-auto  text-center">
-          <AccentText className="mb-4 block text-purple">
-            Resurse pentru claritate și echilibru
-          </AccentText>
+        {/* Stronger bottom readability gradient */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-cream/82 via-cream/42 to-transparent"
+        />
 
-          <Heading as="h1" size="h1" align="center">
-            Articole și resurse gratuite
-          </Heading>
+        {/* Fade into next cream section */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-cream"
+        />
 
-          <Text
-            className="mx-auto max-w-4xl mt-6 "
-            align="center"
-            color="muted"
-          >
-            Ghiduri simple, exerciții practice și materiale create pentru a te
-            ajuta să înțelegi mai bine emoțiile, relațiile, trauma și pașii mici
-            prin care poți reveni la mai multă siguranță interioară.
-          </Text>
-        </div>
-      </Container>
+        <Container
+          size="wide"
+          padding="default"
+          className="relative z-10 flex min-h-[65svh] items-end pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
+        >
+          <div className="max-w-4xl">
+            <AccentText className="mb-4 block ">
+              Resurse pentru claritate și echilibru
+            </AccentText>
+
+            <Heading
+              id="blog-hero-heading"
+              as="h1"
+              size="h1"
+              className="max-w-4xl text-balance "
+            >
+              Articole și resurse
+            </Heading>
+
+            <Text className="mt-6 max-w-xl text-pretty text-base leading-8  sm:text-lg">
+              Ghiduri simple, exerciții practice și materiale create pentru a te
+              ajuta să înțelegi mai bine emoțiile, relațiile, trauma și pașii
+              mici prin care poți reveni la mai multă siguranță interioară.
+            </Text>
+          </div>
+        </Container>
+      </div>
     </Section>
   );
 }
