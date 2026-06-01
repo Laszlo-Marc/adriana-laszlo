@@ -1,5 +1,10 @@
 import Image, { type StaticImageData } from "next/image";
-import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+  type ReactNode,
+} from "react";
 
 type SectionBg =
   | "cream"
@@ -23,6 +28,7 @@ type BackgroundImage = {
 };
 
 type SectionOwnProps = {
+  as?: ElementType;
   background?: SectionBg;
   spacing?: SectionSpacing;
   spacingTop?: SectionSpacing;
@@ -34,9 +40,8 @@ type SectionOwnProps = {
   allowOverflow?: boolean;
 };
 
-type SectionProps<T extends ElementType = "section"> = SectionOwnProps & {
-  as?: T;
-} & Omit<ComponentPropsWithoutRef<T>, keyof SectionOwnProps | "as">;
+type SectionProps = SectionOwnProps &
+  Omit<ComponentPropsWithoutRef<"section">, keyof SectionOwnProps>;
 
 const bgStyles: Record<SectionBg, string> = {
   cream: "bg-cream text-charcoal",
@@ -74,28 +79,34 @@ const spacingB: Record<SectionSpacing, string> = {
   xl: "pb-24 md:pb-36",
 };
 
-export default function Section<T extends ElementType = "section">({
-  as,
-  background = "cream",
-  spacing = "md",
-  spacingTop,
-  spacingBottom,
-  backgroundImage,
-  children,
-  className = "",
-  innerClassName = "",
-  allowOverflow = false,
-  ...rest
-}: SectionProps<T>) {
-  const Component = (as ?? "section") as ElementType;
+const Section = forwardRef<HTMLElement, SectionProps>(function Section(
+  {
+    as,
+    background = "cream",
+    spacing = "md",
+    spacingTop,
+    spacingBottom,
+    backgroundImage,
+    children,
+    className = "",
+    innerClassName = "",
+    allowOverflow = false,
+    ...rest
+  },
+  ref,
+) {
+  const Component = as ?? "section";
 
   const spacingClass =
     spacingTop || spacingBottom
-      ? `${spacingT[spacingTop ?? spacing]} ${spacingB[spacingBottom ?? spacing]}`
+      ? `${spacingT[spacingTop ?? spacing]} ${
+          spacingB[spacingBottom ?? spacing]
+        }`
       : spacingY[spacing];
 
   return (
     <Component
+      ref={ref}
       className={`
         relative isolate ${allowOverflow ? "overflow-visible" : "overflow-hidden"}
         ${bgStyles[background]}
@@ -132,4 +143,8 @@ export default function Section<T extends ElementType = "section">({
       <div className={`relative z-10 ${innerClassName}`}>{children}</div>
     </Component>
   );
-}
+});
+
+Section.displayName = "Section";
+
+export default Section;

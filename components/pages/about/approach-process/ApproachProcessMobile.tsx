@@ -19,39 +19,28 @@ export default function ApproachProcessMobile() {
       aria-labelledby="approach-process-mobile-heading"
       className="relative overflow-hidden lg:hidden"
     >
-      <div className="relative">
-        <div className="relative h-117.5 overflow-hidden">
-          <Image
-            src={approachProcessContent.image.src}
-            alt={approachProcessContent.image.alt}
-            fill
-            sizes="100vw"
-            className="object-cover object-top"
-          />
+      <div className="relative  pb-14 pt-12">
+        <div className="relative mx-auto max-w-md">
+          {/* editorial visual */}
+          <div className="relative h-50">
+            <div className="absolute top-0 h-40 w-full  bg-teal-soft" />
 
-          {/* top fade */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-30 bg-gradient-to-b from-cream via-cream/70 to-transparent"
-          />
+            <div className="relative z-20 mx-auto w-[80%] pt-10">
+              <div className="relative overflow-hidden  shadow-[0_24px_70px_rgba(44,44,44,0.12)]">
+                <Image
+                  src={approachProcessContent.image.src}
+                  alt={approachProcessContent.image.alt}
+                  width={680}
+                  height={820}
+                  sizes="80vw"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
 
-          {/* bottom fade */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-64 bg-gradient-to-t from-cream via-cream/85 to-transparent"
-          />
-
-          {/* soft atmosphere */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-20 left-1/2 z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-cream/15 blur-3xl"
-          />
-        </div>
-
-        <div className="relative z-20 -mt-28 px-4 pb-14">
-          <div className="mx-auto max-w-md text-center">
-            <AccentText>{approachProcessContent.eyebrow}</AccentText>
-
+          {/* text */}
+          <div className="relative z-20 mt-20 text-center px-6">
             <Heading
               id="approach-process-mobile-heading"
               as="h2"
@@ -62,7 +51,7 @@ export default function ApproachProcessMobile() {
               O abordare profundă, dar atentă la ritmul tău
             </Heading>
 
-            <div className="mt-7 space-y-5 text-left">
+            <div className="mt-7 space-y-5">
               <Text className="text-charcoal/76" align="center">
                 Procesul terapeutic nu începe prin a forța povestea, ci prin a
                 crea un cadru în care corpul, emoțiile și mintea pot începe să
@@ -76,7 +65,7 @@ export default function ApproachProcessMobile() {
               </Text>
 
               <div className="border-y border-border/70 py-5">
-                <p className="text-sm leading-7 text-charcoal/68">
+                <p className="text-center text-sm leading-7 text-charcoal/68">
                   Ritmul este clar și atent:{" "}
                   <span className="font-semibold text-charcoal">
                     ne orientăm

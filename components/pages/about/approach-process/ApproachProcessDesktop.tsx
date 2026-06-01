@@ -1,3 +1,5 @@
+// components/pages/about/approach-process/ApproachProcessDesktop.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,88 +15,81 @@ export default function ApproachProcessDesktop() {
   return (
     <Section
       background="cream"
-      spacing="none"
+      spacing="md"
       aria-labelledby="approach-process-heading"
-      className="relative hidden min-h-screen overflow-hidden lg:block"
+      className="relative hidden lg:block"
     >
-      <div className="grid min-h-screen grid-cols-[1fr_1fr]">
-        <div className="relative min-h-screen overflow-hidden">
-          <Image
-            src={approachProcessContent.image.src}
-            alt={approachProcessContent.image.alt}
-            fill
-            sizes="50vw"
-            className="object-cover object-top"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-cream to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-35 bg-gradient-to-b from-cream via-cream/75 to-transparent"
-          />
+      <div className="grid  grid-cols-[0.95fr_1.05fr]">
+        {/* Left editorial visual */}
+        <div className="relative flex  items-center justify-center ">
+          <div className="relative w-full ">
+            {/* colored panel */}
+            <div className="absolute bottom-50 left-0 h-[300px] w-[88%] bg-teal-soft" />
 
-          <div
-            aria-hidden="true"
-            className="absolute right-0 top-0 h-full w-64 bg-gradient-to-l from-cream to-transparent"
-          />
+            {/* soft atmosphere */}
+            <div
+              aria-hidden="true"
+              className="absolute -left-10 bottom-10 h-80 w-80 rounded-full bg-teal/15 blur-3xl"
+            />
+
+            {/* brand ornament */}
+            <Image
+              src="/backgrounds/df-purple-down.png"
+              alt=""
+              width={300}
+              height={420}
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-5 z-10 h-auto  opacity-40"
+            />
+
+            {/* image */}
+            <div className="relative z-20 ml-auto w-[68%] -translate-y-10">
+              <div className="relative overflow-hidden rounded-[0.35rem] shadow-[0_28px_80px_rgba(44,44,44,0.14)]">
+                <Image
+                  src={approachProcessContent.image.src}
+                  alt={approachProcessContent.image.alt}
+                  width={820}
+                  height={980}
+                  sizes="(min-width: 1280px) 32vw, 36vw"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="relative flex min-h-screen items-center px-16 py-24 xl:px-24">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute right-16 top-24 h-80 w-80 rounded-full bg-teal/10 blur-3xl"
-          />
-
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-20 right-0 h-96 w-96 rounded-full bg-purple/10 blur-3xl"
-          />
-
-          <div className="relative z-10 max-w-3xl">
+        {/* Right text */}
+        <div className="relative flex items-center pl-20">
+          <div className="relative z-10 ">
             <AccentText>{approachProcessContent.eyebrow}</AccentText>
 
             <Heading
               id="approach-process-heading"
               as="h2"
               size="h2"
-              className="mt-4"
+              className="mt-4 max-w-3xl"
             >
               O abordare profundă, dar atentă la ritmul tău
             </Heading>
 
             <div className="mt-8 space-y-5">
-              <Text size="lg" className="text-charcoal/76">
+              <Text size="lg" className="text-charcoal/76 max-w-2xl">
                 Procesul terapeutic nu începe prin a forța povestea, ci prin a
                 crea un cadru în care corpul, emoțiile și mintea pot începe să
                 se simtă în siguranță.
               </Text>
 
-              <Text size="lg" className="text-charcoal/76">
+              <Text size="lg" className="text-charcoal/76  max-w-2xl">
                 Lucrăm cu ceea ce este prezent acum — anxietate, blocaje,
                 relații dificile, rușine, frică sau tipare care se repetă — dar
                 fără să pierdem din vedere rădăcina lor.
               </Text>
 
-              <Text size="lg" className="text-charcoal/76">
+              <Text size="lg" className="text-charcoal/76 max-w-2xl">
                 Ritmul este clar și atent: ne orientăm, construim resurse,
                 lucrăm cu experiențele profunde și integrăm schimbarea în viața
                 de zi cu zi.
               </Text>
-            </div>
-
-            <div className="mt-10 grid grid-cols-4 gap-3 border-y border-border/70 py-5">
-              {approachProcessContent.steps.map((step) => (
-                <div key={step.label}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal">
-                    {step.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-5 text-charcoal/62">
-                    {step.title}
-                  </p>
-                </div>
-              ))}
             </div>
 
             <div className="mt-10 flex gap-3">

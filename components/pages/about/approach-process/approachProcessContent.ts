@@ -5,7 +5,7 @@ export const approachProcessContent = {
   title: "O abordare profundă, dar atentă la ritmul tău",
   lead: "Procesul terapeutic nu începe prin a forța povestea, ci prin a crea suficientă siguranță încât lucrurile importante să poată fi privite, înțelese și integrate.",
   image: {
-    src: "/about/approach.jpg",
+    src: "/about/approach2.jpg",
     alt: "Spațiu terapeutic calm și sigur",
   },
   steps: [

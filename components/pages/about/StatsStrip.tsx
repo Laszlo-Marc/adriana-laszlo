@@ -132,7 +132,7 @@ function StatCard({
         delay: index * 0.06,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="relative flex min-h-[12.5rem] flex-col items-center justify-center rounded-[1.75rem] border border-gold/70 bg-white/80 px-6 pb-7 pt-12 text-center  lg:min-h-[13.5rem]"
+      className="relative flex min-h-[12.5rem] flex-col items-center justify-center rounded-[1.75rem] border border-teal/70 bg-white/80 px-6 pb-7 pt-12 text-center  lg:min-h-[13.5rem]"
     >
       <div className="absolute left-1/2 top-0 flex h-[4.25rem] w-[4.25rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-purple/15 bg-white shadow-[0_10px_28px_rgba(44,44,44,0.08)]">
         <div className="relative h-11 w-11">
@@ -153,7 +153,7 @@ function StatCard({
 
       <p className="mt-3 text-sm leading-6 text-charcoal/68">{stat.label}</p>
 
-      <div aria-hidden="true" className="mt-5 h-px w-12 bg-gold/55" />
+      <div aria-hidden="true" className="mt-5 h-px w-12 bg-teal/55" />
     </motion.article>
   );
 }
