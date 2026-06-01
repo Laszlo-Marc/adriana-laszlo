@@ -15,7 +15,7 @@ export default function AboutTimelineMobile() {
 
   return (
     <Section
-      background="white"
+      background="cream"
       spacing="lg"
       aria-labelledby="about-story-mobile-heading"
       className="relative overflow-hidden lg:hidden"

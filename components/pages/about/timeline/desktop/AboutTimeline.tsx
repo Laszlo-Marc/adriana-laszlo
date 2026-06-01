@@ -26,7 +26,7 @@ export default function AboutStoryPathTimelineDesktop() {
   return (
     <section ref={sectionRef} className="hidden lg:block">
       <Section
-        background="white"
+        background="cream"
         spacing="lg"
         aria-labelledby="about-story-heading"
         className="relative "

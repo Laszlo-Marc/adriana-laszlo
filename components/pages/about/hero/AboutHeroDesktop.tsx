@@ -46,15 +46,22 @@ export default function AboutHeroDesktop() {
                 className="absolute bottom-16 left-1/2 h-[460px] w-[460px] -translate-x-1/2 rounded-full bg-teal/25"
               />
 
-              <Image
-                src={aboutHeroContent.desktopImage.src}
-                alt={aboutHeroContent.desktopImage.alt}
-                width={620}
-                height={820}
-                priority
-                sizes="32vw"
-                className="relative z-10 h-auto max-w-[500px] object-contain drop-shadow-2xl"
-              />
+              <div className="relative z-10">
+                <Image
+                  src={aboutHeroContent.desktopImage.src}
+                  alt={aboutHeroContent.desktopImage.alt}
+                  width={620}
+                  height={820}
+                  priority
+                  sizes="32vw"
+                  className="relative z-10 h-auto max-w-[500px] object-contain "
+                />
+
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-cream via-cream/75 to-transparent"
+                />
+              </div>
             </div>
 
             <div className="relative z-20 order-1 max-w-3xl text-left">
