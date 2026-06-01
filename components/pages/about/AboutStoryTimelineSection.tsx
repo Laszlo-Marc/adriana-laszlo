@@ -74,18 +74,12 @@ export default function AboutStoryPathTimeline() {
         className="relative overflow-hidden"
       >
         <Container size="wide" padding="default">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-6xl text-center">
             <AccentText>Povestea profesională</AccentText>
 
             <Heading as="h2" size="h2" align="center" className="mt-4">
-              Un parcurs construit în jurul traumei, atașamentului și relației
-              terapeutice.
+              Parcusul meu in psihoterapie
             </Heading>
-
-            <Text size="lg" className="mx-auto mt-5 max-w-2xl text-charcoal/70">
-              Nu este doar o listă de formări, ci o direcție profesională clară:
-              lucrul cu trauma într-un ritm sigur, atent și structurat.
-            </Text>
           </div>
 
           <div className="relative mx-auto mt-20 max-w-6xl pb-10">
@@ -248,15 +242,6 @@ function StoryCard({ item, index }: { item: StoryItem; index: number }) {
       </Heading>
 
       <Text className="mt-4 text-charcoal/70">{item.description}</Text>
-
-      {isFeatured ? (
-        <div className="mt-5 rounded-2xl border border-white/70 bg-white/65 p-4">
-          <p className="text-sm font-medium leading-relaxed text-charcoal/80">
-            Această etapă susține poziționarea Adrianei ca specialist în
-            Attachment-Focused EMDR.
-          </p>
-        </div>
-      ) : null}
     </div>
   );
 }

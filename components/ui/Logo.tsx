@@ -28,7 +28,7 @@ export default function Logo({
   const content = (
     <Heading
       as="h1"
-      size="h2"
+      size="h3"
       className={`${colorClass} ${sizeClasses[size]} ${className}`}
     >
       ADRIANA LASZLO

@@ -55,11 +55,11 @@ export default function AboutHeroSection() {
 
             {/* Right content */}
             <div className="relative z-20 order-3 max-w-3xl text-center lg:order-1 lg:text-left">
-              <AccentText>Despre Adriana Laszlo</AccentText>
+              <AccentText>Despre Mine</AccentText>
 
               <Heading as="h1" size="h3" className="mt-4">
                 Psihoterapeut specializat în traumă și{" "}
-                <span className="text-teal">Attachment-Focused EMDR</span>
+                <span className="text-teal">AF-EMDR</span>
               </Heading>
 
               <Text size="lg" className="mt-6 text-charcoal/75">
