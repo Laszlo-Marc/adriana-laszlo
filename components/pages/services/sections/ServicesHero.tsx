@@ -15,41 +15,13 @@ export default function ServicesHero() {
       background="cream"
       spacing="lg"
       aria-labelledby="services-hero-heading"
-      className="mt-20 overflow-hidden block"
+      className=" overflow-hidden block min-h-[80svh] items-center justify-center lg:flex"
       backgroundImage={{
-        src: "/backgrounds/nature-bg.jpg",
+        src: "/services/servicii-bg.jpg",
         priority: true,
-        overlayClassName: "bg-cream/65",
+        overlayClassName: "bg-cream/35",
       }}
     >
-      <Image
-        src="/backgrounds/double-df.png"
-        alt=""
-        width={420}
-        height={420}
-        aria-hidden="true"
-        priority
-        className="pointer-events-none absolute left-24 -top-20 hidden w-60 opacity-[0.6] lg:block"
-      />
-      <Image
-        src="/backgrounds/double-df.png"
-        alt=""
-        width={420}
-        height={420}
-        aria-hidden="true"
-        priority
-        className="pointer-events-none absolute right-24 -top-20 hidden w-60 opacity-[0.6] rotate-180 lg:block"
-      />
-
-      <Image
-        src="/backgrounds/df-purple-down.png"
-        alt=""
-        width={180}
-        height={180}
-        aria-hidden="true"
-        className="pointer-events-none absolute left-80 top-10 hidden w-24 rotate-12 opacity-[0.6] lg:block"
-      />
-
       <Container size="wide" className="relative z-10">
         <div className="mx-auto flex  flex-col items-center text-center">
           <AccentText className="text-8xl">Servicii de psihoterapie</AccentText>

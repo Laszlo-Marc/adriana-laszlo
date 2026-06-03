@@ -31,7 +31,6 @@ export default function HeroDesktop() {
                 alt="Cabinet de psihoterapie luminos și calm"
                 fill
                 priority
-                sizes="31vw"
                 className="object-cover object-center"
               />
 
@@ -40,12 +39,6 @@ export default function HeroDesktop() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-cream via-cream/75 to-transparent"
               />
-
-              {/* Soft fade at bottom */}
-              {/* <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream/80"
-              /> */}
             </div>
 
             {/* Center content */}
@@ -134,21 +127,13 @@ export default function HeroDesktop() {
                 alt="Detaliu natural dintr-un cabinet de psihoterapie"
                 fill
                 priority
-                sizes="31vw"
                 className="object-cover object-right"
               />
 
-              {/* Fade image into center */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-cream via-cream/75 to-transparent"
               />
-
-              {/* Soft fade at bottom */}
-              {/* <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream/80"
-              /> */}
             </div>
           </div>
         </div>

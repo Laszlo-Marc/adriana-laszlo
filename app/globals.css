@@ -109,3 +109,23 @@ body {
   width: 78% !important;
   max-width: 20rem;
 }
+
+@keyframes conditions-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes conditions-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
