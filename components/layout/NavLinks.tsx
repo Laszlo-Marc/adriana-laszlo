@@ -8,5 +8,7 @@ export const navLinks = [
 
 export const PHONE_DISPLAY = "0744 473 869";
 export const PHONE_HREF = "tel:+40744473869";
+export const WHATSAPP_HREF = `https://wa.me/40744473869`;
+export const WHATSAPP_DISPLAY = "WhatsApp";
 
 export type NavLink = (typeof navLinks)[number];

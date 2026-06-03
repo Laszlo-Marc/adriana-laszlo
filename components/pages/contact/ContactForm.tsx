@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 type FormState = {
@@ -28,7 +29,7 @@ function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-2.5 block text-[15px] font-medium text-charcoal"
+      className="mb-1.5 block text-sm font-medium text-charcoal sm:mb-2.5 sm:text-[15px]"
     >
       {children}
     </label>
@@ -37,7 +38,7 @@ function FieldLabel({
 
 function baseInputClassName(hasError?: boolean) {
   return cn(
-    "w-full rounded-[20px] border bg-cream/60 px-5 py-4 text-[15px] text-charcoal outline-none transition-colors placeholder:text-charcoal/40",
+    "w-full rounded-[16px] border bg-cream/60 px-4 py-3 text-sm text-charcoal outline-none transition-colors placeholder:text-charcoal/40 sm:rounded-[20px] sm:px-5 sm:py-4 sm:text-[15px]",
     "focus:border-teal/40 focus:bg-white focus:ring-4 focus:ring-teal/10",
     hasError ? "border-red-300" : "border-charcoal/10",
   );
@@ -51,6 +52,7 @@ export default function ContactForm() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     setError(null);
     setSubmitted(false);
     setIsSubmitting(true);
@@ -84,10 +86,11 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
         <div>
           <FieldLabel htmlFor="name">Nume</FieldLabel>
+
           <input
             id="name"
             name="name"
@@ -95,7 +98,7 @@ export default function ContactForm() {
             autoComplete="name"
             required
             value={form.name}
-            onChange={(e) => updateField("name", e.target.value)}
+            onChange={(event) => updateField("name", event.target.value)}
             className={baseInputClassName()}
             placeholder="Numele tău"
           />
@@ -103,6 +106,7 @@ export default function ContactForm() {
 
         <div>
           <FieldLabel htmlFor="email">Email</FieldLabel>
+
           <input
             id="email"
             name="email"
@@ -110,7 +114,7 @@ export default function ContactForm() {
             autoComplete="email"
             required
             value={form.email}
-            onChange={(e) => updateField("email", e.target.value)}
+            onChange={(event) => updateField("email", event.target.value)}
             className={baseInputClassName()}
             placeholder="adresa@email.com"
           />
@@ -119,13 +123,14 @@ export default function ContactForm() {
 
       <div>
         <FieldLabel htmlFor="phone">Telefon</FieldLabel>
+
         <input
           id="phone"
           name="phone"
           type="tel"
           autoComplete="tel"
           value={form.phone}
-          onChange={(e) => updateField("phone", e.target.value)}
+          onChange={(event) => updateField("phone", event.target.value)}
           className={baseInputClassName()}
           placeholder="Număr de telefon"
         />
@@ -133,23 +138,27 @@ export default function ContactForm() {
 
       <div>
         <FieldLabel htmlFor="message">Mesaj</FieldLabel>
+
         <textarea
           id="message"
           name="message"
           required
-          rows={8}
+          rows={5}
           value={form.message}
-          onChange={(e) => updateField("message", e.target.value)}
-          className={cn(baseInputClassName(), "min-h-[220px] resize-y")}
+          onChange={(event) => updateField("message", event.target.value)}
+          className={cn(
+            baseInputClassName(),
+            "min-h-[140px] resize-y leading-relaxed sm:min-h-[220px]",
+          )}
           placeholder="Scrie aici câteva detalii despre motivul pentru care dorești să iei legătura."
         />
       </div>
 
-      <div className="space-y-3 pt-1">
+      <div className="space-y-2.5 pt-0.5 sm:space-y-3 sm:pt-1">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-[54px] w-full items-center justify-center rounded-full bg-charcoal px-7 py-3 text-[15px] font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charcoal px-6 py-3 text-sm font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-[54px] sm:w-auto sm:px-7 sm:text-[15px]"
         >
           {isSubmitting ? (
             <>
@@ -161,7 +170,7 @@ export default function ContactForm() {
           )}
         </button>
 
-        <p className="text-sm text-charcoal/55">
+        <p className="text-xs leading-relaxed text-charcoal/55 sm:text-sm">
           Îți voi răspunde în cel mai scurt timp posibil.
         </p>
 

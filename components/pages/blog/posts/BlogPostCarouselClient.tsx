@@ -45,7 +45,7 @@ export default function BlogPostsCarouselClient({
         </div>
       </div>
 
-      <div className="mt-8 flex items-center justify-end gap-4">
+      <div className="mt-8 flex items-center justify-center gap-4">
         <div className="flex shrink-0 items-center gap-3">
           <button
             type="button"

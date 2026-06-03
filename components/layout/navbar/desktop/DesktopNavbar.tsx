@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, MailCheck, MessageCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
@@ -111,11 +111,19 @@ export default function DesktopNavbar({ items, isActive }: DesktopNavbarProps) {
       <div className="flex items-center justify-end gap-3">
         <Button
           href="/contact"
-          variant="urgent"
+          variant="primary"
           size="lg"
           leftIcon={<Mail size={18} />}
         >
           Contact
+        </Button>
+        <Button
+          href="/contact"
+          variant="purple"
+          size="lg"
+          leftIcon={<MessageCircle size={18} />}
+        >
+          WhatsApp
         </Button>
       </div>
     </div>

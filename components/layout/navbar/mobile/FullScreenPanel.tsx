@@ -8,13 +8,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import {
-  NavbarItem,
-  PHONE_DISPLAY,
-  PHONE_HREF,
-  serviceNavItems,
-  WHATSAPP_HREF,
-} from "../data";
+import { NavbarItem, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "../data";
 const panelVariants: Variants = {
   closed: {
     opacity: 0,
@@ -92,60 +86,6 @@ export function FullscreenPanel({
             <div className="mt-6">
               {items.map((item) => {
                 const active = isActive(item.url);
-                const isServices = item.url === "/servicii";
-
-                if (isServices) {
-                  return (
-                    <motion.div
-                      key={item.id}
-                      variants={itemVariants}
-                      className="border-b border-border"
-                    >
-                      <div className="flex items-center justify-between gap-4">
-                        <Link
-                          href={item.url}
-                          onClick={handleClose}
-                          className={cn(
-                            "flex min-h-18 flex-1 items-center font-display text-2xl uppercase tracking-wide transition-colors",
-                            active ? "text-gold" : "text-charcoal",
-                          )}
-                        >
-                          {item.title}
-                        </Link>
-                      </div>
-
-                      <AnimatePresence initial={false}>
-                        {servicesExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{
-                              duration: 0.26,
-                              ease: [0.16, 1, 0.3, 1],
-                            }}
-                            className="overflow-hidden"
-                          >
-                            <div className="pb-4">
-                              {serviceNavItems.map((service) => (
-                                <Link
-                                  key={service.href}
-                                  href={service.href}
-                                  onClick={handleClose}
-                                  className="group block border-t border-border/70 py-3 pl-4"
-                                >
-                                  <span className="font-display text-lg uppercase tracking-wide text-charcoal transition group-hover:text-gold">
-                                    {service.title}
-                                  </span>
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  );
-                }
 
                 return (
                   <motion.div

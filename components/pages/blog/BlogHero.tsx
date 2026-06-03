@@ -21,11 +21,11 @@ export default function BlogHero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right lg:object-center"
+          className="object-cover object-right "
         />
 
         {/* Image readability overlay */}
-        <div aria-hidden="true" className="absolute inset-0 bg-cream/30" />
+        <div aria-hidden="true" className="absolute inset-0 bg-cream/50" />
 
         {/* Stronger bottom readability gradient */}
         <div
@@ -42,23 +42,24 @@ export default function BlogHero() {
         <Container
           size="wide"
           padding="default"
-          className="relative z-10 flex min-h-[65svh] items-end pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
+          className="relative z-10 flex min-h-[65svh] items-center justify-center pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
         >
           <div className="max-w-4xl">
-            <AccentText className="mb-4 block ">
+            <AccentText className="mb-4 block  text-center">
               Resurse pentru claritate și echilibru
             </AccentText>
 
             <Heading
               id="blog-hero-heading"
               as="h1"
-              size="h1"
+              size="display"
               className="max-w-4xl text-balance "
+              align="center"
             >
-              Articole și resurse
+              Articole & resurse
             </Heading>
 
-            <Text className="mt-6 max-w-xl text-pretty text-base leading-8  sm:text-lg">
+            <Text className="mt-6 " align="center">
               Ghiduri simple, exerciții practice și materiale create pentru a te
               ajuta să înțelegi mai bine emoțiile, relațiile, trauma și pașii
               mici prin care poți reveni la mai multă siguranță interioară.

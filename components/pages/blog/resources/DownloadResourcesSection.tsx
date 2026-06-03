@@ -17,23 +17,14 @@ export default function DownloadResourcesSection() {
     >
       <Container size="wide" padding="default">
         <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
-          <AccentText className="mb-4 block text-purple">
-            Resurse gratuite
-          </AccentText>
-
           <Heading
             id="download-resources-heading"
             as="h2"
-            size="h2"
+            size="h1"
             align="center"
           >
-            Alege materialul de care ai nevoie acum
+            Resurse gratuite
           </Heading>
-
-          <Text align="center" color="muted" className="mx-auto mt-5 max-w-2xl">
-            Exerciții și ghiduri scurte pe care le poți folosi între ședințe sau
-            ca prim pas spre mai multă claritate emoțională.
-          </Text>
         </div>
 
         <DownloadResourcesClient resources={downloadResources} />

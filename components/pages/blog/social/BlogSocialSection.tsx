@@ -27,11 +27,6 @@ export default function BlogSocialSection() {
           <Heading id="blog-social-heading" as="h2" size="h2" align="center">
             Urmărește materiale video scurte pe Instagram
           </Heading>
-
-          <Text align="center" color="muted" className="mx-auto mt-5 max-w-2xl">
-            Idei clare despre traumă, relații, limite și vindecare emoțională,
-            explicate în format scurt și ușor de urmărit.
-          </Text>
         </div>
 
         <div className="-mx-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-7">

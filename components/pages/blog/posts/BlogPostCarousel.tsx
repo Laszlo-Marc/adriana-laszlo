@@ -30,17 +30,12 @@ export default function BlogPostsCarousel({ posts }: BlogPostsCarouselProps) {
             <Heading
               id="blog-posts-heading"
               as="h2"
-              size="h2"
+              size="h1"
               className="mt-3 text-charcoal"
               align="center"
             >
               Articole utile
             </Heading>
-
-            <Text className="mt-5 max-w-xl " align="center">
-              Ghiduri scrise într-un limbaj clar, pentru momentele în care vrei
-              să înțelegi mai bine ce se întâmplă în tine și ce pași pot ajuta.
-            </Text>
           </div>
         </div>
 

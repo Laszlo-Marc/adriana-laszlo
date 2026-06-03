@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, MapPin, Mail } from "lucide-react";
+import { MessageCircle, MapPin, Mail } from "lucide-react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 
 import Logo from "@/components/ui/Logo";
@@ -7,7 +7,7 @@ import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
 
 import Button from "../ui/Button";
-import { PHONE_DISPLAY, PHONE_HREF } from "./navbar/data";
+import { WHATSAPP_DISPLAY, WHATSAPP_HREF } from "./navbar/data";
 import { navLinks } from "./NavLinks";
 
 const TRAUMA_EMAIL = "info@traumacenter.ro";
@@ -74,13 +74,13 @@ export default function Footer() {
                   E-mail
                 </Button>
                 <Button
-                  leftIcon={<Phone size={14} />}
+                  leftIcon={<MessageCircle size={14} />}
                   variant="purple"
                   size="md"
-                  href={PHONE_HREF}
+                  href={WHATSAPP_HREF}
                   className="md:max-w-1/2"
                 >
-                  {PHONE_DISPLAY}
+                  {WHATSAPP_DISPLAY}
                 </Button>
               </div>
             </div>

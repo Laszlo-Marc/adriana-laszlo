@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { CheckCircle2, Download } from "lucide-react";
-
+import Heading from "@/components/ui/Heading";
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import { DownloadResource } from "./resourceContent";
@@ -20,24 +20,17 @@ export default function ResourceDownloadForm({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    // Later:
-    // POST name, email, resource.id to /api/resource-download
     setStatus("success");
   }
 
   return (
     <div className="rounded-[2rem] border border-white/70 bg-white/78 p-6 shadow-[0_24px_90px_rgba(44,44,44,0.08)] backdrop-blur-sm sm:p-8 lg:p-10">
       <div className="mb-7">
-        <span className="mb-4 inline-flex rounded-full bg-teal/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-charcoal">
-          {resource.eyebrow}
-        </span>
-
-        <h3 className="font-display text-3xl leading-tight text-charcoal sm:text-4xl">
+        <Heading as="h3" size="h3" align="center">
           {resource.title}
-        </h3>
+        </Heading>
 
-        <Text color="muted" className="mt-4 max-w-xl">
+        <Text color="muted" className="mt-4 max-w-xl" align="center">
           {resource.description}
         </Text>
       </div>

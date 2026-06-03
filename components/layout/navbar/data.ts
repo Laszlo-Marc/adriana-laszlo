@@ -38,33 +38,7 @@ export const navItems: NavbarItem[] = [
   },
 ];
 
-export const serviceNavItems: ServiceNavItem[] = [
-  {
-    title: "Terapia traumei",
-    description:
-      "Sprijin terapeutic pentru traumă, anxietate și reglare emoțională.",
-    href: "/servicii/terapia-traumei",
-  },
-  {
-    title: "AF-EMDR",
-    description:
-      "O abordare profundă pentru procesarea experiențelor dificile.",
-    href: "/servicii/af-emdr",
-  },
-  {
-    title: "Atașament",
-    description:
-      "Lucru terapeutic cu răni relaționale, apropiere și siguranță.",
-    href: "/servicii/atasament",
-  },
-  {
-    title: "Anxietate",
-    description:
-      "Sprijin pentru reacții intense, tensiune și sentimentul de alertă.",
-    href: "/servicii/anxietate",
-  },
-];
-
+export const WHATSAPP_DISPLAY = "WhatsApp";
 export const PHONE_DISPLAY = "0744 473 869";
 export const PHONE_HREF = "tel:+40744473869";
 export const WHATSAPP_HREF = "https://wa.me/40744473869";
