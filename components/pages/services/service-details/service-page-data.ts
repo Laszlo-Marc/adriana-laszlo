@@ -56,11 +56,6 @@ export const serviceDetails = [
       href: "/contact",
       variant: "primary",
     },
-    secondaryCta: {
-      label: "Despre formare",
-      href: "/despre",
-      variant: "outline",
-    },
   },
   {
     id: "psihoterapie-individuala",

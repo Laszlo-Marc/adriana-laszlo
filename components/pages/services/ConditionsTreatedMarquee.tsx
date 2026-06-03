@@ -10,9 +10,11 @@ import {
   Sparkles,
   Waves,
   Zap,
+  ArrowUp,
 } from "lucide-react";
 import Section from "@/components/ui/Section";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export type ConditionItem = {
   label: string;
@@ -38,8 +40,24 @@ const conditionsRowTwo: ConditionItem[] = [
 
 export default function ConditionMarqueeSection() {
   return (
-    <Section aria-labelledby="conditions-marquee-heading" spacing="md">
+    <Section
+      background="cream"
+      aria-labelledby="conditions-marquee-heading"
+      spacing="md"
+    >
       <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="mb-10 flex justify-center">
+          <Link
+            href="#servicii"
+            aria-label="Înapoi sus"
+            className="group inline-flex items-center gap-3 rounded-full border border-charcoal/10 bg-white/70 px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-charcoal shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-teal/30 hover:bg-teal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40"
+          >
+            <span className="flex size-8 items-center justify-center rounded-full bg-teal/15 text-teal transition duration-300 group-hover:bg-teal/25">
+              <ArrowUp className="size-4" aria-hidden="true" />
+            </span>
+            Înapoi sus
+          </Link>
+        </div>
         <p className="font-accent text-xl text-charcoal/70 md:text-2xl">
           În procesul terapeutic
         </p>

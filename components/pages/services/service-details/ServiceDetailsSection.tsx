@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
@@ -34,35 +35,27 @@ type ServiceDetailSectionProps = ServiceDetail;
 const toneStyles = {
   teal: {
     background: "teal-soft" as const,
-    accentText: "text-teal",
-    border: "border-teal/15",
-    ring: "ring-teal/15",
-    glow: "bg-teal/20",
-    card: "border-teal/15 bg-white/55",
+    mobileTitleBg: "bg-teal-soft",
+    mobileFade: "via-teal-soft/95 to-teal-soft",
+    desktopFadeText: "text-teal-soft",
   },
   purple: {
     background: "purple-soft" as const,
-    accentText: "text-purple",
-    border: "border-purple/15",
-    ring: "ring-purple/15",
-    glow: "bg-purple/20",
-    card: "border-purple/15 bg-white/55",
+    mobileTitleBg: "bg-purple-soft",
+    mobileFade: "via-purple-soft/95 to-purple-soft",
+    desktopFadeText: "text-purple-soft",
   },
   cream: {
     background: "cream" as const,
-    accentText: "text-gold",
-    border: "border-charcoal/10",
-    ring: "ring-charcoal/10",
-    glow: "bg-sand/25",
-    card: "border-charcoal/10 bg-white/60",
+    mobileTitleBg: "bg-cream",
+    mobileFade: "via-cream/95 to-cream",
+    desktopFadeText: "text-cream",
   },
   white: {
     background: "white" as const,
-    accentText: "text-gold",
-    border: "border-charcoal/10",
-    ring: "ring-charcoal/10",
-    glow: "bg-sand/20",
-    card: "border-charcoal/10 bg-cream/60",
+    mobileTitleBg: "bg-white",
+    mobileFade: "via-white/95 to-white",
+    desktopFadeText: "text-white",
   },
 };
 
@@ -85,14 +78,14 @@ export default function ServiceDetailSection({
     <Section
       id={id}
       background={styles.background}
-      spacing="lg"
+      spacing="none"
       aria-labelledby={`${id}-heading`}
-      className="scroll-mt-28 overflow-hidden"
+      className="scroll-mt-28 overflow-hidden lg:py-24 xl:py-28"
     >
       <Container size="full" padding="none">
         <div
           className={cn(
-            "grid items-center gap-10 lg:grid-cols-2 lg:gap-14",
+            "grid items-start gap-0 lg:min-h-[34rem] lg:grid-cols-2 lg:items-center lg:gap-14",
             isImageRight && "lg:[&>*:first-child]:order-2",
           )}
         >
@@ -101,21 +94,36 @@ export default function ServiceDetailSection({
             imageAlt={imageAlt}
             imagePosition={imagePosition}
             align={isImageRight ? "right" : "left"}
+            mobileFadeClassName={styles.mobileFade}
+            desktopFadeTextClassName={styles.desktopFadeText}
           />
 
           <div
             className={cn(
-              "max-w-2xl",
-              isImageRight ? "lg:mr-auto pl-10" : "lg:ml-auto pr-10",
+              "relative z-10 mx-auto -mt-12 max-w-xl px-5 pb-16 text-center sm:px-6 md:pb-20 lg:mt-0 lg:max-w-2xl lg:pb-0 lg:text-left",
+              isImageRight ? "lg:mr-auto lg:pl-10" : "lg:ml-auto lg:pr-10",
             )}
           >
-            <Heading id={`${id}-heading`} as="h2" size="h2" className="mt-3">
+            <Heading
+              id={`${id}-heading`}
+              as="h2"
+              size="h2"
+              className={cn(
+                "mx-auto max-w-[21rem] px-3 pt-3 text-center lg:mx-0 lg:max-w-none lg:bg-transparent lg:px-0 lg:pt-0 lg:text-left",
+                styles.mobileTitleBg,
+              )}
+            >
               {title}
             </Heading>
 
-            <Text className="mt-5 text-charcoal/75">{description}</Text>
+            <Text
+              className="mx-auto mt-5 max-w-md  text-charcoal/75 lg:mx-0 lg:max-w-none lg:text-left"
+              align="center"
+            >
+              {description}
+            </Text>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:items-start lg:justify-start">
               <Button variant={cta.variant ?? "outline"}>
                 <Link href={cta.href}>{cta.label}</Link>
               </Button>
@@ -137,16 +145,19 @@ function ServiceImage({
   imageSrc,
   imageAlt,
   imagePosition,
-  align,
+
+  mobileFadeClassName,
 }: {
   imageSrc: string;
   imageAlt: string;
   imagePosition: string;
   align: "left" | "right";
+  mobileFadeClassName: string;
+  desktopFadeTextClassName: string;
 }) {
   return (
-    <div className="relative -mx-4 overflow-hidden sm:-mx-6 lg:mx-0 lg:h-full">
-      <div className="relative h-[22rem] w-full lg:h-full lg:min-h-[34rem]">
+    <div className="relative overflow-hidden lg:h-full">
+      <div className="relative h-[21rem] w-full sm:h-[24rem] lg:h-full lg:min-h-[34rem]">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -155,10 +166,13 @@ function ServiceImage({
           className={cn("object-cover", imagePosition)}
         />
 
-        {/* Mobile bottom fade */}
+        {/* Mobile bottom fade, matched to section color */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-current text-white lg:hidden"
+          className={cn(
+            "pointer-events-none absolute inset-x-0 bottom-0 h-30 bg-gradient-to-b from-transparent via-current/85 to-current lg:hidden",
+            mobileFadeClassName,
+          )}
         />
       </div>
     </div>

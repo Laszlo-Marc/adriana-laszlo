@@ -112,26 +112,6 @@ export function FullscreenPanel({
                         >
                           {item.title}
                         </Link>
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setServicesExpanded((current) => !current)
-                          }
-                          className="flex size-10 items-center justify-center rounded-full text-charcoal/70 transition hover:text-gold"
-                          aria-label={
-                            servicesExpanded
-                              ? "Ascunde serviciile"
-                              : "Afișează serviciile"
-                          }
-                          aria-expanded={servicesExpanded}
-                        >
-                          {servicesExpanded ? (
-                            <ChevronUp className="size-5" />
-                          ) : (
-                            <ChevronDown className="size-5" />
-                          )}
-                        </button>
                       </div>
 
                       <AnimatePresence initial={false}>

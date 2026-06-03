@@ -2,15 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
-import { NavbarItem, WHATSAPP_HREF } from "../data";
-import { ServicesDropdown } from "./ServicesDropdown";
+import { NavbarItem } from "../data";
 
 type DesktopNavbarProps = {
   items: NavbarItem[];
@@ -18,13 +15,8 @@ type DesktopNavbarProps = {
   isSolidNavbar: boolean;
 };
 
-export default function DesktopNavbar({
-  items,
-  isActive,
-  isSolidNavbar,
-}: DesktopNavbarProps) {
+export default function DesktopNavbar({ items, isActive }: DesktopNavbarProps) {
   const [hoveredItem, setHoveredItem] = React.useState<number | null>(null);
-  const [servicesOpen, setServicesOpen] = React.useState(false);
 
   return (
     <div className="hidden h-20 grid-cols-[auto_1fr_auto] items-center gap-8 xl:grid lg:h-30">
@@ -45,11 +37,9 @@ export default function DesktopNavbar({
                   className="relative"
                   onMouseEnter={() => {
                     setHoveredItem(item.id);
-                    setServicesOpen(true);
                   }}
                   onMouseLeave={() => {
                     setHoveredItem(null);
-                    setServicesOpen(false);
                   }}
                 >
                   <Link
@@ -77,10 +67,6 @@ export default function DesktopNavbar({
                       }}
                     />
                   )}
-
-                  <AnimatePresence>
-                    {servicesOpen && <ServicesDropdown />}
-                  </AnimatePresence>
                 </div>
               );
             }
