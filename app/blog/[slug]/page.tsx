@@ -1,8 +1,8 @@
 import BlogPostContent from "@/components/pages/blog/post-page/BlogPostContent";
-import BlogPostCTA from "@/components/pages/blog/post-page/BlogPostCta";
 import BlogPostHero from "@/components/pages/blog/post-page/BlogPostHero";
 import { blogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import RelatedPostsSection from "@/components/pages/blog/post-page/RelatedPostsSection";
+import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -67,7 +67,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <BlogPostHero post={post} />
       <BlogPostContent content={post.content} />
-      <BlogPostCTA />
+      <FinalCTA
+        title="Te regăsești în acest articol?"
+        description="Poți începe cu o conversație simplă despre ce trăiești, ce te blochează și ce fel de sprijin ți se potrivește."
+        primaryLabel="Următorul pas"
+        primaryButton={{
+          label: "Programează o discuție",
+          href: "/contact",
+          variant: "urgent",
+          size: "lg",
+        }}
+        secondaryLabel="Mai multe resurse"
+        secondaryButtons={[
+          {
+            label: "Vezi serviciile",
+            href: "/servicii",
+            variant: "primary",
+          },
+          {
+            label: "Înapoi la blog",
+            href: "/blog",
+            variant: "purple",
+          },
+        ]}
+      />
 
       {relatedPosts.length > 0 ? (
         <RelatedPostsSection posts={relatedPosts} currentPost={post} />

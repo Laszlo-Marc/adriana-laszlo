@@ -1,10 +1,10 @@
-import FinalCTA from "@/components/pages/about/AboutCTA";
 import AfEmdrSection from "@/components/pages/about/af-emdr/AfEmdrSection";
 import ApproachProcessSection from "@/components/pages/about/approach-process/ApproachProccessSection";
 import AboutFaqSection from "@/components/pages/about/faq/AboutFaqSection";
 import AboutHeroSection from "@/components/pages/about/hero/HeroSection";
 import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import AboutTimelineSection from "@/components/pages/about/timeline/TimelineSection";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 export default function AboutPage() {
   return (
@@ -15,7 +15,30 @@ export default function AboutPage() {
       <ApproachProcessSection />
       <AfEmdrSection />
       <AboutFaqSection />
-      <FinalCTA />
+      <FinalCTA
+        title="Dacă simți că rezonăm, sunt aici."
+        description="Terapia începe cu un spațiu sigur în care poți vorbi sincer despre ce te apasă, fără presiune și fără judecată."
+        primaryLabel="Următorul pas"
+        primaryButton={{
+          label: "Contactează-mă",
+          href: "/contact",
+          variant: "urgent",
+          size: "lg",
+        }}
+        secondaryLabel="Află cum te pot ajuta"
+        secondaryButtons={[
+          {
+            label: "Vezi serviciile",
+            href: "/servicii",
+            variant: "primary",
+          },
+          {
+            label: "Citește articolele",
+            href: "/blog",
+            variant: "purple",
+          },
+        ]}
+      />
     </>
   );
 }

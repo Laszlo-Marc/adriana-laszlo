@@ -1,15 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+
 import { BlogPostCard } from "../post-page/blogPosts";
 
 type BlogPostImageCardProps = {
   post: BlogPostCard;
+  sizes?: string;
 };
 
-export default function BlogPostImageCard({ post }: BlogPostImageCardProps) {
+export default function BlogPostImageCard({
+  post,
+  sizes = "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 86vw",
+}: BlogPostImageCardProps) {
   return (
-    <article className="group relative h-[28rem] min-w-0 overflow-hidden rounded-[2rem]  bg-cream">
+    <article className="group relative h-[26rem] min-w-0 overflow-hidden rounded-[2rem] bg-cream sm:h-[28rem]">
       <Link
         href={post.href}
         className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
@@ -19,7 +24,7 @@ export default function BlogPostImageCard({ post }: BlogPostImageCardProps) {
           src={post.image}
           alt={post.imageAlt}
           fill
-          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 86vw"
+          sizes={sizes}
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
 

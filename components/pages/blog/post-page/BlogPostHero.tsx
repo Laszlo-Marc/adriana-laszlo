@@ -36,7 +36,7 @@ export default function BlogPostHero({ post }: BlogPostHeroProps) {
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-charcoal/20"
+        className="absolute inset-0 bg-gradient-to-t from-cream via-cream/55 to-cream/20"
       />
 
       <div
@@ -50,8 +50,8 @@ export default function BlogPostHero({ post }: BlogPostHeroProps) {
         className="relative z-10 flex min-h-[80svh] items-center justify-center pb-20 pt-40 md:pb-24"
       >
         <div className="flex max-w-4xl flex-col items-center justify-center gap-5 text-center">
-          <div className="mb-1 flex flex-wrap items-center justify-center gap-3 text-sm text-white/80">
-            <span className="rounded-full border border-white/30 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
+          <div className="mb-1 flex flex-wrap items-center justify-center gap-3 text-sm text-charcoal/80">
+            <span className="rounded-full border border-teal/30 bg-teal/10 px-4 py-1.5 backdrop-blur-sm">
               {post.category}
             </span>
             <span>{publishedDate}</span>
@@ -63,7 +63,7 @@ export default function BlogPostHero({ post }: BlogPostHeroProps) {
             id="blog-post-title"
             as="h1"
             size="h1"
-            className="text-white"
+            className="text-charcoal"
             align="center"
           >
             {post.title}
@@ -71,7 +71,7 @@ export default function BlogPostHero({ post }: BlogPostHeroProps) {
 
           <Text
             size="lg"
-            className="max-w-2xl text-balance text-white/85"
+            className="max-w-2xl text-balance text-charcoal/85"
             align="center"
           >
             {post.summary}
