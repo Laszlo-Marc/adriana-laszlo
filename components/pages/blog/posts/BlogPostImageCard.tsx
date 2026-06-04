@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-import type { BlogPostCard } from "./blogPostsContent";
+import { BlogPostCard } from "../post-page/blogPosts";
 
 type BlogPostImageCardProps = {
   post: BlogPostCard;
@@ -10,7 +9,7 @@ type BlogPostImageCardProps = {
 
 export default function BlogPostImageCard({ post }: BlogPostImageCardProps) {
   return (
-    <article className="group relative h-[28rem] min-w-0 overflow-hidden rounded-[2rem] bg-charcoal ">
+    <article className="group relative h-[28rem] min-w-0 overflow-hidden rounded-[2rem]  bg-cream">
       <Link
         href={post.href}
         className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
@@ -26,7 +25,7 @@ export default function BlogPostImageCard({ post }: BlogPostImageCardProps) {
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/42 to-charcoal/8"
+          className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/32 to-charcoal/8"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
@@ -42,7 +41,7 @@ export default function BlogPostImageCard({ post }: BlogPostImageCardProps) {
             ) : null}
           </div>
 
-          <h3 className="max-w-[19rem] text-balance font-display text-2xl leading-tight text-white sm:text-3xl">
+          <h3 className="text-balance font-display text-2xl leading-tight text-white sm:text-3xl">
             {post.title}
           </h3>
 

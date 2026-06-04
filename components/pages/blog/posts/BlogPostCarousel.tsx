@@ -1,14 +1,8 @@
-import Link from "next/link";
-
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
-import Text from "@/components/ui/Text";
-import Button from "@/components/ui/Button";
-import AccentText from "@/components/ui/AccentText";
-
-import type { BlogPostCard } from "./blogPostsContent";
 import BlogPostsCarouselClient from "./BlogPostCarouselClient";
+import { BlogPostCard } from "../post-page/blogPosts";
 
 type BlogPostsCarouselProps = {
   posts: BlogPostCard[];

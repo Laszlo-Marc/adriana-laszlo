@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
-import type { BlogContentBlock } from "./types";
+import { BlogContentBlock } from "./blogPosts";
 
 type BlogPostContentProps = {
   content: BlogContentBlock[];

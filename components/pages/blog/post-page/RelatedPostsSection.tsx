@@ -2,28 +2,15 @@ import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 
-import type { BlogPost } from "./types";
-import { BlogPostCard } from "../posts/blogPostsContent";
 import BlogPostsCarouselClient from "../posts/BlogPostCarouselClient";
+import { BlogPost, toBlogPostCard } from "./blogPosts";
+import AccentText from "@/components/ui/AccentText";
 
 type RelatedPostsSectionProps = {
   posts: BlogPost[];
   currentPost: BlogPost;
   limit?: number;
 };
-
-function toBlogPostCard(post: BlogPost): BlogPostCard {
-  return {
-    id: post.slug,
-    title: post.title,
-    excerpt: post.summary,
-    href: `/blog/${post.slug}`,
-    image: post.image,
-    imageAlt: post.imageAlt,
-    category: post.category,
-    readingTime: post.readTime,
-  };
-}
 
 function getRelatedPosts({
   posts,
@@ -68,24 +55,16 @@ export default function RelatedPostsSection({
       className="overflow-hidden bg-cream py-16 md:py-24"
     >
       <Container size="wide" padding="default">
-        <div className="mb-10 max-w-2xl md:mb-12">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.22em] text-gold">
-            Articole recomandate
-          </p>
-
+        <div className="mb-10  md:mb-12">
           <Heading
             id="related-posts-title"
             as="h2"
             size="h2"
             className="text-charcoal"
+            align="center"
           >
             Poate vrei să citești și
           </Heading>
-
-          <Text size="base" className="mt-4 text-muted">
-            Alte articole care continuă tema și te pot ajuta să înțelegi mai
-            clar ce se întâmplă în interiorul tău.
-          </Text>
         </div>
 
         <BlogPostsCarouselClient posts={relatedPostCards} />

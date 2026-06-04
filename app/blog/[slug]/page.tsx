@@ -1,11 +1,7 @@
 import BlogPostContent from "@/components/pages/blog/post-page/BlogPostContent";
 import BlogPostCTA from "@/components/pages/blog/post-page/BlogPostCta";
 import BlogPostHero from "@/components/pages/blog/post-page/BlogPostHero";
-import {
-  blogPosts,
-  getBlogPostBySlug,
-  getRelatedPosts,
-} from "@/components/pages/blog/post-page/blogPosts";
+import { blogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import RelatedPostsSection from "@/components/pages/blog/post-page/RelatedPostsSection";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -26,7 +22,7 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     return {
@@ -57,13 +53,15 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(post.slug);
+  const relatedPosts = blogPosts
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 3);
 
   return (
     <>

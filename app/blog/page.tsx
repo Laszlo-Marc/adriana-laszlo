@@ -1,7 +1,8 @@
 import FinalCTA from "@/components/pages/about/AboutCTA";
 import BlogHero from "@/components/pages/blog/BlogHero";
+import { featuredBlogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import BlogPostsCarousel from "@/components/pages/blog/posts/BlogPostCarousel";
-import { featuredBlogPosts } from "@/components/pages/blog/posts/blogPostsContent";
+
 import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
 import BlogSocialSection from "@/components/pages/blog/social/BlogSocialSection";
 
