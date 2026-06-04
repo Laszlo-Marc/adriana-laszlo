@@ -129,3 +129,32 @@ body {
     transform: translateX(0);
   }
 }
+
+@keyframes image-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-image-marquee {
+  animation: image-marquee 28s linear infinite;
+}
+
+.animate-image-marquee-slow {
+  animation: image-marquee 42s linear infinite;
+}
+
+.animate-image-marquee-fast {
+  animation: image-marquee 20s linear infinite;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

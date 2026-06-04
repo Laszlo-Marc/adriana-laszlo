@@ -35,26 +35,22 @@ type ServiceDetailSectionProps = ServiceDetail;
 const toneStyles = {
   teal: {
     background: "teal-soft" as const,
-    mobileTitleBg: "bg-teal-soft",
-    mobileFade: "via-teal-soft/95 to-teal-soft",
+    mobileFade: "from-transparent via-teal-soft/80 to-teal-soft",
     desktopFadeText: "text-teal-soft",
   },
   purple: {
     background: "purple-soft" as const,
-    mobileTitleBg: "bg-purple-soft",
-    mobileFade: "via-purple-soft/95 to-purple-soft",
+    mobileFade: "from-transparent via-purple-soft/80 to-purple-soft",
     desktopFadeText: "text-purple-soft",
   },
   cream: {
     background: "cream" as const,
-    mobileTitleBg: "bg-cream",
-    mobileFade: "via-cream/95 to-cream",
+    mobileFade: "from-transparent via-cream/80 to-cream",
     desktopFadeText: "text-cream",
   },
   white: {
     background: "white" as const,
-    mobileTitleBg: "bg-white",
-    mobileFade: "via-white/95 to-white",
+    mobileFade: "from-transparent via-white/80 to-white",
     desktopFadeText: "text-white",
   },
 };
@@ -108,10 +104,7 @@ export default function ServiceDetailSection({
               id={`${id}-heading`}
               as="h2"
               size="h2"
-              className={cn(
-                "mx-auto max-w-[21rem] px-3 pt-3 text-center lg:mx-0 lg:max-w-none lg:bg-transparent lg:px-0 lg:pt-0 lg:text-left",
-                styles.mobileTitleBg,
-              )}
+              className="mx-auto max-w-[21rem] text-center lg:mx-0 lg:max-w-none lg:text-left"
             >
               {title}
             </Heading>
@@ -166,11 +159,10 @@ function ServiceImage({
           className={cn("object-cover", imagePosition)}
         />
 
-        {/* Mobile bottom fade, matched to section color */}
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-x-0 bottom-0 h-30 bg-gradient-to-b from-transparent via-current/85 to-current lg:hidden",
+            "pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b lg:hidden",
             mobileFadeClassName,
           )}
         />

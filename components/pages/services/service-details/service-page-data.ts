@@ -106,7 +106,7 @@ export const serviceDetails = [
     cta: {
       label: "Vezi evenimentele",
       href: "/evenimente",
-      variant: "primary",
+      variant: "urgent",
     },
   },
 ] as const;
