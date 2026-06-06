@@ -17,6 +17,7 @@ export default function Navbar({ className }: NavbarProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isHidden, setIsHidden] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isDesktopMenuOpen, setIsDesktopMenuOpen] = React.useState(false);
 
   const previousScrollY = React.useRef(0);
   const pathname = usePathname();
@@ -27,10 +28,22 @@ export default function Navbar({ className }: NavbarProps) {
     const scrollingDown = latest > previous;
 
     setIsScrolled(latest > 40);
-    setIsHidden(scrollingDown && latest > 140);
 
+    if (isMobileMenuOpen || isDesktopMenuOpen) {
+      setIsHidden(false);
+      previousScrollY.current = latest;
+      return;
+    }
+
+    setIsHidden(scrollingDown && latest > 140);
     previousScrollY.current = latest;
   });
+
+  React.useEffect(() => {
+    if (isMobileMenuOpen || isDesktopMenuOpen) {
+      setIsHidden(false);
+    }
+  }, [isMobileMenuOpen, isDesktopMenuOpen]);
 
   React.useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -55,8 +68,9 @@ export default function Navbar({ className }: NavbarProps) {
     [pathname],
   );
 
-  const shouldHideNavbar = isHidden && !isMobileMenuOpen;
-  const isSolidNavbar = isScrolled || isMobileMenuOpen;
+  const shouldHideNavbar = isHidden && !isMobileMenuOpen && !isDesktopMenuOpen;
+
+  const isSolidNavbar = isScrolled || isMobileMenuOpen || isDesktopMenuOpen;
 
   return (
     <>
@@ -68,7 +82,7 @@ export default function Navbar({ className }: NavbarProps) {
           ease: [0.16, 1, 0.3, 1],
         }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
+          "fixed inset-x-0 top-0 z-[110] transition-colors duration-500",
           isSolidNavbar
             ? "border-b border-border/70 bg-cream/92 shadow-[0_14px_46px_rgba(44,44,44,0.08)] backdrop-blur-xl"
             : "border-b border-transparent bg-transparent",
@@ -77,9 +91,8 @@ export default function Navbar({ className }: NavbarProps) {
       >
         <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-8">
           <DesktopNavbar
-            items={navItems}
-            isActive={isActive}
-            isSolidNavbar={isSolidNavbar}
+            isOpen={isDesktopMenuOpen}
+            onOpenChange={setIsDesktopMenuOpen}
           />
 
           <MobileNavbar
@@ -89,6 +102,13 @@ export default function Navbar({ className }: NavbarProps) {
           />
         </div>
       </motion.nav>
+
+      <DesktopNavbar.FullscreenPanel
+        items={navItems}
+        isActive={isActive}
+        isOpen={isDesktopMenuOpen}
+        onClose={() => setIsDesktopMenuOpen(false)}
+      />
 
       <MobileNavbar.FullscreenPanel
         items={navItems}

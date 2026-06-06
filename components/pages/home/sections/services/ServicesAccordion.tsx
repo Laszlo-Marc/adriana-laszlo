@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ServiceItem } from "./types";
+import Button from "@/components/ui/Button";
 
 type ServicesAccordionProps = {
   items: ServiceItem[];
@@ -156,10 +157,9 @@ function AccordionContent({
             {item.subtitle}
           </p>
 
-          <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white">
+          <Button href={item.href} variant="cream" size="md" className="mt-5">
             Descoperă serviciul
-            <ArrowRight className="h-4 w-4" />
-          </span>
+          </Button>
         </div>
       </div>
     </div>

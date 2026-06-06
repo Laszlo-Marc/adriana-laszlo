@@ -4,6 +4,7 @@ export const navLinks = [
   { href: "/servicii", label: "Servicii" },
   { href: "/evenimente", label: "Evenimente" },
   { href: "/blog", label: "Blog" },
+  { href: "/af-emdr", label: "AF-EMDR" },
 ] as const;
 
 export const PHONE_DISPLAY = "0744 473 869";

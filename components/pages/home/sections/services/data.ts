@@ -31,7 +31,7 @@ export const services: ServiceItem[] = [
     title: "Terapie AF-EMDR",
     subtitle:
       "Abordare specializată pentru procesarea traumelor și blocajelor emoționale.",
-    href: "/servicii#af-emdr",
+    href: "/af-emdr",
     label: "AF-EMDR",
     image: {
       src: "/home-page/services/af-emdr.jpg",

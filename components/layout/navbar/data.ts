@@ -1,13 +1,15 @@
+export type NavbarChildItem = {
+  id: string;
+  title: string;
+  url: string;
+  description?: string;
+};
+
 export type NavbarItem = {
   id: number;
   title: string;
   url: string;
-};
-
-export type ServiceNavItem = {
-  title: string;
-  description: string;
-  href: string;
+  children?: NavbarChildItem[];
 };
 
 export const navItems: NavbarItem[] = [
@@ -30,12 +32,21 @@ export const navItems: NavbarItem[] = [
     id: 4,
     title: "Evenimente",
     url: "/evenimente",
+    children: [
+      {
+        id: "af-emdr-grup",
+        title: "Grup AF-EMDR",
+        url: "/evenimente/grup-af-emdr",
+        description: "Program de lucru ghidat în grup",
+      },
+    ],
   },
   {
     id: 5,
     title: "Blog",
     url: "/blog",
   },
+  { id: 6, url: "/af-emdr", title: "AF-EMDR" },
 ];
 
 export const WHATSAPP_DISPLAY = "WhatsApp";
