@@ -82,16 +82,9 @@ export default function FeaturedEventSection() {
                 ))}
               </div>
 
-              <div className="mx-auto mt-10 max-w-xl border-t border-teal/60 pt-5 lg:mx-0 lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0">
-                <Text align="center" className="text-charcoal/68 lg:text-left">
-                  Participarea nu presupune să împărtășești mai mult decât simți
-                  că este potrivit pentru tine. Înscrierea începe cu o scurtă
-                  discuție pentru a vedea dacă programul răspunde nevoilor tale.
-                </Text>
-              </div>
-
               <div className="mt-10 flex justify-center lg:justify-start">
                 <Button
+                  href={`/evenimente/${featuredEvent.slug}`}
                   variant="primary"
                   className="w-full max-w-full whitespace-normal text-center sm:w-auto"
                 >

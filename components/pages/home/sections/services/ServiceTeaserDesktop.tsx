@@ -9,7 +9,7 @@ import { ServicesAccordion } from "./ServicesAccordion";
 
 export default function ServicesTeaserDesktop() {
   return (
-    <div className="relative hidden overflow-hidden lg:block">
+    <div className="relative hidden overflow-hidden lg:block py-20">
       {/* subtle dragonfly near heading */}
       <Image
         src="/backgrounds/df-teal-down.png"

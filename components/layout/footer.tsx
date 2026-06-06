@@ -21,7 +21,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-cream" aria-label="Subsol site">
+    <footer className="bg-white" aria-label="Subsol site">
       <div className="mx-auto max-w-450 px-6 py-10 md:px-8 md:py-12 xl:py-14">
         <div className="grid gap-10 xl:grid-cols-[1.15fr_0.9fr_0.8fr_1fr] xl:items-start xl:gap-10">
           {/* Brand block */}

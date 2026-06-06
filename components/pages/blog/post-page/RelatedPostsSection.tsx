@@ -51,8 +51,8 @@ export default function RelatedPostsSection({
   return (
     <Section
       aria-labelledby="related-posts-title"
-      background="white"
-      spacing="md"
+      background="cream"
+      spacing="sm"
     >
       <Container size="wide" padding="default">
         <div className="mb-10 md:mb-12">

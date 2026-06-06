@@ -41,7 +41,7 @@ export default function ImageMarquee({
         {marqueeImages.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className="group relative h-52 w-52 shrink-0 overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-[0_20px_70px_rgba(44,44,44,0.12)] sm:h-64 sm:w-64 lg:h-80 lg:w-80"
+            className="group relative h-52 w-52 shrink-0 overflow-hidden rounded-[1.75rem] border border-white/70 bg-white  sm:h-64 sm:w-64 lg:h-80 lg:w-80"
           >
             <Image
               src={image.src}

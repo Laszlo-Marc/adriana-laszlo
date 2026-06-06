@@ -67,6 +67,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <BlogPostHero post={post} />
       <BlogPostContent content={post.content} />
+
+      {relatedPosts.length > 0 ? (
+        <RelatedPostsSection posts={relatedPosts} currentPost={post} />
+      ) : null}
       <FinalCTA
         title="Te regăsești în acest articol?"
         description="Poți începe cu o conversație simplă despre ce trăiești, ce te blochează și ce fel de sprijin ți se potrivește."
@@ -91,10 +95,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           },
         ]}
       />
-
-      {relatedPosts.length > 0 ? (
-        <RelatedPostsSection posts={relatedPosts} currentPost={post} />
-      ) : null}
     </>
   );
 }

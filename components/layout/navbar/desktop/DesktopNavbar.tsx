@@ -28,48 +28,6 @@ export default function DesktopNavbar({ items, isActive }: DesktopNavbarProps) {
         <div className="flex items-center gap-2">
           {items.map((item) => {
             const active = isActive(item.url);
-            const isServices = item.url === "/servicii";
-
-            if (isServices) {
-              return (
-                <div
-                  key={item.id}
-                  className="relative"
-                  onMouseEnter={() => {
-                    setHoveredItem(item.id);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredItem(null);
-                  }}
-                >
-                  <Link
-                    href={item.url}
-                    className={cn(
-                      "relative z-10 flex items-center px-3 py-2 font-body text-lg uppercase tracking-[0.16em] transition-colors",
-                      active
-                        ? "text-charcoal"
-                        : "text-muted hover:text-charcoal",
-                    )}
-                  >
-                    {item.title}
-                  </Link>
-
-                  {(active || hoveredItem === item.id) && (
-                    <motion.span
-                      layoutId="navbar-underline"
-                      className="absolute -bottom-1 left-3 right-3 h-px bg-teal"
-                      initial={{ opacity: 0, scaleX: 0.4 }}
-                      animate={{ opacity: 1, scaleX: 1 }}
-                      exit={{ opacity: 0, scaleX: 0.4 }}
-                      transition={{
-                        duration: 0.22,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            }
 
             return (
               <motion.div
@@ -82,8 +40,8 @@ export default function DesktopNavbar({ items, isActive }: DesktopNavbarProps) {
                 <Link
                   href={item.url}
                   className={cn(
-                    "relative z-10 flex items-center px-3 py-2 font-body text-lg uppercase tracking-[0.16em] transition-colors",
-                    active ? "text-charcoal" : "text-muted hover:text-charcoal",
+                    "relative z-10 flex items-center px-3 py-2 font-body  text-lg uppercase tracking-[0.16em] transition-colors",
+                    active ? "text-black" : "text-black/50 hover:text-black",
                   )}
                 >
                   {item.title}
@@ -92,7 +50,7 @@ export default function DesktopNavbar({ items, isActive }: DesktopNavbarProps) {
                 {(active || hoveredItem === item.id) && (
                   <motion.span
                     layoutId="navbar-underline"
-                    className="absolute -bottom-1 left-3 right-3 h-px bg-teal"
+                    className="absolute -bottom-1 left-3 right-3 h-px bg-gold"
                     initial={{ opacity: 0, scaleX: 0.4 }}
                     animate={{ opacity: 1, scaleX: 1 }}
                     exit={{ opacity: 0, scaleX: 0.4 }}

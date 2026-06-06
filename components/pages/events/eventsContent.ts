@@ -12,6 +12,7 @@ export type EventItem = {
   };
 };
 export const featuredEvent = {
+  slug: "grup-af-emdr-anxietate-stres-perfectionism",
   eyebrow: "Program recomandat",
   title: "Program AF-EMDR de Grup",
   intro:
@@ -40,23 +41,35 @@ export const featuredEvent = {
   ],
   images: [
     {
-      src: "/events/events-hero.jpg",
+      src: "/events/grup-emdr/emdr1.jpeg",
       alt: "Spațiu de terapie de grup cu scaune așezate în cerc",
     },
     {
-      src: "/events/events-hero.jpg",
+      src: "/events/grup-emdr/emdr2.jpeg",
       alt: "Cadru calm pentru program terapeutic de grup",
     },
     {
-      src: "/events/events-hero.jpg",
+      src: "/events/grup-emdr/emdr3.jpeg",
       alt: "Spațiu pregătit pentru workshopuri și ateliere",
     },
     {
-      src: "/events/events-hero.jpg",
+      src: "/events/grup-emdr/emdr4.jpeg",
       alt: "Cerc de scaune pentru lucru terapeutic de grup",
     },
     {
-      src: "/events/events-hero.jpg",
+      src: "/events/grup-emdr/emdr5.jpeg",
+      alt: "Ambient cald pentru programe de reconectare emoțională",
+    },
+    {
+      src: "/events/grup-emdr/emdr6.jpeg",
+      alt: "Ambient cald pentru programe de reconectare emoțională",
+    },
+    {
+      src: "/events/grup-emdr/emdr7.jpeg",
+      alt: "Ambient cald pentru programe de reconectare emoțională",
+    },
+    {
+      src: "/events/grup-emdr/emdr8.jpeg",
       alt: "Ambient cald pentru programe de reconectare emoțională",
     },
   ],
