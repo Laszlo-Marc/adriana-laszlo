@@ -77,7 +77,7 @@ export default function EventStoryScrollSection({
 
                 <hr className="my-[clamp(1.25rem,2vw,2rem)] border-none border-t border-charcoal/20" />
 
-                <Heading as="h2" size="display" className="max-w-4xl">
+                <Heading as="h2" size="h1" className="max-w-2xl">
                   {chapter.title}
                 </Heading>
               </div>
@@ -88,13 +88,13 @@ export default function EventStoryScrollSection({
                 </p>
 
                 {chapter.points && chapter.points.length > 0 ? (
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid gap-4 md:grid-cols-3 pb-12">
                     {chapter.points.map((point) => (
                       <article
                         key={point.title}
-                        className="border-t border-charcoal/18 pt-4"
+                        className="border-t border-charcoal/18 pt-4 "
                       >
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
                           {point.title}
                         </p>
 
