@@ -64,7 +64,7 @@ export default function EventDetailHero({
       <motion.div
         initial="hidden"
         animate="show"
-        className="relative z-20 mx-auto flex max-w-5xl flex-col items-center pb-36 pt-28 md:pb-44"
+        className="relative z-20 mx-auto flex flex-col items-center pb-36 pt-28 md:pb-44"
       >
         <motion.p
           variants={fadeIn}
@@ -76,7 +76,7 @@ export default function EventDetailHero({
         <motion.h1
           id="event-detail-hero-title"
           variants={fadeIn}
-          className="mt-6 max-w-5xl font-accent text-4xl font-medium  leading-[1.04] tracking-[0.08em] text-charcoal sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mt-6 font-accent text-4xl font-medium  leading-[1.04] tracking-[0.08em] text-charcoal  text-[clamp(4rem,4vw,4rem)] lg:text-[clamp(8rem,8vw,8rem)]"
         >
           {event.title}
         </motion.h1>

@@ -2,12 +2,9 @@ export type EventStoryChapter = {
   eyebrow: string;
   title: string;
   description: string;
+  body: string;
   image: string;
   imageAlt: string;
-  points?: {
-    title: string;
-    description: string;
-  }[];
 };
 export type EventDetail = {
   slug: string;
@@ -63,126 +60,45 @@ export const eventDetails: EventDetail[] = [
         title: "Când corpul rămâne în alertă.",
         description:
           "Pentru momentele în care anxietatea, autocritica și presiunea de a face totul perfect nu mai sunt doar gânduri, ci devin o stare constantă în corp.",
+        body: "Acest program este construit pentru persoane care trăiesc cu neliniște persistentă, tensiune interioară și nevoia de a face totul perfect. Într-un ritm atent, vei explora felul în care stresul și perfecționismul se fixează în corp, cum îți afectează relația cu tine și ce resurse pot sprijini reglarea emoțională și recăpătarea unui sentiment de siguranță interioară.",
         image: "/events/grup-emdr/story/story1.jpg",
         imageAlt: "Cadru calm pentru program terapeutic de grup",
-        points: [
-          {
-            title: "Anxietate persistentă",
-            description:
-              "Stări de neliniște, anticipare și tensiune care apar chiar și atunci când lucrurile par în regulă.",
-          },
-          {
-            title: "Presiune interioară",
-            description:
-              "Nevoia de a controla, de a performa și de a evita greșeala cu orice preț.",
-          },
-          {
-            title: "Tensiune în corp",
-            description:
-              "Un sistem nervos care rămâne activat, obosit sau greu de liniștit.",
-          },
-        ],
       },
       {
         eyebrow: "02 — Pentru cine",
-        title:
-          "Pentru cei care funcționează, dar se simt încordați pe interior.",
+        title: "Pentru cei care funcționează, dar sunt epuizati.",
         description:
           "Programul este potrivit pentru persoane care par să țină lucrurile sub control, dar trăiesc cu frică de greșeală, suprasolicitare, standarde rigide sau nevoia permanentă de a performa.",
+        body: "Poate fi potrivit pentru tine dacă îți este greu să te relaxezi, chiar și atunci când nu există o urgență reală. Dacă odihna vine cu vinovăție, dacă vocea interioară devine severă în fața greșelii sau dacă simți că trebuie să controlezi totul pentru a fi în siguranță, acest cadru te poate ajuta să înțelegi mai clar ce se întâmplă și cum poți lucra cu aceste tipare.",
         image: "/events/grup-emdr/story/story2.jpg",
         imageAlt: "Participanți într-un spațiu de lucru terapeutic",
-        points: [
-          {
-            title: "Te simți mereu în priză",
-            description:
-              "Îți este greu să te relaxezi, chiar și atunci când nu există o urgență reală.",
-          },
-          {
-            title: "Îți este greu să te oprești",
-            description:
-              "Odihna poate veni cu vinovăție, neliniște sau senzația că ar trebui să faci mai mult.",
-          },
-          {
-            title: "Te critici des",
-            description:
-              "Vocea interioară devine severă, mai ales în fața greșelii, evaluării sau incertitudinii.",
-          },
-        ],
       },
       {
         eyebrow: "03 — Ce vei lucra",
         title: "Reglare, resurse și procesare ghidată.",
         description:
           "Întâlnirile combină reglaj emoțional și somatic, resurse de stabilizare și lucru AF-EMDR cu tipare de stres, autocritică și perfecționism.",
+        body: "Programul include exerciții pentru calmarea corpului, reducerea tensiunii și reconectarea cu sentimentul de siguranță. Vei lucra cu resurse pozitive interioare, precum sprijinul, competența, stabilitatea și auto-susținerea, iar procesarea AF-EMDR va fi orientată către stresori cotidieni, autocritică, frică de eșec și presiune internă.",
         image: "/events/grup-emdr/story/story3.jpeg",
         imageAlt: "Exercițiu ghidat într-un program terapeutic de grup",
-        points: [
-          {
-            title: "Reglaj emoțional și somatic",
-            description:
-              "Tehnici pentru calmarea corpului, reducerea tensiunii și reconectarea cu siguranța.",
-          },
-          {
-            title: "Resurse pozitive interioare",
-            description:
-              "Lucru cu sentimentul de sprijin, competență, stabilitate și auto-susținere.",
-          },
-          {
-            title: "Procesare AF-EMDR",
-            description:
-              "Lucru ghidat cu stresori cotidieni, autocritică, frică de eșec și presiune internă.",
-          },
-        ],
       },
       {
         eyebrow: "04 — Cum se desfășoară",
         title: "Un cadru restrâns, blând și structurat.",
         description:
           "Programul are un ritm clar, cu întâlniri ghidate, exerciții practice și spațiu de integrare. Nu presupune expunere forțată sau împărtășire peste limita ta.",
+        body: "Fiecare întâlnire are o temă clară și un ritm atent, astfel încât procesul să fie ușor de urmărit. Cadrul este restrâns, respectuos și confidențial, construit în jurul siguranței participanților. Poți participa fără presiunea de a spune mai mult decât simți că este potrivit, iar accentul rămâne pe stabilizare, resurse și integrare.",
         image: "/events/grup-emdr/story/story4.jpg",
         imageAlt: "Spațiu de terapie de grup cu scaune în cerc",
-        points: [
-          {
-            title: "4 întâlniri ghidate",
-            description:
-              "Fiecare întâlnire are o temă clară și un ritm atent, astfel încât procesul să fie ușor de urmărit.",
-          },
-          {
-            title: "Grup confidențial",
-            description:
-              "Cadrul este restrâns, respectuos și construit în jurul siguranței participanților.",
-          },
-          {
-            title: "Ritmul tău contează",
-            description:
-              "Poți participa fără presiunea de a spune mai mult decât simți că este potrivit.",
-          },
-        ],
       },
       {
         eyebrow: "05 — Cu ce pleci",
         title: "Mai multă claritate, siguranță și opțiuni interioare.",
         description:
           "Scopul nu este să devii perfect calm/ă, ci să ai mai multe resurse atunci când apar presiunea, anxietatea sau frica de greșeală.",
+        body: "La finalul programului, vei avea mai multă claritate despre felul în care anxietatea, perfecționismul și presiunea internă se manifestă în viața ta. Vei pleca cu exerciții și repere de reglare, cu o relație mai blândă față de tine în momentele dificile și cu pași concreți pentru a continua procesul într-un ritm realist.",
         image: "/events/grup-emdr/story/story5.jpg",
         imageAlt: "Ambient calm pentru reflecție și integrare",
-        points: [
-          {
-            title: "Instrumente de reglare",
-            description:
-              "Exerciții și repere pe care le poți folosi și după încheierea programului.",
-          },
-          {
-            title: "Mai multă auto-susținere",
-            description:
-              "O relație mai blândă cu tine în momentele în care apar greșeala, presiunea sau oboseala.",
-          },
-          {
-            title: "Pași concreți",
-            description:
-              "Claritate despre ce ai nevoie mai departe și cum poți continua procesul.",
-          },
-        ],
       },
     ],
     gallery: [

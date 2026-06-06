@@ -6,10 +6,17 @@ import Button from "@/components/ui/Button";
 import FlowArt, { FlowSection } from "@/components/ui/story-scroll";
 import type { EventDetail, EventStoryChapter } from "./eventData";
 import Heading from "@/components/ui/Heading";
+import Text from "@/components/ui/Text";
 
 type EventStoryScrollSectionProps = {
   event: EventDetail;
 };
+
+function getChapterBody(chapter: EventStoryChapter) {
+  if ("body" in chapter && chapter.body) return chapter.body;
+
+  return chapter.description;
+}
 
 export default function EventStoryScrollSection({
   event,
@@ -27,100 +34,119 @@ export default function EventStoryScrollSection({
       </h2>
 
       <FlowArt aria-label="Ce conține programul">
-        {chapters.map((chapter, index) => (
-          <FlowSection
-            key={`${chapter.eyebrow}-${chapter.title}`}
-            aria-label={chapter.title}
-            className="bg-cream"
-          >
-            <Image
-              src={chapter.image}
-              alt={chapter.imageAlt}
-              fill
-              sizes="100vw"
-              className="absolute inset-0 object-cover"
-              priority={index === 0}
-            />
+        {chapters.map((chapter, index) => {
+          const chapterBody = getChapterBody(chapter);
 
-            {/* immersive cream blending */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-10 bg-cream/28"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[34%] bg-gradient-to-b from-cream via-cream/86 via-[42%] to-transparent"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[40%] bg-gradient-to-t from-cream via-cream/90 via-[46%] to-transparent"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[42%] bg-gradient-to-r from-cream via-cream/80 via-[42%] to-transparent"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[32%] bg-gradient-to-l from-cream/72 to-transparent"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[72%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream/22 blur-3xl"
-            />
+          return (
+            <FlowSection
+              key={`${chapter.eyebrow}-${chapter.title}`}
+              aria-label={chapter.title}
+              className="bg-cream"
+            >
+              <Image
+                src={chapter.image}
+                alt={chapter.imageAlt}
+                fill
+                sizes="100vw"
+                className="absolute inset-0 object-cover"
+                priority={index === 0}
+              />
 
-            {/* content */}
-            <div className="relative z-20 flex min-h-[calc(100svh-8vw)] flex-col justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">
-                  {chapter.eyebrow}
-                </p>
+              {/* immersive cream blending */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-10 bg-cream/34"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[34%] bg-gradient-to-b from-cream via-cream/88 via-[42%] to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[38%] bg-gradient-to-t from-cream via-cream/90 via-[46%] to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[48%] bg-gradient-to-r from-cream via-cream/88 via-[45%] to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[36%] bg-gradient-to-l from-cream/74 to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[72%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream/24 blur-3xl"
+              />
 
-                <hr className="my-[clamp(1.25rem,2vw,2rem)] border-none border-t border-charcoal/20" />
+              {/* content */}
+              <div className="relative z-20 flex min-h-[calc(100svh-8vw)] items-center">
+                <div className="grid w-full gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-16">
+                  {/* Left column */}
+                  <div className="flex flex-col justify-center">
+                    <div className="max-w-2xl">
+                      <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">
+                        {chapter.eyebrow}
+                      </p>
 
-                <Heading as="h2" size="h1" className="max-w-2xl">
-                  {chapter.title}
-                </Heading>
-              </div>
+                      <div className="mt-6 h-px w-16 bg-gold/55" />
 
-              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-                <p className="max-w-[48ch] text-[clamp(1.05rem,1.75vw,1.55rem)] leading-relaxed text-charcoal/76">
-                  {chapter.description}
-                </p>
-
-                {chapter.points && chapter.points.length > 0 ? (
-                  <div className="grid gap-4 md:grid-cols-3 pb-12">
-                    {chapter.points.map((point) => (
-                      <article
-                        key={point.title}
-                        className="border-t border-charcoal/18 pt-4 "
+                      <Heading
+                        as="h2"
+                        size="h1"
+                        className="mt-8 max-w-3xl text-charcoal"
                       >
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black">
-                          {point.title}
-                        </p>
+                        {chapter.title}
+                      </Heading>
 
-                        <p className="mt-3 text-sm leading-7 text-charcoal/68">
-                          {point.description}
-                        </p>
-                      </article>
-                    ))}
+                      <Text size="lg" className="mt-6 max-w-lg">
+                        {chapter.description}
+                      </Text>
+
+                      {index === chapters.length - 1 ? (
+                        <div className="mt-10 hidden flex-col gap-3 sm:flex-row lg:flex">
+                          <Button href="#inscriere" variant="primary">
+                            Înscrie-te în program
+                          </Button>
+
+                          <Button href="#cum-functioneaza" variant="secondary">
+                            Cum funcționează
+                          </Button>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                ) : null}
-              </div>
 
-              {index === chapters.length - 1 ? (
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href="#inscriere" variant="primary">
-                    Înscrie-te în program
-                  </Button>
+                  {/* Right column */}
+                  <div className="flex justify-end">
+                    <article className="w-full max-w-2xl rounded-[2rem] border border-white/60 bg-white/38 p-6 shadow-[0_24px_80px_rgba(44,44,44,0.08)] backdrop-blur-md sm:p-8 lg:p-10">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold">
+                        Despre această etapă
+                      </p>
 
-                  <Button href="#cum-functioneaza" variant="secondary">
-                    Cum funcționează
-                  </Button>
+                      <div className="mt-5 space-y-5">
+                        <Text className="text-lg leading-8  sm:text-xl sm:leading-8">
+                          {chapterBody}
+                        </Text>
+                      </div>
+
+                      {index === chapters.length - 1 ? (
+                        <div className="mt-8 flex flex-col gap-3 lg:hidden">
+                          <Button href="#inscriere" variant="primary">
+                            Înscrie-te în program
+                          </Button>
+
+                          <Button href="#cum-functioneaza" variant="secondary">
+                            Cum funcționează
+                          </Button>
+                        </div>
+                      ) : null}
+                    </article>
+                  </div>
                 </div>
-              ) : null}
-            </div>
-          </FlowSection>
-        ))}
+              </div>
+            </FlowSection>
+          );
+        })}
       </FlowArt>
     </section>
   );
