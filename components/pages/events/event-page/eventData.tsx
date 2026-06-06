@@ -224,7 +224,7 @@ export const eventDetails: EventDetail[] = [
       date: "Dată anunțată în curând",
       time: "Ora va fi comunicată participanților",
       duration: "4 întâlniri · 2 ore / întâlnire",
-      location: "Trauma Center · Cluj-Napoca",
+      location: "Strada Artelor nr. 35, Trauma Center, Cluj-Napoca",
       format: "Grup restrâns, ghidat terapeutic",
       cost: "Costul va fi comunicat înainte de confirmare",
       groupSize: "Locuri limitate",

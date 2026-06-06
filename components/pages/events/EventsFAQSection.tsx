@@ -35,16 +35,11 @@ const eventsFaqItems = [
 export default function EventsFaqSection() {
   return (
     <Section
-      background="purple"
+      background="cream"
       spacing="sm"
       aria-labelledby="events-faq-heading"
       className="relative overflow-hidden"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-16 h-80 w-80 rounded-full bg-purple/12 blur-3xl"
-      />
-
       <Container size="narrow" padding="default" className="relative z-10">
         <div className="mx-auto max-w-3xl ">
           <Heading
@@ -53,39 +48,39 @@ export default function EventsFaqSection() {
             size="h2"
             align="center"
             font="accent"
-            color="cream"
+            color="charcoal"
           >
             <AccentText>Întrebări frecvente</AccentText>
           </Heading>
 
-          <Text size="lg" align="center" color="cream" className="mt-5">
+          <Text size="lg" align="center" color="charcoal" className="mt-5">
             Câteva clarificări utile înainte să alegi un program, workshop sau
             atelier.
           </Text>
 
-          <div className="mt-10 border-t border-cream/35">
+          <div className="mt-10 border-t border-charcoal/35">
             {eventsFaqItems.map((item) => (
               <details
                 key={item.question}
-                className="group border-b border-cream/30 py-5"
+                className="group border-b border-charcoal/30 py-5"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left marker:hidden [&::-webkit-details-marker]:hidden">
-                  <span className="font-body text-base font-medium leading-6 text-cream md:text-lg">
+                  <span className="font-body text-base font-medium leading-6 text-charcoal md:text-lg">
                     {item.question}
                   </span>
 
                   <span
                     aria-hidden="true"
-                    className="relative flex size-8 shrink-0 items-center justify-center text-cream/80 transition duration-300 group-open:rotate-45"
+                    className="relative flex size-8 shrink-0 items-center justify-center text-charcoal/80 transition duration-300 group-open:rotate-45"
                   >
-                    <span className="absolute h-px w-5 bg-cream" />
-                    <span className="absolute h-5 w-px bg-cream" />
+                    <span className="absolute h-px w-5 bg-charcoal" />
+                    <span className="absolute h-5 w-px bg-charcoal" />
                   </span>
                 </summary>
 
                 <div className="grid grid-rows-[0fr] transition-all duration-500 group-open:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <Text className="max-w-2xl pt-4 text-cream/72">
+                    <Text className="max-w-2xl pt-4 text-charcoal/72">
                       {item.answer}
                     </Text>
                   </div>

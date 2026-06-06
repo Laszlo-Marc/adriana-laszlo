@@ -121,6 +121,8 @@ const FlowArt: React.FC<FlowArtProps> = ({
               end: "bottom top",
               pin: true,
               pinSpacing: false,
+              anticipatePin: 1,
+              pinType: "transform",
             }),
           );
         }
