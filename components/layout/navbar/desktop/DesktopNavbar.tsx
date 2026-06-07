@@ -90,7 +90,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <X size={30} strokeWidth={1.5} />
+              <X size={40} strokeWidth={1.5} />
             </motion.span>
           ) : (
             <motion.span
@@ -101,7 +101,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <Menu size={32} strokeWidth={1.4} />
+              <Menu size={40} strokeWidth={1.4} />
             </motion.span>
           )}
         </AnimatePresence>
@@ -199,7 +199,7 @@ function DesktopFullscreenPanel({
                           )
                         }
                         className={cn(
-                          "group mx-auto inline-flex items-center justify-center gap-4 font-accent text-4xl uppercase tracking-[0.16em] transition-colors lg:text-6xl",
+                          "group mx-auto inline-flex items-center justify-center gap-4 font-display text-4xl uppercase tracking-[0.16em] transition-colors lg:text-6xl",
                           active
                             ? "text-charcoal"
                             : "text-charcoal/70 hover:text-charcoal",
@@ -240,12 +240,12 @@ function DesktopFullscreenPanel({
                                     isActive(child.url) && "bg-white/70",
                                   )}
                                 >
-                                  <span className="block font-body text-sm uppercase tracking-[0.22em] text-charcoal">
+                                  <span className="block font-body text-xl uppercase tracking-[0.22em] text-charcoal">
                                     {child.title}
                                   </span>
 
                                   {child.description && (
-                                    <span className="mt-1 block font-body text-sm leading-relaxed text-muted">
+                                    <span className="mt-1 block font-body text-xl leading-relaxed text-muted">
                                       {child.description}
                                     </span>
                                   )}
@@ -265,7 +265,7 @@ function DesktopFullscreenPanel({
                       href={item.url}
                       onClick={onClose}
                       className={cn(
-                        "font-accent text-4xl uppercase tracking-[0.16em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold lg:text-6xl",
+                        "font-display text-4xl uppercase tracking-[0.16em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold lg:text-6xl",
                         active
                           ? "text-charcoal"
                           : "text-charcoal/70 hover:text-charcoal",
