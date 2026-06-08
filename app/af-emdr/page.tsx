@@ -1,9 +1,10 @@
 import { afEmdrFinalCtaContent } from "@/components/pages/af-emdr/afEmdrContent";
 import AfEmdrFaqSection from "@/components/pages/af-emdr/AfEmdrFaqSection";
 import AfEmdrHero from "@/components/pages/af-emdr/AfEmdrHero";
-import AfEmdrSpecialistSection from "@/components/pages/af-emdr/AfEmdrSpecialistSection";
+
 import AfEmdrComparisonSection from "@/components/pages/af-emdr/comparison/AfEmdrComparisonSection";
 import AfEmdrMethodSection from "@/components/pages/af-emdr/method-explanation/AfEmdrMethodIntro";
+import AfEmdrSpecialistSection from "@/components/pages/af-emdr/specialist/AfEmdrSpecialistSection";
 import AfEmdrSuitabilitySection from "@/components/pages/af-emdr/suitability/AfEmdrSuitabilitySection";
 import FinalCTA from "@/components/sections/FinalCTA";
 

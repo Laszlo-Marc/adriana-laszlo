@@ -125,8 +125,6 @@ export default function HomeProblemsDesktop() {
           <div className="mx-auto grid max-w-[92rem] grid-cols-[minmax(17rem,0.9fr)_minmax(420px,0.95fr)_minmax(17rem,0.9fr)] items-center gap-16 xl:gap-28 2xl:gap-32">
             {/* Left cues */}
             <div className="relative flex h-full min-h-[720px] items-center">
-              <CueColumnDecor side="left" />
-
               <div className="relative z-10 ml-auto flex w-full max-w-[18rem] -translate-y-6 flex-col justify-center space-y-20 pr-2">
                 {leftSigns.map((sign) => (
                   <ProblemCue
@@ -201,8 +199,6 @@ export default function HomeProblemsDesktop() {
 
             {/* Right cues */}
             <div className="relative flex h-full min-h-[720px] items-center">
-              <CueColumnDecor side="right" />
-
               <div className="relative z-10 mr-auto flex w-full max-w-[18rem] translate-y-6 flex-col justify-center space-y-20 pl-2">
                 {rightSigns.map((sign) => (
                   <ProblemCue

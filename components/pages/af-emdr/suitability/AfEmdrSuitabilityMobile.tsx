@@ -1,6 +1,5 @@
+import Heading from "@/components/ui/Heading";
 import Image from "next/image";
-
-import Text from "@/components/ui/Text";
 
 type SuitabilityPattern = {
   id: string;
@@ -21,53 +20,69 @@ export default function AfEmdrSuitabilityMobile({
 }: AfEmdrSuitabilityMobileProps) {
   return (
     <div className="lg:hidden">
-      <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6">
-        {patterns.map((pattern) => (
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          Tipare posibile
+        </p>
+
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-charcoal/35">
+          Glisează
+        </p>
+      </div>
+
+      <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 sm:-mx-6 sm:px-6">
+        {patterns.map((pattern, index) => (
           <article
             key={pattern.id}
-            className="min-w-[86%] snap-start overflow-hidden rounded-[2rem] border border-white/70 bg-white/55 shadow-[0_20px_70px_rgba(44,44,44,0.07)] sm:min-w-[70%]"
+            className="relative min-w-[88%] snap-start overflow-hidden rounded-[2rem]  sm:min-w-[72%]"
           >
-            <div className="relative h-80">
+            <div className="relative h-[27rem]">
               <Image
                 src={pattern.image}
                 alt={pattern.imageAlt}
                 fill
-                sizes="86vw"
+                sizes="88vw"
                 className="object-cover object-center"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/20 to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-charcoal/88 via-charcoal/42 to-charcoal/10"
               />
 
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/65">
-                  {pattern.label}
-                </p>
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-charcoal/28 to-transparent"
+              />
 
-                <h3 className="mt-3 text-balance text-3xl font-semibold leading-none text-white">
-                  {pattern.title}
-                </h3>
+              <div className="absolute inset-0 flex flex-col justify-end p-6">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm">
+                      {pattern.label}
+                    </span>
+                  </div>
+
+                  <Heading as="h3" size="h3" className="mt-4  text-white">
+                    {pattern.title}
+                  </Heading>
+
+                  <p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-white/76">
+                    {pattern.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {pattern.signs.map((sign) => (
+                      <span
+                        key={sign}
+                        className="rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-[0.7rem] font-medium text-white/72 backdrop-blur-sm"
+                      >
+                        {sign}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div className="p-6">
-              <Text size="sm" className="text-charcoal/68">
-                {pattern.description}
-              </Text>
-
-              <ul className="mt-5 space-y-3">
-                {pattern.signs.map((sign) => (
-                  <li
-                    key={sign}
-                    className="flex gap-3 text-sm leading-relaxed text-charcoal/65"
-                  >
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
-                    <span>{sign}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </article>
         ))}

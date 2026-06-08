@@ -10,8 +10,7 @@ import Section from "@/components/ui/Section";
 import { afEmdrHeroContent } from "./afEmdrContent";
 
 export default function AfEmdrHero() {
-  const { eyebrow, title, subtitle, description, primaryCta, media } =
-    afEmdrHeroContent;
+  const { eyebrow, title, subtitle, primaryCta, media } = afEmdrHeroContent;
 
   return (
     <Section
@@ -25,11 +24,11 @@ export default function AfEmdrHero() {
         fill
         priority
         sizes="100vw"
-        className="z-0 object-cover object-center md:hidden"
+        className="z-0 object-cover object-center"
       />
 
       <video
-        className="absolute inset-0 z-0 hidden size-full object-cover md:block"
+        className="absolute inset-0 z-[1] size-full object-cover"
         src={media.videoSrc}
         poster={media.posterSrc}
         autoPlay

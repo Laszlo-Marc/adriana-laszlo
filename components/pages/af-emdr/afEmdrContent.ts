@@ -200,10 +200,17 @@ export const afEmdrSpecialistContent = {
     "Specializare AF-EMDR",
     "Fondator Trauma Center",
     "Psihoterapeut integrativ",
+    "Trauma de atașament",
   ],
 
   quote:
     "În AF-EMDR, siguranța nu este o etapă secundară. Este baza care permite procesului să se desfășoare fără copleșire.",
+
+  testimonial: {
+    quote:
+      "Recomand cu caldura serviciile Adrianei Laszlo oricui isi doreste sa investeasca in propria sanatate mentala si emotionala. Profesionalismul, experienta si tehnica AF-EMDR pe care o foloseste fac o reala diferenta!",
+    author: "R.L. - Clientă",
+  },
 
   cta: {
     label: "Programează o consultație",
@@ -231,21 +238,6 @@ export const afEmdrFaqContent = {
       question: "Trebuie să povestesc trauma în detaliu?",
       answer:
         "Nu. AF-EMDR nu presupune să retrăiești totul în detaliu sau să forțezi povestirea experiențelor dureroase. Procesul este ghidat gradual, cu accent pe siguranță, resurse și reglare emoțională.",
-    },
-    {
-      question: "Se poate face AF-EMDR online?",
-      answer:
-        "În anumite situații, da. Potrivirea formatului online se stabilește în funcție de nevoile persoanei, nivelul de stabilitate emoțională și obiectivele terapiei.",
-    },
-    {
-      question: "Care este diferența dintre EMDR și AF-EMDR?",
-      answer:
-        "EMDR clasic lucrează frecvent cu experiențe traumatice specifice. AF-EMDR păstrează baza EMDR, dar adaugă un focus mai profund pe atașament, relația terapeutică, siguranță și tiparele relaționale formate în timp.",
-    },
-    {
-      question: "Cum știu dacă AF-EMDR mi se potrivește?",
-      answer:
-        "Cel mai simplu este să începi cu o discuție de clarificare. Împreună puteți explora ce te aduce în terapie, ce ai nevoie în acest moment și dacă AF-EMDR este o direcție potrivită pentru procesul tău.",
     },
   ],
 };

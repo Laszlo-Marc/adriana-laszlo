@@ -17,14 +17,6 @@ export default function HomeAboutSection() {
     >
       <div className="relative hidden lg:flex lg:min-h-screen lg:items-center">
         {/* subtle section-level ornaments */}
-        <Image
-          src="/backgrounds/double-df.png"
-          alt=""
-          aria-hidden="true"
-          width={420}
-          height={700}
-          className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden -translate-y-1/2 opacity-30 lg:block"
-        />
 
         <Image
           src="/backgrounds/df-teal-down.png"

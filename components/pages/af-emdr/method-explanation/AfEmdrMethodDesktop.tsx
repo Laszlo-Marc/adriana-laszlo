@@ -85,14 +85,6 @@ export default function AfEmdrMethodDesktop() {
             />
           </div>
 
-          {/* Oversized editorial word */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-semibold uppercase leading-none tracking-[-0.08em] text-charcoal/[0.035]"
-          >
-            ATAȘAMENT
-          </div>
-
           <Container
             size="wider"
             padding="default"
@@ -101,10 +93,6 @@ export default function AfEmdrMethodDesktop() {
             <div className="grid h-full grid-cols-[0.9fr_1.1fr] items-center gap-16 xl:gap-24">
               {/* Left fixed explanation */}
               <div className="max-w-2xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/45">
-                  {chapter}
-                </p>
-
                 <Heading
                   id="af-emdr-method-title"
                   as="h2"

@@ -7,9 +7,9 @@ import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 
-import { afEmdrSpecialistContent } from "./afEmdrContent";
+import { afEmdrSpecialistContent } from "../afEmdrContent";
 
-export default function AfEmdrSpecialistSection() {
+export default function AfEmdrSpecialistDesktop() {
   const {
     chapter,
     eyebrow,
@@ -26,19 +26,19 @@ export default function AfEmdrSpecialistSection() {
     <Section
       aria-labelledby="af-emdr-specialist-title"
       background="cream"
-      spacing="lg"
-      className="relative overflow-hidden lg:py-28"
+      spacing="xl"
+      className="relative hidden overflow-hidden lg:block"
     >
       <Container size="wider" padding="default">
-        <div className="grid items-center gap-9 lg:grid-cols-[1.12fr_0.88fr] lg:gap-20 xl:gap-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:gap-20 xl:gap-24">
           {/* Image composition */}
-          <div className="relative lg:min-h-[42rem]">
-            <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[5/4] lg:h-[42rem] lg:aspect-auto">
+          <div className="relative min-h-[42rem]">
+            <div className="relative h-[42rem] overflow-hidden">
               <Image
                 src={images.atmosphere.src}
                 alt={images.atmosphere.alt}
                 fill
-                sizes="(min-width: 1024px) 58vw, 100vw"
+                sizes="58vw"
                 className="object-cover object-center"
               />
 
@@ -52,13 +52,14 @@ export default function AfEmdrSpecialistSection() {
                 className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-cream/45 to-transparent"
               />
             </div>
-            <div className="absolute bottom-4 right-4 w-[52%] max-w-[16rem] overflow-hidden rounded-[0.75rem] shadow-[0_20px_60px_rgba(44,44,44,0.16)] sm:bottom-8 sm:right-10 sm:max-w-[21rem] lg:-right-10 lg:bottom-16">
+
+            <div className="absolute -right-10 bottom-16 w-[58%] max-w-[21rem] overflow-hidden rounded-[0.75rem] shadow-[0_24px_80px_rgba(44,44,44,0.18)]">
               <div className="relative aspect-3/4">
                 <Image
                   src={images.portrait.src}
                   alt={images.portrait.alt}
                   fill
-                  sizes="(min-width: 1024px) 22vw, 52vw"
+                  sizes="22vw"
                   className="object-cover object-center"
                 />
               </div>
@@ -66,7 +67,7 @@ export default function AfEmdrSpecialistSection() {
 
             <div
               aria-hidden="true"
-              className="absolute bottom-20 right-[38%] hidden size-24 items-center justify-center rounded-full bg-cream text-5xl font-semibold text-charcoal shadow-[0_18px_50px_rgba(44,44,44,0.08)] lg:flex"
+              className="absolute bottom-20 right-[38%] flex size-24 items-center justify-center rounded-full bg-cream text-5xl font-semibold text-charcoal shadow-[0_18px_50px_rgba(44,44,44,0.08)]"
             >
               <span className="font-accent text-teal">A</span>
             </div>
@@ -78,7 +79,7 @@ export default function AfEmdrSpecialistSection() {
               {chapter}
             </p>
 
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.28em] text-gold lg:mt-5">
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
               {eyebrow}
             </p>
 
@@ -86,46 +87,39 @@ export default function AfEmdrSpecialistSection() {
               id="af-emdr-specialist-title"
               as="h2"
               size="h3"
-              className="mt-4 text-balance text-charcoal lg:mt-5"
+              className="mt-5 text-balance text-charcoal"
             >
               {title}
             </Heading>
 
-            <Text className="mt-5 text-pretty text-charcoal/70 lg:hidden">
-              Adriana integrează formarea în AF-EMDR cu experiența în lucrul cu
-              trauma de atașament, într-un cadru blând, clar și sigur.
-            </Text>
-
-            <Text className="mt-7 hidden max-w-lg text-pretty text-charcoal/70 lg:block">
+            <Text className="mt-7 max-w-lg text-pretty text-charcoal/70">
               {description}
             </Text>
 
-            <div className="mt-7 border-y border-charcoal/10 py-5 lg:mt-8 lg:py-6">
-              <div className="flex snap-x gap-3 overflow-x-auto no-scrollbar lg:block lg:space-y-4">
-                {credentials.map((credential) => (
-                  <div
-                    key={credential}
-                    className="flex min-w-max snap-start items-center gap-3 text-xs font-medium uppercase tracking-[0.14em] text-charcoal/58 lg:min-w-0 lg:text-sm lg:tracking-[0.16em]"
-                  >
-                    <span className="h-px w-6 bg-gold/60 lg:w-8" />
-                    <span>{credential}</span>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-8 space-y-4 border-y border-charcoal/10 py-6">
+              {credentials.map((credential) => (
+                <div
+                  key={credential}
+                  className="flex items-center gap-4 text-sm font-medium uppercase tracking-[0.16em] text-charcoal/58"
+                >
+                  <span className="h-px w-8 bg-gold/60" />
+                  <span>{credential}</span>
+                </div>
+              ))}
             </div>
 
-            <blockquote className="mt-6 lg:mt-8">
-              <p className="text-pretty text-base font-medium leading-relaxed text-charcoal lg:text-xl">
+            <blockquote className="mt-8">
+              <p className="text-pretty text-xl font-medium leading-relaxed text-charcoal">
                 „{quote}”
               </p>
             </blockquote>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center lg:mt-9">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button variant="primary">
                 <Link href={cta.href}>{cta.label}</Link>
               </Button>
 
-              <Button variant="outline" className="hidden lg:inline-flex">
+              <Button variant="outline">
                 <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
               </Button>
             </div>

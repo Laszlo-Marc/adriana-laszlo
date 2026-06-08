@@ -14,79 +14,88 @@ export default function AfEmdrMethodMobile() {
     <Section
       id="cum-functioneaza-mobile"
       background="cream"
-      spacing="lg"
+      spacing="sm"
       className="relative overflow-hidden lg:hidden"
     >
-      <Container padding="default">
-        <p className="text-xs font-semibold uppercase tracking-[0.26em] text-charcoal/45">
-          {chapter}
-        </p>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2 text-[34vw] font-semibold uppercase leading-none tracking-[-0.08em] text-charcoal/[0.035]"
+      >
+        ATAȘAMENT
+      </div>
 
-        <Heading as="h2" size="h2" className="mt-5 text-balance text-charcoal">
+      <Container padding="default" className="relative z-10">
+        <Heading
+          as="h2"
+          size="h2"
+          className="mt-5 text-balance text-charcoal"
+          align="center"
+        >
           {eyebrow}
         </Heading>
 
-        <p className="mt-4 text-balance font-display text-3xl leading-[1.05] text-charcoal">
-          {title}
-        </p>
+        <Text className="mt-5 text-pretty text-charcoal/70" align="center">
+          {lead}
+        </Text>
 
-        <Text className="mt-5 text-pretty text-charcoal/70">{lead}</Text>
-
-        <div className="mt-8 rounded-[2rem] border border-white/70 bg-teal/15 p-6">
-          <p className="text-balance text-2xl font-medium leading-snug text-charcoal">
+        <div className="mt-8 border-l border-gold/45 pl-5">
+          <p className="text-balance text-xl font-medium leading-snug text-charcoal">
             {thesis}
           </p>
 
-          <Text size="sm" className="mt-4 text-charcoal/65">
+          <Text size="sm" className="mt-4 text-charcoal/62">
             {note}
           </Text>
         </div>
 
-        <div className="mt-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-            Cum funcționează
-          </p>
+        <div className="mt-11">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+              Cum funcționează
+            </p>
 
-          <div className="-mx-4 mt-5 flex snap-x gap-4 overflow-x-auto px-4 pb-4">
-            {steps.map((step) => (
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-charcoal/35">
+              Glisează
+            </p>
+          </div>
+
+          <div className="-mx-4 mt-6 flex snap-x gap-4 overflow-x-auto px-4 pb-5">
+            {steps.map((step, index) => (
               <article
                 key={step.title}
-                className="min-w-[84%] snap-start overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 shadow-[0_18px_55px_rgba(44,44,44,0.06)]"
+                className="min-w-[86%] snap-start  p-5 "
               >
-                <div className="relative h-72">
-                  <Image
-                    src={step.image}
-                    alt={step.imageAlt}
-                    fill
-                    sizes="85vw"
-                    className="object-cover object-center"
-                  />
+                <div className="grid grid-cols-[4.75rem_1fr] gap-4">
+                  <div className="relative mt-1 size-[4.75rem] overflow-hidden rounded-2xl bg-sand/20">
+                    <Image
+                      src={step.image}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      sizes="76px"
+                      className="object-cover object-center"
+                    />
 
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/15 to-transparent"
-                  />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-charcoal/20"
+                    />
+                  </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
-                      {step.label}
-                    </p>
-
-                    <h3 className="mt-2 text-3xl font-semibold leading-none text-white">
+                  <div>
+                    <h3 className="mt-2 text-balance text-xl font-semibold leading-tight text-charcoal">
                       {step.title}
                     </h3>
+
+                    <p className="mt-2 text-pretty text-base font-medium leading-snug text-charcoal/78">
+                      {step.subtitle}
+                    </p>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <p className="text-lg font-medium leading-snug text-charcoal">
-                    {step.subtitle}
-                  </p>
-
-                  <Text size="sm" className="mt-3 text-charcoal/65">
-                    {step.description}
-                  </Text>
-                </div>
+                <Text size="sm" className="mt-4 text-charcoal/62">
+                  {step.description}
+                </Text>
               </article>
             ))}
           </div>

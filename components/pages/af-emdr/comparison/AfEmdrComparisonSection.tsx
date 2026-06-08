@@ -47,10 +47,6 @@ export default function AfEmdrComparisonSection() {
 
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/45">
-            {chapter}
-          </p>
-
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
             {eyebrow}
           </p>
@@ -88,17 +84,6 @@ export default function AfEmdrComparisonSection() {
         {/* Mobile tabs */}
         <div className="mt-10">
           <AfEmdrComparisonMobileTabs items={items} />
-        </div>
-
-        {/* Bottom insight */}
-        <div className="mx-auto mt-12 max-w-4xl rounded-[2rem] border border-gold/20 bg-sand/20 px-6 py-7 text-center shadow-[0_18px_60px_rgba(44,44,44,0.04)] sm:px-10 lg:mt-16">
-          <Text
-            className="mx-auto max-w-3xl text-pretty leading-relaxed text-charcoal/78"
-            align="center"
-            size="lg"
-          >
-            {insight}
-          </Text>
         </div>
       </Container>
     </Section>

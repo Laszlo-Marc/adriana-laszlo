@@ -46,26 +46,21 @@ export default function AfEmdrSuitabilitySection() {
       <Container size="full" padding="lg" className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-16 xl:gap-20">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/45">
-              {chapter}
-            </p>
-
-            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
-              {eyebrow}
-            </p>
-
             <Heading
               id="af-emdr-suitability-title"
               as="h2"
-              size="h3"
-              font="body"
-              textCase="none"
-              className="mt-5 text-balance text-charcoal"
+              size="h2"
+              font="display"
+              className="mt-5 text-balance lg:text-left"
+              align="center"
             >
-              {title}
+              {eyebrow}
             </Heading>
 
-            <Text className="mt-6 max-w-xl text-pretty text-charcoal/70">
+            <Text
+              className="mt-6 max-w-xl text-pretty text-charcoal/70 lg:text-left"
+              align="center"
+            >
               {lead}
             </Text>
 

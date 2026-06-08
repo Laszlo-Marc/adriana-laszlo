@@ -14,7 +14,7 @@ export default function HomePage() {
     <main id="main">
       <Hero />
       <HomeProblemsSection />
-      <HomeTrustStrip />
+
       <HomeAboutTeaser />
       <ServicesTeaserSection />
       <TestimonialsStack items={testimonialItems} />

@@ -47,6 +47,14 @@ html {
   overflow-x: clip;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 body {
   font-family: var(--font-body);
   color: var(--color-charcoal);

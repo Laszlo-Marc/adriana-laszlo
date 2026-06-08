@@ -77,16 +77,6 @@ export default function EducationMethodDesktopSection() {
             />
           </div>
 
-          {/* Brand ornaments */}
-          <Image
-            src="/backgrounds/single.png"
-            alt=""
-            aria-hidden="true"
-            width={360}
-            height={620}
-            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 rotate-[8deg] opacity-[0.1]"
-          />
-
           <Image
             src="/backgrounds/df-teal-down.png"
             alt=""
