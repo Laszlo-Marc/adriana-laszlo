@@ -6,6 +6,8 @@ import {
   type ReactNode,
 } from "react";
 
+import { cn } from "@/lib/utils";
+
 type SectionBg =
   | "cream"
   | "white"
@@ -21,7 +23,6 @@ type SectionSpacing = "none" | "sm" | "md" | "lg" | "xl";
 
 type BackgroundImage = {
   src: string | StaticImageData;
-  alt?: string;
   priority?: boolean;
   className?: string;
   overlayClassName?: string;
@@ -88,8 +89,8 @@ const Section = forwardRef<HTMLElement, SectionProps>(function Section(
     spacingBottom,
     backgroundImage,
     children,
-    className = "",
-    innerClassName = "",
+    className,
+    innerClassName,
     allowOverflow = false,
     ...rest
   },
@@ -99,48 +100,47 @@ const Section = forwardRef<HTMLElement, SectionProps>(function Section(
 
   const spacingClass =
     spacingTop || spacingBottom
-      ? `${spacingT[spacingTop ?? spacing]} ${
-          spacingB[spacingBottom ?? spacing]
-        }`
+      ? cn(spacingT[spacingTop ?? spacing], spacingB[spacingBottom ?? spacing])
       : spacingY[spacing];
 
   return (
     <Component
       ref={ref}
-      className={`
-        relative isolate ${allowOverflow ? "overflow-visible" : "overflow-hidden"}
-        ${bgStyles[background]}
-        ${spacingClass}
-        ${className}
-      `}
+      className={cn(
+        "relative isolate",
+        allowOverflow ? "overflow-visible" : "overflow-hidden",
+        bgStyles[background],
+        spacingClass,
+        className,
+      )}
       {...rest}
     >
-      {backgroundImage && (
+      {backgroundImage ? (
         <>
           <Image
             src={backgroundImage.src}
-            alt={backgroundImage.alt ?? ""}
+            alt=""
             fill
             priority={backgroundImage.priority}
             sizes="100vw"
-            aria-hidden={backgroundImage.alt ? undefined : true}
-            className={`
-              pointer-events-none absolute inset-0 -z-20 object-cover
-              ${backgroundImage.className ?? ""}
-            `}
+            aria-hidden="true"
+            className={cn(
+              "pointer-events-none absolute inset-0 -z-20 object-cover",
+              backgroundImage.className,
+            )}
           />
 
           <div
             aria-hidden="true"
-            className={`
-              pointer-events-none absolute inset-0 -z-10
-              ${backgroundImage.overlayClassName ?? "bg-cream/70"}
-            `}
+            className={cn(
+              "pointer-events-none absolute inset-0 -z-10",
+              backgroundImage.overlayClassName ?? "bg-cream/70",
+            )}
           />
         </>
-      )}
+      ) : null}
 
-      <div className={`relative z-10 ${innerClassName}`}>{children}</div>
+      <div className={cn("relative z-10", innerClassName)}>{children}</div>
     </Component>
   );
 });

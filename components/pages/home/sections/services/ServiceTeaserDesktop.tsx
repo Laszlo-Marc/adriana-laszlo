@@ -30,12 +30,6 @@ export default function ServicesTeaserDesktop() {
         className="pointer-events-none absolute left-[10%] top-10 z-0 rotate-[10deg] opacity-40"
       />
 
-      {/* very soft atmosphere behind accordion */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[58%] z-0 h-96 w-96 -translate-x-1/2 rounded-full bg-teal/10 blur-3xl"
-      />
-
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-none text-center">
           <Heading

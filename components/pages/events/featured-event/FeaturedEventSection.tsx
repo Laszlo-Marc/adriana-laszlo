@@ -65,7 +65,28 @@ export default function FeaturedEventSection() {
                 {featuredEvent.description}
               </Text>
 
-              <div className="mt-10 grid min-w-0 gap-6 sm:grid-cols-2">
+              {/* Mobile facts carousel */}
+              <div className="-mx-4 mt-9 overflow-x-auto px-4 pb-4 sm:hidden">
+                <div className="flex snap-x snap-mandatory gap-3">
+                  {featuredEvent.facts.map((fact) => (
+                    <div
+                      key={fact.label}
+                      className="min-h-[8.75rem] w-[72vw] max-w-[17rem] shrink-0 snap-center rounded-[1.5rem] border border-white/70 bg-white/55 px-5 py-5 text-center "
+                    >
+                      <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold">
+                        {fact.label}
+                      </p>
+
+                      <p className="mt-3 text-base leading-relaxed text-charcoal/78">
+                        {fact.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Desktop / tablet facts grid */}
+              <div className="mt-10 hidden min-w-0 gap-6 sm:grid sm:grid-cols-2">
                 {featuredEvent.facts.map((fact) => (
                   <div
                     key={fact.label}

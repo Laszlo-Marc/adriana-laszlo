@@ -2,28 +2,28 @@ import type { ServiceItem } from "./types";
 
 export const services: ServiceItem[] = [
   {
-    id: "individuala",
-    title: "Psihoterapie individuală",
-    subtitle: "Spațiu sigur pentru claritate, echilibru și schimbare reală.",
-    href: "/servicii#psihoterapie-individuala",
-    label: "Individual",
+    id: "events",
+    title: "Evenimente și workshopuri",
+    subtitle: "Oportunități de învățare și dezvoltare personală.",
+    href: "/servicii#evenimente",
+    label: "Evenimente",
     image: {
-      src: "/home-page/services/individual.jpg",
-      alt: "Ședință de psihoterapie individuală într-un cabinet calm și luminos",
+      src: "/home-page/services/events.jpg",
+      alt: "Evenimente și workshopuri de dezvoltare personală",
     },
     mobile: {
       description:
-        "Un spațiu terapeutic sigur în care poți înțelege ce se întâmplă în interiorul tău, poți lucra cu emoțiile dificile și poți construi mai multă claritate, echilibru și încredere.",
-      ctaLabel: "Află mai multe",
+        "Evenimente și workshopuri dedicate înțelegerii emoțiilor, relațiilor, traumei și dezvoltării personale într-un cadru ghidat și profesionist.",
+      ctaLabel: "Vezi evenimentele",
     },
     accent: {
-      overlayActive: "from-teal/78 via-teal/34 to-transparent",
-      overlayInactive: "from-teal/72 via-teal/26 to-transparent",
-      borderActive: "border-teal/40",
-      pillBg: "bg-teal/70",
-      pillText: "text-white",
-      mobileRow: "bg-teal/50",
-      mobileRowActive: "bg-teal",
+      overlayActive: "from-purple/72 via-purple/28 to-transparent",
+      overlayInactive: "from-purple/66 via-purple/20 to-transparent",
+      borderActive: "border-purple/45",
+      pillBg: "bg-purple/85",
+      pillText: "text-charcoal",
+      mobileRow: "bg-purple/50",
+      mobileRowActive: "bg-purple",
     },
   },
   {
@@ -53,6 +53,32 @@ export const services: ServiceItem[] = [
     },
   },
   {
+    id: "individuala",
+    title: "Psihoterapie individuală",
+    subtitle: "Spațiu sigur pentru claritate, echilibru și schimbare reală.",
+    href: "/servicii#psihoterapie-individuala",
+    label: "Individual",
+    image: {
+      src: "/home-page/services/individual.jpg",
+      alt: "Ședință de psihoterapie individuală într-un cabinet calm și luminos",
+    },
+    mobile: {
+      description:
+        "Un spațiu terapeutic sigur în care poți înțelege ce se întâmplă în interiorul tău, poți lucra cu emoțiile dificile și poți construi mai multă claritate, echilibru și încredere.",
+      ctaLabel: "Află mai multe",
+    },
+    accent: {
+      overlayActive: "from-teal/78 via-teal/34 to-transparent",
+      overlayInactive: "from-teal/72 via-teal/26 to-transparent",
+      borderActive: "border-teal/40",
+      pillBg: "bg-teal/70",
+      pillText: "text-white",
+      mobileRow: "bg-teal/50",
+      mobileRowActive: "bg-teal",
+    },
+  },
+
+  {
     id: "online",
     title: "Psihoterapie online",
     subtitle: "Sprijin terapeutic flexibil, de oriunde te afli.",
@@ -75,31 +101,6 @@ export const services: ServiceItem[] = [
       pillText: "text-charcoal",
       mobileRow: "bg-[#94d6c8]/50",
       mobileRowActive: "bg-[#94d6c8]",
-    },
-  },
-  {
-    id: "events",
-    title: "Evenimente și workshopuri",
-    subtitle: "Oportunități de învățare și dezvoltare personală.",
-    href: "/servicii#evenimente",
-    label: "Evenimente",
-    image: {
-      src: "/home-page/services/events.jpg",
-      alt: "Evenimente și workshopuri de dezvoltare personală",
-    },
-    mobile: {
-      description:
-        "Evenimente și workshopuri dedicate înțelegerii emoțiilor, relațiilor, traumei și dezvoltării personale într-un cadru ghidat și profesionist.",
-      ctaLabel: "Vezi evenimentele",
-    },
-    accent: {
-      overlayActive: "from-purple/72 via-purple/28 to-transparent",
-      overlayInactive: "from-purple/66 via-purple/20 to-transparent",
-      borderActive: "border-purple/45",
-      pillBg: "bg-purple/85",
-      pillText: "text-charcoal",
-      mobileRow: "bg-purple/50",
-      mobileRowActive: "bg-purple",
     },
   },
 ];

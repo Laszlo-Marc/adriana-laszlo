@@ -8,7 +8,7 @@ import { ChevronDown, Mail, Menu, MessageCircle, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
-import { NavbarItem } from "../data";
+import { NavbarItem, WHATSAPP_HREF } from "../../navigation-data";
 
 type DesktopNavbarProps = {
   isOpen: boolean;
@@ -68,8 +68,8 @@ const DesktopNavbar = function DesktopNavbar({
 }: DesktopNavbarProps) {
   return (
     <div className="hidden h-20 items-center justify-between xl:flex lg:h-30">
-      <div className="relative z-[131]">
-        <Logo size="sm" />
+      <div className="relative z-131">
+        <Logo size="lg" />
       </div>
 
       <button
@@ -78,7 +78,7 @@ const DesktopNavbar = function DesktopNavbar({
         aria-expanded={isOpen}
         aria-controls="desktop-fullscreen-menu"
         onClick={() => onOpenChange(!isOpen)}
-        className="relative z-[131] inline-flex h-12 w-12 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-charcoal/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+        className="relative z-131 inline-flex h-12 w-12 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-charcoal/5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-gold"
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
@@ -164,7 +164,7 @@ function DesktopFullscreenPanel({
             duration: 0.35,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="fixed inset-0 z-[100] hidden overflow-y-auto bg-cream text-charcoal xl:block"
+          className="fixed inset-0 z-100 hidden overflow-y-auto bg-cream text-charcoal xl:block"
         >
           <div className="relative flex min-h-svh flex-col px-8 pb-12 pt-28 lg:px-16 lg:pt-36">
             <motion.nav
@@ -180,9 +180,9 @@ function DesktopFullscreenPanel({
                   isActive(child.url),
                 );
                 const active = isActive(item.url) || childIsActive;
-
                 if (hasChildren) {
                   const isDropdownOpen = openDropdownId === item.id;
+                  const dropdownId = `desktop-dropdown-${item.id}`;
 
                   return (
                     <motion.div
@@ -190,36 +190,51 @@ function DesktopFullscreenPanel({
                       variants={itemVariants}
                       className="w-full"
                     >
-                      <button
-                        type="button"
-                        aria-expanded={isDropdownOpen}
-                        onClick={() =>
-                          setOpenDropdownId((current) =>
-                            current === item.id ? null : item.id,
-                          )
-                        }
-                        className={cn(
-                          "group mx-auto inline-flex items-center justify-center gap-4 font-display text-4xl uppercase tracking-[0.16em] transition-colors lg:text-6xl",
-                          active
-                            ? "text-charcoal"
-                            : "text-charcoal/70 hover:text-charcoal",
-                        )}
-                      >
-                        <span>{item.title}</span>
-
-                        <ChevronDown
-                          size={34}
-                          strokeWidth={1.3}
+                      <div className="mx-auto inline-flex items-center justify-center gap-4">
+                        <Link
+                          href={item.url}
+                          onClick={onClose}
                           className={cn(
-                            "transition-transform duration-300",
-                            isDropdownOpen && "rotate-180",
+                            "font-display text-4xl uppercase tracking-[0.16em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold lg:text-6xl",
+                            active
+                              ? "text-charcoal"
+                              : "text-charcoal/70 hover:text-charcoal",
                           )}
-                        />
-                      </button>
+                        >
+                          {item.title}
+                        </Link>
+
+                        <button
+                          type="button"
+                          aria-label={
+                            isDropdownOpen
+                              ? `Închide submeniul ${item.title}`
+                              : `Deschide submeniul ${item.title}`
+                          }
+                          aria-expanded={isDropdownOpen}
+                          aria-controls={dropdownId}
+                          onClick={() =>
+                            setOpenDropdownId((current) =>
+                              current === item.id ? null : item.id,
+                            )
+                          }
+                          className="inline-flex h-12 w-12 items-center justify-center rounded-full text-charcoal/80 transition-colors hover:bg-charcoal/5 hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                        >
+                          <ChevronDown
+                            size={34}
+                            strokeWidth={1.3}
+                            className={cn(
+                              "transition-transform duration-300",
+                              isDropdownOpen && "rotate-180",
+                            )}
+                          />
+                        </button>
+                      </div>
 
                       <AnimatePresence initial={false}>
                         {isDropdownOpen && (
                           <motion.div
+                            id={dropdownId}
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -236,7 +251,7 @@ function DesktopFullscreenPanel({
                                   href={child.url}
                                   onClick={onClose}
                                   className={cn(
-                                    "group block rounded-2xl px-5 py-4 transition-colors hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
+                                    "group block rounded-2xl px-5 py-4 transition-colors hover:bg-white/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
                                     isActive(child.url) && "bg-white/70",
                                   )}
                                 >
@@ -265,7 +280,7 @@ function DesktopFullscreenPanel({
                       href={item.url}
                       onClick={onClose}
                       className={cn(
-                        "font-display text-4xl uppercase tracking-[0.16em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold lg:text-6xl",
+                        "font-display text-4xl uppercase tracking-[0.16em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold lg:text-6xl",
                         active
                           ? "text-charcoal"
                           : "text-charcoal/70 hover:text-charcoal",
@@ -299,7 +314,7 @@ function DesktopFullscreenPanel({
               </Button>
 
               <Button
-                href="/contact"
+                href={WHATSAPP_HREF}
                 variant="purple"
                 size="lg"
                 leftIcon={<MessageCircle size={18} />}

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
@@ -14,28 +12,33 @@ export default function EventsHero() {
       className="relative min-h-[100svh] overflow-hidden bg-cream"
       spacing="none"
     >
-      <Image
-        src="/events/events-hero.jpg"
-        alt="Spațiu de terapie de grup cu scaune așezate în cerc"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+      {/* Background video */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/events/events-hero-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="/events/events-bg.mp4" type="video/mp4" />
+      </video>
 
-      {/* Soft cream wash over image */}
-      <div aria-hidden="true" className="absolute inset-0 bg-cream/35" />
+      {/* Soft cream wash over video */}
+      <div aria-hidden="true" className="absolute inset-0 bg-cream/40" />
 
       {/* Cream readability gradient */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,250,242,0.78)_0%,rgba(255,250,242,0.62)_36%,rgba(255,250,242,0.38)_68%,rgba(255,250,242,0.18)_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,250,242,0.82)_0%,rgba(255,250,242,0.68)_36%,rgba(255,250,242,0.42)_68%,rgba(255,250,242,0.24)_100%)]"
       />
 
       {/* Stronger bottom fade into next section */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-cream via-cream/75 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-cream via-cream/80 to-transparent"
       />
 
       <Container
@@ -49,9 +52,9 @@ export default function EventsHero() {
             as="h1"
             size="display"
             align="center"
-            className="text-charcoal"
+            className="text-charcoal text-[clamp(4rem,8vw,4rem)] lg:text-[clamp(7rem,8vw,7rem)]"
           >
-            <AccentText>Evenimente · Grupuri · Ateliere</AccentText>
+            <AccentText>Evenimente Grupuri Ateliere</AccentText>
           </Heading>
 
           <Text

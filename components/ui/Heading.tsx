@@ -11,6 +11,7 @@ type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 type HeadingSize = "display" | "h1" | "h2" | "h3" | "h4" | "h5" | "eyebrow";
 
 type HeadingAlign = "left" | "center" | "right";
+
 type HeadingColor =
   | "charcoal"
   | "cream"
@@ -81,7 +82,7 @@ const fontStyles: Record<HeadingFont, string> = {
   display: "font-display",
   body: "font-body",
   accent: "font-accent",
-  inherit: "font-inherit",
+  inherit: "font-[inherit]",
 };
 
 const weightStyles: Record<HeadingWeight, string> = {
@@ -89,7 +90,7 @@ const weightStyles: Record<HeadingWeight, string> = {
   medium: "font-medium",
   semibold: "font-semibold",
   bold: "font-bold",
-  inherit: "font-inherit",
+  inherit: "font-[inherit]",
 };
 
 const trackingStyles: Record<HeadingTracking, string> = {
@@ -116,8 +117,7 @@ export default function Heading({
   const resolvedFont: HeadingFont =
     font ?? (size === "eyebrow" ? "body" : "display");
 
-  const resolvedWeight: HeadingWeight =
-    weight ?? (size === "eyebrow" ? "medium" : "medium");
+  const resolvedWeight: HeadingWeight = weight ?? "medium";
 
   const resolvedCase: HeadingCase =
     textCase ?? (size === "eyebrow" ? "uppercase" : "none");

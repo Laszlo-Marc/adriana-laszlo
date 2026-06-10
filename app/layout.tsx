@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Cinzel, Poppins } from "next/font/google";
 import "./globals.css";
-
 import Footer from "@/components/layout/footer";
 import { Allura } from "next/font/google";
-import PageTransition from "@/components/layout/PageTransition";
 import Navbar from "@/components/layout/navbar/Navbar";
 
 const allura = Allura({
@@ -68,9 +66,9 @@ export default function RootLayout({
     >
       <body>
         <Navbar />
-        <PageTransition>
-          <main>{children}</main>
-        </PageTransition>
+
+        <main>{children}</main>
+
         <Footer />
       </body>
     </html>

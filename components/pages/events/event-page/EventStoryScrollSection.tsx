@@ -3,7 +3,9 @@
 import Image from "next/image";
 
 import Button from "@/components/ui/Button";
-import FlowArt, { FlowSection } from "@/components/ui/story-scroll";
+import FlowArt, {
+  FlowSection,
+} from "@/components/pages/events/event-page/story-scroll";
 import type { EventDetail, EventStoryChapter } from "./eventData";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";

@@ -6,6 +6,7 @@ import AfEmdrComparisonSection from "@/components/pages/af-emdr/comparison/AfEmd
 import AfEmdrMethodSection from "@/components/pages/af-emdr/method-explanation/AfEmdrMethodIntro";
 import AfEmdrSpecialistSection from "@/components/pages/af-emdr/specialist/AfEmdrSpecialistSection";
 import AfEmdrSuitabilitySection from "@/components/pages/af-emdr/suitability/AfEmdrSuitabilitySection";
+import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function AfEmdrPage() {
       <AfEmdrComparisonSection />
       <AfEmdrSuitabilitySection />
       <AfEmdrSpecialistSection />
+      <DownloadResourcesSection />
       <AfEmdrFaqSection />
 
       <FinalCTA

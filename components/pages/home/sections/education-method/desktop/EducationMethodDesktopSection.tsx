@@ -6,30 +6,8 @@ import { useInView } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { MethodImagePanel } from "./MethodImagePanel";
 import { MethodTextPanel } from "./MethodTextPanel";
-import { methodSteps } from "./data";
-
-function ScrollStepTrigger({
-  index,
-  onActive,
-}: {
-  index: number;
-  onActive: (index: number) => void;
-}) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const isInView = useInView(ref, {
-    margin: "-45% 0px -45% 0px",
-    amount: "some",
-  });
-
-  useEffect(() => {
-    if (isInView) {
-      onActive(index);
-    }
-  }, [index, isInView, onActive]);
-
-  return <div ref={ref} className="h-svh" />;
-}
+import { methodSteps } from "../data";
+import { ScrollStepTrigger } from "../ScrollStepTrigger";
 
 export default function EducationMethodDesktopSection() {
   const [activeIndex, setActiveIndex] = useState(0);

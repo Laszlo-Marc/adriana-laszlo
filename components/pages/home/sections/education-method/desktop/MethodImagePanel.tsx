@@ -2,7 +2,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
-import { MethodStep } from "./data";
+import { MethodStep } from "../data";
 
 export function MethodImagePanel({
   step,

@@ -19,7 +19,7 @@ export default function BlogPage() {
     <>
       <BlogHero />
       <BlogPostsCarousel posts={featuredBlogPosts} />
-      <DownloadResourcesSection />
+
       <BlogSocialSection />
       <FinalCTA
         title="Uneori, un articol deschide o întrebare mai profundă."

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import DesktopNavbar from "./desktop/DesktopNavbar";
-import { navItems } from "./data";
+import { navItems } from "../navigation-data";
 import MobileNavbar from "./mobile/MobileNavbar";
 
 type NavbarProps = {
@@ -27,18 +27,20 @@ export default function Navbar({ className }: NavbarProps) {
     const previous = previousScrollY.current;
     const scrollingDown = latest > previous;
 
-    setIsScrolled(latest > 40);
+    const nextIsScrolled = latest > 40;
+    const nextIsHidden =
+      !isMobileMenuOpen && !isDesktopMenuOpen && scrollingDown && latest > 140;
 
-    if (isMobileMenuOpen || isDesktopMenuOpen) {
-      setIsHidden(false);
-      previousScrollY.current = latest;
-      return;
-    }
+    setIsScrolled((current) =>
+      current === nextIsScrolled ? current : nextIsScrolled,
+    );
 
-    setIsHidden(scrollingDown && latest > 140);
+    setIsHidden((current) =>
+      current === nextIsHidden ? current : nextIsHidden,
+    );
+
     previousScrollY.current = latest;
   });
-
   React.useEffect(() => {
     if (isMobileMenuOpen || isDesktopMenuOpen) {
       setIsHidden(false);

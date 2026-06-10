@@ -8,7 +8,12 @@ import { FaWhatsapp } from "react-icons/fa";
 
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { NavbarItem, PHONE_DISPLAY, PHONE_HREF, WHATSAPP_HREF } from "../data";
+import {
+  NavbarItem,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  WHATSAPP_HREF,
+} from "../../navigation-data";
 
 const panelVariants: Variants = {
   closed: {
@@ -117,39 +122,58 @@ export function FullscreenPanel({
                 const isDropdownOpen = openDropdownId === item.id;
 
                 if (hasChildren) {
+                  const dropdownId = `mobile-dropdown-${item.id}`;
+
                   return (
                     <motion.div
                       key={item.id}
                       variants={itemVariants}
                       className="border-b border-border"
                     >
-                      <button
-                        type="button"
-                        aria-expanded={isDropdownOpen}
-                        onClick={() =>
-                          setOpenDropdownId((current) =>
-                            current === item.id ? null : item.id,
-                          )
-                        }
+                      <div
                         className={cn(
-                          "group flex min-h-18 w-full items-center justify-between gap-4 text-left font-display text-2xl uppercase tracking-wide transition-colors",
+                          "group flex min-h-18 w-full items-center justify-between gap-4 transition-colors",
                           active ? "text-gold" : "text-charcoal",
                         )}
                       >
-                        <span>{item.title}</span>
+                        <Link
+                          href={item.url}
+                          onClick={handleClose}
+                          className="flex min-h-18 flex-1 items-center font-display text-2xl uppercase tracking-wide focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        >
+                          {item.title}
+                        </Link>
 
-                        <ChevronDown
-                          aria-hidden="true"
-                          className={cn(
-                            "size-5 shrink-0 transition-transform duration-300",
-                            isDropdownOpen && "rotate-180",
-                          )}
-                        />
-                      </button>
+                        <button
+                          type="button"
+                          aria-label={
+                            isDropdownOpen
+                              ? `Închide submeniul ${item.title}`
+                              : `Deschide submeniul ${item.title}`
+                          }
+                          aria-expanded={isDropdownOpen}
+                          aria-controls={dropdownId}
+                          onClick={() =>
+                            setOpenDropdownId((current) =>
+                              current === item.id ? null : item.id,
+                            )
+                          }
+                          className="flex size-12 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/50 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        >
+                          <ChevronDown
+                            aria-hidden="true"
+                            className={cn(
+                              "size-5 transition-transform duration-300",
+                              isDropdownOpen && "rotate-180",
+                            )}
+                          />
+                        </button>
+                      </div>
 
                       <AnimatePresence initial={false}>
                         {isDropdownOpen && (
                           <motion.div
+                            id={dropdownId}
                             variants={dropdownVariants}
                             initial="closed"
                             animate="open"
@@ -157,26 +181,13 @@ export function FullscreenPanel({
                             className="overflow-hidden"
                           >
                             <div className="grid gap-2 pb-5">
-                              <Link
-                                href={item.url}
-                                onClick={handleClose}
-                                className={cn(
-                                  "rounded-2xl bg-white/45 px-4 py-3 font-body text-sm uppercase tracking-[0.16em] transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
-                                  isActive(item.url)
-                                    ? "text-gold"
-                                    : "text-charcoal",
-                                )}
-                              >
-                                Vezi toate
-                              </Link>
-
                               {item.children?.map((child) => (
                                 <Link
                                   key={child.id}
                                   href={child.url}
                                   onClick={handleClose}
                                   className={cn(
-                                    "rounded-2xl bg-white/45 px-4 py-3 transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+                                    "rounded-2xl bg-white/45 px-4 py-3 transition-colors hover:bg-white/70 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-gold",
                                     isActive(child.url)
                                       ? "text-gold"
                                       : "text-charcoal",

@@ -1,93 +1,83 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
+import { cn } from "@/lib/utils";
+
 gsap.registerPlugin(ScrollTrigger);
 
-function cx(...parts: Array<string | undefined | false | null>): string {
-  return parts.filter(Boolean).join(" ");
-}
-
-export interface FlowSectionProps {
+export type FlowSectionProps = {
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
   "aria-label"?: string;
-}
+};
 
-export const FlowSection: React.FC<FlowSectionProps> = ({
+export function FlowSection({
   className,
-  style = {},
+  style,
   children,
   "aria-label": ariaLabel,
-}) => (
-  <section
-    data-flow-section
-    aria-label={ariaLabel}
-    className={cx("relative min-h-screen w-full overflow-hidden", className)}
-  >
-    <div
-      data-flow-inner
-      className={cx(
-        "flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pb-[4vw] pt-[clamp(2rem,8vw,4vw)]",
-        "will-change-transform",
-      )}
-      style={{ transformOrigin: "bottom left", ...style }}
+}: FlowSectionProps) {
+  return (
+    <section
+      data-flow-section
+      aria-label={ariaLabel}
+      className={cn("relative min-h-screen w-full overflow-hidden", className)}
     >
-      {children}
-    </div>
-  </section>
-);
+      <div
+        data-flow-inner
+        className={cn(
+          "flow-art-container relative flex min-h-screen w-full flex-col justify-between gap-6 px-[4vw] pb-[4vw] pt-[clamp(2rem,8vw,4vw)]",
+          "motion-safe:will-change-transform",
+        )}
+        style={{ transformOrigin: "bottom left", ...style }}
+      >
+        {children}
+      </div>
+    </section>
+  );
+}
 
-export interface FlowArtProps {
+type FlowArtProps = {
   children: React.ReactNode;
   className?: string;
   "aria-label"?: string;
-}
+};
 
-const childCount = (children: React.ReactNode) =>
-  React.Children.count(children);
-
-const FlowArt: React.FC<FlowArtProps> = ({
+export default function FlowArt({
   children,
   className,
   "aria-label": ariaLabel = "Story scroll",
-}) => {
+}: FlowArtProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const update = () => setReducedMotion(mq.matches);
-
-    update();
-    mq.addEventListener("change", update);
-
-    return () => mq.removeEventListener("change", update);
-  }, []);
+  const childCount = useMemo(() => React.Children.count(children), [children]);
 
   useGSAP(
     () => {
-      if (!containerRef.current || reducedMotion) return;
+      const container = containerRef.current;
+
+      if (!container || shouldReduceMotion) return;
 
       const sections = Array.from(
-        containerRef.current.querySelectorAll<HTMLElement>(
-          "[data-flow-section]",
-        ),
+        container.querySelectorAll<HTMLElement>("[data-flow-section]"),
       );
 
-      if (sections.length === 0) return;
+      if (sections.length <= 1) return;
 
       const triggers: ScrollTrigger[] = [];
+      const tweens: gsap.core.Tween[] = [];
 
       sections.forEach((section, index) => {
         gsap.set(section, { zIndex: index + 1 });
 
-        const inner = section.querySelector<HTMLElement>(".flow-art-container");
+        const inner = section.querySelector<HTMLElement>("[data-flow-inner]");
 
         if (!inner) return;
 
@@ -95,6 +85,7 @@ const FlowArt: React.FC<FlowArtProps> = ({
           gsap.set(inner, {
             rotation: 30,
             transformOrigin: "bottom left",
+            force3D: true,
           });
 
           const tween = gsap.to(inner, {
@@ -107,6 +98,8 @@ const FlowArt: React.FC<FlowArtProps> = ({
               scrub: true,
             },
           });
+
+          tweens.push(tween);
 
           if (tween.scrollTrigger) {
             triggers.push(tween.scrollTrigger);
@@ -129,12 +122,13 @@ const FlowArt: React.FC<FlowArtProps> = ({
       ScrollTrigger.refresh();
 
       return () => {
+        tweens.forEach((tween) => tween.kill());
         triggers.forEach((trigger) => trigger.kill());
       };
     },
     {
       scope: containerRef,
-      dependencies: [childCount(children), reducedMotion],
+      dependencies: [childCount, shouldReduceMotion],
     },
   );
 
@@ -142,11 +136,9 @@ const FlowArt: React.FC<FlowArtProps> = ({
     <div
       ref={containerRef}
       aria-label={ariaLabel}
-      className={cx("w-full overflow-x-hidden", className)}
+      className={cn("w-full overflow-x-hidden", className)}
     >
       {children}
     </div>
   );
-};
-
-export default FlowArt;
+}

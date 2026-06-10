@@ -9,23 +9,23 @@ export type SocialReel = {
 export const socialReels: SocialReel[] = [
   {
     id: "trauma-relationala",
-    title: "Trauma relațională",
+    title: "Ce înseamna reprocesarea traumei în EMDR?",
     description: "Semnele subtile prin care trecutul rămâne prezent.",
-    videoSrc: "/videos/reels/trauma-relationala.mp4",
+    videoSrc: "/blogs/reels/reel1.mp4",
     posterSrc: "/images/reels/trauma-relationala.jpg",
   },
   {
     id: "limite-sanatoase",
-    title: "Limite sănătoase",
+    title: "De ce avem nevoie de resurse pozitive?",
     description: "Cum începi să spui nu fără să te pierzi pe tine.",
-    videoSrc: "/videos/reels/limite-sanatoase.mp4",
+    videoSrc: "/blogs/reels/reel2.mp4",
     posterSrc: "/images/reels/limite-sanatoase.jpg",
   },
   {
     id: "atasament",
     title: "Atașament și siguranță",
     description: "De ce apropierea poate activa frică, nu doar iubire.",
-    videoSrc: "/videos/reels/atasament-si-siguranta.mp4",
+    videoSrc: "/blogs/reels/reel3.mp4",
     posterSrc: "/images/reels/atasament-si-siguranta.jpg",
   },
 ];

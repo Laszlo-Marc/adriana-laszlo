@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
 type ButtonVariant =
   | "primary"
   | "secondary"
@@ -9,20 +11,23 @@ type ButtonVariant =
   | "urgent"
   | "purple"
   | "cream";
+
 type ButtonSize = "sm" | "md" | "lg" | "xl";
 
 type BaseProps = {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Full width on mobile, auto on desktop */
+  /**
+   * Full width on mobile, auto from sm upward.
+   * Use className="w-full" when you need full width at every breakpoint.
+   */
   fullWidth?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   className?: string;
 };
 
-// Discriminated union: either an anchor (href) or a button (onClick / type)
 type AnchorProps = BaseProps & {
   href: string;
   external?: boolean;
@@ -34,37 +39,35 @@ type ButtonElProps = BaseProps & {
 
 type ButtonProps = AnchorProps | ButtonElProps;
 
-const base = `
-  inline-flex items-center justify-center gap-2
-  font-body font-medium uppercase tracking-[0.12em]
-  rounded-soft transition-all duration-200
-  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-cream
-  disabled:opacity-50 disabled:pointer-events-none
-  whitespace-nowrap
-`;
+const base =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-soft font-body font-medium uppercase tracking-[0.12em] transition-[background-color,border-color,color,box-shadow,transform] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-cream disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-teal text-charcoal hover:bg-[#7fc9b8] hover:-translate-y-[1px] focus-visible:ring-teal shadow-[0_1px_0_rgba(44,44,44,0.04)] hover:cursor-pointer",
+    "bg-teal text-charcoal shadow-[0_1px_0_rgba(44,44,44,0.04)] hover:-translate-y-[1px] hover:bg-[#7fc9b8] focus-visible:ring-teal",
   secondary:
-    "bg-charcoal text-cream hover:bg-[#1a1a1a] hover:-translate-y-[1px] focus-visible:ring-charcoal hover:cursor-pointer",
+    "bg-charcoal text-cream hover:-translate-y-[1px] hover:bg-[#1a1a1a] focus-visible:ring-charcoal",
   outline:
-    "bg-transparent text-charcoal border border-[var(--color-border-strong)] hover:border-charcoal hover:bg-white focus-visible:ring-charcoal hover:cursor-pointer",
+    "border border-[var(--color-border-strong)] bg-transparent text-charcoal hover:border-charcoal hover:bg-white focus-visible:ring-charcoal",
   ghost:
-    "bg-transparent text-muted hover:text-charcoal hover:bg-[var(--color-teal-soft)] focus-visible:ring-teal hover:cursor-pointer",
+    "bg-transparent text-muted hover:bg-[var(--color-teal-soft)] hover:text-charcoal focus-visible:ring-teal",
   urgent:
-    "bg-gold text-charcoal hover:bg-[#c98a16] hover:-translate-y-[1px] focus-visible:ring-gold hover:cursor-pointer",
+    "bg-gold text-charcoal hover:-translate-y-[1px] hover:bg-[#c98a16] focus-visible:ring-gold",
   purple:
-    "bg-purple text-charcoal hover:bg-[#b87dc8] hover:-translate-y-[1px] focus-visible:ring-purple hover:cursor-pointer",
-  cream: "bg-cream text-charcoal",
+    "bg-purple text-charcoal hover:-translate-y-[1px] hover:bg-[#b87dc8] focus-visible:ring-purple",
+  cream: "bg-cream text-charcoal hover:bg-white focus-visible:ring-cream",
 };
 
 const sizes: Record<ButtonSize, string> = {
   sm: "px-4 py-2 text-xs",
   md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-md",
+  lg: "px-8 py-4 text-base",
   xl: "px-10 py-5 text-lg",
 };
+
+function isExternalHref(href: string) {
+  return /^(https?:)?\/\//.test(href);
+}
 
 export default function Button(props: ButtonProps) {
   const {
@@ -74,47 +77,47 @@ export default function Button(props: ButtonProps) {
     fullWidth = false,
     leftIcon,
     rightIcon,
-    className = "",
+    className,
     ...rest
   } = props;
 
-  const classes = `
-    ${base}
-    ${variants[variant]}
-    ${sizes[size]}
-    ${fullWidth ? "w-full" : ""}
-    ${className}
-  `;
+  const classes = cn(
+    base,
+    variants[variant],
+    sizes[size],
+    fullWidth && "w-full sm:w-auto",
+    className,
+  );
 
   const inner = (
     <>
-      {leftIcon}
+      {leftIcon ? <span className="shrink-0">{leftIcon}</span> : null}
       <span>{children}</span>
-      {rightIcon}
+      {rightIcon ? <span className="shrink-0">{rightIcon}</span> : null}
     </>
   );
 
-  // Anchor variant (internal or external link)
   if ("href" in rest && rest.href !== undefined) {
-    const { href, external, ...anchorRest } = rest as {
-      href: string;
-      external?: boolean;
-    } & ComponentPropsWithoutRef<"a">;
+    const { href, external, target, rel, ...anchorRest } = rest;
 
-    const isExternal =
-      external ||
-      href.startsWith("http") ||
+    const shouldOpenNewTab =
+      external === true || (external !== false && isExternalHref(href));
+
+    const resolvedTarget = shouldOpenNewTab ? (target ?? "_blank") : target;
+    const resolvedRel =
+      resolvedTarget === "_blank" ? (rel ?? "noopener noreferrer") : rel;
+
+    if (
+      isExternalHref(href) ||
       href.startsWith("tel:") ||
-      href.startsWith("mailto:");
-
-    if (isExternal) {
+      href.startsWith("mailto:")
+    ) {
       return (
         <a
           href={href}
           className={classes}
-          {...(external
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
+          target={resolvedTarget}
+          rel={resolvedRel}
           {...anchorRest}
         >
           {inner}
@@ -129,9 +132,9 @@ export default function Button(props: ButtonProps) {
     );
   }
 
-  // Native button
   return (
     <button
+      type="button"
       className={classes}
       {...(rest as ComponentPropsWithoutRef<"button">)}
     >

@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
-import { MethodStep } from "./data";
+import { MethodStep } from "../data";
 
 export function MethodTextPanel({
   step,

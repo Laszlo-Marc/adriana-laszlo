@@ -11,7 +11,7 @@ import { afEmdrSpecialistContent } from "../afEmdrContent";
 import { MarqueeAnimation } from "@/components/ui/MarqueeAnimation";
 
 export default function AfEmdrSpecialistMobile() {
-  const { chapter, eyebrow, title, images, credentials, testimonial, cta } =
+  const { title, images, credentials, testimonial, cta } =
     afEmdrSpecialistContent;
 
   return (

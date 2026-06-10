@@ -1,8 +1,16 @@
-import { createElement, type ReactNode } from "react";
+import {
+  createElement,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+  type ReactNode,
+} from "react";
+
+import { cn } from "@/lib/utils";
 
 type TextTag = "p" | "span" | "div" | "li" | "small";
 type TextSize = "xs" | "sm" | "base" | "lg" | "xl";
 type TextAlign = "left" | "center" | "right";
+
 type TextColor =
   | "charcoal"
   | "cream"
@@ -10,13 +18,15 @@ type TextColor =
   | "muted-teal"
   | "teal"
   | "purple"
-  | "gold";
+  | "gold"
+  | "inherit";
+
 type TextWeight = "regular" | "medium" | "semibold";
 type TextTransform = "none" | "upper";
 
-type TextProps = {
+type TextOwnProps<T extends ElementType = "p"> = {
   children: ReactNode;
-  as?: TextTag;
+  as?: T;
   size?: TextSize;
   align?: TextAlign;
   color?: TextColor;
@@ -26,6 +36,9 @@ type TextProps = {
   clamp?: 1 | 2 | 3 | 4;
   className?: string;
 };
+
+type TextProps<T extends ElementType = "p"> = TextOwnProps<T> &
+  Omit<ComponentPropsWithoutRef<T>, keyof TextOwnProps<T> | "color">;
 
 const sizeStyles: Record<TextSize, string> = {
   xs: "text-[0.6875rem] leading-[1.5] md:text-xs",
@@ -49,6 +62,7 @@ const colorStyles: Record<TextColor, string> = {
   teal: "text-teal",
   purple: "text-purple",
   gold: "text-gold",
+  inherit: "text-inherit",
 };
 
 const weightStyles: Record<TextWeight, string> = {
@@ -57,16 +71,16 @@ const weightStyles: Record<TextWeight, string> = {
   semibold: "font-semibold",
 };
 
-const clampStyles: Record<NonNullable<TextProps["clamp"]>, string> = {
+const clampStyles: Record<NonNullable<TextOwnProps["clamp"]>, string> = {
   1: "line-clamp-1",
   2: "line-clamp-2",
   3: "line-clamp-3",
   4: "line-clamp-4",
 };
 
-export default function Text({
+export default function Text<T extends TextTag = "p">({
   children,
-  as = "p",
+  as,
   size = "base",
   align = "left",
   color = "charcoal",
@@ -74,26 +88,27 @@ export default function Text({
   transform = "none",
   balance = false,
   clamp,
-  className = "",
-}: TextProps) {
-  const transformClass =
-    transform === "upper" ? "uppercase tracking-[0.1em]" : "";
+  className,
+  ...props
+}: TextProps<T>) {
+  const Component = (as ?? "p") as TextTag;
 
-  const wrapClass = balance ? "text-balance" : "";
-
-  const clampClass = clamp ? clampStyles[clamp] : "";
-
-  const classes = `
-    font-body
-    ${sizeStyles[size]}
-    ${alignStyles[align]}
-    ${colorStyles[color]}
-    ${weightStyles[weight]}
-    ${transformClass}
-    ${wrapClass}
-    ${clampClass}
-    ${className}
-  `;
-
-  return createElement(as, { className: classes }, children);
+  return createElement(
+    Component,
+    {
+      className: cn(
+        "font-body",
+        sizeStyles[size],
+        alignStyles[align],
+        colorStyles[color],
+        weightStyles[weight],
+        transform === "upper" && "uppercase tracking-[0.1em]",
+        balance && "text-balance",
+        clamp && clampStyles[clamp],
+        className,
+      ),
+      ...props,
+    },
+    children,
+  );
 }

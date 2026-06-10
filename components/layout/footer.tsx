@@ -1,28 +1,30 @@
 import Link from "next/link";
-import { MessageCircle, MapPin, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
-
 import Logo from "@/components/ui/Logo";
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
-
 import Button from "../ui/Button";
-import { WHATSAPP_DISPLAY, WHATSAPP_HREF } from "./navbar/data";
-import { navLinks } from "./NavLinks";
-
-const TRAUMA_EMAIL = "info@traumacenter.ro";
-
-const TRAUMA_EMAIL_HREF = `mailto:${TRAUMA_EMAIL}`;
-
-const LOCATION_LABEL = "Trauma Center Cluj";
-const LOCATION_TEXT = "Strada Artelor 35, Cluj-Napoca, România";
+import {
+  LOCATION_LABEL,
+  LOCATION_TEXT,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  TRAUMA_EMAIL_HREF,
+} from "./navigation-data";
+import { navItems } from "./navigation-data";
+import Container from "../ui/Container";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-white" aria-label="Subsol site">
-      <div className="mx-auto max-w-450 px-6 py-10 md:px-8 md:py-12 xl:py-14">
+      <Container
+        size="wider"
+        padding="default"
+        className="py-10 md:py-12 xl:py-14"
+      >
         <div className="grid gap-10 xl:grid-cols-[1.15fr_0.9fr_0.8fr_1fr] xl:items-start xl:gap-10">
           {/* Brand block */}
           <div className="mx-auto flex max-w-sm flex-col items-center text-center xl:mx-0 xl:items-start xl:text-left">
@@ -38,7 +40,7 @@ export default function Footer() {
 
             <div className="mt-5 flex items-center justify-center gap-3 xl:justify-start">
               <a
-                href="#"
+                href="https://www.instagram.com/adrianalaszlo/"
                 aria-label="Instagram"
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
               >
@@ -46,7 +48,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="#"
+                href="https://www.facebook.com/psiholg"
                 aria-label="Facebook"
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal text-charcoal transition-colors hover:border-gold hover:text-gold"
               >
@@ -69,18 +71,18 @@ export default function Footer() {
                   variant="primary"
                   size="md"
                   href={TRAUMA_EMAIL_HREF}
-                  className="md:max-w-1/2"
+                  className="md:max-w-55"
                 >
                   E-mail
                 </Button>
+
                 <Button
-                  leftIcon={<MessageCircle size={14} />}
                   variant="purple"
                   size="md"
-                  href={WHATSAPP_HREF}
-                  className="md:max-w-1/2"
+                  href={PHONE_HREF}
+                  className="md:max-w-55"
                 >
-                  {WHATSAPP_DISPLAY}
+                  {PHONE_DISPLAY}
                 </Button>
               </div>
             </div>
@@ -97,13 +99,13 @@ export default function Footer() {
               </Heading>
 
               <ul className="space-y-2 md:space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.href} className="text-center md:text-start">
+                {navItems.map((link) => (
+                  <li key={link.url} className="text-center md:text-start">
                     <Link
-                      href={link.href}
+                      href={link.url}
                       className="text-sm text-muted transition-colors hover:text-charcoal md:text-base "
                     >
-                      {link.label}
+                      {link.title}
                     </Link>
                   </li>
                 ))}
@@ -163,7 +165,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

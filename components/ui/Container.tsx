@@ -1,4 +1,6 @@
-import type { ElementType, ReactNode, ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+
+import { cn } from "@/lib/utils";
 
 type ContainerSize = "narrow" | "default" | "wide" | "wider" | "full";
 type ContainerPadding = "none" | "sm" | "default" | "lg";
@@ -34,19 +36,19 @@ export default function Container<T extends ElementType = "div">({
   size = "default",
   padding = "default",
   children,
-  className = "",
+  className,
   ...rest
 }: ContainerProps<T>) {
-  const Component = (as ?? "div") as ElementType;
+  const Component = as ?? "div";
 
   return (
     <Component
-      className={`
-        w-full mx-auto
-        ${sizeStyles[size]}
-        ${paddingStyles[padding]}
-        ${className}
-      `}
+      className={cn(
+        "mx-auto w-full",
+        sizeStyles[size],
+        paddingStyles[padding],
+        className,
+      )}
       {...rest}
     >
       {children}

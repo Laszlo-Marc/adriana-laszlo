@@ -8,16 +8,15 @@ import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 
 import { afEmdrSpecialistContent } from "../afEmdrContent";
+import { MarqueeAnimation } from "@/components/ui/MarqueeAnimation";
 
 export default function AfEmdrSpecialistDesktop() {
   const {
-    chapter,
-    eyebrow,
     title,
     description,
     images,
     credentials,
-    quote,
+    testimonial,
     cta,
     secondaryCta,
   } = afEmdrSpecialistContent;
@@ -75,14 +74,6 @@ export default function AfEmdrSpecialistDesktop() {
 
           {/* Text */}
           <div className="lg:pl-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/45">
-              {chapter}
-            </p>
-
-            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
-              {eyebrow}
-            </p>
-
             <Heading
               id="af-emdr-specialist-title"
               as="h2"
@@ -96,22 +87,14 @@ export default function AfEmdrSpecialistDesktop() {
               {description}
             </Text>
 
-            <div className="mt-8 space-y-4 border-y border-charcoal/10 py-6">
-              {credentials.map((credential) => (
-                <div
-                  key={credential}
-                  className="flex items-center gap-4 text-sm font-medium uppercase tracking-[0.16em] text-charcoal/58"
-                >
-                  <span className="h-px w-8 bg-gold/60" />
-                  <span>{credential}</span>
-                </div>
-              ))}
-            </div>
-
-            <blockquote className="mt-8">
-              <p className="text-pretty text-xl font-medium leading-relaxed text-charcoal">
-                „{quote}”
+            <blockquote className="mt-8 rounded-[1.75rem] border border-gold/20 bg-sand/20 p-6 text-center shadow-[0_18px_55px_rgba(44,44,44,0.04)]">
+              <p className="text-pretty text-base font-medium leading-relaxed text-charcoal">
+                {testimonial.quote}
               </p>
+
+              <footer className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal/40">
+                {testimonial.author}
+              </footer>
             </blockquote>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

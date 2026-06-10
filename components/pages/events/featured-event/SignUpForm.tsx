@@ -2,7 +2,7 @@ import Heading from "@/components/ui/Heading";
 
 export default function FeaturedEventSignupForm() {
   return (
-    <form className="w-full min-w-0 max-w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-5 shadow-[0_24px_80px_rgba(44,44,44,0.08)] backdrop-blur-md sm:p-8">
+    <form className="w-full min-w-0 max-w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-5  sm:p-8">
       <div className="min-w-0">
         <Heading
           as="h3"

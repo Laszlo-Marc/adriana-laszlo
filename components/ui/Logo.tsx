@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
-import Heading from "./Heading";
+import { cn } from "@/lib/utils";
+
 type LogoProps = {
   size?: "sm" | "md" | "lg";
   variant?: "dark" | "light";
@@ -18,7 +18,7 @@ export default function Logo({
   size = "md",
   variant = "dark",
   asText = false,
-  className = "",
+  className,
 }: LogoProps) {
   const colorClass =
     variant === "light"
@@ -26,13 +26,16 @@ export default function Logo({
       : "text-charcoal hover:text-teal";
 
   const content = (
-    <Heading
-      as="h1"
-      size="h3"
-      className={`${colorClass} ${sizeClasses[size]} ${className}`}
+    <span
+      className={cn(
+        "font-display font-medium tracking-[0.02em] transition-colors",
+        colorClass,
+        sizeClasses[size],
+        className,
+      )}
     >
       ADRIANA LASZLO
-    </Heading>
+    </span>
   );
 
   if (asText) return content;
