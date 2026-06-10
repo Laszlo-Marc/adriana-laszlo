@@ -1,9 +1,8 @@
 import Section from "@/components/ui/Section";
 
 import HomeProblemsDesktop from "./HomeProblemsDesktop";
-
-import { problemsContent } from "./problemsContent";
 import HomeProblemsMobileStory from "./HomeProblemsMobile";
+import { problemsContent } from "./problemsContent";
 
 export default function HomeProblemsSection() {
   return (
@@ -11,7 +10,7 @@ export default function HomeProblemsSection() {
       background="cream"
       spacing="none"
       aria-labelledby="home-problems-title"
-      className="relative  "
+      className="relative"
       allowOverflow
     >
       <span id="home-problems-title" className="sr-only">

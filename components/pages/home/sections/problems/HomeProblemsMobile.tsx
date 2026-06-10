@@ -1,31 +1,26 @@
 import Image from "next/image";
 
 import Text from "@/components/ui/Text";
-import Heading from "@/components/ui/Heading";
 import AccentText from "@/components/ui/AccentText";
-import { problemsContent } from "./problemsContent";
 
 const problemsMobileCopy = {
   eyebrow: "Când trauma rămâne prezentă",
-  title: "Trauma nu este mereu evidentă.",
+  titleStart: "Trauma nu este mereu",
+  titleAccent: "evidentă.",
   intro:
     "Poate nu are forma unei amintiri clare. Poate se simte ca tensiune în corp, ca oboseală, ca teamă de apropiere sau ca reacții pe care nu le poți opri la timp.",
-  accent: "Poate o parte din tine încă este în alertă.",
+  accentStart: "Poate o parte din tine încă este în",
+  accentWord: "alertă.",
   reassurance: [
     "Nu pentru că ești „prea sensibil/ă”.",
     "Nu pentru că este ceva greșit cu tine.",
   ],
-  explanation:
-    "Ci pentru că, la un moment dat, corpul tău a învățat să te protejeze.",
-  closing:
-    "În terapie, începem de acolo: cu siguranță, cu ritm și cu blândețea necesară pentru a înțelege ce se află dincolo de simptome.",
 };
 
 export default function HomeProblemsMobileStory() {
   return (
-    <div className="relative  bg-cream lg:hidden">
-      {/* Editorial image opening */}
-      <div className="relative  pt-14">
+    <div className="relative bg-cream lg:hidden">
+      <div className="relative pt-14">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-44 bg-purple-soft"
@@ -33,13 +28,14 @@ export default function HomeProblemsMobileStory() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-30 z-0 w-45 h-60 -translate-x-1/2 opacity-40"
+          className="pointer-events-none absolute left-1/2 top-30 z-0 h-60 w-45 -translate-x-1/2 opacity-40"
         >
           <Image
             src="/backgrounds/double-split.png"
             alt=""
             width={160}
             height={500}
+            sizes="180px"
             className="h-auto w-full object-contain"
           />
         </div>
@@ -53,38 +49,57 @@ export default function HomeProblemsMobileStory() {
             alt=""
             width={48}
             height={48}
+            sizes="80px"
             className="h-auto w-full object-contain"
           />
         </div>
+
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-5 top-10 z-20 w-25  opacity-70"
+          className="pointer-events-none absolute left-5 top-10 z-20 w-25 opacity-70"
         >
           <Image
             src="/backgrounds/df-teal-down.png"
             alt=""
             width={48}
             height={48}
+            sizes="100px"
             className="h-auto w-full object-contain"
           />
         </div>
 
         <div className="relative z-10 mx-auto h-60 w-48 overflow-hidden shadow-[0_18px_55px_rgba(44,44,44,0.16)]">
           <Image
-            src={problemsContent.image.src}
-            alt={problemsContent.image.alt}
+            src="/home-page/problems.jpg"
+            alt="Moment de liniște și reflecție într-un proces terapeutic"
             fill
-            sizes="192px"
+            sizes="(max-width: 1023px) 192px, 1px"
             className="object-cover object-center"
           />
         </div>
       </div>
 
-      {/* Editorial text composition */}
-      <div className="relative z-10 mx-auto px-6 ">
-        <AccentText className="block  mt-6 text-[2.5rem] leading-[1.02] text-charcoal">
-          Trauma nu este mereu{" "}
-          <span className="font-semibold text-purple">evidentă.</span>
+      <div className="relative z-10 mx-auto px-6">
+        <Text
+          as="p"
+          size="xs"
+          color="muted"
+          weight="medium"
+          transform="upper"
+          align="center"
+          className="mt-6 tracking-[0.18em]"
+        >
+          {problemsMobileCopy.eyebrow}
+        </Text>
+
+        <AccentText
+          as="span"
+          className="mt-4 block text-center text-[2.5rem] leading-[1.02] text-charcoal"
+        >
+          {problemsMobileCopy.titleStart}{" "}
+          <span className="font-semibold text-purple">
+            {problemsMobileCopy.titleAccent}
+          </span>
         </AccentText>
 
         <div className="mt-6 space-y-8">
@@ -92,15 +107,15 @@ export default function HomeProblemsMobileStory() {
             as="p"
             size="lg"
             color="charcoal"
-            className="text-pretty leading-8"
             align="center"
+            className="text-pretty leading-8"
           >
             {problemsMobileCopy.intro}
           </Text>
 
-          <AccentText className="block  text-[2.5rem] leading-[1.02] text-charcoal">
-            Poate o parte din tine încă este în{" "}
-            <span className="text-purple">alertă.</span>
+          <AccentText className="block text-center text-[2.5rem] leading-[1.02] text-charcoal">
+            {problemsMobileCopy.accentStart}{" "}
+            <span className="text-purple">{problemsMobileCopy.accentWord}</span>
           </AccentText>
 
           <div className="space-y-3">
