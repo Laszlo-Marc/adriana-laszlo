@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type AccentTextTag = "span" | "div" | "p";
+type AccentTextTag = "span" | "div" | "p" | "h2" | "h3";
 
 type AccentTextOwnProps<T extends ElementType = "span"> = {
   children: ReactNode;

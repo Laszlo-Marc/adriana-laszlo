@@ -1,7 +1,7 @@
 import Section from "@/components/ui/Section";
 
 import HomeAboutTeaserMobile from "./HomeAboutTeaserMobile";
-import HomeAboutTeaserDesktopStory from "./HomeAboutTeaserDesktop";
+import HomeAboutTeaserDesktop from "./HomeAboutTeaserDesktop";
 
 export default function HomeAboutTeaserSection() {
   return (
@@ -13,7 +13,7 @@ export default function HomeAboutTeaserSection() {
       allowOverflow
     >
       <HomeAboutTeaserMobile />
-      <HomeAboutTeaserDesktopStory />
+      <HomeAboutTeaserDesktop />
     </Section>
   );
 }
