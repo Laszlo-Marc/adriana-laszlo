@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import Text from "@/components/ui/Text";
+import Heading from "@/components/ui/Heading";
 import { cn } from "@/lib/utils";
 
 type ComparisonItem = {
@@ -16,16 +17,22 @@ type ComparisonItem = {
 
 type AfEmdrComparisonMobileTabsProps = {
   items: ComparisonItem[];
+  insight?: string;
 };
 
 export default function AfEmdrComparisonMobileTabs({
   items,
+  insight,
 }: AfEmdrComparisonMobileTabsProps) {
   const [activeId, setActiveId] = useState(items[1]?.id ?? items[0]?.id);
+  const shouldReduceMotion = useReducedMotion() ?? false;
+
   const activeItem = items.find((item) => item.id === activeId) ?? items[0];
 
+  if (!activeItem) return null;
+
   return (
-    <div className="lg:hidden">
+    <div>
       <div
         role="tablist"
         aria-label="Comparație între EMDR clasic și AF-EMDR"
@@ -44,10 +51,12 @@ export default function AfEmdrComparisonMobileTabs({
               id={`comparison-tab-${item.id}`}
               onClick={() => setActiveId(item.id)}
               className={cn(
-                "rounded-full px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition",
+                "rounded-full px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em]",
+                "transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
                 isActive
                   ? "bg-teal/35 text-charcoal shadow-[0_10px_30px_rgba(44,44,44,0.06)]"
-                  : "text-charcoal/45",
+                  : "text-charcoal/45 hover:text-charcoal",
               )}
             >
               {item.label}
@@ -56,25 +65,39 @@ export default function AfEmdrComparisonMobileTabs({
         })}
       </div>
 
-      <div className="mt-5 min-h-[26rem] overflow-hidden rounded-[2rem] border border-white/70 bg-white/55 p-6 shadow-[0_20px_70px_rgba(44,44,44,0.06)]">
-        <AnimatePresence mode="wait">
+      <div className="mt-5 min-h-104 overflow-hidden rounded-4xl border border-white/70 bg-white/55 p-6 shadow-[0_20px_70px_rgba(44,44,44,0.06)]">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.article
             key={activeItem.id}
             id={`comparison-panel-${activeItem.id}`}
             role="tabpanel"
             aria-labelledby={`comparison-tab-${activeItem.id}`}
-            initial={{ opacity: 0, y: 12 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.28,
+              ease: "easeOut",
+            }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+            <Text
+              as="p"
+              size="xs"
+              weight="medium"
+              transform="upper"
+              color="gold"
+              className="tracking-[0.24em]"
+            >
               {activeItem.label}
-            </p>
+            </Text>
 
-            <h3 className="mt-4 text-balance text-3xl font-semibold leading-tight text-charcoal">
+            <Heading
+              as="h3"
+              size="h3"
+              className="mt-4 text-balance text-charcoal"
+            >
               {activeItem.title}
-            </h3>
+            </Heading>
 
             <Text className="mt-5 text-pretty text-charcoal/70">
               {activeItem.description}
@@ -86,7 +109,10 @@ export default function AfEmdrComparisonMobileTabs({
                   key={point}
                   className="flex gap-3 text-sm leading-relaxed text-charcoal/70"
                 >
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-gold"
+                  />
                   <span>{point}</span>
                 </li>
               ))}
@@ -94,6 +120,16 @@ export default function AfEmdrComparisonMobileTabs({
           </motion.article>
         </AnimatePresence>
       </div>
+
+      {insight ? (
+        <Text
+          size="sm"
+          align="center"
+          className="mx-auto mt-6 max-w-sm text-pretty text-charcoal/64"
+        >
+          {insight}
+        </Text>
+      ) : null}
     </div>
   );
 }

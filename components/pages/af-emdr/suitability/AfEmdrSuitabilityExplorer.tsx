@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
+import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import { cn } from "@/lib/utils";
 
@@ -25,8 +26,16 @@ export default function AfEmdrSuitabilityExplorer({
   patterns,
 }: AfEmdrSuitabilityExplorerProps) {
   const [activeId, setActiveId] = useState(patterns[0]?.id);
+  const shouldReduceMotion = useReducedMotion() ?? false;
+
   const activePattern =
     patterns.find((pattern) => pattern.id === activeId) ?? patterns[0];
+
+  const setActivePattern = useCallback((id: string) => {
+    setActiveId((currentId) => (currentId === id ? currentId : id));
+  }, []);
+
+  if (!activePattern) return null;
 
   return (
     <div className="hidden lg:block">
@@ -36,52 +45,76 @@ export default function AfEmdrSuitabilityExplorer({
           className="absolute -inset-10 -z-10 rounded-[3rem] bg-teal/10 blur-3xl"
         />
 
-        <div className="relative h-[38rem] overflow-hidden rounded-[2.75rem] shadow-[0_34px_110px_rgba(44,44,44,0.13)]">
-          <AnimatePresence mode="wait">
+        <div className="relative h-152 overflow-hidden rounded-[2.75rem] shadow-[0_34px_110px_rgba(44,44,44,0.13)]">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activePattern.id}
               className="absolute inset-0"
-              initial={{ opacity: 0, scale: 1.035 }}
+              initial={
+                shouldReduceMotion ? false : { opacity: 0, scale: 1.035 }
+              }
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.985 }}
-              transition={{ duration: 0.55, ease: "easeOut" }}
+              exit={
+                shouldReduceMotion ? undefined : { opacity: 0, scale: 0.985 }
+              }
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.55,
+                ease: "easeOut",
+              }}
             >
               <Image
                 src={activePattern.image}
                 alt={activePattern.imageAlt}
                 fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
+                sizes="(max-width: 1023px) 1px, (min-width: 1280px) 56vw, 62vw"
                 className="object-cover object-center"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-charcoal/72 via-charcoal/26 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-charcoal/72 via-charcoal/26 to-transparent"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-charcoal/75 via-charcoal/35 to-transparent"
+                className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-charcoal/75 via-charcoal/35 to-transparent"
               />
             </motion.div>
           </AnimatePresence>
 
           <div className="absolute inset-x-0 bottom-0 z-10 p-9 xl:p-11">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.article
                 key={activePattern.id}
-                initial={{ opacity: 0, y: 18 }}
+                id={`suitability-panel-${activePattern.id}`}
+                role="tabpanel"
+                aria-labelledby={`suitability-tab-${activePattern.id}`}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.42, ease: "easeOut" }}
+                exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.42,
+                  ease: "easeOut",
+                }}
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/65">
+                <Text
+                  as="p"
+                  size="xs"
+                  weight="medium"
+                  transform="upper"
+                  className="tracking-[0.28em] text-white/65"
+                >
                   Poate fi potrivită / {activePattern.label}
-                </p>
+                </Text>
 
-                <h3 className="mt-4 max-w-2xl text-balance text-4xl font-semibold leading-none text-white xl:text-5xl">
+                <Heading
+                  as="h3"
+                  size="h2"
+                  color="cream"
+                  className="mt-4 max-w-2xl text-balance leading-none xl:text-5xl"
+                >
                   {activePattern.title}
-                </h3>
+                </Heading>
 
                 <Text className="mt-6 max-w-2xl text-pretty text-white/78">
                   {activePattern.description}
@@ -102,18 +135,28 @@ export default function AfEmdrSuitabilityExplorer({
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-4 gap-3">
+        <div
+          role="tablist"
+          aria-label="Tipare pentru care AF-EMDR poate fi potrivită"
+          className="mt-6 grid grid-cols-4 gap-3"
+        >
           {patterns.map((pattern) => {
             const isActive = pattern.id === activePattern.id;
 
             return (
               <button
                 key={pattern.id}
+                id={`suitability-tab-${pattern.id}`}
                 type="button"
-                onClick={() => setActiveId(pattern.id)}
-                onMouseEnter={() => setActiveId(pattern.id)}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`suitability-panel-${pattern.id}`}
+                onClick={() => setActivePattern(pattern.id)}
+                onMouseEnter={() => setActivePattern(pattern.id)}
                 className={cn(
-                  "rounded-full border px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition",
+                  "rounded-full border px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em]",
+                  "transition-[background-color,border-color,color,box-shadow] duration-300 motion-reduce:transition-none",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
                   isActive
                     ? "border-gold/35 bg-sand/35 text-charcoal shadow-[0_14px_35px_rgba(44,44,44,0.06)]"
                     : "border-charcoal/10 bg-white/35 text-charcoal/45 hover:border-gold/25 hover:text-charcoal/65",

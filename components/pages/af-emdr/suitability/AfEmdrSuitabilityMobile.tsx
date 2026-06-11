@@ -1,5 +1,7 @@
-import Heading from "@/components/ui/Heading";
 import Image from "next/image";
+
+import Heading from "@/components/ui/Heading";
+import Text from "@/components/ui/Text";
 
 type SuitabilityPattern = {
   id: string;
@@ -13,11 +15,15 @@ type SuitabilityPattern = {
 
 type AfEmdrSuitabilityMobileProps = {
   patterns: SuitabilityPattern[];
+  insight?: string;
 };
 
 export default function AfEmdrSuitabilityMobile({
   patterns,
+  insight,
 }: AfEmdrSuitabilityMobileProps) {
+  if (!patterns.length) return null;
+
   return (
     <div className="lg:hidden">
       <div className="mb-4 flex items-center justify-between gap-4">
@@ -30,29 +36,29 @@ export default function AfEmdrSuitabilityMobile({
         </p>
       </div>
 
-      <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 sm:-mx-6 sm:px-6">
-        {patterns.map((pattern, index) => (
+      <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 [scrollbar-width:none] sm:-mx-6 sm:px-6 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {patterns.map((pattern) => (
           <article
             key={pattern.id}
-            className="relative min-w-[88%] snap-start overflow-hidden rounded-[2rem]  sm:min-w-[72%]"
+            className="relative min-w-[88%] snap-start overflow-hidden rounded-4xl sm:min-w-[72%]"
           >
-            <div className="relative h-[27rem]">
+            <div className="relative h-108">
               <Image
                 src={pattern.image}
                 alt={pattern.imageAlt}
                 fill
-                sizes="88vw"
+                sizes="(max-width: 639px) 88vw, (max-width: 1023px) 72vw, 1px"
                 className="object-cover object-center"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-charcoal/88 via-charcoal/42 to-charcoal/10"
+                className="absolute inset-0 bg-linear-to-t from-charcoal/88 via-charcoal/42 to-charcoal/10"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-charcoal/28 to-transparent"
+                className="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-charcoal/28 to-transparent"
               />
 
               <div className="absolute inset-0 flex flex-col justify-end p-6">
@@ -63,13 +69,17 @@ export default function AfEmdrSuitabilityMobile({
                     </span>
                   </div>
 
-                  <Heading as="h3" size="h3" className="mt-4  text-white">
+                  <Heading as="h3" size="h3" className="mt-4 text-white">
                     {pattern.title}
                   </Heading>
 
-                  <p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-white/76">
+                  <Text
+                    as="p"
+                    size="sm"
+                    className="mt-4 max-w-[18rem] leading-relaxed text-white/76"
+                  >
                     {pattern.description}
-                  </p>
+                  </Text>
 
                   <div className="mt-5 flex flex-wrap gap-2">
                     {pattern.signs.map((sign) => (
@@ -87,6 +97,16 @@ export default function AfEmdrSuitabilityMobile({
           </article>
         ))}
       </div>
+
+      {insight ? (
+        <Text
+          size="sm"
+          align="center"
+          className="mx-auto mt-3 max-w-sm text-pretty text-charcoal/62"
+        >
+          {insight}
+        </Text>
+      ) : null}
     </div>
   );
 }

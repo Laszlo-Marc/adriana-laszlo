@@ -1,22 +1,15 @@
 import Image from "next/image";
 
-import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Container from "@/components/ui/Container";
 import { afEmdrMethodContent } from "../afEmdrContent";
 
 export default function AfEmdrMethodMobile() {
-  const { chapter, eyebrow, title, lead, thesis, note, steps } =
-    afEmdrMethodContent;
+  const { eyebrow, lead, thesis, note, steps } = afEmdrMethodContent;
 
   return (
-    <Section
-      id="cum-functioneaza-mobile"
-      background="cream"
-      spacing="sm"
-      className="relative overflow-hidden lg:hidden"
-    >
+    <div className="relative overflow-hidden py-14 lg:hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-24 -translate-x-1/2 text-[34vw] font-semibold uppercase leading-none tracking-[-0.08em] text-charcoal/[0.035]"
@@ -59,18 +52,17 @@ export default function AfEmdrMethodMobile() {
             </p>
           </div>
 
-          <div className="-mx-4 mt-6 flex snap-x gap-4 overflow-x-auto px-4 pb-5">
-            {steps.map((step, index) => (
+          <div className="-mx-4 mt-6 flex snap-x gap-4 overflow-x-auto px-4 pb-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {steps.map((step) => (
               <article
                 key={step.title}
-                className="min-w-[86%] snap-start  p-5 "
+                className="min-w-[86%] snap-start rounded-[1.75rem] border border-white/70 bg-white/45 p-5 shadow-[0_18px_55px_rgba(44,44,44,0.045)]"
               >
                 <div className="grid grid-cols-[4.75rem_1fr] gap-4">
-                  <div className="relative mt-1 size-[4.75rem] overflow-hidden rounded-2xl bg-sand/20">
+                  <div className="relative mt-1 size-19 overflow-hidden rounded-2xl bg-sand/20">
                     <Image
                       src={step.image}
-                      alt=""
-                      aria-hidden="true"
+                      alt={step.imageAlt}
                       fill
                       sizes="76px"
                       className="object-cover object-center"
@@ -101,6 +93,6 @@ export default function AfEmdrMethodMobile() {
           </div>
         </div>
       </Container>
-    </Section>
+    </div>
   );
 }

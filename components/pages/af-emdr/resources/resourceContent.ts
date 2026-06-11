@@ -7,6 +7,7 @@ export type DownloadResource = {
   imageAlt: string;
   fileLabel: string;
   submitLabel: string;
+  downloadHref?: string;
 };
 
 export const downloadResources: DownloadResource[] = [
