@@ -16,7 +16,7 @@ export default function ServicesTeaserDesktop() {
         width={140}
         height={140}
         sizes="140px"
-        className="pointer-events-none absolute right-[10%] top-5 z-0 h-auto w-[140px] rotate-[-12deg] opacity-25"
+        className="pointer-events-none absolute right-[10%] top-5 z-0 h-auto w-35 -rotate-12 opacity-25"
       />
 
       <Image
@@ -26,7 +26,7 @@ export default function ServicesTeaserDesktop() {
         width={110}
         height={110}
         sizes="110px"
-        className="pointer-events-none absolute left-[10%] top-10 z-0 h-auto w-[110px] rotate-[10deg] opacity-40"
+        className="pointer-events-none absolute left-[10%] top-10 z-0 h-auto w-27.5 rotate-10 opacity-40"
       />
 
       <Container size="wide" padding="default" className="relative z-10">

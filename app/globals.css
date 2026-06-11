@@ -118,6 +118,14 @@ body {
   max-width: 20rem;
 }
 
+.about-stats-swiper {
+  width: 100%;
+}
+
+.about-stats-slide {
+  width: min(78vw, 20rem);
+}
+
 @keyframes conditions-marquee-left {
   from {
     transform: translateX(0);

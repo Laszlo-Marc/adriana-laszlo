@@ -1,19 +1,20 @@
 "use client";
 
-import { useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useReducedMotion, useScroll, useTransform } from "framer-motion";
+
 import Container from "@/components/ui/Container";
-import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import AccentText from "@/components/ui/AccentText";
-import { TimelineDecorations } from "./TimelineDecorations";
 
+import { TimelineDecorations } from "./TimelineDecorations";
 import { storyItems } from "./data";
 import { StoryTimelineItem } from "./TimelineItem";
 import TimelinePath from "./TimelinePath";
 
 export default function AboutStoryPathTimelineDesktop() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -24,42 +25,34 @@ export default function AboutStoryPathTimelineDesktop() {
   const pathOpacity = useTransform(scrollYProgress, [0, 0.08], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="hidden lg:block">
-      <Section
-        background="cream"
-        spacing="lg"
-        aria-labelledby="about-story-heading"
-        className="relative "
-        allowOverflow
-      >
-        <Container size="wide" padding="default">
-          <div className="mx-auto max-w-6xl text-center">
-            <AccentText>Povestea profesională</AccentText>
+    <div ref={sectionRef} className="relative hidden lg:block">
+      <Container size="wide" padding="default">
+        <div className="mx-auto max-w-6xl text-center">
+          <AccentText>Povestea profesională</AccentText>
 
-            <Heading
-              id="about-story-heading"
-              as="h2"
-              size="h2"
-              align="center"
-              className="mt-4"
-            >
-              Parcursul meu în psihoterapie
-            </Heading>
-          </div>
+          <Heading as="h2" size="h2" align="center" className="mt-4">
+            Parcursul meu în psihoterapie
+          </Heading>
+        </div>
 
-          <div className="relative mx-auto mt-20 max-w-6xl pb-10">
-            <TimelineDecorations />
+        <div className="relative mx-auto mt-20 max-w-6xl pb-10">
+          <TimelineDecorations />
 
+          {!shouldReduceMotion ? (
             <TimelinePath pathLength={pathLength} pathOpacity={pathOpacity} />
+          ) : null}
 
-            <div className="relative z-10 space-y-24">
-              {storyItems.map((item, index) => (
-                <StoryTimelineItem key={item.title} item={item} index={index} />
-              ))}
-            </div>
+          <div className="relative z-10 space-y-24">
+            {storyItems.map((item, index) => (
+              <StoryTimelineItem
+                key={`${item.year}-${item.title}`}
+                item={item}
+                index={index}
+              />
+            ))}
           </div>
-        </Container>
-      </Section>
-    </section>
+        </div>
+      </Container>
+    </div>
   );
 }

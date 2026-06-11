@@ -31,8 +31,8 @@ export function StoryCard({
 
   const cardClasses = cn(
     "group/card relative isolate w-full overflow-hidden rounded-[2rem] text-left",
-    "border border-white/20 bg-charcoal ",
-    "transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+    "border border-white/20 bg-charcoal",
+    "transition-[transform,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
     !compact &&
       "hover:-translate-y-1 hover:border-gold/45 hover:shadow-[0_30px_90px_rgba(44,44,44,0.16)]",
     compact ? "min-h-[25rem]" : "min-h-80",
@@ -45,10 +45,15 @@ export function StoryCard({
       <Image
         src={item.image}
         alt=""
+        aria-hidden="true"
         fill
-        sizes={compact ? "82vw" : "440px"}
+        sizes={
+          compact
+            ? "(max-width: 1023px) 82vw, 1px"
+            : "(max-width: 1023px) 1px, 440px"
+        }
         className={cn(
-          "absolute inset-0 -z-30 object-cover object-center opacity-90 transition duration-700",
+          "absolute inset-0 -z-30 object-cover object-center opacity-90 transition-transform duration-700 motion-reduce:transition-none",
           !compact && "group-hover/card:scale-105",
           compact && isActive && "scale-100",
           compact && !isActive && "scale-105",
@@ -66,7 +71,7 @@ export function StoryCard({
       <div
         aria-hidden="true"
         className={cn(
-          "absolute inset-0 -z-10 bg-gradient-to-t transition duration-500",
+          "absolute inset-0 -z-10 bg-linear-to-t transition-opacity duration-500 motion-reduce:transition-none",
           isFeatured
             ? "from-charcoal/94 via-charcoal/58 to-teal/10"
             : "from-charcoal/92 via-charcoal/48 to-cream/5",
@@ -76,7 +81,7 @@ export function StoryCard({
 
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-charcoal/85 to-transparent"
+        className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-linear-to-t from-charcoal/85 to-transparent"
       />
 
       <div
@@ -109,7 +114,7 @@ export function StoryCard({
           className={cn(
             "absolute right-4 top-4 z-20 flex size-9 items-center justify-center rounded-full",
             "border border-white/18 bg-white/10 text-xl leading-none text-white/76 backdrop-blur-md",
-            "transition duration-300",
+            "transition-[transform,border-color,background-color,color] duration-300 motion-reduce:transition-none",
             isActive && "rotate-45 border-gold/45 bg-gold/15 text-gold",
           )}
         >
@@ -130,7 +135,7 @@ export function StoryCard({
       <div
         className={cn(
           "relative z-10 flex flex-col justify-end",
-          compact ? "min-h-[25rem] p-5" : "min-h-80 p-7",
+          compact ? "min-h-100 p-5" : "min-h-80 p-7",
         )}
       >
         <div>
@@ -138,16 +143,14 @@ export function StoryCard({
             as="h3"
             size="h4"
             color="cream"
-            className={cn(
-              compact && "max-w-[15rem] text-[1.45rem] leading-tight",
-            )}
+            className={cn(compact && "max-w-60 text-[1.45rem] leading-tight")}
           >
             {item.title}
           </Heading>
 
           <div
             className={cn(
-              "grid transition-all duration-500 ease-out",
+              "grid transition-[grid-template-rows,margin-top] duration-500 ease-out motion-reduce:transition-none",
               isActive ? "mt-4 grid-rows-[1fr]" : "mt-0 grid-rows-[0fr]",
             )}
           >
@@ -181,6 +184,7 @@ export function StoryCard({
       <button
         type="button"
         aria-expanded={isActive}
+        aria-label={`${isActive ? "Ascunde" : "Afișează"} detalii pentru ${item.title}`}
         onClick={onToggle}
         className={cn(
           cardClasses,
