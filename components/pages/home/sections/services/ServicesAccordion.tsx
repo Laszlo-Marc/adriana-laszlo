@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { ServiceItem } from "./types";
 import Button from "@/components/ui/Button";
+import Heading from "@/components/ui/Heading";
+import Text from "@/components/ui/Text";
+import { cn } from "@/lib/utils";
+
+import type { ServiceItem } from "./types";
 
 type ServicesAccordionProps = {
   items: ServiceItem[];
@@ -18,21 +20,6 @@ export function ServicesAccordion({
   className,
 }: ServicesAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [revealedItems, setRevealedItems] = useState<number[]>([]);
-
-  useEffect(() => {
-    const timers = items.map((_, index) =>
-      window.setTimeout(() => {
-        setRevealedItems((current) =>
-          current.includes(index) ? current : [...current, index],
-        );
-      }, 120 * index),
-    );
-
-    return () => {
-      timers.forEach(window.clearTimeout);
-    };
-  }, [items]);
 
   if (!items.length) return null;
 
@@ -41,7 +28,6 @@ export function ServicesAccordion({
       <div className="hidden gap-3 lg:flex lg:h-125">
         {items.map((item, index) => {
           const isActive = index === activeIndex;
-          const isVisible = revealedItems.includes(index);
 
           return (
             <button
@@ -50,16 +36,15 @@ export function ServicesAccordion({
               onClick={() => setActiveIndex(index)}
               onFocus={() => setActiveIndex(index)}
               aria-pressed={isActive}
-              aria-label={item.title}
+              aria-label={`Vezi detalii despre ${item.title}`}
               className={cn(
-                "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none  duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50",
+                "group relative min-w-21 overflow-hidden rounded-[28px] border text-left outline-none transition-[flex,border-color,transform,opacity] duration-500 ease-out focus-visible:ring-2 focus-visible:ring-gold/50 motion-safe:animate-[servicesPanelReveal_520ms_cubic-bezier(0.22,1,0.36,1)_both]",
                 isActive
-                  ? cn("flex-6 ", item.accent.borderActive)
-                  : "flex-[1.2] border-charcoal/10  hover:border-charcoal/20",
+                  ? cn("flex-6", item.accent.borderActive)
+                  : "flex-[1.2] border-charcoal/10 hover:border-charcoal/20",
               )}
               style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(-24px)",
+                animationDelay: `${index * 90}ms`,
               }}
             >
               <AccordionImage item={item} isActive={isActive} />
@@ -87,10 +72,15 @@ function AccordionImage({
           src={item.image.src}
           alt={item.image.alt}
           fill
-          loading="eager"
-          sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 50vw, 100vw"
+          loading={isActive ? "eager" : "lazy"}
+          fetchPriority={isActive ? "high" : "auto"}
+          sizes={
+            isActive
+              ? "(max-width: 1023px) 1px, (min-width: 1280px) 52vw, 48vw"
+              : "(max-width: 1023px) 1px, 12vw"
+          }
           className={cn(
-            "object-cover transition-transform duration-700 ease-out",
+            "object-cover transition-transform duration-700 ease-out motion-reduce:transition-none",
             isActive
               ? "scale-100"
               : "scale-[1.03] grayscale-[0.12] brightness-[0.9]",
@@ -101,7 +91,7 @@ function AccordionImage({
       <div
         aria-hidden="true"
         className={cn(
-          "absolute inset-0 bg-linear-to-t transition-opacity duration-500",
+          "absolute inset-0 bg-linear-to-t transition-opacity duration-500 motion-reduce:transition-none",
           isActive ? item.accent.overlayActive : item.accent.overlayInactive,
         )}
       />
@@ -114,7 +104,7 @@ function AccordionLabel({ item }: { item: ServiceItem }) {
     <div className="absolute left-4 top-4 z-20">
       <span
         className={cn(
-          "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ",
+          "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em]",
           item.accent.pillBg,
           item.accent.pillText,
         )}
@@ -137,25 +127,35 @@ function AccordionContent({
   return (
     <div className="absolute inset-x-0 bottom-0 z-20 p-5">
       <div className="flex items-end gap-4">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/18 bg-white/14 text-sm font-semibold text-white ">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/18 bg-white/14 text-sm font-semibold text-white">
           {String(index + 1).padStart(2, "0")}
         </div>
 
         <div
           className={cn(
-            "min-w-0 transition-all duration-500",
+            "min-w-0 transition-[opacity,transform] duration-500 motion-reduce:transition-none",
             isActive
               ? "translate-y-0 opacity-100"
               : "translate-y-2 opacity-0 lg:pointer-events-none",
           )}
         >
-          <h3 className="font-display text-[1.7rem] leading-tight text-white">
+          <Heading
+            as="h3"
+            size="h4"
+            color="cream"
+            className="font-display text-[1.7rem] leading-tight"
+          >
             {item.title}
-          </h3>
+          </Heading>
 
-          <p className="mt-2 max-w-xl text-sm leading-6 text-white/88">
+          <Text
+            as="p"
+            size="sm"
+            color="cream"
+            className="mt-2 max-w-xl leading-6 text-white/88"
+          >
             {item.subtitle}
-          </p>
+          </Text>
 
           <Button href={item.href} variant="cream" size="md" className="mt-5">
             Descoperă serviciul

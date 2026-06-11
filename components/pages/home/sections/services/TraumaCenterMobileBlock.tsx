@@ -1,9 +1,7 @@
 import Image from "next/image";
-
 import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
-import AccentText from "@/components/ui/AccentText";
 import type { ServiceItem } from "./types";
 
 type TraumaCenterMobileBlockProps = {
@@ -80,7 +78,7 @@ export default function TraumaCenterMobileBlock({
               Vezi toate evenimentele
             </Button>
 
-            <Button href="/trauma-center" variant="purple" size="lg">
+            <Button href="https://traumacenter.ro/" variant="purple" size="lg">
               Descoperă Trauma Center
             </Button>
           </div>

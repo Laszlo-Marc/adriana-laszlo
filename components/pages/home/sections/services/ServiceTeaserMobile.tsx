@@ -1,8 +1,6 @@
 import Container from "@/components/ui/Container";
-import Heading from "@/components/ui/Heading";
 import TraumaCenterMobileBlock from "./TraumaCenterMobileBlock";
 import { eventsService, therapyServices } from "./data";
-import AccentText from "@/components/ui/AccentText";
 import MobileServicesAccordion from "./MobileServicesAccordion";
 
 export default function ServicesTeaserMobile() {

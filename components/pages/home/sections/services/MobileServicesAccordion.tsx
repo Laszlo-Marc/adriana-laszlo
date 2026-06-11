@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
 import { cn } from "@/lib/utils";
+
 import type { ServiceItem } from "./types";
 
 type MobileServicesAccordionProps = {
@@ -17,12 +18,12 @@ function PlusMinusIcon({ isOpen }: { isOpen: boolean }) {
   return (
     <span
       aria-hidden="true"
-      className="relative flex size-8 shrink-0 items-center justify-center rounded-full border "
+      className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-current/30"
     >
-      <span className="absolute h-px w-3.5 bg-current transition-transform duration-300" />
+      <span className="absolute h-px w-3.5 bg-current transition-transform duration-300 motion-reduce:transition-none" />
       <span
         className={cn(
-          "absolute h-3.5 w-px bg-current transition-transform duration-300",
+          "absolute h-3.5 w-px bg-current transition-transform duration-300 motion-reduce:transition-none",
           isOpen ? "scale-y-0" : "scale-y-100",
         )}
       />
@@ -37,20 +38,25 @@ export default function MobileServicesAccordion({
     services[0]?.id ?? null,
   );
 
+  if (!services.length) return null;
+
   return (
-    <div className="  overflow-hidden bg-cream">
-      {services.map((service, index) => {
+    <div className="overflow-hidden bg-cream">
+      {services.map((service) => {
         const isActive = activeId === service.id;
+        const panelId = `${service.id}-panel`;
+        const buttonId = `${service.id}-trigger`;
 
         return (
           <article key={service.id} className="overflow-hidden">
             <button
+              id={buttonId}
               type="button"
               onClick={() => setActiveId(isActive ? null : service.id)}
               aria-expanded={isActive}
-              aria-controls={`${service.id}-panel`}
+              aria-controls={panelId}
               className={cn(
-                "group flex w-full items-center gap-4 px-6 py-5 text-left transition-colors duration-300",
+                "group flex w-full items-center gap-4 px-6 py-5 text-left transition-colors duration-300 motion-reduce:transition-none",
                 isActive
                   ? service.accent.mobileRowActive
                   : service.accent.mobileRow,
@@ -66,20 +72,23 @@ export default function MobileServicesAccordion({
             </button>
 
             <div
-              id={`${service.id}-panel`}
+              id={panelId}
+              role="region"
+              aria-labelledby={buttonId}
+              aria-hidden={!isActive}
               className={cn(
-                "grid bg-cream transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                "grid bg-cream transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
                 isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
               )}
             >
               <div className="overflow-hidden">
                 <div className="relative">
-                  <div className="relative h-[330px] w-full overflow-hidden">
+                  <div className="relative h-82.5 w-full overflow-hidden">
                     <Image
                       src={service.image.src}
                       alt={service.image.alt}
                       fill
-                      sizes="100vw"
+                      sizes="(max-width: 1023px) 100vw, 1px"
                       className="object-cover object-center"
                     />
 
@@ -90,7 +99,7 @@ export default function MobileServicesAccordion({
 
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent via-cream/75 to-cream"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-linear-to-b from-transparent via-cream/75 to-cream"
                     />
                   </div>
 

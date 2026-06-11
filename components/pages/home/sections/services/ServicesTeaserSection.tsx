@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import Section from "@/components/ui/Section";
 import ServicesTeaserDesktop from "./ServiceTeaserDesktop";
 import ServicesTeaserMobile from "./ServiceTeaserMobile";

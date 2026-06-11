@@ -5,7 +5,7 @@ export const services: ServiceItem[] = [
     id: "events",
     title: "Evenimente și workshopuri",
     subtitle: "Oportunități de învățare și dezvoltare personală.",
-    href: "/servicii#evenimente",
+    href: "/evenimente",
     label: "Evenimente",
     image: {
       src: "/home-page/services/events.jpg",
