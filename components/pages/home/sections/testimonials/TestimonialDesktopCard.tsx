@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { TestimonialContent, TestimonialItem } from "./TestimonialContent";
+import { TestimonialContent, type TestimonialItem } from "./TestimonialContent";
 
 type DesktopCardProps = {
   item: TestimonialItem;
@@ -7,7 +7,9 @@ type DesktopCardProps = {
   isActive: boolean;
   onMove: (steps: number) => void;
 };
+
 const VISIBLE_RANGE = 2;
+
 export function TestimonialsDesktopCard({
   item,
   position,
@@ -20,11 +22,14 @@ export function TestimonialsDesktopCard({
   return (
     <article
       aria-hidden={isHidden}
-      onClick={() => !isHidden && onMove(position)}
+      onClick={() => {
+        if (!isHidden && !isActive) onMove(position);
+      }}
       className={cn(
         "absolute left-1/2 top-1/2 w-[min(88vw,24rem)] sm:w-[24rem]",
-        "cursor-pointer select-none rounded-[28px] rounded-tr-none border p-6 sm:p-7",
-        "transition-all duration-500 ease-out will-change-transform",
+        "select-none rounded-[28px] rounded-tr-none border p-6 sm:p-7",
+        "transition-[transform,opacity,border-color,box-shadow] duration-500 ease-out motion-reduce:transition-none",
+        isHidden ? "pointer-events-none" : "cursor-pointer",
         isActive
           ? "z-30 border-teal/20 bg-white shadow-[0_24px_70px_-24px_rgba(0,0,0,0.22)]"
           : "z-10 border-charcoal/10 bg-cream/95 shadow-[0_18px_40px_-28px_rgba(0,0,0,0.22)] hover:border-teal/25",
@@ -38,10 +43,9 @@ export function TestimonialsDesktopCard({
           scale(${isActive ? 1 : 1 - abs * 0.06})
           rotate(${isActive ? 0 : position < 0 ? -3 : 3}deg)
         `,
-        pointerEvents: isHidden ? "none" : "auto",
       }}
     >
-      <TestimonialContent item={item} priority={isActive} />
+      <TestimonialContent item={item} />
     </article>
   );
 }

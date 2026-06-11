@@ -1,10 +1,9 @@
-import { cn } from "@/lib/utils";
-import { Quote } from "lucide-react";
 import Image from "next/image";
-type BaseCardProps = {
-  item: TestimonialItem;
-  priority?: boolean;
-};
+import { Quote } from "lucide-react";
+
+import Text from "@/components/ui/Text";
+import { cn } from "@/lib/utils";
+
 export type TestimonialItem = {
   id: string;
   quote: string;
@@ -14,7 +13,11 @@ export type TestimonialItem = {
   imageAlt?: string;
 };
 
-export function TestimonialContent({ item, priority = false }: BaseCardProps) {
+type TestimonialContentProps = {
+  item: TestimonialItem;
+};
+
+export function TestimonialContent({ item }: TestimonialContentProps) {
   return (
     <>
       <div className="mb-5 flex items-center gap-4">
@@ -22,17 +25,23 @@ export function TestimonialContent({ item, priority = false }: BaseCardProps) {
           <Image
             src={item.imageSrc}
             alt={item.imageAlt ?? item.name}
-            className="h-full w-full object-cover"
-            loading={priority ? "eager" : "lazy"}
             width={100}
             height={100}
+            sizes="64px"
+            className="h-full w-full object-cover"
           />
         </div>
 
         <div className="min-w-0">
-          <p className="font-heading text-lg leading-tight text-charcoal">
+          <Text
+            as="p"
+            size="lg"
+            color="charcoal"
+            weight="medium"
+            className="font-display leading-tight"
+          >
             {item.name}
-          </p>
+          </Text>
         </div>
       </div>
 
@@ -44,7 +53,7 @@ export function TestimonialContent({ item, priority = false }: BaseCardProps) {
 
       <div
         className={cn(
-          "pointer-events-none absolute right-0 top-0 h-14 w-14 rounded-bl-2xl border-l border-b",
+          "pointer-events-none absolute right-0 top-0 h-14 w-14 rounded-bl-2xl border-b border-l",
           "border-teal/15 bg-teal/5",
         )}
         aria-hidden="true"

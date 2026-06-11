@@ -1,14 +1,19 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { TestimonialItem } from "./TestimonialContent";
-import { TestimonialsMobileCard } from "./TestimonialMobileCard";
-import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
+import { useReducedMotion } from "framer-motion";
+
 import Heading from "@/components/ui/Heading";
 import AccentText from "@/components/ui/AccentText";
-import Image from "next/image";
+import Text from "@/components/ui/Text";
+import { cn } from "@/lib/utils";
+
+import type { TestimonialItem } from "./TestimonialContent";
+import { TestimonialsMobileCard } from "./TestimonialMobileCard";
+import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
+
 type TestimonialsStackProps = {
   items: TestimonialItem[];
   className?: string;
@@ -26,11 +31,13 @@ export default function TestimonialsStack({
   title = "Ce spun clienții",
   description = "Un spațiu terapeutic sigur începe cu încredere, claritate și sentimentul că ești cu adevărat înțeles.",
 }: TestimonialsStackProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   const [orderedItems, setOrderedItems] = React.useState(items);
   const [mobileIndex, setMobileIndex] = React.useState(0);
 
   const pointerStartX = React.useRef<number | null>(null);
-  const autoplayTimeoutRef = React.useRef<number | null>(null);
+  const autoplayIntervalRef = React.useRef<number | null>(null);
   const resumeTimeoutRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
@@ -39,12 +46,12 @@ export default function TestimonialsStack({
   }, [items]);
 
   const clearAutoplayTimers = React.useCallback(() => {
-    if (autoplayTimeoutRef.current) {
-      window.clearInterval(autoplayTimeoutRef.current);
-      autoplayTimeoutRef.current = null;
+    if (autoplayIntervalRef.current !== null) {
+      window.clearInterval(autoplayIntervalRef.current);
+      autoplayIntervalRef.current = null;
     }
 
-    if (resumeTimeoutRef.current) {
+    if (resumeTimeoutRef.current !== null) {
       window.clearTimeout(resumeTimeoutRef.current);
       resumeTimeoutRef.current = null;
     }
@@ -78,44 +85,54 @@ export default function TestimonialsStack({
     (index: number) => {
       const total = items.length;
       if (!total) return;
+
       setMobileIndex(((index % total) + total) % total);
     },
     [items.length],
   );
 
   const nextMobile = React.useCallback(() => {
+    if (!items.length) return;
     setMobileIndex((current) => (current + 1) % items.length);
   }, [items.length]);
 
   const prevMobile = React.useCallback(() => {
+    if (!items.length) return;
     setMobileIndex((current) => (current - 1 + items.length) % items.length);
   }, [items.length]);
+
+  const startMobileAutoplay = React.useCallback(() => {
+    clearAutoplayTimers();
+
+    if (shouldReduceMotion || items.length <= 1 || document.hidden) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    if (!mobileQuery.matches) return;
+
+    autoplayIntervalRef.current = window.setInterval(() => {
+      if (!document.hidden) nextMobile();
+    }, MOBILE_AUTOPLAY_MS);
+  }, [clearAutoplayTimers, items.length, nextMobile, shouldReduceMotion]);
 
   const pauseMobileAutoplay = React.useCallback(() => {
     clearAutoplayTimers();
 
+    if (shouldReduceMotion || items.length <= 1) return;
+
     resumeTimeoutRef.current = window.setTimeout(() => {
-      autoplayTimeoutRef.current = window.setInterval(() => {
-        if (document.hidden) return;
-        nextMobile();
-      }, MOBILE_AUTOPLAY_MS);
+      startMobileAutoplay();
     }, MOBILE_AUTOPLAY_RESUME_DELAY);
-  }, [clearAutoplayTimers, nextMobile]);
+  }, [
+    clearAutoplayTimers,
+    items.length,
+    shouldReduceMotion,
+    startMobileAutoplay,
+  ]);
 
   React.useEffect(() => {
-    if (items.length <= 1) return;
+    if (items.length <= 1 || shouldReduceMotion) return;
 
     const mobileQuery = window.matchMedia("(max-width: 767px)");
-
-    const startAutoplayIfNeeded = () => {
-      clearAutoplayTimers();
-
-      if (!mobileQuery.matches || document.hidden) return;
-
-      autoplayTimeoutRef.current = window.setInterval(() => {
-        nextMobile();
-      }, MOBILE_AUTOPLAY_MS);
-    };
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -123,14 +140,15 @@ export default function TestimonialsStack({
         return;
       }
 
-      startAutoplayIfNeeded();
+      startMobileAutoplay();
     };
 
     const handleMediaChange = () => {
-      startAutoplayIfNeeded();
+      startMobileAutoplay();
     };
 
-    startAutoplayIfNeeded();
+    startMobileAutoplay();
+
     document.addEventListener("visibilitychange", handleVisibilityChange);
     mobileQuery.addEventListener("change", handleMediaChange);
 
@@ -139,7 +157,12 @@ export default function TestimonialsStack({
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       mobileQuery.removeEventListener("change", handleMediaChange);
     };
-  }, [clearAutoplayTimers, items.length, nextMobile]);
+  }, [
+    clearAutoplayTimers,
+    items.length,
+    shouldReduceMotion,
+    startMobileAutoplay,
+  ]);
 
   const handlePointerDown = React.useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
@@ -179,7 +202,7 @@ export default function TestimonialsStack({
     }));
   }, [orderedItems]);
 
-  const centerIndex = 0;
+  if (!items.length) return null;
 
   return (
     <section
@@ -191,43 +214,60 @@ export default function TestimonialsStack({
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-5 z-20 w-20  opacity-70 lg:hidden"
+        className="pointer-events-none absolute right-5 top-5 z-20 w-20 opacity-70 lg:hidden"
       >
         <Image
           src="/backgrounds/df-teal-down.png"
           alt=""
           width={48}
           height={48}
+          sizes="80px"
           className="h-auto w-full object-contain"
         />
       </div>
+
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-5 top-5 z-20 w-20  opacity-70 lg:hidden"
+        className="pointer-events-none absolute left-5 top-5 z-20 w-20 opacity-70 lg:hidden"
       >
         <Image
           src="/backgrounds/df-purple-down.png"
           alt=""
           width={48}
           height={48}
+          sizes="80px"
           className="h-auto w-full object-contain rotate-x-180"
         />
       </div>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <AccentText className="justify-center text-2xl text-center text-gold">
+          <AccentText className="block text-center text-2xl text-gold">
             Testimoniale
           </AccentText>
 
           <Heading
+            id="testimonials-heading"
             as="h2"
             size="h1"
-            className=" mt-4 "
+            className="mt-4"
             align="center"
             font="display"
           >
             {title}
           </Heading>
+
+          {description ? (
+            <Text
+              as="p"
+              size="lg"
+              color="muted"
+              align="center"
+              className="mx-auto mt-5 max-w-2xl text-pretty"
+            >
+              {description}
+            </Text>
+          ) : null}
         </div>
 
         <div className="mt-12 md:hidden">
@@ -237,9 +277,10 @@ export default function TestimonialsStack({
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}
             aria-roledescription="carousel"
+            aria-label="Testimoniale clienți"
           >
             <div
-              className="flex touch-pan-y transition-transform duration-500 ease-out"
+              className="flex touch-pan-y transition-transform duration-500 ease-out motion-reduce:transition-none"
               style={{
                 transform: `translateX(-${mobileIndex * 100}%)`,
               }}
@@ -256,22 +297,14 @@ export default function TestimonialsStack({
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              type="button"
+            <CarouselArrowButton
+              direction="previous"
+              size="mobile"
               onClick={() => {
                 pauseMobileAutoplay();
                 prevMobile();
               }}
-              className={cn(
-                "inline-flex h-11 w-11 items-center justify-center rounded-full border",
-                "border-charcoal/10 bg-white text-charcoal transition",
-                "hover:border-teal/20 hover:bg-teal hover:text-white",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
-              )}
-              aria-label="Testimonial anterior"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
+            />
 
             <div className="flex items-center gap-2">
               {items.map((item, index) => (
@@ -283,7 +316,7 @@ export default function TestimonialsStack({
                     goToMobileIndex(index);
                   }}
                   className={cn(
-                    "h-2.5 rounded-full transition-all",
+                    "h-2.5 rounded-full transition-[width,background-color] motion-reduce:transition-none",
                     index === mobileIndex
                       ? "w-7 bg-teal"
                       : "w-2.5 bg-charcoal/18 hover:bg-charcoal/30",
@@ -294,28 +327,20 @@ export default function TestimonialsStack({
               ))}
             </div>
 
-            <button
-              type="button"
+            <CarouselArrowButton
+              direction="next"
+              size="mobile"
               onClick={() => {
                 pauseMobileAutoplay();
                 nextMobile();
               }}
-              className={cn(
-                "inline-flex h-11 w-11 items-center justify-center rounded-full border",
-                "border-charcoal/10 bg-white text-charcoal transition",
-                "hover:border-teal/20 hover:bg-teal hover:text-white",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
-              )}
-              aria-label="Testimonial următor"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+            />
           </div>
         </div>
 
         <div className="relative mt-14 hidden h-120 overflow-hidden md:block sm:h-128">
           {visibleItems.map(({ item }, index) => {
-            let position = index - centerIndex;
+            let position = index;
 
             if (position > Math.floor(orderedItems.length / 2)) {
               position -= orderedItems.length;
@@ -334,35 +359,52 @@ export default function TestimonialsStack({
         </div>
 
         <div className="mt-8 hidden items-center justify-center gap-3 md:flex">
-          <button
-            type="button"
+          <CarouselArrowButton
+            direction="previous"
+            size="desktop"
             onClick={() => handleMove(-1)}
-            className={cn(
-              "inline-flex h-12 w-12 items-center justify-center rounded-full border",
-              "border-charcoal/10 bg-white text-charcoal transition",
-              "hover:border-teal/20 hover:bg-teal hover:text-white",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
-            )}
-            aria-label="Testimonial anterior"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
+          />
 
-          <button
-            type="button"
+          <CarouselArrowButton
+            direction="next"
+            size="desktop"
             onClick={() => handleMove(1)}
-            className={cn(
-              "inline-flex h-12 w-12 items-center justify-center rounded-full border",
-              "border-charcoal/10 bg-white text-charcoal transition",
-              "hover:border-teal/20 hover:bg-teal hover:text-white",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
-            )}
-            aria-label="Testimonial următor"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function CarouselArrowButton({
+  direction,
+  size,
+  onClick,
+}: {
+  direction: "previous" | "next";
+  size: "mobile" | "desktop";
+  onClick: () => void;
+}) {
+  const Icon = direction === "previous" ? ChevronLeft : ChevronRight;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center justify-center rounded-full border",
+        "border-charcoal/10 bg-white text-charcoal transition-[background-color,border-color,color] motion-reduce:transition-none",
+        "hover:border-teal/20 hover:bg-teal hover:text-white",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
+        size === "mobile" ? "h-11 w-11" : "h-12 w-12",
+      )}
+      aria-label={
+        direction === "previous"
+          ? "Testimonial anterior"
+          : "Testimonial următor"
+      }
+    >
+      <Icon className="h-5 w-5" aria-hidden="true" />
+    </button>
   );
 }

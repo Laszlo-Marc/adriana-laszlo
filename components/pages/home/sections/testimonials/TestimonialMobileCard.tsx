@@ -1,13 +1,15 @@
 import { cn } from "@/lib/utils";
-import { TestimonialContent, TestimonialItem } from "./TestimonialContent";
+import { TestimonialContent, type TestimonialItem } from "./TestimonialContent";
+
+type TestimonialsMobileCardProps = {
+  item: TestimonialItem;
+  isActive: boolean;
+};
 
 export function TestimonialsMobileCard({
   item,
   isActive,
-}: {
-  item: TestimonialItem;
-  isActive: boolean;
-}) {
+}: TestimonialsMobileCardProps) {
   return (
     <article
       aria-hidden={!isActive}
@@ -16,7 +18,7 @@ export function TestimonialsMobileCard({
         "border-teal/15",
       )}
     >
-      <TestimonialContent item={item} priority={isActive} />
+      <TestimonialContent item={item} />
     </article>
   );
 }
