@@ -230,3 +230,14 @@ body {
     animation: none;
   }
 }
+.resource-flip-unite {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (prefers-reduced-motion: reduce) {
+  .resource-flip-unite {
+    animation: none;
+    transition: none;
+  }
+}

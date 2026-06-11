@@ -1,8 +1,7 @@
-// components/pages/about/hero/aboutHeroContent.ts
-
 export const aboutHeroContent = {
   eyebrow: "Despre Mine",
   title: "Psihoterapeut specializat în traumă și AF-EMDR",
+  titleStart: "Psihoterapeut specializat în traumă și",
   highlightedTitle: "AF-EMDR",
   description:
     "Lucrez cu persoane care trec prin anxietate, traumă, dificultăți relaționale sau blocaje emoționale, într-un ritm sigur, clar și adaptat fiecărei persoane.",

@@ -1,9 +1,10 @@
 import AfEmdrSection from "@/components/pages/about/af-emdr/AfEmdrSection";
 import ApproachProcessSection from "@/components/pages/about/approach-process/ApproachProccessSection";
-import AboutFaqSection from "@/components/pages/about/faq/AboutFaqSection";
+import { aboutFaqItems } from "@/components/pages/about/faq/aboutFAQContent";
 import AboutHeroSection from "@/components/pages/about/hero/HeroSection";
 import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import AboutTimelineSection from "@/components/pages/about/timeline/TimelineSection";
+import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export default function AboutPage() {
@@ -14,7 +15,14 @@ export default function AboutPage() {
       <AboutTimelineSection />
       <ApproachProcessSection />
       <AfEmdrSection />
-      <AboutFaqSection />
+      <FaqSection
+        id="about-faq"
+        items={aboutFaqItems}
+        title="Întrebări frecvente"
+        tone="charcoal"
+        background="cream"
+        spacing="md"
+      />
       <FinalCTA
         title="Dacă simți că rezonăm, sunt aici."
         description="Terapia începe cu un spațiu sigur în care poți vorbi sincer despre ce te apasă, fără presiune și fără judecată."

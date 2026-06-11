@@ -29,7 +29,7 @@ export const resourcePanels: ResourcePanel[] = [
       "Exerciții și ghiduri simple pentru reflecție, reglare emoțională și pregătirea primilor pași în terapie.",
     desktopDescription:
       "Resurse descărcabile pentru reflecție, reglare emoțională și pași mici de reconectare cu tine.",
-    href: "/resurse",
+    href: "/af-emdr#resurse",
     cta: "Vezi resursele gratuite",
     image: {
       src: "/home-page/resources/resurse2.jpg",
