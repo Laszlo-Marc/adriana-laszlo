@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
-import { useInView } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+
 import Container from "@/components/ui/Container";
 import { MethodImagePanel } from "./MethodImagePanel";
 import { MethodTextPanel } from "./MethodTextPanel";
@@ -10,30 +11,28 @@ import { methodSteps } from "../data";
 import { ScrollStepTrigger } from "../ScrollStepTrigger";
 
 export default function EducationMethodDesktopSection() {
+  const shouldReduceMotion = useReducedMotion() ?? false;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleActiveChange = useCallback((index: number) => {
-    setActiveIndex(index);
+    setActiveIndex((currentIndex) =>
+      currentIndex === index ? currentIndex : index,
+    );
   }, []);
 
   const activeStep = methodSteps[activeIndex];
 
   return (
-    <section
-      aria-labelledby="education-method-desktop-title"
-      className="relative hidden bg-cream lg:block"
-    >
+    <div className="relative hidden bg-cream lg:block">
       <div className="relative h-[300svh]">
         <div className="sticky top-0 h-svh overflow-hidden">
-          {/* Background atmosphere */}
           <div className="absolute inset-0">
             <Image
               src="/home-page/method.jpg"
               alt=""
               aria-hidden="true"
               fill
-              priority={false}
-              sizes="100vw"
+              sizes="(max-width: 1023px) 1px, 100vw"
               className="object-cover object-center"
             />
 
@@ -41,17 +40,17 @@ export default function EducationMethodDesktopSection() {
 
             <div
               aria-hidden="true"
-              className="absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-cream via-cream/90 to-transparent"
+              className="absolute inset-y-0 right-0 w-2/3 bg-linear-to-l from-cream via-cream/90 to-transparent"
             />
 
             <div
               aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cream via-cream/70 to-transparent"
+              className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-cream via-cream/70 to-transparent"
             />
 
             <div
               aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-cream via-cream/80 to-transparent"
+              className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-cream via-cream/80 to-transparent"
             />
           </div>
 
@@ -61,7 +60,8 @@ export default function EducationMethodDesktopSection() {
             aria-hidden="true"
             width={150}
             height={150}
-            className="pointer-events-none absolute right-[9%] top-[12%] rotate-[-10deg] opacity-25"
+            sizes="150px"
+            className="pointer-events-none absolute right-[9%] top-[12%] h-auto w-37.5 rotate-[-10deg] opacity-25"
           />
 
           <Container
@@ -71,17 +71,24 @@ export default function EducationMethodDesktopSection() {
           >
             <div className="grid h-full grid-cols-[1fr_1fr] items-center gap-14 xl:gap-20">
               <div>
-                <MethodImagePanel step={activeStep} activeIndex={activeIndex} />
+                <MethodImagePanel
+                  step={activeStep}
+                  activeIndex={activeIndex}
+                  reduceMotion={shouldReduceMotion}
+                />
               </div>
 
               <div className="ml-auto w-full max-w-2xl">
-                <MethodTextPanel step={activeStep} activeIndex={activeIndex} />
+                <MethodTextPanel
+                  step={activeStep}
+                  activeIndex={activeIndex}
+                  reduceMotion={shouldReduceMotion}
+                />
               </div>
             </div>
           </Container>
         </div>
 
-        {/* Scroll triggers */}
         <div className="pointer-events-none absolute inset-0 z-20">
           {methodSteps.map((step, index) => (
             <ScrollStepTrigger
@@ -92,6 +99,6 @@ export default function EducationMethodDesktopSection() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

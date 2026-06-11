@@ -44,7 +44,7 @@ export const methodSteps: MethodStep[] = [
     imageSubtitle: "O abordare orientată spre traumă, atașament și reglare.",
     cta: {
       label: "Descoperă metoda",
-      href: "/servicii",
+      href: "/af-emdr",
     },
   },
   {

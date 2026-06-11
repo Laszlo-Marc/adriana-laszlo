@@ -1,4 +1,3 @@
-// components/pages/home/education-method/ScrollStepTrigger.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -23,10 +22,10 @@ export function ScrollStepTrigger({
   });
 
   useEffect(() => {
-    if (isInView) {
-      onActive(index);
-    }
+    if (!isInView) return;
+
+    onActive(index);
   }, [index, isInView, onActive]);
 
-  return <div ref={ref} className={className} />;
+  return <div ref={ref} className={className} aria-hidden="true" />;
 }
