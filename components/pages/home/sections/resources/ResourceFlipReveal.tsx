@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useReducedMotion } from "framer-motion";
 
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
@@ -37,6 +37,8 @@ type ResourcesFlipRevealProps = {
 export default function ResourcesFlipReveal({
   panels,
 }: ResourcesFlipRevealProps) {
+  const shouldReduceMotion = useReducedMotion() ?? false;
+
   const galleryRef = useRef<HTMLDivElement | null>(null);
   const layerRefs = useRef<HTMLElement[]>([]);
   const timersRef = useRef<number[]>([]);
@@ -47,6 +49,15 @@ export default function ResourcesFlipReveal({
   const [isAnimating, setIsAnimating] = useState(false);
 
   const activePanel = panels[contentIndex];
+
+  const clearTimers = useCallback(() => {
+    timersRef.current.forEach((timer) => window.clearTimeout(timer));
+    timersRef.current = [];
+  }, []);
+
+  const setLayerImage = useCallback((layer: HTMLElement, src: string) => {
+    layer.style.backgroundImage = `url("${src}")`;
+  }, []);
 
   useEffect(() => {
     if (!galleryRef.current || !panels.length) return;
@@ -62,86 +73,98 @@ export default function ResourcesFlipReveal({
     return () => {
       clearTimers();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [panels]);
+  }, [clearTimers, panels, setLayerImage]);
+
+  const changePanel = useCallback(
+    (nextIndex: number) => {
+      if (nextIndex === currentIndex || isAnimating) return;
+
+      const gallery = galleryRef.current;
+      const nextPanel = panels[nextIndex];
+
+      if (!gallery || !nextPanel) return;
+
+      clearTimers();
+      setCurrentIndex(nextIndex);
+
+      if (shouldReduceMotion) {
+        layerRefs.current.forEach((layer) => {
+          setLayerImage(layer, nextPanel.image.src);
+        });
+
+        setContentIndex(nextIndex);
+        setIsContentVisible(true);
+        setIsAnimating(false);
+        return;
+      }
+
+      setIsAnimating(true);
+      setIsContentVisible(false);
+
+      const overlayTop = gallery.querySelector<HTMLElement>(
+        ".resource-flip-overlay-top",
+      );
+      const overlayBottom = gallery.querySelector<HTMLElement>(
+        ".resource-flip-overlay-bottom",
+      );
+
+      overlayTop?.animate(flipAnimationTop, flipTiming);
+      overlayBottom?.animate(flipAnimationBottom, flipTiming);
+
+      layerRefs.current.forEach((layer, index) => {
+        const shouldDelay = index === 1 || index === 2;
+        const delay = shouldDelay ? FLIP_SPEED - 200 : 0;
+
+        const timer = window.setTimeout(() => {
+          setLayerImage(layer, nextPanel.image.src);
+        }, delay);
+
+        timersRef.current.push(timer);
+      });
+
+      const contentTimer = window.setTimeout(() => {
+        setContentIndex(nextIndex);
+        setIsContentVisible(true);
+      }, FLIP_SPEED * 0.48);
+
+      const doneTimer = window.setTimeout(() => {
+        setIsAnimating(false);
+      }, FLIP_SPEED);
+
+      timersRef.current.push(contentTimer, doneTimer);
+    },
+    [
+      clearTimers,
+      currentIndex,
+      isAnimating,
+      panels,
+      setLayerImage,
+      shouldReduceMotion,
+    ],
+  );
 
   if (!panels.length || !activePanel) return null;
 
-  const clearTimers = () => {
-    timersRef.current.forEach(window.clearTimeout);
-    timersRef.current = [];
-  };
-
-  const setLayerImage = (layer: HTMLElement, src: string) => {
-    layer.style.backgroundImage = `url("${src}")`;
-  };
-
-  const changePanel = (nextIndex: number) => {
-    if (nextIndex === currentIndex || isAnimating) return;
-
-    const gallery = galleryRef.current;
-    if (!gallery) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    clearTimers();
-    setCurrentIndex(nextIndex);
-
-    if (prefersReducedMotion) {
-      layerRefs.current.forEach((layer) => {
-        setLayerImage(layer, panels[nextIndex].image.src);
-      });
-
-      setContentIndex(nextIndex);
-      setIsContentVisible(true);
-      setIsAnimating(false);
-      return;
-    }
-
-    setIsAnimating(true);
-    setIsContentVisible(false);
-
-    const overlayTop = gallery.querySelector<HTMLElement>(
-      ".resource-flip-overlay-top",
-    );
-    const overlayBottom = gallery.querySelector<HTMLElement>(
-      ".resource-flip-overlay-bottom",
-    );
-
-    overlayTop?.animate(flipAnimationTop, flipTiming);
-    overlayBottom?.animate(flipAnimationBottom, flipTiming);
-
-    layerRefs.current.forEach((layer, index) => {
-      const shouldDelay = index === 1 || index === 2;
-      const delay = shouldDelay ? FLIP_SPEED - 200 : 0;
-
-      const timer = window.setTimeout(() => {
-        setLayerImage(layer, panels[nextIndex].image.src);
-      }, delay);
-
-      timersRef.current.push(timer);
-    });
-
-    const contentTimer = window.setTimeout(() => {
-      setContentIndex(nextIndex);
-      setIsContentVisible(true);
-    }, FLIP_SPEED * 0.48);
-
-    const doneTimer = window.setTimeout(() => {
-      setIsAnimating(false);
-    }, FLIP_SPEED);
-
-    timersRef.current.push(contentTimer, doneTimer);
-  };
-
-  const isExternal = activePanel.href.startsWith("http");
-
   return (
     <div className="relative">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute size-px overflow-hidden opacity-0"
+      >
+        {panels.map((panel) => (
+          <Image
+            key={panel.id}
+            src={panel.image.src}
+            alt=""
+            width={720}
+            height={960}
+            sizes="1px"
+          />
+        ))}
+      </div>
+
       <div className="mb-7 flex justify-center">
-        <div className="inline-flex rounded-full border border-border/70 bg-white/55 p-1 ">
+        <div className="inline-flex rounded-full border border-border/70 bg-white/55 p-1">
           {panels.map((panel, index) => {
             const isActive = index === currentIndex;
 
@@ -153,7 +176,7 @@ export default function ResourcesFlipReveal({
                 disabled={isAnimating}
                 aria-pressed={isActive}
                 className={cn(
-                  "rounded-full px-4 py-2 text-[0.68rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 disabled:cursor-default disabled:opacity-70",
+                  "rounded-full px-4 py-2 text-[0.68rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 motion-reduce:transition-none disabled:cursor-default disabled:opacity-70",
                   isActive
                     ? "bg-charcoal text-cream"
                     : "text-charcoal/60 hover:text-charcoal",
@@ -168,7 +191,7 @@ export default function ResourcesFlipReveal({
 
       <div
         ref={galleryRef}
-        className="resource-flip-gallery relative mx-auto h-[31rem] max-w-md overflow-hidden rounded-[2rem] bg-sand/20 "
+        className="resource-flip-gallery relative mx-auto h-124 max-w-md overflow-hidden rounded-4xl bg-sand/20"
         style={{ perspective: "900px" }}
       >
         <div className="resource-flip-top resource-flip-unite" />
@@ -178,7 +201,7 @@ export default function ResourcesFlipReveal({
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-charcoal/84 via-charcoal/34 to-transparent"
+          className="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-charcoal/84 via-charcoal/34 to-transparent"
         />
 
         <div
@@ -193,7 +216,7 @@ export default function ResourcesFlipReveal({
 
         <div
           className={cn(
-            "absolute inset-x-0 bottom-0 z-30 flex flex-col items-center px-5 pb-6 text-center text-white transition-all duration-500",
+            "absolute inset-x-0 bottom-0 z-30 flex flex-col items-center px-5 pb-6 text-center text-white transition-[opacity,transform] duration-500 motion-reduce:transition-none",
             isContentVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-3 opacity-0",
@@ -227,21 +250,14 @@ export default function ResourcesFlipReveal({
             {activePanel.description}
           </Text>
 
-          {isExternal ? (
-            <Button
-              href={activePanel.href}
-              target="_blank"
-              rel="noreferrer"
-              variant="cream"
-              className="mt-5"
-            >
-              {activePanel.cta}
-            </Button>
-          ) : (
-            <Button variant="cream" href={activePanel.href} className="mt-5">
-              {activePanel.cta}
-            </Button>
-          )}
+          <Button
+            href={activePanel.href}
+            variant="cream"
+            className="mt-5"
+            external={activePanel.href.startsWith("http")}
+          >
+            {activePanel.cta}
+          </Button>
         </div>
       </div>
     </div>

@@ -7,14 +7,15 @@ export default function HomeResourcesSection() {
     <Section
       background="cream"
       spacing="none"
+      aria-labelledby="home-resources-title"
       className="relative overflow-hidden"
     >
+      <span id="home-resources-title" className="sr-only">
+        Resurse pentru continuarea procesului terapeutic
+      </span>
+
       <HomeResourcesMobile />
       <ResourcesDesktopSection />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none hidden lg:block absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-cream via-cream/80 to-transparent"
-      />
     </Section>
   );
 }

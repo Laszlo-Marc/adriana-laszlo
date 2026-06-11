@@ -1,105 +1,58 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
-import AccentText from "@/components/ui/AccentText";
 import { cn } from "@/lib/utils";
 
-type ResourceItem = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  href: string;
-  ctaLabel: string;
-  imageSrc: string;
-  imageAlt: string;
-  tone: "teal" | "purple" | "gold";
-};
+import { resourcePanels } from "./data";
+import type { ResourcePanel } from "./types";
 
-const resourceItems: ResourceItem[] = [
-  {
-    eyebrow: "Articole",
-    title: "Texte pentru claritate",
-    description:
-      "Articole despre traumă, atașament, anxietate, relații și procesul de vindecare emoțională.",
-    href: "/blog",
-    ctaLabel: "Citește articolele",
-    imageSrc: "/home-page/resources/blog.jpg",
-    imageAlt: "Spațiu calm cu plante și materiale de lectură",
-    tone: "teal",
-  },
-  {
-    eyebrow: "Resurse gratuite",
-    title: "Exerciții și materiale utile",
-    description:
-      "Resurse descărcabile pentru reflecție, reglare emoțională și pași mici de reconectare cu tine.",
-    href: "/resurse-gratuite",
-    ctaLabel: "Vezi resursele",
-    imageSrc: "/home-page/resources/resurse2.jpg",
-    imageAlt: "Materiale de lucru și caiet pentru exerciții terapeutice",
-    tone: "purple",
-  },
-  {
-    eyebrow: "Social media",
-    title: "Conținut educațional scurt",
-    description:
-      "Idei, explicații și mesaje despre relații, traumă, limite, anxietate și atașament.",
-    href: "/social-media",
-    ctaLabel: "Urmărește conținutul",
-    imageSrc: "/home-page/resources/social.jpg",
-    imageAlt: "Telefon și notițe pentru conținut educațional",
-    tone: "gold",
-  },
-];
-
-const toneStyles: Record<ResourceItem["tone"], string> = {
+const toneStyles: Record<ResourcePanel["tone"], string> = {
   teal: "bg-teal text-charcoal",
   purple: "bg-purple text-charcoal",
   gold: "bg-gold text-charcoal",
 };
 
-function ResourceCard({ item, index }: { item: ResourceItem; index: number }) {
+function ResourceCard({ item, index }: { item: ResourcePanel; index: number }) {
   return (
     <article
       className={cn(
-        "group relative overflow-hidden rounded-[2rem] border border-white/50 shadow-[0_18px_60px_rgba(44,44,44,0.08)]",
-        index === 0 ? "lg:min-h-[34rem]" : "lg:min-h-[20rem]",
+        "group relative overflow-hidden rounded-4xl border border-white/50 shadow-[0_18px_60px_rgba(44,44,44,0.08)]",
+        index === 0 ? "lg:min-h-136" : "lg:min-h-80",
       )}
     >
       <Image
-        src={item.imageSrc}
-        alt={item.imageAlt}
+        src={item.image.src}
+        alt={item.image.alt}
         fill
         sizes={
           index === 0
-            ? "(min-width: 1024px) 46vw, 100vw"
-            : "(min-width: 1024px) 32vw, 100vw"
+            ? "(max-width: 1023px) 1px, 46vw"
+            : "(max-width: 1023px) 1px, 32vw"
         }
-        className="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
       />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-charcoal/78 via-charcoal/28 to-transparent"
+        className="absolute inset-0 bg-linear-to-t from-charcoal/78 via-charcoal/28 to-transparent"
       />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-charcoal/20 via-transparent to-transparent opacity-80"
+        className="absolute inset-0 bg-linear-to-r from-charcoal/20 via-transparent to-transparent opacity-80"
       />
 
-      <div className="absolute flex flex-col items-center inset-x-0 bottom-0 p-7 xl:p-8">
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center p-7 xl:p-8">
         <span
           className={cn(
-            "inline-flex  align-center rounded-full px-4 py-2 font-body text-[0.68rem] font-semibold uppercase tracking-[0.18em]",
+            "inline-flex items-center rounded-full px-4 py-2 font-body text-[0.68rem] font-semibold uppercase tracking-[0.18em]",
             toneStyles[item.tone],
           )}
         >
-          {item.eyebrow}
+          {item.eyebrow ?? item.label}
         </span>
 
         <Heading
@@ -107,10 +60,10 @@ function ResourceCard({ item, index }: { item: ResourceItem; index: number }) {
           size={index === 0 ? "h3" : "h4"}
           color="cream"
           textCase="none"
-          className="mt-5 "
+          className="mt-5"
           align="center"
         >
-          {item.title}
+          {item.desktopTitle ?? item.title}
         </Heading>
 
         <Text
@@ -120,11 +73,11 @@ function ResourceCard({ item, index }: { item: ResourceItem; index: number }) {
           className="mt-4 max-w-md leading-7 text-cream/82"
           align="center"
         >
-          {item.description}
+          {item.desktopDescription ?? item.description}
         </Text>
 
         <Button href={item.href} variant="cream" className="mt-5" size="sm">
-          {item.ctaLabel}
+          {item.cta}
         </Button>
       </div>
     </article>
@@ -132,23 +85,20 @@ function ResourceCard({ item, index }: { item: ResourceItem; index: number }) {
 }
 
 export default function ResourcesDesktopSection() {
-  const [featured, ...secondary] = resourceItems;
+  const [featured, ...secondary] = resourcePanels;
+
+  if (!featured) return null;
 
   return (
-    <Section
-      background="cream"
-      spacing="lg"
-      aria-labelledby="resources-desktop-title"
-      className="relative hidden overflow-hidden lg:block"
-    >
-      {/* Brand atmosphere */}
+    <div className="relative hidden overflow-hidden py-20 lg:block">
       <Image
         src="/backgrounds/double-df.png"
         alt=""
         aria-hidden="true"
         width={420}
         height={700}
-        className="pointer-events-none absolute -left-10 -top-25 z-0  opacity-30"
+        sizes="420px"
+        className="pointer-events-none absolute -left-10 -top-25 z-0 h-auto w-105 opacity-30"
       />
 
       <Image
@@ -157,7 +107,8 @@ export default function ResourcesDesktopSection() {
         aria-hidden="true"
         width={140}
         height={140}
-        className="pointer-events-none absolute right-[12%] top-20 z-0 rotate-[8deg] opacity-25"
+        sizes="140px"
+        className="pointer-events-none absolute right-[12%] top-20 z-0 h-auto w-35 rotate-[8deg] opacity-25"
       />
 
       <div
@@ -167,14 +118,13 @@ export default function ResourcesDesktopSection() {
 
       <Container size="wider" padding="default" className="relative z-10">
         <div className="grid items-start gap-14 lg:grid-cols-[0.82fr_1.18fr] xl:gap-20">
-          {/* Intro */}
           <div className="sticky top-32">
             <Heading
-              id="resources-desktop-title"
+              id="home-resources-title"
               as="h2"
               size="h2"
               textCase="none"
-              className="mt-4  text-charcoal"
+              className="mt-4 text-charcoal"
             >
               Continuă procesul terapeutic
             </Heading>
@@ -194,19 +144,17 @@ export default function ResourcesDesktopSection() {
             </div>
           </div>
 
-          {/* Cards */}
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
             <ResourceCard item={featured} index={0} />
 
             <div className="grid gap-6">
               {secondary.map((item, index) => (
-                <ResourceCard key={item.title} item={item} index={index + 1} />
+                <ResourceCard key={item.id} item={item} index={index + 1} />
               ))}
             </div>
           </div>
         </div>
       </Container>
-      {/* Bottom fade so decorative elements do not end abruptly */}
-    </Section>
+    </div>
   );
 }
