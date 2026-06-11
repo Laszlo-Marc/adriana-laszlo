@@ -24,15 +24,19 @@ export type BlogPostCard = {
   image: string;
   imageAlt: string;
   category: string;
-  readingTime?: string;
+  readingTime: string;
 };
 
-export type BlogPost = BlogPostCard & {
+export type BlogPost = {
   slug: string;
+  title: string;
   summary: string;
   author: string;
+  category: string;
   publishedAt: string;
   readTime: string;
+  image: string;
+  imageAlt: string;
   content: BlogContentBlock[];
 };
 
@@ -51,19 +55,17 @@ export function toBlogPostCard(post: BlogPost): BlogPostCard {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "cum-functioneaza-terapia-emdr",
     slug: "cum-functioneaza-terapia-emdr",
-    href: "/blog/cum-functioneaza-terapia-emdr",
+
     title: "Cum funcționează terapia EMDR",
-    excerpt:
-      "Terapia EMDR ajută la reprocesarea traumelor emoționale prin stimulare bilaterală, susținând capacitatea naturală a creierului de a integra experiențele dureroase.",
+
     summary:
       "O explicație clară despre cum funcționează terapia EMDR, ce înseamnă reprocesarea traumei și de ce stimularea bilaterală poate susține vindecarea emoțională.",
     author: "Psih. Adriana Laszlo",
     category: "AF-EMDR",
     publishedAt: "2025-07-31",
     readTime: "7 min",
-    readingTime: "7 min",
+
     image: "/blogs/posts/stimulare-bi.jpg",
     imageAlt: "Spațiu calm de terapie pentru procesarea traumelor",
     content: [
@@ -143,19 +145,17 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
-    id: "stilurile-de-atasament-si-trauma",
     slug: "stilurile-de-atasament-si-trauma",
-    href: "/blog/stilurile-de-atasament-si-trauma",
+
     title: "Stilurile de atașament și trauma",
-    excerpt:
-      "Modul în care iubim și primim iubirea pornește din copilărie. Înțelegerea tiparelor de atașament poate clarifica felul în care ne raportăm la relații.",
+
     summary:
       "Un articol despre felul în care experiențele timpurii modelează atașamentul, intimitatea și felul în care construim relații la vârsta adultă.",
     author: "Psih. Adriana Laszlo",
     category: "Relații",
     publishedAt: "2025-07-31",
     readTime: "6 min",
-    readingTime: "6 min",
+
     image: "/blogs/posts/stiluri-atasament.jpg",
     imageAlt:
       "Leagăne goale într-un parc, simbol al copilăriei și atașamentului",
@@ -225,19 +225,17 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
-    id: "traumele-nevindecate-si-relatia-de-cuplu",
     slug: "traumele-nevindecate-si-relatia-de-cuplu",
-    href: "/blog/traumele-nevindecate-si-relatia-de-cuplu",
+
     title: "Moduri în care traumele nevindecate pot afecta relația de cuplu",
-    excerpt:
-      "Rănile din trecut pot reveni în relațiile de cuplu prin neîncredere, dificultăți de comunicare, frică de apropiere sau reacții emoționale intense.",
+
     summary:
       "O privire clară asupra felului în care trauma nevindecată poate influența încrederea, comunicarea, intimitatea și siguranța emoțională în cuplu.",
     author: "Psih. Adriana Laszlo",
     category: "Relații",
     publishedAt: "2025-07-31",
     readTime: "5 min",
-    readingTime: "5 min",
+
     image: "/blogs/posts/trauma-relatii.jpg",
     imageAlt: "Cuplu aflat într-un moment de distanță emoțională",
     content: [
@@ -282,19 +280,17 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
-    id: "terapie-individuala-vs-terapie-de-grup",
     slug: "terapie-individuala-vs-terapie-de-grup",
-    href: "/blog/terapie-individuala-vs-terapie-de-grup",
+
     title: "Terapie individuală vs terapie de grup",
-    excerpt:
-      "Terapia individuală oferă profunzime și confidențialitate, iar terapia de grup aduce sprijin, apartenență și învățare prin experiența celorlalți.",
+
     summary:
       "Un ghid simplu despre diferențele dintre terapia individuală și terapia de grup, pentru a înțelege ce tip de sprijin se potrivește mai bine nevoilor tale.",
     author: "Psih. Adriana Laszlo",
     category: "Psihoterapie",
     publishedAt: "2024-11-12",
     readTime: "5 min",
-    readingTime: "5 min",
+
     image: "/blogs/posts/grup.jpg",
     imageAlt: "Spațiu de terapie pregătit pentru conversație și sprijin",
     content: [
@@ -351,19 +347,17 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
-    id: "ganduri-intruzive-un-simptom-al-traumei",
     slug: "ganduri-intruzive-un-simptom-al-traumei",
-    href: "/blog/ganduri-intruzive-un-simptom-al-traumei",
+
     title: "Gânduri intruzive – un simptom al traumei",
-    excerpt:
-      "Gândurile intruzive pot fi un semnal al traumelor nerezolvate. Ele nu definesc cine ești, ci pot indica un psihic care încearcă să proceseze ceva dificil.",
+
     summary:
       "Un articol despre legătura dintre traumă și gândurile intruzive, de ce apar și cum poate procesul terapeutic să ajute la integrarea lor.",
     author: "Psih. Adriana Laszlo",
     category: "Traumă",
     publishedAt: "2024-09-27",
     readTime: "6 min",
-    readingTime: "6 min",
+
     image: "/blogs/posts/intruzive.jpg",
     imageAlt: "Persoană într-un moment de neliniște și reflecție",
     content: [

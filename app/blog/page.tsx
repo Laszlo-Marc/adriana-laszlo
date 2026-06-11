@@ -2,7 +2,7 @@ import BlogHero from "@/components/pages/blog/BlogHero";
 import { featuredBlogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import BlogPostsCarousel from "@/components/pages/blog/posts/BlogPostCarousel";
 
-import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
+import DownloadResourcesSection from "@/components/pages/af-emdr/resources/DownloadResourcesSection";
 import BlogSocialSection from "@/components/pages/blog/social/BlogSocialSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 

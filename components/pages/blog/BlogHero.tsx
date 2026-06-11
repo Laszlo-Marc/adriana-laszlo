@@ -9,7 +9,7 @@ import AccentText from "@/components/ui/AccentText";
 export default function BlogHero() {
   return (
     <Section
-      background="none"
+      background="cream"
       spacing="none"
       aria-labelledby="blog-hero-heading"
       className="relative overflow-hidden"
@@ -20,23 +20,21 @@ export default function BlogHero() {
           alt="Spațiu calm de reflecție, cu lumină naturală"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
-          className="object-cover object-right "
+          className="object-cover object-center md:object-right"
         />
 
-        {/* Image readability overlay */}
         <div aria-hidden="true" className="absolute inset-0 bg-cream/50" />
 
-        {/* Stronger bottom readability gradient */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-cream/82 via-cream/42 to-transparent"
+          className="absolute inset-x-0 bottom-0 h-[50%] bg-linear-to-t from-cream/82 via-cream/42 to-transparent"
         />
 
-        {/* Fade into next cream section */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-cream"
+          className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-transparent to-cream"
         />
 
         <Container
@@ -44,8 +42,8 @@ export default function BlogHero() {
           padding="default"
           className="relative z-10 flex min-h-[65svh] items-center justify-center pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
         >
-          <div className="max-w-4xl">
-            <AccentText className="mb-4 block  text-center">
+          <div className="mx-auto max-w-4xl text-center">
+            <AccentText className="mb-4 block">
               Resurse pentru claritate și echilibru
             </AccentText>
 
@@ -53,13 +51,16 @@ export default function BlogHero() {
               id="blog-hero-heading"
               as="h1"
               size="display"
-              className="max-w-4xl text-balance "
               align="center"
+              className="text-balance"
             >
               Articole & resurse
             </Heading>
 
-            <Text className="mt-6 " align="center">
+            <Text
+              align="center"
+              className="mx-auto mt-6 max-w-2xl text-charcoal/75"
+            >
               Ghiduri simple, exerciții practice și materiale create pentru a te
               ajuta să înțelegi mai bine emoțiile, relațiile, trauma și pașii
               mici prin care poți reveni la mai multă siguranță interioară.

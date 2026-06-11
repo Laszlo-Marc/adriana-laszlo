@@ -1,8 +1,9 @@
-import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import Section from "@/components/ui/Section";
+
 import BlogPostsCarouselClient from "./BlogPostCarouselClient";
-import { BlogPostCard } from "../post-page/blogPosts";
+import type { BlogPostCard } from "../post-page/blogPosts";
 
 type BlogPostsCarouselProps = {
   posts: BlogPostCard[];
@@ -19,18 +20,16 @@ export default function BlogPostsCarousel({ posts }: BlogPostsCarouselProps) {
       className="relative overflow-hidden"
     >
       <Container size="full" padding="sm">
-        <div className="mb-10 flex flex-col gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-center">
-          <div className="max-w-none">
-            <Heading
-              id="blog-posts-heading"
-              as="h2"
-              size="h1"
-              className="mt-3 text-charcoal"
-              align="center"
-            >
-              Articole utile
-            </Heading>
-          </div>
+        <div className="mb-10 text-center lg:mb-14">
+          <Heading
+            id="blog-posts-heading"
+            as="h2"
+            size="h1"
+            align="center"
+            className="text-charcoal"
+          >
+            Articole utile
+          </Heading>
         </div>
 
         <BlogPostsCarouselClient posts={posts} />

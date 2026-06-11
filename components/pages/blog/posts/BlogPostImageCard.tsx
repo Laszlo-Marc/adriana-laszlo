@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { BlogPostCard } from "../post-page/blogPosts";
+import type { BlogPostCard } from "../post-page/blogPosts";
 
 type BlogPostImageCardProps = {
   post: BlogPostCard;
@@ -11,10 +11,10 @@ type BlogPostImageCardProps = {
 
 export default function BlogPostImageCard({
   post,
-  sizes = "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 86vw",
+  sizes = "(min-width: 1280px) 32vw, (min-width: 1024px) 38vw, (min-width: 640px) 56vw, 86vw",
 }: BlogPostImageCardProps) {
   return (
-    <article className="group relative h-[26rem] min-w-0 overflow-hidden rounded-[2rem] bg-cream sm:h-[28rem]">
+    <article className="group relative h-104 min-w-0 overflow-hidden rounded-4xl bg-cream sm:h-112">
       <Link
         href={post.href}
         className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
@@ -25,12 +25,12 @@ export default function BlogPostImageCard({
           alt={post.imageAlt}
           fill
           sizes={sizes}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/32 to-charcoal/8"
+          className="absolute inset-0 bg-linear-to-t from-charcoal/60 via-charcoal/32 to-charcoal/8"
         />
 
         <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
@@ -50,7 +50,7 @@ export default function BlogPostImageCard({
             {post.title}
           </h3>
 
-          <p className="mt-4 line-clamp-3 max-w-[22rem] text-sm leading-6 text-white/82">
+          <p className="mt-4 line-clamp-3 max-w-88 text-sm leading-6 text-white/82">
             {post.excerpt}
           </p>
 
@@ -58,7 +58,7 @@ export default function BlogPostImageCard({
             Citește articolul
             <ArrowRight
               aria-hidden="true"
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
             />
           </div>
         </div>
