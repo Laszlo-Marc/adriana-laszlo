@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Flower2 } from "lucide-react";
+
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
@@ -37,7 +37,6 @@ export default function FeesSection() {
       className="relative overflow-hidden py-12 md:py-20 lg:py-28"
       backgroundImage={{
         src: "/services/services-fees.jpg",
-        priority: true,
         overlayClassName: "bg-cream/30 md:bg-cream/20",
       }}
     >
@@ -89,8 +88,12 @@ export default function FeesSection() {
           </p>
 
           <div className="mt-5 flex justify-center sm:mt-8">
-            <Button variant="urgent" className="w-full max-w-xs sm:w-auto">
-              <Link href="/contact">Programează o discuție</Link>
+            <Button
+              href="/contact"
+              variant="urgent"
+              className="w-full max-w-xs sm:w-auto"
+            >
+              Programează o discuție
             </Button>
           </div>
         </div>

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import Section from "@/components/ui/Section";
+
+import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { EventDetail } from "./eventData";
+import type { EventDetail } from "./eventData";
 
 type EventDetailHeroProps = {
   event: EventDetail;
@@ -29,7 +29,7 @@ export default function EventDetailHero({
   event,
   className,
 }: EventDetailHeroProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   const galleryImages =
     event.gallery.length > 0
@@ -41,12 +41,10 @@ export default function EventDetailHero({
           },
         ];
 
-  const duplicatedImages = [...galleryImages, ...galleryImages];
-
   return (
     <section
       className={cn(
-        "relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-cream px-4 text-center",
+        "relative flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-cream px-4 text-center",
         className,
       )}
       aria-labelledby="event-detail-hero-title"
@@ -58,11 +56,11 @@ export default function EventDetailHero({
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[-10rem] top-1/4 h-96 w-96 rounded-full bg-purple/12 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-purple/12 blur-3xl"
       />
 
       <motion.div
-        initial="hidden"
+        initial={prefersReducedMotion ? false : "hidden"}
         animate="show"
         className="relative z-20 mx-auto flex flex-col items-center pb-36 pt-28 md:pb-44"
       >
@@ -76,7 +74,7 @@ export default function EventDetailHero({
         <motion.h1
           id="event-detail-hero-title"
           variants={fadeIn}
-          className="mt-6 font-accent text-4xl font-medium  leading-[1.04] tracking-[0.08em] text-charcoal  text-[clamp(4rem,4vw,4rem)] lg:text-[clamp(8rem,8vw,8rem)]"
+          className="mt-6 font-accent text-[clamp(3.8rem,16vw,5.4rem)] font-medium leading-[1.04] tracking-[0.08em] text-charcoal lg:text-[clamp(6.5rem,8vw,8rem)]"
         >
           {event.title}
         </motion.h1>
@@ -92,23 +90,21 @@ export default function EventDetailHero({
           variants={fadeIn}
           className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
         >
-          <Link
-            href="#inscriere"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-teal px-7 text-center text-sm font-semibold uppercase tracking-[0.2em] text-charcoal transition hover:bg-teal/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 sm:w-auto"
-          >
+          <Button href="#inscriere" className="w-full sm:w-auto">
             Vreau să mă înscriu
-          </Link>
+          </Button>
 
-          <Link
+          <Button
             href="#structura"
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-charcoal/12 bg-white/60 px-7 text-center text-sm font-semibold uppercase tracking-[0.2em] text-charcoal transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal/30 focus-visible:ring-offset-2 sm:w-auto"
+            variant="outline"
+            className="w-full sm:w-auto"
           >
             Vezi structura
-          </Link>
+          </Button>
         </motion.div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[34vh] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] md:h-[40vh]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[34vh] overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] md:h-[40vh]">
         <motion.div
           className="flex w-max gap-4 px-4 md:gap-5"
           animate={
@@ -128,33 +124,53 @@ export default function EventDetailHero({
                 }
           }
         >
-          {duplicatedImages.map((image, index) => (
-            <div
-              key={`${image.src}-${index}`}
-              className="relative h-44 w-36 shrink-0 overflow-hidden rounded-[1.5rem] border border-white/70 bg-white shadow-[0_18px_60px_rgba(44,44,44,0.12)] sm:h-56 sm:w-44 md:h-64 md:w-52 lg:h-72 lg:w-56"
-              style={{
-                rotate: `${index % 2 === 0 ? -2 : 3}deg`,
-              }}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                priority={index === 0}
-                sizes="(min-width: 1024px) 224px, (min-width: 768px) 208px, 176px"
-                className="object-cover"
-              />
-
-              <div aria-hidden="true" className="absolute inset-0 bg-cream/5" />
-            </div>
-          ))}
+          <GalleryImageSet images={galleryImages} priorityFirst />
+          <GalleryImageSet images={galleryImages} duplicate />
         </motion.div>
       </div>
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-cream via-cream/75 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-linear-to-t from-cream via-cream/75 to-transparent"
       />
     </section>
+  );
+}
+
+function GalleryImageSet({
+  images,
+  duplicate = false,
+  priorityFirst = false,
+}: {
+  images: { src: string; alt: string }[];
+  duplicate?: boolean;
+  priorityFirst?: boolean;
+}) {
+  return (
+    <div
+      aria-hidden={duplicate ? "true" : undefined}
+      className="flex gap-4 md:gap-5"
+    >
+      {images.map((image, index) => (
+        <div
+          key={`${duplicate ? "duplicate" : "original"}-${image.src}-${index}`}
+          className="relative h-44 w-36 shrink-0 overflow-hidden rounded-3xl border border-white/70 bg-white shadow-[0_18px_60px_rgba(44,44,44,0.12)] sm:h-56 sm:w-44 md:h-64 md:w-52 lg:h-72 lg:w-56"
+          style={{
+            rotate: `${index % 2 === 0 ? -2 : 3}deg`,
+          }}
+        >
+          <Image
+            src={image.src}
+            alt={duplicate ? "" : image.alt}
+            fill
+            priority={priorityFirst && index === 0}
+            sizes="(min-width: 1024px) 224px, (min-width: 768px) 208px, 176px"
+            className="object-cover"
+          />
+
+          <div aria-hidden="true" className="absolute inset-0 bg-cream/5" />
+        </div>
+      ))}
+    </div>
   );
 }

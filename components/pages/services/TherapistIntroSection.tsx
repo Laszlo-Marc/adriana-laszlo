@@ -15,7 +15,10 @@ export default function TherapistIntroSection() {
       aria-labelledby="therapist-intro-title"
       className="relative overflow-hidden"
     >
-      {/* Mobile */}
+      <span id="therapist-intro-title" className="sr-only">
+        Despre Adriana Laszlo
+      </span>
+
       <div className="relative overflow-hidden py-16 lg:hidden">
         <Image
           src="/backgrounds/df-teal-down.png"
@@ -23,7 +26,8 @@ export default function TherapistIntroSection() {
           aria-hidden="true"
           width={130}
           height={130}
-          className="pointer-events-none absolute -right-8 top-10 z-0 rotate-[-12deg] opacity-20"
+          sizes="130px"
+          className="pointer-events-none absolute -right-8 top-10 z-0 h-auto w-32.5 -rotate-12 opacity-20"
         />
 
         <Image
@@ -32,24 +36,25 @@ export default function TherapistIntroSection() {
           aria-hidden="true"
           width={96}
           height={96}
-          className="pointer-events-none absolute -left-6 bottom-20 z-0 rotate-[8deg] opacity-20"
+          sizes="96px"
+          className="pointer-events-none absolute -left-6 bottom-20 z-0 h-auto w-24 rotate-[8deg] opacity-20"
         />
 
         <Container size="full" padding="default">
           <div className="relative z-10 mx-auto max-w-md text-center">
             <div className="relative mx-auto w-full max-w-[18rem]">
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-4/5 overflow-hidden">
                 <Image
                   src="/adriana/adriana8.webp"
                   alt="Adriana Laszlo într-un spațiu calm și primitor"
                   fill
-                  sizes="288px"
+                  sizes="(max-width: 1023px) 288px, 1px"
                   className="object-cover object-top"
                 />
 
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-cream/85 to-cream"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-transparent via-cream/85 to-cream"
                 />
               </div>
             </div>
@@ -62,7 +67,6 @@ export default function TherapistIntroSection() {
               </div>
 
               <Heading
-                id="therapist-intro-title"
                 as="h2"
                 size="h2"
                 align="center"
@@ -103,7 +107,6 @@ export default function TherapistIntroSection() {
         </Container>
       </div>
 
-      {/* Desktop - unchanged */}
       <div className="relative hidden lg:flex lg:min-h-screen lg:items-center">
         <Image
           src="/backgrounds/df-teal-down.png"
@@ -111,13 +114,13 @@ export default function TherapistIntroSection() {
           aria-hidden="true"
           width={170}
           height={170}
-          className="pointer-events-none absolute left-[9%] top-[20%] z-0 hidden rotate-[-10deg] opacity-25 xl:block"
+          sizes="170px"
+          className="pointer-events-none absolute left-[9%] top-[20%] z-0 hidden h-auto w-42.5 rotate-[-10deg] opacity-25 xl:block"
         />
 
         <Container size="wider" padding="default">
           <div className="relative z-10 overflow-hidden">
             <div className="grid min-h-svh grid-cols-[1fr_1fr] items-center">
-              {/* Content side */}
               <div className="relative flex items-center px-14">
                 <div className="relative max-w-180">
                   <div className="mb-8 flex items-center gap-4">
@@ -125,12 +128,7 @@ export default function TherapistIntroSection() {
                     <AccentText>Despre mine</AccentText>
                   </div>
 
-                  <Heading
-                    id="home-about-title"
-                    as="h2"
-                    size="h2"
-                    className="text-charcoal"
-                  >
+                  <Heading as="h2" size="h2" className="text-charcoal">
                     Un spațiu în care poți fi ascultat cu adevărat.
                   </Heading>
 
@@ -165,20 +163,19 @@ export default function TherapistIntroSection() {
                     aria-hidden="true"
                     width={96}
                     height={96}
-                    className="pointer-events-none absolute -left-8 -top-12 rotate-[8deg] opacity-25"
+                    sizes="96px"
+                    className="pointer-events-none absolute -left-8 -top-12 h-auto w-24 rotate-[8deg] opacity-25"
                   />
                 </div>
               </div>
 
-              {/* Image side */}
               <div className="relative flex h-full items-center justify-center px-8 xl:px-12">
                 <div className="relative h-[min(85vh,850px)] w-full max-w-130">
                   <Image
                     src="/adriana/adriana8.webp"
                     alt="Adriana Laszlo într-un spațiu calm și primitor"
                     fill
-                    priority={false}
-                    sizes="(min-width: 1536px) 34vw, (min-width: 1024px) 38vw, 100vw"
+                    sizes="(max-width: 1023px) 1px, (min-width: 1536px) 34vw, 38vw"
                     className="object-cover object-top"
                   />
                 </div>

@@ -1,8 +1,28 @@
+import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
+import Text from "@/components/ui/Text";
 
-export default function FeaturedEventSignupForm() {
+type FeaturedEventSignupFormProps = {
+  eventTitle: string;
+};
+
+const inputClassName =
+  "min-h-12 w-full min-w-0 rounded-full border border-charcoal/10 bg-cream/70 px-5 text-charcoal outline-none transition-[border-color,box-shadow,background-color] placeholder:text-muted focus:border-teal focus-visible:ring-2 focus-visible:ring-teal/35";
+
+const textareaClassName =
+  "w-full min-w-0 resize-none rounded-[1.5rem] border border-charcoal/10 bg-cream/70 px-5 py-4 text-charcoal outline-none transition-[border-color,box-shadow,background-color] placeholder:text-muted focus:border-teal focus-visible:ring-2 focus-visible:ring-teal/35";
+
+export default function FeaturedEventSignupForm({
+  eventTitle,
+}: FeaturedEventSignupFormProps) {
   return (
-    <form className="w-full min-w-0 max-w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-5  sm:p-8">
+    <form
+      action="/api/event-signup"
+      method="post"
+      className="w-full min-w-0 max-w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-5 sm:p-8"
+    >
+      <input type="hidden" name="eventTitle" value={eventTitle} />
+
       <div className="min-w-0">
         <Heading
           as="h3"
@@ -12,6 +32,16 @@ export default function FeaturedEventSignupForm() {
         >
           Îți dorești să participi?
         </Heading>
+
+        <Text
+          as="p"
+          size="sm"
+          color="muted"
+          align="center"
+          className="mx-auto mt-3 max-w-sm"
+        >
+          Lasă-ne datele tale și revenim cu detalii despre program.
+        </Text>
       </div>
 
       <div className="mt-7 grid min-w-0 gap-4">
@@ -22,7 +52,7 @@ export default function FeaturedEventSignupForm() {
             type="text"
             autoComplete="name"
             required
-            className="min-h-12 w-full min-w-0 rounded-full border border-charcoal/10 bg-cream/70 px-5 text-charcoal outline-none transition placeholder:text-muted focus:border-teal"
+            className={inputClassName}
             placeholder="Numele tău"
           />
         </label>
@@ -34,7 +64,7 @@ export default function FeaturedEventSignupForm() {
             type="email"
             autoComplete="email"
             required
-            className="min-h-12 w-full min-w-0 rounded-full border border-charcoal/10 bg-cream/70 px-5 text-charcoal outline-none transition placeholder:text-muted focus:border-teal"
+            className={inputClassName}
             placeholder="email@example.com"
           />
         </label>
@@ -45,7 +75,7 @@ export default function FeaturedEventSignupForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="min-h-12 w-full min-w-0 rounded-full border border-charcoal/10 bg-cream/70 px-5 text-charcoal outline-none transition placeholder:text-muted focus:border-teal"
+            className={inputClassName}
             placeholder="Opțional"
           />
         </label>
@@ -57,18 +87,15 @@ export default function FeaturedEventSignupForm() {
           <textarea
             name="message"
             rows={4}
-            className="w-full min-w-0 resize-none rounded-[1.5rem] border border-charcoal/10 bg-cream/70 px-5 py-4 text-charcoal outline-none transition placeholder:text-muted focus:border-teal"
+            className={textareaClassName}
             placeholder="Scrie câteva cuvinte despre ce ai vrea să clarifici."
           />
         </label>
       </div>
 
-      <button
-        type="submit"
-        className="mt-6 inline-flex min-h-12 w-full min-w-0 items-center justify-center rounded-full bg-teal px-5 text-center text-sm font-semibold uppercase tracking-[0.16em] text-charcoal transition hover:bg-teal/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 sm:px-6 sm:tracking-[0.18em]"
-      >
+      <Button type="submit" className="mt-6 w-full" variant="primary">
         Înscrie-te acum
-      </button>
+      </Button>
     </form>
   );
 }

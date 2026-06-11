@@ -1,7 +1,8 @@
 import OtherEventsSection from "@/components/pages/events/events-grid/OtherEventsSection";
-import EventsFaqSection from "@/components/pages/events/EventsFAQSection";
 import EventsHero from "@/components/pages/events/EventsHero";
 import FeaturedEventSection from "@/components/pages/events/featured-event/FeaturedEventSection";
+import { eventsFaqItems } from "@/components/sections/faq-data";
+import FaqSection from "@/components/sections/FaqSection";
 
 import FinalCTA from "@/components/sections/FinalCTA";
 
@@ -17,8 +18,14 @@ export default function EventsPage() {
       <EventsHero />
       <FeaturedEventSection />
       <OtherEventsSection />
-
-      <EventsFaqSection />
+      <FaqSection
+        id="events-faq"
+        items={eventsFaqItems}
+        title="Întrebări frecvente"
+        tone="charcoal"
+        background="cream"
+        spacing="md"
+      />
       <FinalCTA
         title="Vrei să afli ce program ți se potrivește?"
         description="Scrie-mi și aflăm împreună."

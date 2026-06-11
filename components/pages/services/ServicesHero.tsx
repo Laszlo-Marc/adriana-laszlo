@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+
 import Heading from "@/components/ui/Heading";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
@@ -38,12 +38,17 @@ export default function ServicesHero() {
           </Text>
 
           <div className="mt-10 flex w-full max-w-xs flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center lg:mt-12 lg:gap-4">
-            <Button variant="primary" size="lg" leftIcon={<Mail />}>
-              <Link href="/contact">Programează o discuție</Link>
+            <Button
+              href="/contact"
+              variant="primary"
+              size="lg"
+              leftIcon={<Mail aria-hidden="true" />}
+            >
+              Programează o discuție
             </Button>
 
-            <Button variant="purple" size="lg">
-              <Link href="#af-emdr">Află despre AF-EMDR</Link>
+            <Button href="#af-emdr" variant="purple" size="lg">
+              Află despre AF-EMDR
             </Button>
           </div>
         </div>

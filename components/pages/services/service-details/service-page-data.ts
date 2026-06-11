@@ -14,7 +14,7 @@ export const servicesOverviewItems = [
     title: "AF-EMDR",
     description:
       "Abordare specializată pentru traumă, atașament și experiențe emoționale care rămân active în prezent.",
-    href: "#af-emdr",
+    href: "/af-emdr",
     icon: Brain,
     tone: "purple",
     featured: true,

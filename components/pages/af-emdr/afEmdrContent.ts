@@ -222,25 +222,7 @@ export const afEmdrSpecialistContent = {
     href: "/despre",
   },
 };
-export const afEmdrFaqContent = {
-  items: [
-    {
-      question: "Cât durează o ședință AF-EMDR?",
-      answer:
-        "Durata unei ședințe poate varia în funcție de cadrul terapeutic stabilit, dar de obicei este similară cu o ședință clasică de psihoterapie. Ritmul procesului se adaptează la nevoile și resursele fiecărei persoane.",
-    },
-    {
-      question: "De câte ședințe este nevoie?",
-      answer:
-        "Nu există un număr fix de ședințe valabil pentru toată lumea. Depinde de istoricul personal, de obiectivele terapiei, de nivelul de stabilizare și de complexitatea experiențelor lucrate.",
-    },
-    {
-      question: "Trebuie să povestesc trauma în detaliu?",
-      answer:
-        "Nu. AF-EMDR nu presupune să retrăiești totul în detaliu sau să forțezi povestirea experiențelor dureroase. Procesul este ghidat gradual, cu accent pe siguranță, resurse și reglare emoțională.",
-    },
-  ],
-};
+
 
 export const afEmdrFinalCtaContent = {
   title: "Poate fi acesta următorul pas pentru tine?",

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
@@ -30,28 +29,22 @@ export type ServiceDetail = {
   imagePosition?: string;
 };
 
-type ServiceDetailSectionProps = ServiceDetail;
-
 const toneStyles = {
   teal: {
     background: "teal-soft" as const,
     mobileFade: "from-transparent via-teal-soft/80 to-teal-soft",
-    desktopFadeText: "text-teal-soft",
   },
   purple: {
     background: "purple-soft" as const,
     mobileFade: "from-transparent via-purple-soft/80 to-purple-soft",
-    desktopFadeText: "text-purple-soft",
   },
   cream: {
     background: "cream" as const,
     mobileFade: "from-transparent via-cream/80 to-cream",
-    desktopFadeText: "text-cream",
   },
   white: {
     background: "white" as const,
     mobileFade: "from-transparent via-white/80 to-white",
-    desktopFadeText: "text-white",
   },
 };
 
@@ -66,7 +59,7 @@ export default function ServiceDetailSection({
   cta,
   secondaryCta,
   imagePosition = "object-center",
-}: ServiceDetailSectionProps) {
+}: ServiceDetail) {
   const styles = toneStyles[tone];
   const isImageRight = imageSide === "right";
 
@@ -81,7 +74,7 @@ export default function ServiceDetailSection({
       <Container size="full" padding="none">
         <div
           className={cn(
-            "grid items-start gap-0 lg:min-h-[34rem] lg:grid-cols-2 lg:items-center lg:gap-14",
+            "grid items-start gap-0 lg:min-h-136 lg:grid-cols-2 lg:items-center lg:gap-14",
             isImageRight && "lg:[&>*:first-child]:order-2",
           )}
         >
@@ -89,9 +82,7 @@ export default function ServiceDetailSection({
             imageSrc={imageSrc}
             imageAlt={imageAlt}
             imagePosition={imagePosition}
-            align={isImageRight ? "right" : "left"}
             mobileFadeClassName={styles.mobileFade}
-            desktopFadeTextClassName={styles.desktopFadeText}
           />
 
           <div
@@ -104,28 +95,28 @@ export default function ServiceDetailSection({
               id={`${id}-heading`}
               as="h2"
               size="h2"
-              className="mx-auto max-w-[21rem] text-center lg:mx-0 lg:max-w-none lg:text-left"
+              className="mx-auto max-w-84 text-center lg:mx-0 lg:max-w-none lg:text-left"
             >
               {title}
             </Heading>
 
-            <Text
-              className="mx-auto mt-5 max-w-md  text-charcoal/75 lg:mx-0 lg:max-w-none lg:text-left"
-              align="center"
-            >
+            <Text className="mx-auto mt-5 max-w-md text-center text-charcoal/75 lg:mx-0 lg:max-w-none lg:text-left">
               {description}
             </Text>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:items-start lg:justify-start">
-              <Button variant={cta.variant ?? "outline"}>
-                <Link href={cta.href}>{cta.label}</Link>
+              <Button href={cta.href} variant={cta.variant ?? "outline"}>
+                {cta.label}
               </Button>
 
-              {secondaryCta && (
-                <Button variant={secondaryCta.variant ?? "outline"}>
-                  <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+              {secondaryCta ? (
+                <Button
+                  href={secondaryCta.href}
+                  variant={secondaryCta.variant ?? "outline"}
+                >
+                  {secondaryCta.label}
                 </Button>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
@@ -138,31 +129,28 @@ function ServiceImage({
   imageSrc,
   imageAlt,
   imagePosition,
-
   mobileFadeClassName,
 }: {
   imageSrc: string;
   imageAlt: string;
   imagePosition: string;
-  align: "left" | "right";
   mobileFadeClassName: string;
-  desktopFadeTextClassName: string;
 }) {
   return (
     <div className="relative overflow-hidden lg:h-full">
-      <div className="relative h-[21rem] w-full sm:h-[24rem] lg:h-full lg:min-h-[34rem]">
+      <div className="relative h-84 w-full sm:h-96 lg:h-full lg:min-h-136">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
-          sizes="(min-width: 1024px) 50vw, 100vw"
+          sizes="(max-width: 1023px) 100vw, 50vw"
           className={cn("object-cover", imagePosition)}
         />
 
         <div
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b lg:hidden",
+            "pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-b lg:hidden",
             mobileFadeClassName,
           )}
         />

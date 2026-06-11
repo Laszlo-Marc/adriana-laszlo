@@ -1,12 +1,12 @@
 import { afEmdrFinalCtaContent } from "@/components/pages/af-emdr/afEmdrContent";
-import AfEmdrFaqSection from "@/components/pages/af-emdr/AfEmdrFaqSection";
 import AfEmdrHero from "@/components/pages/af-emdr/AfEmdrHero";
-
 import AfEmdrComparisonSection from "@/components/pages/af-emdr/comparison/AfEmdrComparisonSection";
 import AfEmdrMethodSection from "@/components/pages/af-emdr/method-explanation/AfEmdrMethodIntro";
 import AfEmdrSpecialistSection from "@/components/pages/af-emdr/specialist/AfEmdrSpecialistSection";
 import AfEmdrSuitabilitySection from "@/components/pages/af-emdr/suitability/AfEmdrSuitabilitySection";
 import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
+import { afEmdrFaqContent } from "@/components/sections/faq-data";
+import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata = {
@@ -24,7 +24,14 @@ export default function AfEmdrPage() {
       <AfEmdrSuitabilitySection />
       <AfEmdrSpecialistSection />
       <DownloadResourcesSection />
-      <AfEmdrFaqSection />
+      <FaqSection
+        id="af-emdr-faq"
+        items={afEmdrFaqContent}
+        title="Întrebări frecvente"
+        tone="charcoal"
+        background="cream"
+        spacing="md"
+      />
 
       <FinalCTA
         title={afEmdrFinalCtaContent.title}

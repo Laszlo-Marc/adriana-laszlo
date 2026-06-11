@@ -7,6 +7,8 @@ import EventImageCard from "./EventImageCard";
 import { otherEvents } from "../eventsContent";
 
 export default function OtherEventsSection() {
+  if (!otherEvents.length) return null;
+
   return (
     <Section
       id="evenimente"
@@ -22,9 +24,17 @@ export default function OtherEventsSection() {
 
       <Container size="wide" padding="lg" className="relative z-10">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.28em] text-gold">
+          <Text
+            as="p"
+            size="sm"
+            weight="medium"
+            transform="upper"
+            color="gold"
+            align="center"
+            className="tracking-[0.28em]"
+          >
             Alte programe și ateliere
-          </p>
+          </Text>
 
           <Heading
             id="other-events-title"
@@ -37,14 +47,12 @@ export default function OtherEventsSection() {
           </Heading>
         </div>
 
-        {/* Mobile/tablet snap carousel */}
-        <div className="-mx-4 mt-12 flex snap-x gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide sm:-mx-6 sm:px-6 lg:hidden">
+        <div className="-mx-4 mt-12 flex snap-x gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:hidden [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {otherEvents.map((event, index) => (
             <EventImageCard key={event.slug} item={event} index={index} />
           ))}
         </div>
 
-        {/* Desktop editorial grid */}
         <div className="mt-14 hidden grid-cols-2 gap-6 lg:grid">
           {otherEvents.map((event, index) => (
             <EventImageCard key={event.slug} item={event} index={index} />

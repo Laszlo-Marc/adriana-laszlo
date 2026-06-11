@@ -55,7 +55,7 @@ export default function FlowArt({
   "aria-label": ariaLabel = "Story scroll",
 }: FlowArtProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   const childCount = useMemo(() => React.Children.count(children), [children]);
 
@@ -136,7 +136,7 @@ export default function FlowArt({
     <div
       ref={containerRef}
       aria-label={ariaLabel}
-      className={cn("w-full overflow-x-hidden", className)}
+      className={cn("w-full", className)}
     >
       {children}
     </div>

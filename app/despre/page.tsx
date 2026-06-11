@@ -1,9 +1,10 @@
 import AfEmdrSection from "@/components/pages/about/af-emdr/AfEmdrSection";
 import ApproachProcessSection from "@/components/pages/about/approach-process/ApproachProccessSection";
-import { aboutFaqItems } from "@/components/pages/about/faq/aboutFAQContent";
+
 import AboutHeroSection from "@/components/pages/about/hero/HeroSection";
 import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import AboutTimelineSection from "@/components/pages/about/timeline/TimelineSection";
+import { aboutFaqItems } from "@/components/sections/faq-data";
 import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 

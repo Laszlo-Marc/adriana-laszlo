@@ -1,15 +1,17 @@
+import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import ImageMarquee from "@/components/ui/ImageMarquee";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
+
 import { featuredEvent } from "../eventsContent";
 import FeaturedEventSignupForm from "./SignUpForm";
-import Button from "@/components/ui/Button";
 
 export default function FeaturedEventSection() {
   return (
     <Section
+      id="programe"
       background="cream"
       spacing="md"
       aria-labelledby="featured-event-title"
@@ -17,9 +19,17 @@ export default function FeaturedEventSection() {
     >
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.28em] text-gold">
+          <Text
+            as="p"
+            size="sm"
+            weight="medium"
+            transform="upper"
+            color="gold"
+            align="center"
+            className="tracking-[0.28em]"
+          >
             {featuredEvent.eyebrow}
-          </p>
+          </Text>
 
           <Heading
             id="featured-event-title"
@@ -42,11 +52,19 @@ export default function FeaturedEventSection() {
           <div className="relative min-w-0 px-1 py-4 text-center lg:py-8 lg:text-left">
             <div className="mx-auto max-w-2xl min-w-0 lg:mx-0">
               <div className="mb-8 flex items-center justify-center gap-4 lg:justify-start">
-                <span className="h-px w-12 shrink-0 bg-gold/70 sm:w-16" />
-                <p className="font-accent text-2xl text-charcoal/80">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-12 shrink-0 bg-gold/70 sm:w-16"
+                />
+
+                <Text as="p" size="xl" className="font-accent text-charcoal/80">
                   Despre program
-                </p>
-                <span className="h-px w-12 shrink-0 bg-gold/70 sm:w-16 lg:hidden" />
+                </Text>
+
+                <span
+                  aria-hidden="true"
+                  className="h-px w-12 shrink-0 bg-gold/70 sm:w-16 lg:hidden"
+                />
               </div>
 
               <Heading
@@ -55,7 +73,7 @@ export default function FeaturedEventSection() {
                 align="center"
                 className="max-w-2xl text-charcoal lg:text-left"
               >
-                Anxietate & Perfecționism
+                {featuredEvent.title}
               </Heading>
 
               <Text
@@ -65,41 +83,63 @@ export default function FeaturedEventSection() {
                 {featuredEvent.description}
               </Text>
 
-              {/* Mobile facts carousel */}
-              <div className="-mx-4 mt-9 overflow-x-auto px-4 pb-4 sm:hidden">
+              <div className="-mx-4 mt-9 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:hidden [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 <div className="flex snap-x snap-mandatory gap-3">
                   {featuredEvent.facts.map((fact) => (
-                    <div
+                    <article
                       key={fact.label}
-                      className="min-h-[8.75rem] w-[72vw] max-w-[17rem] shrink-0 snap-center rounded-[1.5rem] border border-white/70 bg-white/55 px-5 py-5 text-center "
+                      className="min-h-[8.75rem] w-[72vw] max-w-[17rem] shrink-0 snap-center rounded-[1.5rem] border border-white/70 bg-white/55 px-5 py-5 text-center"
                     >
-                      <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold">
+                      <Text
+                        as="p"
+                        size="xs"
+                        weight="medium"
+                        transform="upper"
+                        color="gold"
+                        align="center"
+                        className="tracking-[0.22em]"
+                      >
                         {fact.label}
-                      </p>
+                      </Text>
 
-                      <p className="mt-3 text-base leading-relaxed text-charcoal/78">
+                      <Text
+                        as="p"
+                        size="base"
+                        align="center"
+                        className="mt-3 leading-relaxed text-charcoal/78"
+                      >
                         {fact.value}
-                      </p>
-                    </div>
+                      </Text>
+                    </article>
                   ))}
                 </div>
               </div>
 
-              {/* Desktop / tablet facts grid */}
               <div className="mt-10 hidden min-w-0 gap-6 sm:grid sm:grid-cols-2">
                 {featuredEvent.facts.map((fact) => (
-                  <div
+                  <article
                     key={fact.label}
                     className="min-w-0 border-t border-charcoal/12 pt-5"
                   >
-                    <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold">
+                    <Text
+                      as="p"
+                      size="xs"
+                      weight="medium"
+                      transform="upper"
+                      color="gold"
+                      className="tracking-[0.22em]"
+                    >
                       {fact.label}
-                    </p>
+                    </Text>
 
-                    <p className="mt-3 max-w-full break-words text-base leading-relaxed text-charcoal/78">
+                    <Text
+                      as="p"
+                      size="base"
+                      className="mt-3 max-w-full break-words leading-relaxed text-charcoal/78"
+                    >
                       {fact.value}
-                    </p>
-                  </div>
+                    </Text>
+                  </article>
                 ))}
               </div>
 
@@ -116,7 +156,7 @@ export default function FeaturedEventSection() {
           </div>
 
           <div className="min-w-0">
-            <FeaturedEventSignupForm />
+            <FeaturedEventSignupForm eventTitle={featuredEvent.title} />
           </div>
         </div>
       </Container>

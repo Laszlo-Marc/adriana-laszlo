@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { eventDetails } from "@/components/pages/events/event-page/eventData";
 import EventDetailHero from "@/components/pages/events/event-page/EventDetailsHero";
-import EventDetailFaqSection from "@/components/pages/events/event-page/EventFAQSection";
 import EventSignupSection from "@/components/pages/events/event-page/EventSignUpSection";
 import EventQuickInfo from "@/components/pages/events/event-page/EventQuickInfo";
-import EventStoryScrollSection from "@/components/pages/events/event-page/EventStoryScrollSection";
+import FaqSection from "@/components/sections/FaqSection";
+import EventStoryScrollLoader from "@/components/pages/events/event-page/EventStoryScrollLoader";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -66,9 +66,16 @@ export default async function EventDetailPage({
     <>
       <EventDetailHero event={event} />
       <EventQuickInfo event={event} />
-      <EventStoryScrollSection event={event} />
+      <EventStoryScrollLoader event={event} />
       <EventSignupSection event={event} />
-      <EventDetailFaqSection items={event.faq} />
+      <FaqSection
+        id="event-faq"
+        items={event.faq}
+        title="Întrebări frecvente"
+        tone="charcoal"
+        background="cream"
+        spacing="md"
+      />
       <FinalCTA
         title="Nu ești sigur/ă dacă acest program ți se potrivește?"
         description="Putem clarifica împreună într-o discuție scurtă dacă formatul de grup este potrivit pentru ce ai nevoie acum."

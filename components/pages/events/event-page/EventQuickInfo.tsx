@@ -1,16 +1,31 @@
+import type { ComponentType } from "react";
 import { CalendarDays, Clock, LayoutList, MapPin, Wallet } from "lucide-react";
 
 import Container from "@/components/ui/Container";
+import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import type { EventDetail } from "./eventData";
+import { cn } from "@/lib/utils";
 
 type EventQuickInfoProps = {
   event: EventDetail;
 };
 
+type InfoItem = {
+  icon: ComponentType<{
+    size?: number;
+    strokeWidth?: number;
+    className?: string;
+    "aria-hidden"?: boolean | "true";
+  }>;
+  number: string;
+  label: string;
+  value: string;
+};
+
 export default function EventQuickInfo({ event }: EventQuickInfoProps) {
-  const infoItems = [
+  const infoItems: InfoItem[] = [
     {
       icon: CalendarDays,
       number: "01",
@@ -58,16 +73,27 @@ export default function EventQuickInfo({ event }: EventQuickInfoProps) {
     >
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+          <Text
+            as="p"
+            size="xs"
+            weight="medium"
+            transform="upper"
+            color="gold"
+            align="center"
+            className="tracking-[0.3em]"
+          >
             Detalii program
-          </p>
+          </Text>
 
-          <h2
+          <Heading
             id="event-quick-info-title"
-            className="mt-3 font-accent text-5xl leading-none text-charcoal md:text-6xl"
+            as="h2"
+            size="h2"
+            align="center"
+            className="mt-3"
           >
             Informații esențiale
-          </h2>
+          </Heading>
 
           <Text
             size="lg"
@@ -79,9 +105,8 @@ export default function EventQuickInfo({ event }: EventQuickInfoProps) {
           </Text>
         </div>
 
-        {/* Mobile snap carousel */}
         <div className="-mx-4 mt-9 overflow-hidden md:hidden">
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-5 scrollbar-hide">
+          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {infoItems.map((item) => (
               <InfoCard key={item.label} item={item} variant="mobile" />
             ))}
@@ -90,8 +115,7 @@ export default function EventQuickInfo({ event }: EventQuickInfoProps) {
           </div>
         </div>
 
-        {/* Desktop grid */}
-        <div className="mt-10 hidden overflow-hidden rounded-[2rem] border border-charcoal/10 bg-charcoal/10 shadow-[0_22px_80px_rgba(44,44,44,0.045)] md:grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 hidden overflow-hidden rounded-4xl border border-charcoal/10 bg-charcoal/10 shadow-[0_22px_80px_rgba(44,44,44,0.045)] md:grid md:grid-cols-2 lg:grid-cols-3">
           {infoItems.map((item) => (
             <InfoCard key={item.label} item={item} />
           ))}
@@ -105,44 +129,48 @@ function InfoCard({
   item,
   variant = "desktop",
 }: {
-  item: {
-    icon: React.ComponentType<{
-      size?: number;
-      strokeWidth?: number;
-      className?: string;
-    }>;
-    number: string;
-    label: string;
-    value: string;
-  };
+  item: InfoItem;
   variant?: "mobile" | "desktop";
 }) {
   const Icon = item.icon;
 
   return (
     <article
-      className={[
-        "group relative flex flex-col items-center justify-center bg-white/82 p-6 text-center transition duration-300 hover:bg-cream/80",
+      className={cn(
+        "group relative flex flex-col items-center justify-center bg-white/82 p-6 text-center transition-[background-color] duration-300 hover:bg-cream/80 motion-reduce:transition-none",
         variant === "mobile"
-          ? "min-h-[13rem] w-[74vw] max-w-[18rem] shrink-0 snap-start rounded-[1.75rem] border border-charcoal/10  "
-          : "min-h-[13rem]",
-      ].join(" ")}
+          ? "min-h-52 w-[74vw] max-w-[18rem] shrink-0 snap-start rounded-[1.75rem] border border-charcoal/10"
+          : "min-h-52",
+      )}
     >
-      <div className="flex size-11 items-center justify-center rounded-full bg-cream text-charcoal/66 transition duration-300 group-hover:bg-teal/25 group-hover:text-charcoal">
-        <Icon size={18} strokeWidth={1.7} />
+      <div className="flex size-11 items-center justify-center rounded-full bg-cream text-charcoal/66 transition-[background-color,color] duration-300 group-hover:bg-teal/25 group-hover:text-charcoal motion-reduce:transition-none">
+        <Icon size={18} strokeWidth={1.7} aria-hidden="true" />
       </div>
 
-      <p className="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-gold">
+      <Text
+        as="p"
+        size="xs"
+        color="gold"
+        weight="medium"
+        transform="upper"
+        align="center"
+        className="mt-5 tracking-[0.24em]"
+      >
         {item.number} · {item.label}
-      </p>
+      </Text>
 
-      <p className="mt-3 max-w-[15rem] text-base leading-relaxed text-charcoal/78">
+      <Text
+        as="p"
+        size="base"
+        align="center"
+        className="mt-3 max-w-60 leading-relaxed text-charcoal/78"
+      >
         {item.value}
-      </p>
+      </Text>
 
       <div
         aria-hidden="true"
-        className="mt-5 h-px w-10 bg-gold/45 transition-all duration-300 group-hover:w-16"
+        className="mt-5 h-px w-10 bg-gold/45 transition-[width] duration-300 group-hover:w-16 motion-reduce:transition-none"
       />
     </article>
   );
