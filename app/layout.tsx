@@ -48,6 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="ro"
+      data-scroll-behavior="smooth"
       className={`${cinzel.variable} ${poppins.variable} ${allura.variable}`}
     >
       <body>

@@ -1,10 +1,11 @@
 import BlogHero from "@/components/pages/blog/BlogHero";
-import { featuredBlogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import BlogPostsCarousel from "@/components/pages/blog/posts/BlogPostCarousel";
 import BlogSocialSection from "@/components/pages/blog/social/BlogSocialSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { getBlogPosts } from "@/sanity/lib/fetchers";
+import { toSanityBlogPostCards } from "@/sanity/adapters/blog";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog despre psihoterapie, traumă și vindecare emoțională",
@@ -20,11 +21,14 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
+  const postCards = toSanityBlogPostCards(posts);
+
   return (
     <>
       <BlogHero />
-      <BlogPostsCarousel posts={featuredBlogPosts} />
+      <BlogPostsCarousel posts={postCards} />
       <BlogSocialSection />
       <FinalCTA
         title="Uneori, un articol deschide o întrebare mai profundă."

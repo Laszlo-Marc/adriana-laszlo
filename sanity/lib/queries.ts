@@ -9,6 +9,7 @@ export const blogPostCardFields = groq`
   publishedAt,
   category,
   summary,
+  readTime,
   featured,
   mainImage {
     ...,
@@ -19,7 +20,29 @@ export const blogPostCardFields = groq`
     role
   }
 `;
+export const blogPostsQuery = groq`
+  *[
+    _type == "blogPost" &&
+    defined(slug.current)
+  ] | order(publishedAt desc) {
+    ${blogPostCardFields}
+  }
+`;
 
+export const blogPostBySlugQuery = groq`
+  *[
+    _type == "blogPost" &&
+    slug.current == $slug
+  ][0] {
+    ${blogPostCardFields},
+    updatedAt,
+    body,
+    seo,
+    relatedPosts[]->{
+      ${blogPostCardFields}
+    }
+  }
+`;
 export const eventCardFields = groq`
   _id,
   title,
@@ -36,32 +59,20 @@ export const eventCardFields = groq`
   }
 `;
 
-export const blogPostsQuery = groq`
-  *[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) {
-    ${blogPostCardFields}
-  }
-`;
-
 export const eventsQuery = groq`
-  *[_type == "event" && defined(slug.current)] | order(schedule.startDate asc) {
+  *[
+    _type == "event" &&
+    defined(slug.current)
+  ] | order(schedule.startDate asc) {
     ${eventCardFields}
   }
 `;
 
-export const blogPostBySlugQuery = groq`
-  *[_type == "blogPost" && slug.current == $slug][0] {
-    ${blogPostCardFields},
-    updatedAt,
-    body,
-    seo,
-    relatedPosts[]->{
-      ${blogPostCardFields}
-    }
-  }
-`;
-
 export const eventBySlugQuery = groq`
-  *[_type == "event" && slug.current == $slug][0] {
+  *[
+    _type == "event" &&
+    slug.current == $slug
+  ][0] {
     ${eventCardFields},
     gallery,
     signup,

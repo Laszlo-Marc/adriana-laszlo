@@ -17,7 +17,7 @@ export default function BlogPostImageCard({
     <article className="group relative h-104 min-w-0 overflow-hidden rounded-4xl bg-cream sm:h-112">
       <Link
         href={post.href}
-        className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+        className="block relative h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
         aria-label={`Citește articolul: ${post.title}`}
       >
         <Image
