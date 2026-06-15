@@ -73,9 +73,9 @@ export function StoryCard({
         className={cn(
           "absolute inset-0 -z-10 bg-linear-to-t transition-opacity duration-500 motion-reduce:transition-none",
           isFeatured
-            ? "from-charcoal/94 via-charcoal/58 to-teal/10"
-            : "from-charcoal/92 via-charcoal/48 to-cream/5",
-          compact && !isActive && "from-charcoal/88 via-charcoal/36 to-cream/5",
+            ? "from-cream/94 via-cream/58 to-teal/10"
+            : "from-cream/92 via-cream/48 to-cream/5",
+          compact && !isActive && "from-cream/88 via-cream/36 to-cream/5",
         )}
       />
 
@@ -90,7 +90,7 @@ export function StoryCard({
           compact ? "left-4 top-4" : "left-5 top-5",
         )}
       >
-        <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/85 backdrop-blur-md">
+        <span className="rounded-full border border-white/20 bg-white/12 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-gold backdrop-blur-md">
           {item.year}
         </span>
 

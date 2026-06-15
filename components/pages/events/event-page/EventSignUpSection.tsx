@@ -6,6 +6,7 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import { EventDetail } from "./eventData";
 import FeaturedEventSignupForm from "../featured-event/SignUpForm";
+import { featuredEvent } from "../eventsContent";
 
 type EventSignupSectionProps = {
   event: EventDetail;
@@ -62,22 +63,22 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-40 bg-gradient-to-b from-cream via-cream/90 to-transparent lg:h-56"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-40 bg-linear-to-b from-cream via-cream/90 to-transparent lg:h-56"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-44 bg-gradient-to-t from-cream via-cream/90 to-transparent lg:h-64"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-44 bg-linear-to-t from-cream via-cream/90 to-transparent lg:h-64"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[58%] bg-gradient-to-r from-cream via-cream/88 to-transparent lg:block"
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[58%] bg-linear-to-r from-cream via-cream/88 to-transparent lg:block"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[52%] bg-gradient-to-l from-cream/72 via-cream/40 to-transparent lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[52%] bg-linear-to-l from-cream/72 via-cream/40 to-transparent lg:block"
       />
 
       <Container
@@ -115,7 +116,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
             </Text>
 
             <div className="mx-auto mt-10 w-full min-w-0 max-w-full overflow-hidden px-0 lg:hidden">
-              <FeaturedEventSignupForm />
+              <FeaturedEventSignupForm eventTitle={featuredEvent.title} />
             </div>
             {/* Mobile snap carousel */}
             <div className="-mx-4 mt-8 min-w-0 overflow-hidden lg:hidden">
@@ -123,7 +124,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
                 {steps.map((step, index) => (
                   <article
                     key={step.label}
-                    className="min-h-[10.5rem] w-[78vw] max-w-[18.5rem] shrink-0 snap-start rounded-[1.5rem] border border-white/70 bg-white/68 p-5 text-left shadow-[0_16px_50px_rgba(44,44,44,0.08)] backdrop-blur-md"
+                    className="min-h-42 w-[78vw] max-w-74 shrink-0 snap-start rounded-3xl border border-white/70 bg-white/68 p-5 text-left shadow-[0_16px_50px_rgba(44,44,44,0.08)] backdrop-blur-md"
                   >
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold">
                       {String(index + 1).padStart(2, "0")} · {step.label}
@@ -154,7 +155,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
 
           {/* Desktop form column */}
           <div className="mx-auto hidden w-full max-w-xl lg:mx-0 lg:ml-auto lg:block">
-            <FeaturedEventSignupForm />
+            <FeaturedEventSignupForm eventTitle={featuredEvent.title} />
           </div>
         </div>
       </Container>

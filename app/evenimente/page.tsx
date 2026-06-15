@@ -3,14 +3,23 @@ import EventsHero from "@/components/pages/events/EventsHero";
 import FeaturedEventSection from "@/components/pages/events/featured-event/FeaturedEventSection";
 import { eventsFaqItems } from "@/components/sections/faq-data";
 import FaqSection from "@/components/sections/FaqSection";
-
 import FinalCTA from "@/components/sections/FinalCTA";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata = {
-  title: "Evenimente, workshopuri și terapie de grup în Cluj | Adriana Laszlo",
+export const metadata: Metadata = buildMetadata({
+  title: "Evenimente terapeutice în Cluj-Napoca | Adriana Laszlo",
   description:
-    "Programe de grup, workshopuri și ateliere ghidate pentru traumă, anxietate, stres și reconectare emoțională, susținute de psihoterapeut Adriana Laszlo.",
-};
+    "Evenimente terapeutice, grupuri de lucru și experiențe ghidate în Cluj-Napoca, create pentru conectare, claritate și siguranță emoțională.",
+  path: "/evenimente",
+  image: "/og/events-og.jpg",
+  keywords: [
+    "evenimente terapeutice Cluj",
+    "terapie de grup Cluj",
+    "grup terapeutic Cluj-Napoca",
+    "workshop psihoterapie Cluj",
+  ],
+});
 
 export default function EventsPage() {
   return (

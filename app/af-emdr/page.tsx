@@ -8,13 +8,22 @@ import DownloadResourcesSection from "@/components/pages/af-emdr/resources/Downl
 import { afEmdrFaqContent } from "@/components/sections/faq-data";
 import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { Metadata } from "next";
 
-export const metadata = {
-  title: "Terapie AF-EMDR în Cluj-Napoca | Trauma de atașament și EMDR",
+export const metadata: Metadata = buildMetadata({
+  title: "AF-EMDR în Cluj-Napoca | Terapie pentru traumă",
   description:
-    "Află ce este terapia AF-EMDR, cum funcționează și când poate ajuta în trauma de atașament, anxietate, stres post-traumatic și dificultăți relaționale.",
-};
-
+    "Descoperă ce este AF-EMDR, cum funcționează și când poate fi potrivit pentru procesarea traumei, anxietății și blocajelor emoționale.",
+  path: "/af-emdr",
+  image: "/og/af-emdr-og.jpg",
+  keywords: [
+    "AF-EMDR Cluj",
+    "AF-EMDR România",
+    "terapie EMDR Cluj",
+    "terapie traumă Cluj-Napoca",
+  ],
+});
 export default function AfEmdrPage() {
   return (
     <main>

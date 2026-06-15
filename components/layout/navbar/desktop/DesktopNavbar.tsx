@@ -90,7 +90,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <X size={40} strokeWidth={1.5} />
+              <X size={50} strokeWidth={2} />
             </motion.span>
           ) : (
             <motion.span
@@ -101,7 +101,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <Menu size={40} strokeWidth={1.4} />
+              <Menu size={50} strokeWidth={2} />
             </motion.span>
           )}
         </AnimatePresence>

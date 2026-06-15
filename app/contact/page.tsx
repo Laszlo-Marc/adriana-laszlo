@@ -3,18 +3,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail, MapPin, Phone, ArrowUpRight, Clock3 } from "lucide-react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import ContactForm from "@/components/pages/contact/ContactForm";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact | Adriana Laszlo",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact | Programări psihoterapie în Cluj-Napoca",
   description:
-    "Ia legătura cu Adriana Laszlo pentru programări, întrebări sau informații despre ședințele de psihoterapie în Cluj-Napoca sau online.",
-};
+    "Contactează cabinetul Adriana Laszlo pentru programări la psihoterapie individuală, AF-EMDR sau evenimente terapeutice în Cluj-Napoca.",
+  path: "/contact",
+  image: "/og/contact-og.jpg",
+  keywords: [
+    "contact psihoterapeut Cluj",
+    "programare psihoterapie Cluj",
+    "cabinet psihoterapie Cluj-Napoca",
+  ],
+});
 
 type ContactItem = {
   title: string;

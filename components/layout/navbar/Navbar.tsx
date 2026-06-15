@@ -84,7 +84,7 @@ export default function Navbar({ className }: NavbarProps) {
           ease: [0.16, 1, 0.3, 1],
         }}
         className={cn(
-          "fixed inset-x-0 top-0 z-[110] transition-colors duration-500",
+          "fixed inset-x-0 top-0 z-110 transition-colors duration-500",
           isSolidNavbar
             ? "border-b border-border/70 bg-cream/92 shadow-[0_14px_46px_rgba(44,44,44,0.08)] backdrop-blur-xl"
             : "border-b border-transparent bg-transparent",

@@ -4,6 +4,13 @@ import "./globals.css";
 import Footer from "@/components/layout/footer";
 import { Allura } from "next/font/google";
 import Navbar from "@/components/layout/navbar/Navbar";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import {
+  personSchema,
+  professionalServiceSchema,
+  websiteSchema,
+} from "@/lib/seo/schema";
 
 const allura = Allura({
   subsets: ["latin"],
@@ -26,33 +33,12 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Adriana Laszlo — Psiholog Psihoterapeut Cluj-Napoca",
-    template: "%s | Adriana Laszlo",
-  },
+export const metadata: Metadata = buildMetadata({
+  title: "Adriana Laszlo | Psihoterapie și AF-EMDR în Cluj-Napoca",
   description:
-    "Psiholog-psihoterapeut cu peste 15 ani de experiență. Specializare în EMDR și EFT pentru tratarea traumelor. Cabinet în Cluj-Napoca și ședințe online.",
-  keywords: [
-    "psiholog Cluj",
-    "psihoterapeut Cluj-Napoca",
-    "EMDR Cluj",
-    "terapie traume",
-    "psihoterapie online",
-    "Adriana Laszlo",
-    "cabinet psihologic Cluj",
-  ],
-  authors: [{ name: "Adriana Laszlo" }],
-  openGraph: {
-    type: "website",
-    locale: "ro_RO",
-    url: "https://adrianalaszlo.ro",
-    siteName: "Adriana Laszlo — Psiholog Psihoterapeut",
-    title: "Adriana Laszlo — Psiholog Psihoterapeut Cluj-Napoca",
-    description:
-      "Psiholog-psihoterapeut cu peste 15 ani de experiență. Specializare în EMDR și EFT.",
-  },
-};
+    "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, într-un cadru profesionist, calm și sigur.",
+  path: "/",
+});
 
 export default function RootLayout({
   children,
@@ -65,10 +51,11 @@ export default function RootLayout({
       className={`${cinzel.variable} ${poppins.variable} ${allura.variable}`}
     >
       <body>
+        <JsonLd data={websiteSchema()} />
+        <JsonLd data={personSchema()} />
+        <JsonLd data={professionalServiceSchema()} />
         <Navbar />
-
         <main>{children}</main>
-
         <Footer />
       </body>
     </html>

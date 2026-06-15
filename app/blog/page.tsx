@@ -1,18 +1,24 @@
 import BlogHero from "@/components/pages/blog/BlogHero";
 import { featuredBlogPosts } from "@/components/pages/blog/post-page/blogPosts";
 import BlogPostsCarousel from "@/components/pages/blog/posts/BlogPostCarousel";
-
-import DownloadResourcesSection from "@/components/pages/af-emdr/resources/DownloadResourcesSection";
 import BlogSocialSection from "@/components/pages/blog/social/BlogSocialSection";
 import FinalCTA from "@/components/sections/FinalCTA";
-
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Blog și resurse gratuite | Adriana Laszlo",
+export const metadata: Metadata = buildMetadata({
+  title: "Blog despre psihoterapie, traumă și vindecare emoțională",
   description:
-    "Articole și resurse gratuite despre traumă, EMDR, reglare emoțională, relații și sănătate emoțională.",
-};
+    "Articole despre psihoterapie, traumă, relații, reglare emoțională și procese terapeutice, scrise pentru claritate, siguranță și înțelegere.",
+  path: "/blog",
+  image: "/og/blog-og.jpg",
+  keywords: [
+    "blog psihoterapie",
+    "articole traumă psihologică",
+    "blog terapie Cluj",
+    "vindecare emoțională",
+  ],
+});
 
 export default function BlogPage() {
   return (
