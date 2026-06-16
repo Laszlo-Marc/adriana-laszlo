@@ -6,7 +6,6 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import { EventDetail } from "./eventData";
 import FeaturedEventSignupForm from "../featured-event/SignUpForm";
-import { featuredEvent } from "../eventsContent";
 
 type EventSignupSectionProps = {
   event: EventDetail;
@@ -116,7 +115,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
             </Text>
 
             <div className="mx-auto mt-10 w-full min-w-0 max-w-full overflow-hidden px-0 lg:hidden">
-              <FeaturedEventSignupForm eventTitle={featuredEvent.title} />
+              <FeaturedEventSignupForm eventTitle={event.title} />
             </div>
             {/* Mobile snap carousel */}
             <div className="-mx-4 mt-8 min-w-0 overflow-hidden lg:hidden">
@@ -155,7 +154,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
 
           {/* Desktop form column */}
           <div className="mx-auto hidden w-full max-w-xl lg:mx-0 lg:ml-auto lg:block">
-            <FeaturedEventSignupForm eventTitle={featuredEvent.title} />
+            <FeaturedEventSignupForm eventTitle={event.title} />
           </div>
         </div>
       </Container>

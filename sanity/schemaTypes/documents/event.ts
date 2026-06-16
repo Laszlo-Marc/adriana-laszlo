@@ -128,6 +128,13 @@ export const event = defineType({
               validation: (Rule) => Rule.required().max(120),
             }),
             defineField({
+              name: "shortText",
+              title: "Short Description",
+              type: "text",
+              rows: 4,
+              validation: (Rule) => Rule.required().max(300),
+            }),
+            defineField({
               name: "description",
               title: "Description",
               type: "text",

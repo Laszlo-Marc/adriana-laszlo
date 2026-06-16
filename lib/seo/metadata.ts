@@ -13,13 +13,16 @@ type SeoMetadataInput = {
   keywords?: string[];
 };
 
-export function absoluteUrl(path = "") {
+export function absoluteUrl(path = "/") {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+
   const baseUrl = siteConfig.url.replace(/\/$/, "");
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
   return `${baseUrl}${normalizedPath}`;
 }
-
 export function buildMetadata({
   title,
   description,

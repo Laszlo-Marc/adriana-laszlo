@@ -26,7 +26,7 @@ export const navItems: NavbarItem[] = [
       {
         id: "af-emdr-grup",
         title: "Grup AF-EMDR",
-        url: "/evenimente/grup-af-emdr-anxietate-stres-perfectionism",
+        url: "/evenimente/program-de-grup-af-emdr-anxietate-stres-perfectionism",
         description: "Program de lucru ghidat în grup",
       },
     ],

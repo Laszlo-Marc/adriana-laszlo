@@ -6,6 +6,12 @@ import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { getEvents } from "@/sanity/lib/fetchers";
+import {
+  getFeaturedEvent,
+  toFeaturedEvent,
+  toOtherEventItems,
+} from "@/sanity/adapters/event";
 
 export const metadata: Metadata = buildMetadata({
   title: "Evenimente terapeutice în Cluj-Napoca | Adriana Laszlo",
@@ -21,12 +27,22 @@ export const metadata: Metadata = buildMetadata({
   ],
 });
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const events = await getEvents();
+
+  const featuredEvent = getFeaturedEvent(events);
+  const otherEvents = toOtherEventItems(events, featuredEvent?.slug);
+
   return (
     <>
       <EventsHero />
-      <FeaturedEventSection />
-      <OtherEventsSection />
+
+      {featuredEvent ? (
+        <FeaturedEventSection event={toFeaturedEvent(featuredEvent)} />
+      ) : null}
+
+      <OtherEventsSection events={otherEvents} />
+
       <FaqSection
         id="events-faq"
         items={eventsFaqItems}
@@ -35,6 +51,7 @@ export default function EventsPage() {
         background="cream"
         spacing="md"
       />
+
       <FinalCTA
         title="Vrei să afli ce program ți se potrivește?"
         description="Scrie-mi și aflăm împreună."

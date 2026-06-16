@@ -56,13 +56,18 @@ export const eventCardFields = groq`
   mainImage {
     ...,
     alt
+  },
+  gallery[] {
+    ...,
+    alt
   }
 `;
 
 export const eventsQuery = groq`
   *[
     _type == "event" &&
-    defined(slug.current)
+    defined(slug.current) &&
+    status != "draft"
   ] | order(schedule.startDate asc) {
     ${eventCardFields}
   }
@@ -74,9 +79,17 @@ export const eventBySlugQuery = groq`
     slug.current == $slug
   ][0] {
     ${eventCardFields},
-    gallery,
     signup,
-    storySections,
+    storySections[] {
+      eyebrow,
+      title,
+      description,
+      body,
+      image {
+        ...,
+        alt
+      }
+    },
     faq,
     seo
   }

@@ -4,10 +4,16 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 
 import EventImageCard from "./EventImageCard";
-import { otherEvents } from "../eventsContent";
+import type { OtherEventItem } from "../eventsContent";
 
-export default function OtherEventsSection() {
-  if (!otherEvents.length) return null;
+type OtherEventsSectionProps = {
+  events: OtherEventItem[];
+};
+
+export default function OtherEventsSection({
+  events,
+}: OtherEventsSectionProps) {
+  if (!events.length) return null;
 
   return (
     <Section
@@ -48,13 +54,13 @@ export default function OtherEventsSection() {
         </div>
 
         <div className="-mx-4 mt-12 flex snap-x gap-4 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:hidden [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {otherEvents.map((event, index) => (
+          {events.map((event, index) => (
             <EventImageCard key={event.slug} item={event} index={index} />
           ))}
         </div>
 
         <div className="mt-14 hidden grid-cols-2 gap-6 lg:grid">
-          {otherEvents.map((event, index) => (
+          {events.map((event, index) => (
             <EventImageCard key={event.slug} item={event} index={index} />
           ))}
         </div>

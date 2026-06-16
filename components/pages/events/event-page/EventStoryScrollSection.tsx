@@ -110,10 +110,6 @@ export default function EventStoryScrollSection({
                         {chapter.title}
                       </Heading>
 
-                      <Text size="lg" className="mt-6 max-w-lg">
-                        {chapter.description}
-                      </Text>
-
                       {isLast ? (
                         <div className="mt-10 hidden flex-col gap-3 sm:flex-row lg:flex">
                           <Button href="#inscriere" variant="primary">

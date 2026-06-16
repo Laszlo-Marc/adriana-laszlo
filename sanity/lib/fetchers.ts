@@ -1,5 +1,4 @@
-// sanity/lib/fetchers.ts
-
+import { SanityEvent, SanityEventCard } from "../types/event";
 import { sanityClient } from "./client";
 import {
   blogPostBySlugQuery,
@@ -21,11 +20,12 @@ export async function getBlogPostBySlug(
   });
 }
 
-// Temporary until events are typed properly
-export async function getEvents() {
-  return sanityClient.fetch(eventsQuery);
+export async function getEvents(): Promise<SanityEventCard[]> {
+  return sanityClient.fetch<SanityEventCard[]>(eventsQuery);
 }
 
-export async function getEventBySlug(slug: string) {
-  return sanityClient.fetch(eventBySlugQuery, { slug });
+export async function getEventBySlug(
+  slug: string,
+): Promise<SanityEvent | null> {
+  return sanityClient.fetch<SanityEvent | null>(eventBySlugQuery, { slug });
 }

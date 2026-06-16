@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FinalCTA from "@/components/sections/FinalCTA";
-import { eventDetails } from "@/components/pages/events/event-page/eventData";
 import EventDetailHero from "@/components/pages/events/event-page/EventDetailsHero";
 import EventSignupSection from "@/components/pages/events/event-page/EventSignUpSection";
 import EventQuickInfo from "@/components/pages/events/event-page/EventQuickInfo";
 import FaqSection from "@/components/sections/FaqSection";
 import EventStoryScrollLoader from "@/components/pages/events/event-page/EventStoryScrollLoader";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { getEventBySlug, getEvents } from "@/sanity/lib/fetchers";
+import { getSanityEventOgImage, toEventDetail } from "@/sanity/adapters/event";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -14,8 +16,10 @@ type EventDetailPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return eventDetails.map((event) => ({
+export async function generateStaticParams() {
+  const events = await getEvents();
+
+  return events.map((event) => ({
     slug: event.slug,
   }));
 }
@@ -24,43 +28,43 @@ export async function generateMetadata({
   params,
 }: EventDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const event = eventDetails.find((item) => item.slug === slug);
+  const event = await getEventBySlug(slug);
 
   if (!event) {
-    return {
-      title: "Eveniment negăsit",
-    };
+    return buildMetadata({
+      title: "Eveniment negăsit | Adriana Laszlo",
+      description: "Evenimentul căutat nu este disponibil.",
+      path: `/evenimente/${slug}`,
+      noIndex: true,
+    });
   }
 
-  return {
-    title: `${event.title} | Adriana Laszlo`,
-    description: event.summary,
-    alternates: {
-      canonical: `/evenimente/${event.slug}`,
-    },
-    openGraph: {
-      title: event.title,
-      description: event.summary,
-      type: "website",
-      images: [
-        {
-          url: event.image,
-          alt: event.imageAlt,
-        },
-      ],
-    },
-  };
+  return buildMetadata({
+    title: event.seo?.title ?? `${event.title} | Adriana Laszlo`,
+    description: event.seo?.description ?? event.summary,
+    path: `/evenimente/${event.slug}`,
+    image: getSanityEventOgImage(event),
+    noIndex: event.seo?.noIndex ?? false,
+    keywords: [
+      "eveniment terapeutic Cluj",
+      "AF-EMDR Cluj",
+      "terapie de grup Cluj",
+      event.title,
+    ],
+  });
 }
 
 export default async function EventDetailPage({
   params,
 }: EventDetailPageProps) {
   const { slug } = await params;
-  const event = eventDetails.find((item) => item.slug === slug);
+  const sanityEvent = await getEventBySlug(slug);
 
-  if (!event) {
+  if (!sanityEvent) {
     notFound();
   }
+
+  const event = toEventDetail(sanityEvent);
 
   return (
     <>
@@ -68,14 +72,18 @@ export default async function EventDetailPage({
       <EventQuickInfo event={event} />
       <EventStoryScrollLoader event={event} />
       <EventSignupSection event={event} />
-      <FaqSection
-        id="event-faq"
-        items={event.faq}
-        title="Întrebări frecvente"
-        tone="charcoal"
-        background="cream"
-        spacing="md"
-      />
+
+      {event.faq.length > 0 ? (
+        <FaqSection
+          id="event-faq"
+          items={event.faq}
+          title="Întrebări frecvente"
+          tone="charcoal"
+          background="cream"
+          spacing="md"
+        />
+      ) : null}
+
       <FinalCTA
         title="Nu ești sigur/ă dacă acest program ți se potrivește?"
         description="Putem clarifica împreună într-o discuție scurtă dacă formatul de grup este potrivit pentru ce ai nevoie acum."
