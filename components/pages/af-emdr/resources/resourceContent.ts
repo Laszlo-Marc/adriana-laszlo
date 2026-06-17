@@ -12,19 +12,19 @@ export type DownloadResource = {
 
 export const downloadResources: DownloadResource[] = [
   {
-    id: "exercitiu-grounding",
-    title: "Exercițiu de grounding",
+    id: "ghid-resurse-pozitive",
+    title: "Ghid de resurse pozitive",
     eyebrow: "PDF gratuit",
     description:
       "Un exercițiu simplu pentru revenire în prezent în momente de anxietate, copleșire sau tensiune interioară.",
     image: "/blogs/resources/ghid.webp",
     imageAlt: "Coperta PDF-ului Exercițiu de grounding",
     fileLabel: "Exercițiu de grounding",
-    submitLabel: "Descarcă exercițiul",
+    submitLabel: "Descarcă ghidul",
   },
   {
-    id: "jurnal-constientizare-emotionala",
-    title: "Jurnal de conștientizare emoțională",
+    id: "constientizare-emotionala",
+    title: "Constientizare emotionala",
     eyebrow: "PDF gratuit",
     description:
       "Un instrument practic pentru observarea emoțiilor, gândurilor și reacțiilor corporale fără critică sau presiune.",

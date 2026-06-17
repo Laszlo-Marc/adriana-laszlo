@@ -25,7 +25,7 @@ export const socialReels: SocialReel[] = [
     id: "atasament",
     title: "Atașament și siguranță",
     description: "De ce apropierea poate activa frică, nu doar iubire.",
-    videoSrc: "/blogs/reels/reel2.mp4",
+    videoSrc: "/blogs/reels/reel-3.mp4",
     posterSrc: "/images/reels/atasament-si-siguranta.jpg",
   },
 ];

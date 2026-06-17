@@ -33,6 +33,8 @@ export default async function EventsPage() {
   const featuredEvent = getFeaturedEvent(events);
   const otherEvents = toOtherEventItems(events, featuredEvent?.slug);
 
+  console.log("Featured event:", featuredEvent?.title);
+
   return (
     <>
       <EventsHero />

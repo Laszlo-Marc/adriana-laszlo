@@ -36,7 +36,7 @@ function MobileNavbar({
           aria-label={isOpen ? "Închide meniul" : "Deschide meniul"}
           aria-expanded={isOpen}
         >
-          {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          {isOpen ? <X size={30} /> : <Menu size={30} />}
         </motion.button>
       </div>
     </div>

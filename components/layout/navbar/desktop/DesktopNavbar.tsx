@@ -78,7 +78,13 @@ const DesktopNavbar = function DesktopNavbar({
         aria-expanded={isOpen}
         aria-controls="desktop-fullscreen-menu"
         onClick={() => onOpenChange(!isOpen)}
-        className="relative z-131 inline-flex h-12 w-12 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-charcoal/5 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-gold"
+        className={cn(
+          "relative z-131 inline-flex size-18 items-center justify-center rounded-full border shadow-[0_12px_35px_rgba(44,44,44,0.12)] backdrop-blur-md transition-colors",
+          "focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-gold",
+          isOpen
+            ? "border-charcoal/10 bg-charcoal text-cream hover:bg-charcoal/90"
+            : "border-white/50 bg-cream/80 text-charcoal hover:bg-cream",
+        )}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
@@ -90,7 +96,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <X size={50} strokeWidth={2} />
+              <X size={34} strokeWidth={1.8} />
             </motion.span>
           ) : (
             <motion.span
@@ -101,7 +107,7 @@ const DesktopNavbar = function DesktopNavbar({
               transition={{ duration: 0.18 }}
               className="inline-flex"
             >
-              <Menu size={50} strokeWidth={2} />
+              <Menu size={40} strokeWidth={1.8} />
             </motion.span>
           )}
         </AnimatePresence>
