@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export const resourceDownloadSchema = z.object({
   resourceId: z.string().trim().min(1, "Resursa este obligatorie."),
-
+  newsletterConsent: z.boolean().optional().default(false),
   name: z
     .string()
     .trim()

@@ -1,14 +1,10 @@
-// app/api/event-signup/route.ts
+// app/api/newsletter/subscribe/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 
-import {
-  sendEventSignupConfirmationEmail,
-  sendEventSignupEmail,
-} from "@/lib/email/event-signup-email";
 import { subscribeToNewsletter } from "@/lib/newsletter/mailchimp";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
-import { eventSignupSchema } from "@/lib/validator/event-signup";
+import { newsletterSchema } from "@/lib/validator/newsletter";
 
 export const runtime = "nodejs";
 
@@ -24,9 +20,9 @@ function getClientIp(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const ip = getClientIp(request);
-
     const body = await request.json();
-    const parsed = eventSignupSchema.safeParse(body);
+
+    const parsed = newsletterSchema.safeParse(body);
 
     if (!parsed.success) {
       return NextResponse.json(
@@ -40,12 +36,10 @@ export async function POST(request: NextRequest) {
 
     const data = parsed.data;
 
-    // Honeypot trap.
     if (data.website) {
       return NextResponse.json({ ok: true });
     }
 
-    // Timing trap.
     const secondsSinceStart = (Date.now() - data.startedAt) / 1000;
 
     if (secondsSinceStart < 3) {
@@ -66,53 +60,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const ownerEmailResult = await sendEventSignupEmail(data);
+    const result = await subscribeToNewsletter({
+      email: data.email,
+      firstName: data.firstName,
+      source: data.source || "Newsletter form",
+      tags: ["newsletter"],
+    });
 
-    if (ownerEmailResult.error) {
-      console.error("Resend event signup email error:", ownerEmailResult.error);
-
+    if (!result.ok) {
       return NextResponse.json(
         {
           message:
-            "Înscrierea nu a putut fi trimisă. Te rog să încerci din nou.",
+            "Abonarea nu a putut fi finalizată. Te rog să încerci din nou.",
         },
         { status: 500 },
       );
     }
 
-    const confirmationResult = await sendEventSignupConfirmationEmail(data);
-
-    if (confirmationResult.error) {
-      console.error(
-        "Resend event signup confirmation error:",
-        confirmationResult.error,
-      );
-    }
-
-    if (data.newsletterConsent) {
-      const newsletterResult = await subscribeToNewsletter({
-        email: data.email,
-        firstName: data.name,
-        source: "Event signup form",
-        tags: ["newsletter", "event-interest"],
-      });
-
-      if (!newsletterResult.ok) {
-        console.error(
-          "Newsletter subscription failed:",
-          newsletterResult.error,
-        );
-      }
-    }
-
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Event signup form error:", error);
+    console.error("Newsletter subscribe error:", error);
 
     return NextResponse.json(
       {
-        message:
-          "A apărut o problemă la trimiterea formularului. Te rog să încerci din nou.",
+        message: "A apărut o problemă la abonare. Te rog să încerci din nou.",
       },
       { status: 500 },
     );

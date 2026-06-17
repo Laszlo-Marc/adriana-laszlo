@@ -8,6 +8,7 @@ import Heading from "@/components/ui/Heading";
 import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import type { DownloadResource } from "./resourceContent";
+import NewsletterConsentCheckbox from "@/components/newsletter/NewsLetterConsentCheckbox";
 
 type ResourceDownloadFormProps = {
   resource: DownloadResource;
@@ -19,19 +20,25 @@ type FormState = {
   name: string;
   email: string;
   consent: boolean;
+  newsletterConsent: boolean;
 };
 
 type FieldErrors = Partial<
   Record<
-    "resourceId" | "name" | "email" | "consent" | "turnstileToken",
+    | "resourceId"
+    | "name"
+    | "email"
+    | "consent"
+    | "newsletterConsent"
+    | "turnstileToken",
     string[]
   >
 >;
-
 const initialState: FormState = {
   name: "",
   email: "",
   consent: false,
+  newsletterConsent: false,
 };
 
 const inputClassName =
@@ -77,9 +84,7 @@ export default function ResourceDownloadForm({
         },
         body: JSON.stringify({
           resourceId: resource.id,
-          name: form.name,
-          email: form.email,
-          consent: form.consent,
+          ...form,
           website,
           startedAt: startedAtRef.current,
           turnstileToken,
@@ -273,7 +278,10 @@ export default function ResourceDownloadForm({
               <FieldError message={fieldErrors.turnstileToken?.[0]} />
             </div>
           ) : null}
-
+          <NewsletterConsentCheckbox
+            checked={form.newsletterConsent}
+            onChange={(checked) => updateField("newsletterConsent", checked)}
+          />
           <Button
             type="submit"
             disabled={isSubmitting || !turnstileToken}

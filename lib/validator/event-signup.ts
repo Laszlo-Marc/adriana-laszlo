@@ -27,7 +27,7 @@ export const eventSignupSchema = z.object({
     .max(40, "Numărul de telefon este prea lung.")
     .optional()
     .or(z.literal("")),
-
+  newsletterConsent: z.boolean().optional().default(false),
   message: z
     .string()
     .trim()

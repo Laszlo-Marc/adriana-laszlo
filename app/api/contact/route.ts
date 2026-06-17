@@ -1,10 +1,11 @@
 // app/api/contact/route.ts
 
+import { NextRequest, NextResponse } from "next/server";
+
 import { sendContactEmail } from "@/lib/email/contact-email";
-import { contactRateLimit } from "@/lib/security/rate-limit";
+import { subscribeToNewsletter } from "@/lib/newsletter/mailchimp";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
 import { contactSchema } from "@/lib/validator/contact";
-import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
@@ -20,40 +21,6 @@ function getClientIp(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const ip = getClientIp(request);
-
-    if (contactRateLimit) {
-      try {
-        const rateLimitResult = await contactRateLimit.limit(ip);
-
-        if (!rateLimitResult.success) {
-          return NextResponse.json(
-            {
-              message:
-                "Ai trimis prea multe mesaje într-un timp scurt. Te rog să încerci din nou mai târziu.",
-            },
-            { status: 429 },
-          );
-        }
-      } catch (rateLimitError) {
-        console.error("Contact form rate limit error:", rateLimitError);
-
-        if (process.env.NODE_ENV === "production") {
-          return NextResponse.json(
-            {
-              message:
-                "Momentan formularul nu poate fi trimis. Te rog să încerci din nou mai târziu.",
-            },
-            { status: 503 },
-          );
-        }
-
-        // In development, don't block form testing because Redis failed.
-      }
-    } else {
-      console.warn(
-        "Contact rate limiting is disabled because Upstash environment variables are missing.",
-      );
-    }
 
     const body = await request.json();
     const parsed = contactSchema.safeParse(body);
@@ -75,7 +42,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Timing trap. Real users do not complete this form in under 3 seconds.
+    // Timing trap.
     const secondsSinceStart = (Date.now() - data.startedAt) / 1000;
 
     if (secondsSinceStart < 3) {
@@ -96,10 +63,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = await sendContactEmail(data);
+    const emailResult = await sendContactEmail(data);
 
-    if (result.error) {
-      console.error("Resend contact email error:", result.error);
+    if (emailResult.error) {
+      console.error("Resend contact email error:", emailResult.error);
 
       return NextResponse.json(
         {
@@ -107,6 +74,22 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 },
       );
+    }
+
+    if (data.newsletterConsent) {
+      const newsletterResult = await subscribeToNewsletter({
+        email: data.email,
+        firstName: data.name,
+        source: "Contact form",
+        tags: ["newsletter", "contact-form"],
+      });
+
+      if (!newsletterResult.ok) {
+        console.error(
+          "Newsletter subscription failed:",
+          newsletterResult.error,
+        );
+      }
     }
 
     return NextResponse.json({ ok: true });

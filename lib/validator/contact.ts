@@ -29,7 +29,7 @@ export const contactSchema = z.object({
     .max(2500, "Mesajul este prea lung."),
 
   turnstileToken: z.string().min(1, "Verificarea anti-spam este obligatorie."),
-
+  newsletterConsent: z.boolean().optional().default(false),
   // Honeypot field. Real users never fill this.
   website: z.string().optional().or(z.literal("")),
 

@@ -11,6 +11,7 @@ type FormState = {
   email: string;
   phone: string;
   message: string;
+  newsletterConsent: boolean;
 };
 
 type FieldErrors = Partial<
@@ -22,6 +23,7 @@ const initialState: FormState = {
   email: "",
   phone: "",
   message: "",
+  newsletterConsent: false,
 };
 
 function FieldLabel({
@@ -220,6 +222,23 @@ export default function ContactForm() {
 
         <FieldError message={fieldErrors.message?.[0]} />
       </div>
+
+      <label className="flex gap-3 rounded-2xl border border-charcoal/10 bg-cream/45 p-4 text-sm leading-6 text-charcoal/70">
+        <input
+          type="checkbox"
+          name="newsletterConsent"
+          checked={form.newsletterConsent}
+          onChange={(event) =>
+            updateField("newsletterConsent", event.target.checked)
+          }
+          className="mt-1 h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal/30"
+        />
+
+        <span>
+          Doresc să primesc ocazional anunțuri despre evenimente, resurse
+          gratuite și materiale utile. Îmi pot retrage consimțământul oricând.
+        </span>
+      </label>
 
       {siteKey ? (
         <div className="overflow-hidden rounded-2xl">

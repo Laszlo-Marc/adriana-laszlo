@@ -11,6 +11,7 @@ import {
   professionalServiceSchema,
   websiteSchema,
 } from "@/lib/seo/schema";
+import NewsletterPopup from "@/components/newsletter/NewsLetterPopup";
 
 const allura = Allura({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
         <JsonLd data={personSchema()} />
         <JsonLd data={professionalServiceSchema()} />
         <Navbar />
+        <NewsletterPopup />
         <main>{children}</main>
         <Footer />
       </body>

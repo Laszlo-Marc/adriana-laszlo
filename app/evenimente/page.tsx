@@ -12,6 +12,7 @@ import {
   toFeaturedEvent,
   toOtherEventItems,
 } from "@/sanity/adapters/event";
+import NewsletterCTASection from "@/components/newsletter/NewsLetterCtaSection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Evenimente terapeutice în Cluj-Napoca | Adriana Laszlo",
@@ -52,6 +53,12 @@ export default async function EventsPage() {
         tone="charcoal"
         background="cream"
         spacing="md"
+      />
+      <NewsletterCTASection
+        source="Events page newsletter CTA"
+        eyebrow="Rămâi aproape"
+        title="Află când apar evenimente și resurse noi."
+        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău."
       />
 
       <FinalCTA
