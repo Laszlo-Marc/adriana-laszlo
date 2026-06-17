@@ -34,7 +34,7 @@ export const downloadResources: DownloadResource[] = [
     submitLabel: "Descarcă jurnalul",
   },
   {
-    id: "constientizare-corporala",
+    id: "constientizarea-corporala",
     title: "Conștientizarea corporală",
     eyebrow: "PDF gratuit",
     description:

@@ -13,9 +13,9 @@ export const downloadableResources: DownloadableResourceConfig[] = [
     downloadHref: "/resources/ghid-resurse-pozitive.pdf",
   },
   {
-    id: "constientizare-corporala",
+    id: "constientizarea-corporala",
     title: "Constientizare Corporala",
-    downloadHref: "/resources/constientizare-corporala.pdf",
+    downloadHref: "/resources/constientizarea-corporala.pdf",
   },
   {
     id: "infuzia-de-pozitiv",
