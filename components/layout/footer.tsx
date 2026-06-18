@@ -4,6 +4,7 @@ import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import Logo from "@/components/ui/Logo";
 import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
+import Image from "next/image";
 import Button from "../ui/Button";
 import {
   LOCATION_LABEL,
@@ -14,7 +15,20 @@ import {
 } from "./navigation-data";
 import { navItems } from "./navigation-data";
 import Container from "../ui/Container";
-
+import ConsentProtectedEmbed from "../cookies/ConsentProtectedEmbeded";
+import CookieSettingsButton from "../cookies/CookiesSettingsButton";
+const anpcBadges = [
+  {
+    href: "https://anpc.ro/ce-este-sal/",
+    src: "/anpc.webp",
+    alt: "ANPC - Soluționarea alternativă a litigiilor",
+  },
+  {
+    href: "https://ec.europa.eu/consumers/odr",
+    src: "/anpc-sol.webp",
+    alt: "Soluționarea online a litigiilor",
+  },
+];
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -54,6 +68,25 @@ export default function Footer() {
               >
                 <FaFacebookF size={18} />
               </a>
+            </div>
+            <div className="mt-5 grid grid-cols-2 items-center gap-2 xl:items-start">
+              {anpcBadges.map((badge) => (
+                <a
+                  key={badge.href}
+                  href={badge.href}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="block rounded-md transition hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2"
+                >
+                  <Image
+                    src={badge.src}
+                    alt={badge.alt}
+                    width={250}
+                    height={50}
+                    className="h-auto w-47.5 sm:w-52.5 xl:w-55"
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -125,13 +158,19 @@ export default function Footer() {
             </p>
 
             <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-white/40">
-              <iframe
-                title="Hartă Trauma Center Cluj"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.6015433081316!2d23.61199571213928!3d46.77274997100512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473805ced1efe1e9%3A0x7930e24e27ac6c75!2sTrauma%20Center%2C%20Centru%20de%20Psihoterapie!5e0!3m2!1sen!2sro!4v1779696924636!5m2!1sen!2sro"
-                className="h-40 w-full border-0 md:h-44"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <ConsentProtectedEmbed
+                title="Harta este blocată"
+                description="Pentru a afișa Google Maps, acceptă categoria de servicii externe și conținut integrat."
+                className="min-h-40 rounded-2xl md:min-h-44"
+              >
+                <iframe
+                  title="Hartă Trauma Center Cluj"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.6015433081316!2d23.61199571213928!3d46.77274997100512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473805ced1efe1e9%3A0x7930e24e27ac6c75!2sTrauma%20Center%2C%20Centru%20de%20Psihoterapie!5e0!3m2!1sen!2sro!4v1779696924636!5m2!1sen!2sro"
+                  className="h-40 w-full border-0 md:h-44"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </ConsentProtectedEmbed>
             </div>
           </div>
         </div>
@@ -157,10 +196,17 @@ export default function Footer() {
               </Link>
 
               <Link
-                href="/cookies"
+                href="/politica-cookies"
                 className="transition-colors hover:text-charcoal"
               >
                 Politica cookies
+              </Link>
+              <CookieSettingsButton className="transition-colors hover:text-charcoal" />
+              <Link
+                href="/termeni-si-conditii"
+                className="transition-colors hover:text-charcoal"
+              >
+                Termeni și condiții
               </Link>
             </div>
           </div>

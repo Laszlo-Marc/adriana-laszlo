@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import { Cinzel, Poppins } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/layout/footer";
 import { Allura } from "next/font/google";
+
+import "./globals.css";
+
+import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar/Navbar";
+import NewsletterPopup from "@/components/newsletter/NewsLetterPopup";
+
+import CookieBanner from "@/components/cookies/CookiesBanner";
+import { CookieConsentProvider } from "@/components/cookies/CookiesConsentProvider";
+import ConsentScripts from "@/components/cookies/ConsentScripts";
+
 import { buildMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/lib/seo/JsonLd";
 import {
@@ -11,7 +19,6 @@ import {
   professionalServiceSchema,
   websiteSchema,
 } from "@/lib/seo/schema";
-import NewsletterPopup from "@/components/newsletter/NewsLetterPopup";
 
 const allura = Allura({
   subsets: ["latin"],
@@ -53,13 +60,21 @@ export default function RootLayout({
       className={`${cinzel.variable} ${poppins.variable} ${allura.variable}`}
     >
       <body>
-        <JsonLd data={websiteSchema()} />
-        <JsonLd data={personSchema()} />
-        <JsonLd data={professionalServiceSchema()} />
-        <Navbar />
-        <NewsletterPopup />
-        <main>{children}</main>
-        <Footer />
+        <CookieConsentProvider>
+          <JsonLd data={websiteSchema()} />
+          <JsonLd data={personSchema()} />
+          <JsonLd data={professionalServiceSchema()} />
+
+          <Navbar />
+          <NewsletterPopup />
+
+          <main>{children}</main>
+
+          <Footer />
+
+          <CookieBanner />
+          <ConsentScripts />
+        </CookieConsentProvider>
       </body>
     </html>
   );
