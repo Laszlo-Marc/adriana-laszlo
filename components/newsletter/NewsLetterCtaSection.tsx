@@ -59,8 +59,12 @@ export default function NewsletterCTASection({
             {/* Left: form only */}
             <div className="rounded-4xl border border-white/70 bg-white/82 p-4 shadow-[0_18px_60px_rgba(44,44,44,0.08)] backdrop-blur-sm sm:p-6">
               <NewsletterForm
-                source={source}
-                className="mx-auto max-w-xl text-left"
+                className="mt-4 sm:mt-6"
+                source="Newsletter popup"
+                resourceKey="exclusive-downloadable-resource"
+                submitLabel="Primește resursa gratuită"
+                successTitle="Verifică-ți emailul."
+                successMessage="Ți-am trimis resursa gratuită pe email. Dacă nu o vezi în câteva minute, verifică și folderul Spam sau Promotions."
               />
             </div>
 

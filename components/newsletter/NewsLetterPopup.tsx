@@ -73,7 +73,6 @@ export default function NewsletterPopup() {
   }, [isVisible]);
 
   if (!isVisible) return null;
-
   return (
     <div
       role="dialog"
@@ -95,7 +94,7 @@ export default function NewsletterPopup() {
               alt=""
               width={320}
               height={320}
-              className="absolute -left-12 -top-8 w-40 rotate-[-8deg] opacity-[0.11] sm:w-56 lg:w-72"
+              className="absolute -left-12 -top-8 w-40 rotate-[-8deg] opacity-[0.08] sm:w-56 lg:w-72 lg:opacity-[0.11]"
             />
 
             <Image
@@ -103,7 +102,7 @@ export default function NewsletterPopup() {
               alt=""
               width={220}
               height={220}
-              className="absolute right-4 top-20 w-20 opacity-15 sm:w-24 lg:right-[18%] lg:top-[8%] lg:w-28 lg:opacity-20"
+              className="absolute right-4 top-20 w-20 opacity-10 sm:w-24 lg:right-[18%] lg:top-[8%] lg:w-28 lg:opacity-20"
             />
 
             <Image
@@ -132,29 +131,38 @@ export default function NewsletterPopup() {
             <X aria-hidden="true" className="h-5 w-5" strokeWidth={1.9} />
           </button>
 
-          <div className="relative hidden h-full  lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none">
-            {/* Left editorial panel */}
-            <div className="relative min-h-0 overflow-hidden px-5 pb-4 pt-6 sm:px-10 sm:py-10 lg:min-h-[min(82svh,760px)] lg:px-14 lg:py-14">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-cream/60 sm:text-xs">
+          <div className="relative grid h-full lg:grid-cols-[1.05fr_0.95fr]">
+            {/* Left editorial panel - desktop only */}
+            <div className="relative hidden min-h-0 overflow-hidden px-5 pb-4 pt-6 sm:px-10 sm:py-10 lg:block lg:min-h-[min(82svh,760px)] lg:px-14 lg:py-14">
+              <p className="text-xs uppercase tracking-[0.28em] text-cream/60">
                 Newsletter
               </p>
 
               <Heading
-                id="newsletter-popup-title"
                 as="h2"
                 size="h1"
-                className="mt-3 max-w-[12ch] text-[2.35rem] leading-[0.95] text-cream sm:mt-4 sm:text-[3.6rem] lg:max-w-[10ch]"
+                className="mt-4 max-w-[10ch] text-[3.6rem] leading-[0.95] text-cream"
               >
                 Evenimente, articole și resurse
               </Heading>
 
-              <Text className="mt-4 max-w-xl text-sm leading-6 text-cream/72 sm:mt-6 sm:text-base">
-                Primești ocazional materiale gratuite, articole și anunțuri
-                despre evenimente noi. Fără mesaje dese, fără presiune.
+              <Text className="mt-6 max-w-xl text-base leading-7 text-cream/72">
+                Abonează-te și primești acces la o resursă gratuită, creată
+                special pentru comunitatea newsletterului — un material care nu
+                este disponibil public pe site.
               </Text>
 
-              {/* Desktop-only detail cards. Too much for mobile. */}
-              <div className="mt-8 hidden gap-3 sm:max-w-lg lg:grid">
+              <div className="mt-8 grid gap-3 sm:max-w-lg">
+                <div className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3">
+                  <p className="text-sm font-medium text-cream">
+                    Resursă exclusivă la abonare
+                  </p>
+                  <p className="mt-1 text-sm text-cream/65">
+                    Primești un material descărcabil gratuit, disponibil doar
+                    prin newsletter.
+                  </p>
+                </div>
+
                 <div className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3">
                   <p className="text-sm font-medium text-cream">
                     Evenimente și grupuri noi
@@ -162,16 +170,6 @@ export default function NewsletterPopup() {
                   <p className="mt-1 text-sm text-cream/65">
                     Află primele detalii despre programe, workshopuri și
                     întâlniri viitoare.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3">
-                  <p className="text-sm font-medium text-cream">
-                    Resurse gratuite
-                  </p>
-                  <p className="mt-1 text-sm text-cream/65">
-                    Primești ghiduri, exerciții și materiale utile atunci când
-                    apar.
                   </p>
                 </div>
 
@@ -185,7 +183,7 @@ export default function NewsletterPopup() {
                 </div>
               </div>
 
-              <div className="mt-8 hidden lg:block">
+              <div className="mt-8">
                 <p className="text-sm italic text-cream/55">
                   Un spațiu blând și bine structurat pentru a rămâne aproape de
                   resursele care te pot susține.
@@ -193,33 +191,53 @@ export default function NewsletterPopup() {
               </div>
             </div>
 
-            {/* Right form panel */}
-            <div className="relative min-h-0 border-t border-white/10 bg-cream/95 p-4 text-charcoal sm:p-8 lg:min-h-[min(82svh,760px)] lg:border-l lg:border-t-0 lg:bg-white/94 lg:p-10">
+            {/* Form panel */}
+            <div className="relative min-h-full bg-cream/95 p-4 text-charcoal sm:p-8 lg:min-h-[min(82svh,760px)] lg:border-l lg:border-white/10 lg:bg-white/94 lg:p-10">
               <div className="mx-auto flex h-full w-full max-w-xl items-center">
-                <div className="w-full rounded-3xl border border-charcoal/8 bg-white/65 p-4 shadow-[0_18px_50px_rgba(44,44,44,0.06)] sm:rounded-[1.75rem] sm:bg-cream/72 sm:p-7">
+                <div className="w-full rounded-3xl border border-charcoal/8 bg-white/70 p-5 shadow-[0_18px_50px_rgba(44,44,44,0.06)] sm:rounded-[1.75rem] sm:bg-cream/72 sm:p-7">
+                  <p className="text-center text-[10px] uppercase tracking-[0.24em] text-muted sm:text-xs">
+                    Resursă gratuită
+                  </p>
+
                   <Heading
-                    as="h3"
+                    id="newsletter-popup-title"
+                    as="h2"
                     size="h3"
-                    className="text-[1.65rem] leading-tight sm:text-[2rem]"
+                    className="mt-3 text-[1.85rem] leading-tight sm:text-[2rem]"
                     align="center"
                   >
-                    Abonează-te aici
+                    Primește un material exclusiv pe email
                   </Heading>
 
                   <Text
                     color="muted"
-                    className="mt-2 text-sm leading-6 sm:mt-3 sm:text-base"
+                    className="mt-3 text-sm leading-6 sm:text-base"
                     align="center"
                   >
-                    Te anunțăm ocazional când apar resurse gratuite sau
-                    evenimente noi.
+                    Abonează-te și îți trimitem gratuit o resursă descărcabilă
+                    care nu este disponibilă public pe site.
                   </Text>
 
+                  <div className="mt-4 rounded-2xl border border-sand/40 bg-cream px-4 py-3 text-center sm:mt-5">
+                    <p className="text-sm font-medium text-charcoal">
+                      Bonus la abonare
+                    </p>
+                    <p className="mt-1 text-sm leading-5 text-muted">
+                      Un material practic, creat pentru reflecție, claritate și
+                      susținere emoțională.
+                    </p>
+                  </div>
                   <NewsletterForm
                     className="mt-4 sm:mt-6"
                     source="Newsletter popup"
-                    onSuccess={dismiss}
+                    resourceKey="exclusive-downloadable-resource"
+                    submitLabel="Primește resursa gratuită"
+                    successTitle="Verifică-ți emailul."
+                    successMessage="Ți-am trimis resursa gratuită pe email. Dacă nu o vezi în câteva minute, verifică și folderul Spam sau Promotions."
                   />
+                  <p className="mt-4 text-center text-xs leading-5 text-muted">
+                    Fără mesaje dese. Fără presiune. Te poți dezabona oricând.
+                  </p>
                 </div>
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { type FormEvent, useEffect, useId, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
@@ -13,6 +13,10 @@ type NewsletterFormProps = {
   source: string;
   className?: string;
   onSuccess?: () => void;
+  resourceKey?: string;
+  submitLabel?: string;
+  successTitle?: string;
+  successMessage?: string;
 };
 
 type FieldErrors = Partial<
@@ -36,13 +40,14 @@ export default function NewsletterForm({
   source,
   className,
   onSuccess,
+  resourceKey,
+  submitLabel = "Abonează-te",
+  successTitle = "Te-ai abonat cu succes.",
+  successMessage = "Mulțumim. Vei primi doar anunțuri rare și relevante.",
 }: NewsletterFormProps) {
+  const formId = useId();
   const startedAtRef = useRef<number | null>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
-
-  useEffect(() => {
-    startedAtRef.current = Date.now();
-  }, []);
 
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,6 +58,10 @@ export default function NewsletterForm({
   const [error, setError] = useState<string | null>(null);
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -74,6 +83,7 @@ export default function NewsletterForm({
           firstName,
           email,
           source,
+          resourceKey,
           website,
           startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
@@ -127,13 +137,9 @@ export default function NewsletterForm({
           className="mx-auto mb-3 h-8 w-8 text-muted-teal"
         />
 
-        <p className="font-display text-2xl text-charcoal">
-          Te-ai abonat cu succes.
-        </p>
+        <p className="font-display text-2xl text-charcoal">{successTitle}</p>
 
-        <p className="mt-2 text-sm leading-6 text-muted">
-          Mulțumim. Vei primi doar anunțuri rare și relevante.
-        </p>
+        <p className="mt-2 text-sm leading-6 text-muted">{successMessage}</p>
       </div>
     );
   }
@@ -156,14 +162,14 @@ export default function NewsletterForm({
       <div className="grid gap-4">
         <div>
           <label
-            htmlFor={`newsletter-first-name-${source}`}
+            htmlFor={`${formId}-first-name`}
             className="mb-2 block text-sm font-medium text-charcoal"
           >
             Prenume
           </label>
 
           <input
-            id={`newsletter-first-name-${source}`}
+            id={`${formId}-first-name`}
             name="firstName"
             type="text"
             autoComplete="given-name"
@@ -188,14 +194,14 @@ export default function NewsletterForm({
 
         <div>
           <label
-            htmlFor={`newsletter-email-${source}`}
+            htmlFor={`${formId}-email`}
             className="mb-2 block text-sm font-medium text-charcoal"
           >
             Email
           </label>
 
           <input
-            id={`newsletter-email-${source}`}
+            id={`${formId}-email`}
             name="email"
             type="email"
             autoComplete="email"
@@ -254,7 +260,7 @@ export default function NewsletterForm({
         ) : (
           <span className="inline-flex items-center gap-2">
             <Mail aria-hidden="true" className="h-4 w-4" />
-            Abonează-te
+            {submitLabel}
           </span>
         )}
       </Button>
