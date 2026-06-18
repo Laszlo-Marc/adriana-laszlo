@@ -218,15 +218,6 @@ export default function NewsletterPopup() {
                     care nu este disponibilă public pe site.
                   </Text>
 
-                  <div className="mt-4 rounded-2xl border border-sand/40 bg-cream px-4 py-3 text-center sm:mt-5">
-                    <p className="text-sm font-medium text-charcoal">
-                      Bonus la abonare
-                    </p>
-                    <p className="mt-1 text-sm leading-5 text-muted">
-                      Un material practic, creat pentru reflecție, claritate și
-                      susținere emoțională.
-                    </p>
-                  </div>
                   <NewsletterForm
                     className="mt-4 sm:mt-6"
                     source="Newsletter popup"

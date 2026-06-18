@@ -8,6 +8,7 @@ import { getBlogPosts } from "@/sanity/lib/fetchers";
 import { toSanityBlogPostCards } from "@/sanity/adapters/blog";
 import { JsonLd } from "@/lib/seo/JsonLd";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
+import NewsletterCTASection from "@/components/newsletter/NewsLetterCtaSection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog despre psihoterapie, traumă și vindecare emoțională",
@@ -46,6 +47,12 @@ export default async function BlogPage() {
       <BlogHero />
       <BlogPostsCarousel posts={postCards} />
       <BlogSocialSection />
+      <NewsletterCTASection
+        source="Blog page newsletter CTA"
+        eyebrow="Rămâi aproape"
+        title="Alătură-te comunității."
+        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău. Cu abonarea primesti o resursă utilă gratuită."
+      />
       <FinalCTA
         title="Uneori, un articol deschide o întrebare mai profundă."
         description="Dacă te regăsești în ceea ce citești, poți face următorul pas într-un spațiu sigur, ghidat și adaptat nevoilor tale."

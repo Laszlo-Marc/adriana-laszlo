@@ -67,7 +67,7 @@ export default async function EventsPage() {
         source="Events page newsletter CTA"
         eyebrow="Rămâi aproape"
         title="Alătură-te comunității."
-        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău."
+        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău. Cu abonarea primești o resursă utilă gratută."
       />
       <FaqSection
         id="events-faq"
