@@ -16,7 +16,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, pentru persoane care caută claritate, siguranță emoțională și sprijin profesionist.",
   path: "/",
-  image: "/og/home-og.jpg",
+  image: "/og/default-og.jpg",
   keywords: [
     "psihoterapie Cluj-Napoca",
     "psihoterapeut Cluj",

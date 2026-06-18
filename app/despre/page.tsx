@@ -18,7 +18,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Află mai multe despre Adriana Laszlo, psihoterapeut în Cluj-Napoca, formarea sa profesională, abordarea terapeutică și experiența în lucrul cu trauma.",
   path: "/despre",
-  image: "/og/about-og.jpg",
+  image: "/og/about-og.PNG",
   keywords: [
     "Adriana Laszlo psihoterapeut",
     "psihoterapeut Cluj-Napoca",
