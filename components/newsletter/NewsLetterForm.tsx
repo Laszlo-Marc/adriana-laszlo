@@ -2,7 +2,7 @@
 
 "use client";
 
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
@@ -37,8 +37,12 @@ export default function NewsletterForm({
   className,
   onSuccess,
 }: NewsletterFormProps) {
-  const startedAtRef = useRef(Date.now());
+  const startedAtRef = useRef<number | null>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,7 +75,7 @@ export default function NewsletterForm({
           email,
           source,
           website,
-          startedAt: startedAtRef.current,
+          startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
         }),
       });
@@ -113,7 +117,7 @@ export default function NewsletterForm({
     return (
       <div
         className={cn(
-          "rounded-[1.5rem] border border-teal/30 bg-teal/10 p-5 text-center",
+          "rounded-3xl border border-teal/30 bg-teal/10 p-5 text-center",
           className,
         )}
         role="status"
@@ -240,7 +244,7 @@ export default function NewsletterForm({
       <Button
         type="submit"
         className="min-h-13 w-full justify-center rounded-full bg-charcoal text-cream hover:bg-charcoal/90 disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={isSubmitting || !turnstileToken}
+        disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
       >
         {isSubmitting ? (
           <span className="inline-flex items-center gap-2">
@@ -262,9 +266,15 @@ export default function NewsletterForm({
       ) : null}
 
       <div className="rounded-2xl border border-charcoal/8 bg-white/45 px-4 py-3">
-        <p className="text-xs leading-5 text-muted">
-          Te poți dezabona oricând. Datele sunt folosite doar pentru comunicări
-          legate de resurse, articole și evenimente.
+        <p className="text-center text-[11px] leading-4 text-muted sm:text-xs sm:leading-5">
+          Prin abonare accepți{" "}
+          <a
+            href="/politica-de-confidentialitate"
+            className="font-medium text-charcoal underline decoration-charcoal/25 underline-offset-4 transition hover:text-teal hover:decoration-teal/40"
+          >
+            politica de confidențialitate
+          </a>
+          .
         </p>
       </div>
     </form>

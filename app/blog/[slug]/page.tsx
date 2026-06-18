@@ -11,6 +11,12 @@ import {
 import { getBlogPostBySlug, getBlogPosts } from "@/sanity/lib/fetchers";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  webPageSchema,
+} from "@/lib/seo/schema";
+import { JsonLd } from "@/lib/seo/JsonLd";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -71,8 +77,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     allPosts.filter((item) => item.slug !== post.slug),
   );
 
+  const postPath = `/blog/${post.slug}`;
+
+  const jsonLdData = [
+    webPageSchema({
+      title: post.title,
+      description: post.summary,
+      path: postPath,
+    }),
+    breadcrumbSchema([
+      { name: "Acasă", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path: postPath },
+    ]),
+    articleSchema({
+      title: post.title,
+      description: post.summary,
+      path: postPath,
+      image: getSanityPostOgImage(post),
+      publishedAt: post.publishedAt,
+      updatedAt: post.updatedAt,
+    }),
+  ];
+
   return (
     <>
+      <JsonLd data={jsonLdData} />
+
       <BlogPostHero post={adaptedPost} />
 
       <PortableTextRenderer value={post.body} />

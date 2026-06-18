@@ -23,13 +23,14 @@ export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
 
+  const isMenuOpen = isMobileMenuOpen || isDesktopMenuOpen;
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = previousScrollY.current;
     const scrollingDown = latest > previous;
 
     const nextIsScrolled = latest > 40;
-    const nextIsHidden =
-      !isMobileMenuOpen && !isDesktopMenuOpen && scrollingDown && latest > 140;
+    const nextIsHidden = !isMenuOpen && scrollingDown && latest > 140;
 
     setIsScrolled((current) =>
       current === nextIsScrolled ? current : nextIsScrolled,
@@ -41,11 +42,9 @@ export default function Navbar({ className }: NavbarProps) {
 
     previousScrollY.current = latest;
   });
-  React.useEffect(() => {
-    if (isMobileMenuOpen || isDesktopMenuOpen) {
-      setIsHidden(false);
-    }
-  }, [isMobileMenuOpen, isDesktopMenuOpen]);
+
+  const shouldHideNavbar = isHidden && !isMenuOpen;
+  const isSolidNavbar = isScrolled || isMenuOpen;
 
   React.useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -69,10 +68,6 @@ export default function Navbar({ className }: NavbarProps) {
     },
     [pathname],
   );
-
-  const shouldHideNavbar = isHidden && !isMobileMenuOpen && !isDesktopMenuOpen;
-
-  const isSolidNavbar = isScrolled || isMobileMenuOpen || isDesktopMenuOpen;
 
   return (
     <>

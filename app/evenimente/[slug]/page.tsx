@@ -9,6 +9,13 @@ import EventStoryScrollLoader from "@/components/pages/events/event-page/EventSt
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getEventBySlug, getEvents } from "@/sanity/lib/fetchers";
 import { getSanityEventOgImage, toEventDetail } from "@/sanity/adapters/event";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import {
+  breadcrumbSchema,
+  eventSchema,
+  faqSchema,
+  webPageSchema,
+} from "@/lib/seo/schema";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -65,9 +72,50 @@ export default async function EventDetailPage({
   }
 
   const event = toEventDetail(sanityEvent);
+  const eventPath = `/evenimente/${event.slug}`;
+
+  const numericPrice = sanityEvent.details?.price?.match(/\d+/)?.[0];
+
+  const jsonLdData = [
+    webPageSchema({
+      title: event.title,
+      description: event.summary,
+      path: eventPath,
+    }),
+    breadcrumbSchema([
+      { name: "Acasă", path: "/" },
+      { name: "Evenimente", path: "/evenimente" },
+      { name: event.title, path: eventPath },
+    ]),
+    ...(sanityEvent.schedule?.startDate
+      ? [
+          eventSchema({
+            title: event.title,
+            description: event.summary,
+            path: eventPath,
+            image: event.image,
+
+            startDate: sanityEvent.schedule.startDate,
+            endDate: sanityEvent.schedule.endDate,
+
+            locationName: sanityEvent.details?.location || "Trauma Center",
+            streetAddress: "Strada Artelor nr. 35",
+            locality: "Cluj-Napoca",
+            region: "Cluj",
+            country: "RO",
+
+            price: numericPrice,
+            currency: "RON",
+          }),
+        ]
+      : []),
+    ...(event.faq.length > 0 ? [faqSchema(event.faq)] : []),
+  ];
 
   return (
     <>
+      <JsonLd data={jsonLdData} />
+
       <EventDetailHero event={event} />
       <EventQuickInfo event={event} />
       <EventStoryScrollLoader event={event} />

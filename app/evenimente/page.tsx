@@ -13,6 +13,8 @@ import {
   toOtherEventItems,
 } from "@/sanity/adapters/event";
 import NewsletterCTASection from "@/components/newsletter/NewsLetterCtaSection";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "Evenimente terapeutice în Cluj-Napoca | Adriana Laszlo",
@@ -38,6 +40,21 @@ export default async function EventsPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            title: "Evenimente terapeutice în Cluj-Napoca | Adriana Laszlo",
+            description:
+              "Evenimente terapeutice, grupuri de lucru și experiențe ghidate în Cluj-Napoca, create pentru conectare, claritate și siguranță emoțională.",
+            path: "/evenimente",
+          }),
+          breadcrumbSchema([
+            { name: "Acasă", path: "/" },
+            { name: "Evenimente", path: "/evenimente" },
+          ]),
+          faqSchema(eventsFaqItems),
+        ]}
+      />
       <EventsHero />
 
       {featuredEvent ? (
@@ -46,6 +63,12 @@ export default async function EventsPage() {
 
       <OtherEventsSection events={otherEvents} />
 
+      <NewsletterCTASection
+        source="Events page newsletter CTA"
+        eyebrow="Rămâi aproape"
+        title="Alătură-te comunității."
+        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău."
+      />
       <FaqSection
         id="events-faq"
         items={eventsFaqItems}
@@ -54,13 +77,6 @@ export default async function EventsPage() {
         background="cream"
         spacing="md"
       />
-      <NewsletterCTASection
-        source="Events page newsletter CTA"
-        eyebrow="Rămâi aproape"
-        title="Află când apar evenimente și resurse noi."
-        description="Primești ocazional anunțuri despre programe, grupuri și materiale utile pentru procesul tău."
-      />
-
       <FinalCTA
         title="Vrei să afli ce program ți se potrivește?"
         description="Scrie-mi și aflăm împreună."

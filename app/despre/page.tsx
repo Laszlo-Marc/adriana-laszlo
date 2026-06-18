@@ -10,6 +10,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "Despre Adriana Laszlo | Psihoterapeut în Cluj-Napoca",
@@ -26,6 +28,21 @@ export const metadata: Metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            title: "Despre Adriana Laszlo | Psihoterapeut în Cluj-Napoca",
+            description:
+              "Află mai multe despre Adriana Laszlo, psihoterapeut în Cluj-Napoca, formarea sa profesională, abordarea terapeutică și experiența în lucrul cu trauma.",
+            path: "/despre",
+          }),
+          breadcrumbSchema([
+            { name: "Acasă", path: "/" },
+            { name: "Despre", path: "/despre" },
+          ]),
+          faqSchema(aboutFaqItems),
+        ]}
+      />
       <AboutHeroSection />
       <AboutStatsStrip />
       <AboutTimelineSection />

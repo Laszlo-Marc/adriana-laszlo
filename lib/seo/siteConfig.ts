@@ -21,12 +21,11 @@ export const siteConfig = {
     country: "RO",
   },
   contact: {
-    email: "contact@example.ro",
-    phone: "+40XXXXXXXXX",
+    email: "adrianalaszlo@gmail.com",
   },
   social: {
-    instagram: "https://www.instagram.com/",
-    facebook: "https://www.facebook.com/",
+    instagram: "https://www.instagram.com/adrianalaszlo/",
+    facebook: "https://www.facebook.com/psiholg",
   },
   defaultOgImage: "/og/default-og.jpg",
 } as const;

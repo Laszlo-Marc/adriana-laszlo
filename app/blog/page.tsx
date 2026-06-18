@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBlogPosts } from "@/sanity/lib/fetchers";
 import { toSanityBlogPostCards } from "@/sanity/adapters/blog";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog despre psihoterapie, traumă și vindecare emoțională",
@@ -27,6 +29,20 @@ export default async function BlogPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            title: "Blog despre psihoterapie, traumă și vindecare emoțională",
+            description:
+              "Articole despre psihoterapie, traumă, relații, reglare emoțională și procese terapeutice, scrise pentru claritate, siguranță și înțelegere.",
+            path: "/blog",
+          }),
+          breadcrumbSchema([
+            { name: "Acasă", path: "/" },
+            { name: "Blog", path: "/blog" },
+          ]),
+        ]}
+      />
       <BlogHero />
       <BlogPostsCarousel posts={postCards} />
       <BlogSocialSection />

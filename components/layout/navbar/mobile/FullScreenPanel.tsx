@@ -94,13 +94,7 @@ export function FullscreenPanel({
     setOpenDropdownId(null);
     onClose();
   }, [onClose]);
-
-  React.useEffect(() => {
-    if (!isOpen) {
-      setOpenDropdownId(null);
-    }
-  }, [isOpen]);
-
+  const activeDropdownId = isOpen ? openDropdownId : null;
   return (
     <AnimatePresence>
       {isOpen && (
@@ -119,7 +113,7 @@ export function FullscreenPanel({
                   isActive(child.url),
                 );
                 const active = isActive(item.url) || childIsActive;
-                const isDropdownOpen = openDropdownId === item.id;
+                const isDropdownOpen = activeDropdownId === item.id;
 
                 if (hasChildren) {
                   const dropdownId = `mobile-dropdown-${item.id}`;

@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
@@ -61,8 +61,12 @@ function inputStateClassName(hasError?: boolean) {
 export default function FeaturedEventSignupForm({
   eventTitle,
 }: FeaturedEventSignupFormProps) {
-  const startedAtRef = useRef(Date.now());
+  const startedAtRef = useRef<number | null>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   const [form, setForm] = useState<FormState>(initialState);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
@@ -94,7 +98,7 @@ export default function FeaturedEventSignupForm({
           eventTitle,
           ...form,
           website,
-          startedAt: startedAtRef.current,
+          startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
         }),
       });
@@ -138,9 +142,9 @@ export default function FeaturedEventSignupForm({
   }
 
   return (
-    <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-5 sm:p-8">
+    <div className="w-full min-w-0 max-w-full overflow-hidden rounded-4xl border border-white/70 bg-white/80 p-5 sm:p-8">
       {submitted ? (
-        <div className="rounded-[1.5rem] border border-teal/35 bg-teal/10 p-5 text-center sm:p-6">
+        <div className="rounded-3xl border border-teal/35 bg-teal/10 p-5 text-center sm:p-6">
           <CheckCircle2
             aria-hidden="true"
             className="mx-auto mb-4 h-8 w-8 text-muted-teal"
@@ -159,7 +163,14 @@ export default function FeaturedEventSignupForm({
             type="button"
             variant="outline"
             className="mt-6"
-            onClick={() => setSubmitted(false)}
+            onClick={() => {
+              setSubmitted(false);
+              setError(null);
+              setFieldErrors({});
+              setTurnstileToken("");
+              startedAtRef.current = Date.now();
+              turnstileRef.current?.reset();
+            }}
           >
             Trimite o altă solicitare
           </Button>
@@ -196,10 +207,6 @@ export default function FeaturedEventSignupForm({
             >
               Lasă-ne datele tale și revenim cu detalii despre program.
             </Text>
-
-            <p className="mt-3 text-center text-xs uppercase tracking-[0.18em] text-muted/60">
-              Eveniment: {eventTitle}
-            </p>
           </div>
 
           <div className="mt-7 grid min-w-0 gap-4">
@@ -302,7 +309,7 @@ export default function FeaturedEventSignupForm({
           </label>
 
           {siteKey ? (
-            <div className="mt-5 overflow-hidden rounded-[16px]">
+            <div className="mt-5 overflow-hidden rounded-2xl">
               <Turnstile
                 ref={turnstileRef}
                 siteKey={siteKey}
@@ -311,7 +318,16 @@ export default function FeaturedEventSignupForm({
                   size: "flexible",
                   language: "ro",
                 }}
-                onSuccess={setTurnstileToken}
+                onSuccess={(token) => {
+                  setTurnstileToken(token);
+
+                  if (fieldErrors.turnstileToken) {
+                    setFieldErrors((prev) => ({
+                      ...prev,
+                      turnstileToken: undefined,
+                    }));
+                  }
+                }}
                 onExpire={() => setTurnstileToken("")}
                 onError={() => setTurnstileToken("")}
               />
@@ -324,7 +340,7 @@ export default function FeaturedEventSignupForm({
             type="submit"
             className="mt-6 w-full"
             variant="primary"
-            disabled={isSubmitting || !turnstileToken}
+            disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
           >
             {isSubmitting ? (
               <span className="inline-flex items-center justify-center gap-2">

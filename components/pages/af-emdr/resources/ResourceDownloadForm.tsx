@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useRef, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { CheckCircle2, Download, Loader2 } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import Text from "@/components/ui/Text";
 import type { DownloadResource } from "./resourceContent";
 import NewsletterConsentCheckbox from "@/components/newsletter/NewsLetterConsentCheckbox";
+import { cn } from "@/lib/utils";
 
 type ResourceDownloadFormProps = {
   resource: DownloadResource;
@@ -53,8 +54,12 @@ function FieldError({ message }: { message?: string }) {
 export default function ResourceDownloadForm({
   resource,
 }: ResourceDownloadFormProps) {
-  const startedAtRef = useRef(Date.now());
+  const startedAtRef = useRef<number | null>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   const [form, setForm] = useState<FormState>(initialState);
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -86,7 +91,7 @@ export default function ResourceDownloadForm({
           resourceId: resource.id,
           ...form,
           website,
-          startedAt: startedAtRef.current,
+          startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
         }),
       });
@@ -209,7 +214,10 @@ export default function ResourceDownloadForm({
               required
               value={form.name}
               onChange={(event) => updateField("name", event.target.value)}
-              className={inputClassName}
+              className={cn(
+                inputClassName,
+                fieldErrors.name ? "border-red-300" : null,
+              )}
               placeholder="Prenumele tău"
               aria-invalid={Boolean(fieldErrors.name)}
             />
@@ -233,7 +241,10 @@ export default function ResourceDownloadForm({
               required
               value={form.email}
               onChange={(event) => updateField("email", event.target.value)}
-              className={inputClassName}
+              className={cn(
+                inputClassName,
+                fieldErrors.email ? "border-red-300" : null,
+              )}
               placeholder="email@exemplu.ro"
               aria-invalid={Boolean(fieldErrors.email)}
             />
@@ -261,7 +272,7 @@ export default function ResourceDownloadForm({
           <FieldError message={fieldErrors.consent?.[0]} />
 
           {siteKey ? (
-            <div className="overflow-hidden rounded-[16px]">
+            <div className="overflow-hidden rounded-2xl">
               <Turnstile
                 ref={turnstileRef}
                 siteKey={siteKey}
@@ -270,7 +281,16 @@ export default function ResourceDownloadForm({
                   size: "flexible",
                   language: "ro",
                 }}
-                onSuccess={setTurnstileToken}
+                onSuccess={(token) => {
+                  setTurnstileToken(token);
+
+                  if (fieldErrors.turnstileToken) {
+                    setFieldErrors((prev) => ({
+                      ...prev,
+                      turnstileToken: undefined,
+                    }));
+                  }
+                }}
                 onExpire={() => setTurnstileToken("")}
                 onError={() => setTurnstileToken("")}
               />
@@ -284,7 +304,7 @@ export default function ResourceDownloadForm({
           />
           <Button
             type="submit"
-            disabled={isSubmitting || !turnstileToken}
+            disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
             className="w-full justify-center"
             leftIcon={
               isSubmitting ? (

@@ -125,12 +125,13 @@ function DesktopFullscreenPanel({
   const [openDropdownId, setOpenDropdownId] = React.useState<number | null>(
     null,
   );
+  const handleClose = React.useCallback(() => {
+    setOpenDropdownId(null);
+    onClose();
+  }, [onClose]);
 
   React.useEffect(() => {
-    if (!isOpen) {
-      setOpenDropdownId(null);
-      return;
-    }
+    if (!isOpen) return;
 
     const previousBodyOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
@@ -142,7 +143,7 @@ function DesktopFullscreenPanel({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        handleClose();
       }
     };
 
@@ -154,7 +155,7 @@ function DesktopFullscreenPanel({
       document.body.style.touchAction = previousBodyTouchAction;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, handleClose]);
 
   return (
     <AnimatePresence>

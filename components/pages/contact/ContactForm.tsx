@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 import { cn } from "@/lib/utils";
+import React from "react";
 
 type FormState = {
   name: string;
@@ -31,7 +32,7 @@ function FieldLabel({
   children,
 }: {
   htmlFor: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <label
@@ -58,7 +59,11 @@ function baseInputClassName(hasError?: boolean) {
 }
 
 export default function ContactForm() {
-  const startedAtRef = useRef(Date.now());
+  const startedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
   const turnstileRef = useRef<TurnstileInstance>(null);
 
   const [form, setForm] = useState<FormState>(initialState);
@@ -70,7 +75,7 @@ export default function ContactForm() {
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError(null);
@@ -90,7 +95,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           ...form,
           website,
-          startedAt: startedAtRef.current,
+          startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
         }),
       });
@@ -214,7 +219,7 @@ export default function ContactForm() {
           onChange={(event) => updateField("message", event.target.value)}
           className={cn(
             baseInputClassName(Boolean(fieldErrors.message)),
-            "min-h-[140px] resize-y leading-relaxed sm:min-h-[220px]",
+            "min-h-35 resize-y leading-relaxed sm:min-h-55",
           )}
           placeholder="Scrie aici câteva detalii despre motivul pentru care dorești să iei legătura."
           aria-invalid={Boolean(fieldErrors.message)}
@@ -262,12 +267,15 @@ export default function ContactForm() {
       <div className="space-y-2.5 pt-0.5 sm:space-y-3 sm:pt-1">
         <button
           type="submit"
-          disabled={isSubmitting || !turnstileToken}
-          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charcoal px-6 py-3 text-sm font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-[54px] sm:w-auto sm:px-7 sm:text-[15px]"
+          disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
+          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charcoal px-6 py-3 text-sm font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-13.5 sm:w-auto sm:px-7 sm:text-[15px]"
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2
+                className="mr-2 h-4 w-4 animate-spin"
+                aria-hidden="true"
+              />
               Se trimite...
             </>
           ) : (

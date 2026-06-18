@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
@@ -71,7 +70,7 @@ export default function OtherEventsSection({
           </>
         ) : (
           <div className="mx-auto mt-12 max-w-3xl">
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/55 px-6 py-10 text-center shadow-sm backdrop-blur md:px-10 md:py-12">
+            <div className="relative overflow-hidden rounded-4xl border border-white/70 bg-white/55 px-6 py-10 text-center shadow-sm backdrop-blur md:px-10 md:py-12">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -left-16 -top-16 h-40 w-40 rounded-full bg-teal/18 blur-2xl"

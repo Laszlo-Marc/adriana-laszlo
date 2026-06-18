@@ -7,8 +7,10 @@ import ServicesTeaserSection from "@/components/pages/home/sections/services/Ser
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
 import { testimonialItems } from "@/components/pages/home/sections/testimonials/testimonials-data";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { JsonLd } from "@/lib/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { Metadata } from "next";
+import { webPageSchema } from "@/lib/seo/schema";
+import type { Metadata } from "next";
 export const metadata: Metadata = buildMetadata({
   title: "Psihoterapie în Cluj-Napoca | Adriana Laszlo",
   description:
@@ -23,7 +25,15 @@ export const metadata: Metadata = buildMetadata({
 });
 export default function HomePage() {
   return (
-    <main id="main">
+    <>
+      <JsonLd
+        data={webPageSchema({
+          title: "Psihoterapie în Cluj-Napoca | Adriana Laszlo",
+          description:
+            "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, pentru persoane care caută claritate, siguranță emoțională și sprijin profesionist.",
+          path: "/",
+        })}
+      />
       <Hero />
       <HomeProblemsSection />
       <HomeAboutTeaser />
@@ -55,6 +65,6 @@ export default function HomePage() {
           },
         ]}
       />
-    </main>
+    </>
   );
 }

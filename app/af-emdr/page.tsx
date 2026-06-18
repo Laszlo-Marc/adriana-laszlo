@@ -10,6 +10,8 @@ import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { Metadata } from "next";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "AF-EMDR în Cluj-Napoca | Terapie pentru traumă",
@@ -26,7 +28,22 @@ export const metadata: Metadata = buildMetadata({
 });
 export default function AfEmdrPage() {
   return (
-    <main>
+    <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            title: "AF-EMDR în Cluj-Napoca | Terapie pentru traumă",
+            description:
+              "Descoperă ce este AF-EMDR, cum funcționează și când poate fi potrivit pentru procesarea traumei, anxietății și blocajelor emoționale.",
+            path: "/af-emdr",
+          }),
+          breadcrumbSchema([
+            { name: "Acasă", path: "/" },
+            { name: "AF-EMDR", path: "/af-emdr" },
+          ]),
+          faqSchema(afEmdrFaqContent),
+        ]}
+      />
       <AfEmdrHero />
       <AfEmdrMethodSection />
       <AfEmdrComparisonSection />
@@ -50,6 +67,6 @@ export default function AfEmdrPage() {
         secondaryLabel={afEmdrFinalCtaContent.secondaryLabel}
         secondaryButtons={afEmdrFinalCtaContent.secondaryButtons}
       />
-    </main>
+    </>
   );
 }

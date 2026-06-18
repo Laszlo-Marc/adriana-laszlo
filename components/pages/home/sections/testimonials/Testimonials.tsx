@@ -25,6 +25,12 @@ const MOBILE_AUTOPLAY_MS = 4500;
 const MOBILE_AUTOPLAY_RESUME_DELAY = 7000;
 const SWIPE_THRESHOLD = 44;
 
+function getWrappedIndex(index: number, total: number) {
+  if (total <= 0) return 0;
+
+  return ((index % total) + total) % total;
+}
+
 export default function TestimonialsStack({
   items,
   className,
@@ -33,17 +39,22 @@ export default function TestimonialsStack({
 }: TestimonialsStackProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  const [orderedItems, setOrderedItems] = React.useState(items);
-  const [mobileIndex, setMobileIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const orderedItems = React.useMemo(() => {
+    if (items.length === 0) return [];
+
+    return items.map((_, index) => {
+      const itemIndex = getWrappedIndex(activeIndex + index, items.length);
+      return items[itemIndex];
+    });
+  }, [items, activeIndex]);
+
+  const normalizedActiveIndex = getWrappedIndex(activeIndex, items.length);
 
   const pointerStartX = React.useRef<number | null>(null);
   const autoplayIntervalRef = React.useRef<number | null>(null);
   const resumeTimeoutRef = React.useRef<number | null>(null);
-
-  React.useEffect(() => {
-    setOrderedItems(items);
-    setMobileIndex(0);
-  }, [items]);
 
   const clearAutoplayTimers = React.useCallback(() => {
     if (autoplayIntervalRef.current !== null) {
@@ -57,48 +68,36 @@ export default function TestimonialsStack({
     }
   }, []);
 
-  const handleMove = React.useCallback((steps: number) => {
-    if (!steps) return;
+  const handleMove = React.useCallback(
+    (steps: number) => {
+      if (!steps || items.length === 0) return;
 
-    setOrderedItems((current) => {
-      const next = [...current];
-
-      if (steps > 0) {
-        for (let i = 0; i < steps; i += 1) {
-          const first = next.shift();
-          if (!first) break;
-          next.push(first);
-        }
-      } else {
-        for (let i = 0; i < Math.abs(steps); i += 1) {
-          const last = next.pop();
-          if (!last) break;
-          next.unshift(last);
-        }
-      }
-
-      return next;
-    });
-  }, []);
+      setActiveIndex((current) =>
+        getWrappedIndex(current + steps, items.length),
+      );
+    },
+    [items.length],
+  );
 
   const goToMobileIndex = React.useCallback(
     (index: number) => {
-      const total = items.length;
-      if (!total) return;
+      if (items.length === 0) return;
 
-      setMobileIndex(((index % total) + total) % total);
+      setActiveIndex(getWrappedIndex(index, items.length));
     },
     [items.length],
   );
 
   const nextMobile = React.useCallback(() => {
-    if (!items.length) return;
-    setMobileIndex((current) => (current + 1) % items.length);
+    if (items.length === 0) return;
+
+    setActiveIndex((current) => getWrappedIndex(current + 1, items.length));
   }, [items.length]);
 
   const prevMobile = React.useCallback(() => {
-    if (!items.length) return;
-    setMobileIndex((current) => (current - 1 + items.length) % items.length);
+    if (items.length === 0) return;
+
+    setActiveIndex((current) => getWrappedIndex(current - 1, items.length));
   }, [items.length]);
 
   const startMobileAutoplay = React.useCallback(() => {
@@ -110,7 +109,9 @@ export default function TestimonialsStack({
     if (!mobileQuery.matches) return;
 
     autoplayIntervalRef.current = window.setInterval(() => {
-      if (!document.hidden) nextMobile();
+      if (!document.hidden) {
+        nextMobile();
+      }
     }, MOBILE_AUTOPLAY_MS);
   }, [clearAutoplayTimers, items.length, nextMobile, shouldReduceMotion]);
 
@@ -282,14 +283,14 @@ export default function TestimonialsStack({
             <div
               className="flex touch-pan-y transition-transform duration-500 ease-out motion-reduce:transition-none"
               style={{
-                transform: `translateX(-${mobileIndex * 100}%)`,
+                transform: `translateX(-${normalizedActiveIndex * 100}%)`,
               }}
             >
               {items.map((item, index) => (
                 <div key={item.id} className="w-full shrink-0 px-1">
                   <TestimonialsMobileCard
                     item={item}
-                    isActive={index === mobileIndex}
+                    isActive={index === normalizedActiveIndex}
                   />
                 </div>
               ))}
@@ -317,12 +318,12 @@ export default function TestimonialsStack({
                   }}
                   className={cn(
                     "h-2.5 rounded-full transition-[width,background-color] motion-reduce:transition-none",
-                    index === mobileIndex
+                    index === normalizedActiveIndex
                       ? "w-7 bg-teal"
                       : "w-2.5 bg-charcoal/18 hover:bg-charcoal/30",
                   )}
                   aria-label={`Mergi la testimonialul ${index + 1}`}
-                  aria-pressed={index === mobileIndex}
+                  aria-pressed={index === normalizedActiveIndex}
                 />
               ))}
             </div>

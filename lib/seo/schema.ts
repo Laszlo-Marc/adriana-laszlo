@@ -1,6 +1,97 @@
 import { absoluteUrl } from "./metadata";
 import { siteConfig } from "./siteConfig";
-
+export function eventSchema({
+  title,
+  description,
+  path,
+  image,
+  startDate,
+  endDate,
+  locationName,
+  streetAddress,
+  locality,
+  region,
+  country,
+  price,
+  currency = "RON",
+}: {
+  title: string;
+  description: string;
+  path: string;
+  image: string;
+  startDate: string;
+  endDate?: string;
+  locationName: string;
+  streetAddress?: string;
+  locality: string;
+  region?: string;
+  country: string;
+  price?: string;
+  currency?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    image: [absoluteUrl(image)],
+    startDate,
+    ...(endDate ? { endDate } : {}),
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: locationName,
+      address: {
+        "@type": "PostalAddress",
+        ...(streetAddress ? { streetAddress } : {}),
+        addressLocality: locality,
+        ...(region ? { addressRegion: region } : {}),
+        addressCountry: country,
+      },
+    },
+    organizer: {
+      "@id": absoluteUrl("/#business"),
+    },
+    ...(price
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: absoluteUrl(path),
+            price,
+            priceCurrency: currency,
+            availability: "https://schema.org/InStock",
+          },
+        }
+      : {}),
+  };
+}
+export function webPageSchema({
+  title,
+  description,
+  path,
+}: {
+  title: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": absoluteUrl(path),
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    inLanguage: siteConfig.language,
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    publisher: {
+      "@id": absoluteUrl("/#business"),
+    },
+  };
+}
 export function websiteSchema() {
   return {
     "@context": "https://schema.org",
@@ -48,7 +139,6 @@ export function professionalServiceSchema() {
     image: absoluteUrl(siteConfig.defaultOgImage),
     description: siteConfig.description,
     email: siteConfig.contact.email,
-    telephone: siteConfig.contact.phone,
     address: {
       "@type": "PostalAddress",
       addressLocality: siteConfig.address.locality,

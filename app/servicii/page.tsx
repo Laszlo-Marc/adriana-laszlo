@@ -7,6 +7,8 @@ import ServicesDetails from "@/components/pages/services/service-details/Service
 import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { JsonLd } from "@/lib/seo/JsonLd";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "Servicii de psihoterapie în Cluj-Napoca | Adriana Laszlo",
@@ -24,6 +26,20 @@ export const metadata: Metadata = buildMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            title: "Servicii de psihoterapie în Cluj-Napoca | Adriana Laszlo",
+            description:
+              "Servicii de psihoterapie individuală, AF-EMDR, terapie online și evenimente terapeutice în Cluj-Napoca, într-un cadru profesionist și sigur.",
+            path: "/servicii",
+          }),
+          breadcrumbSchema([
+            { name: "Acasă", path: "/" },
+            { name: "Servicii", path: "/servicii" },
+          ]),
+        ]}
+      />
       <ServicesHero />
       <ServicesQuickLinks />
       <ServicesDetails />
@@ -44,7 +60,7 @@ export default function ServicesPage() {
         secondaryButtons={[
           {
             label: "Despre AF-EMDR",
-            href: "/servicii",
+            href: "/af-emdr",
             variant: "primary",
           },
           {
