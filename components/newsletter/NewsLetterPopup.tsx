@@ -132,7 +132,7 @@ export default function NewsletterPopup() {
             <X aria-hidden="true" className="h-5 w-5" strokeWidth={1.9} />
           </button>
 
-          <div className="relative grid h-full grid-rows-[auto_1fr] lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none">
+          <div className="relative hidden h-full  lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none">
             {/* Left editorial panel */}
             <div className="relative min-h-0 overflow-hidden px-5 pb-4 pt-6 sm:px-10 sm:py-10 lg:min-h-[min(82svh,760px)] lg:px-14 lg:py-14">
               <p className="text-[10px] uppercase tracking-[0.28em] text-cream/60 sm:text-xs">
