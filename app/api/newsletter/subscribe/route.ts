@@ -8,6 +8,11 @@ import { newsletterSchema } from "@/lib/validator/newsletter";
 
 export const runtime = "nodejs";
 
+const RESOURCE_DOWNLOAD_URLS: Record<string, string> = {
+  "exclusive-downloadable-resource":
+    "/api/resources/exclusive-downloadable-resource",
+};
+
 function getClientIp(request: NextRequest) {
   return (
     request.headers.get("cf-connecting-ip") ||
@@ -15,6 +20,20 @@ function getClientIp(request: NextRequest) {
     request.headers.get("x-real-ip") ||
     "unknown"
   );
+}
+
+function getResourceTag(resourceKey?: string) {
+  if (resourceKey === "exclusive-downloadable-resource") {
+    return "resource-exclusive-downloadable";
+  }
+
+  return null;
+}
+
+function getDownloadUrl(resourceKey?: string) {
+  if (!resourceKey) return undefined;
+
+  return RESOURCE_DOWNLOAD_URLS[resourceKey];
 }
 
 export async function POST(request: NextRequest) {
@@ -36,12 +55,14 @@ export async function POST(request: NextRequest) {
 
     const data = parsed.data;
 
+    // Honeypot: fake success, no download URL.
     if (data.website) {
       return NextResponse.json({ ok: true });
     }
 
     const secondsSinceStart = (Date.now() - data.startedAt) / 1000;
 
+    // Bot speed trap: fake success, no download URL.
     if (secondsSinceStart < 3) {
       return NextResponse.json({ ok: true });
     }
@@ -60,11 +81,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const resourceTag = getResourceTag(data.resourceKey);
+
     const result = await subscribeToNewsletter({
       email: data.email,
       firstName: data.firstName,
       source: data.source || "Newsletter form",
-      tags: ["newsletter"],
+      tags: ["newsletter", resourceTag].filter(Boolean) as string[],
     });
 
     if (!result.ok) {
@@ -77,7 +100,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({
+      ok: true,
+      downloadUrl: getDownloadUrl(data.resourceKey),
+    });
   } catch (error) {
     console.error("Newsletter subscribe error:", error);
 

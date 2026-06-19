@@ -1,3 +1,4 @@
+import { MobileServiceSlide } from "./ServicesMobileSlider";
 import type { ServiceItem } from "./types";
 
 export const services: ServiceItem[] = [
@@ -112,3 +113,50 @@ export const therapyServices = services.filter(
 export const eventsService = services.find(
   (service) => service.id === "events",
 );
+
+export const mobileServiceSlides: MobileServiceSlide[] = [
+  {
+    id: "af-emdr",
+    title: "Terapie AF-EMDR",
+    description:
+      "O metodă profundă de lucru cu trauma, blocajele emoționale și reacțiile care par greu de controlat.",
+    imageSrc: "/home-page/services/af-emdr.jpg",
+    imageAlt: "Spațiu calm de terapie pentru procesarea traumelor prin AF-EMDR",
+    href: "/terapie-af-emdr",
+    ctaLabel: "Află despre AF-EMDR",
+    tone: "purple",
+  },
+  {
+    id: "individual",
+    title: "Psihoterapie individuală",
+    description:
+      "Un spațiu sigur în care poți înțelege ce trăiești, de unde vine suferința și ce ai nevoie să se schimbe.",
+    imageSrc: "/home-page/services/individuala.jpg",
+    imageAlt: "Cabinet de psihoterapie individuală într-un cadru liniștit",
+    href: "/servicii/psihoterapie-individuala",
+    ctaLabel: "Vezi detalii",
+    tone: "teal",
+  },
+  {
+    id: "online",
+    title: "Psihoterapie online",
+    description:
+      "Sprijin terapeutic flexibil, într-un cadru confidențial, atunci când nu poți ajunge fizic la cabinet.",
+    imageSrc: "/home-page/services/online-mobile.jpg",
+    imageAlt: "Ședință de psihoterapie online într-un cadru privat și calm",
+    href: "/servicii/psihoterapie-online",
+    ctaLabel: "Vezi detalii",
+    tone: "teal",
+  },
+  {
+    id: "events",
+    title: "Evenimente & workshopuri",
+    description:
+      "Programe, workshopuri și experiențe de grup dedicate reglării emoționale, lucrului cu trauma și reconectării.",
+    imageSrc: "/home-page/services/events.jpg",
+    imageAlt: "Spațiu de terapie de grup cu scaune așezate în cerc",
+    href: "/evenimente",
+    ctaLabel: "Vezi evenimentele",
+    tone: "sand",
+  },
+];

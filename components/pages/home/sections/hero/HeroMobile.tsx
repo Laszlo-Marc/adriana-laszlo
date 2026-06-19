@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Mail } from "lucide-react";
 
 import Button from "@/components/ui/Button";
@@ -18,16 +17,23 @@ export default function HeroMobile() {
       allowOverflow
     >
       <Container size="full" padding="none">
-        <div className="relative min-h-svh overflow-hidden">
-          <Image
-            src="/home-page/hero/hero-mobile.jpg"
-            alt="Spațiu calm și sigur, asociat terapiei pentru traumă"
-            fill
-            priority
-            fetchPriority="high"
-            sizes="(min-width: 1024px) 0px, 100vw"
-            className="object-cover object-center"
-          />
+        <div className="relative min-h-svh overflow-hidden bg-cream">
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/home-page/hero/hero-mobile-poster.jpg"
+            aria-hidden="true"
+          >
+            <source src="/home-page/hero/hero-video.mp4" type="video/mp4" />
+            <source
+              src="/home-page/hero/hero-mobile-video.mp4"
+              type="video/mp4"
+            />
+          </video>
 
           <div
             aria-hidden="true"

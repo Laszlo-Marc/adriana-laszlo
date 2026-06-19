@@ -62,48 +62,6 @@ body {
   min-height: 100dvh;
 }
 
-.resource-flip-gallery > .resource-flip-unite {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-size: 100% 31rem;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.resource-flip-top,
-.resource-flip-overlay-top {
-  top: 0;
-  transform-origin: bottom;
-  background-position: top center;
-}
-
-.resource-flip-bottom,
-.resource-flip-overlay-bottom {
-  bottom: 0;
-  transform-origin: top;
-  background-position: bottom center;
-}
-
-.resource-flip-overlay-top,
-.resource-flip-overlay-bottom {
-  z-index: 15;
-}
-
-.resource-flip-top,
-.resource-flip-bottom {
-  z-index: 5;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .resource-flip-gallery > .resource-flip-unite {
-    transition: none !important;
-    animation: none !important;
-  }
-}
 .about-stats-swiper {
   width: 100%;
 }
@@ -235,16 +193,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .motion-safe\:animate-\[servicesPanelReveal_520ms_cubic-bezier\(0\.22\,1\,0\.36\,1\)_both\] {
     animation: none;
-  }
-}
-.resource-flip-unite {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-@media (prefers-reduced-motion: reduce) {
-  .resource-flip-unite {
-    animation: none;
-    transition: none;
   }
 }

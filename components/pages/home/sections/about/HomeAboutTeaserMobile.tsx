@@ -19,7 +19,7 @@ const aboutMobileCopy = {
       și nu trebuie să ai deja toate răspunsurile.
     </>
   ),
-  accent: "Lucrăm cu blândețe, dar și cu profunzime.",
+  accent: "Lucrez cu blândețe, dar și cu profunzime.",
   depth: (
     <>
       Nu doar pentru a gestiona simptomele, ci pentru a înțelege ce se află la{" "}
@@ -43,7 +43,7 @@ export default function HomeAboutTeaserMobile() {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-10 top-90 z-20 w-30 opacity-70"
+        className="pointer-events-none absolute right-10 top-90 z-20 w-30 opacity-30"
       >
         <Image
           src="/backgrounds/df-teal-down.png"
@@ -57,7 +57,7 @@ export default function HomeAboutTeaserMobile() {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-40 left-10 z-20 w-30 opacity-70"
+        className="pointer-events-none absolute bottom-40 left-10 z-20 w-30 opacity-30"
       >
         <Image
           src="/backgrounds/df-teal-down.png"
@@ -71,7 +71,7 @@ export default function HomeAboutTeaserMobile() {
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-20 z-0 w-80 -translate-x-1/2 opacity-40"
+        className="pointer-events-none absolute left-1/2 top-20 z-0 w-80 -translate-x-1/2 opacity-30"
       >
         <Image
           src="/backgrounds/double-split.png"
@@ -134,31 +134,11 @@ export default function HomeAboutTeaserMobile() {
               <AccentText className="text-4xl">trauma.</AccentText>
             </Text>
 
-            <Text
-              as="p"
-              size="lg"
-              color="charcoal"
-              align="center"
-              className="text-pretty leading-8"
-            >
-              {aboutMobileCopy.safety}
-            </Text>
-
             <div className="py-2">
               <AccentText className="block text-[2.45rem] leading-[1.03] text-charcoal">
                 {aboutMobileCopy.accent}
               </AccentText>
             </div>
-
-            <Text
-              as="p"
-              size="lg"
-              color="charcoal"
-              align="center"
-              className="text-pretty leading-8"
-            >
-              {aboutMobileCopy.depth}
-            </Text>
           </div>
 
           <div className="mt-9">

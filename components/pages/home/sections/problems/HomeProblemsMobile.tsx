@@ -8,7 +8,7 @@ const problemsMobileCopy = {
   titleStart: "Trauma nu este mereu",
   titleAccent: "evidentă.",
   intro:
-    "Poate nu are forma unei amintiri clare. Poate se simte ca tensiune în corp, ca oboseală, ca teamă de apropiere sau ca reacții pe care nu le poți opri la timp.",
+    "Poate nu are forma unei amintiri clare. Poate se simte ca tensiune în corp.",
   accentStart: "Poate o parte din tine încă este în",
   accentWord: "alertă.",
   reassurance: [
@@ -94,7 +94,7 @@ export default function HomeProblemsMobileStory() {
 
         <AccentText
           as="span"
-          className="mt-4 block text-center text-[2.5rem] leading-[1.02] text-charcoal"
+          className="mt-4 block text-center text-[3rem] leading-[1.02] text-charcoal"
         >
           {problemsMobileCopy.titleStart}{" "}
           <span className="font-semibold text-purple">
@@ -105,7 +105,7 @@ export default function HomeProblemsMobileStory() {
         <div className="mt-6 space-y-8">
           <Text
             as="p"
-            size="lg"
+            size="xl"
             color="charcoal"
             align="center"
             className="text-pretty leading-8"
@@ -113,25 +113,10 @@ export default function HomeProblemsMobileStory() {
             {problemsMobileCopy.intro}
           </Text>
 
-          <AccentText className="block text-center text-[2.5rem] leading-[1.02] text-charcoal">
+          <AccentText className="block text-center text-[3rem] leading-[1.02] text-charcoal">
             {problemsMobileCopy.accentStart}{" "}
             <span className="text-purple">{problemsMobileCopy.accentWord}</span>
           </AccentText>
-
-          <div className="space-y-3">
-            {problemsMobileCopy.reassurance.map((line) => (
-              <Text
-                key={line}
-                as="p"
-                size="lg"
-                align="center"
-                color="charcoal"
-                className="text-balance font-display leading-8 tracking-[-0.01em]"
-              >
-                {line}
-              </Text>
-            ))}
-          </div>
         </div>
       </div>
     </div>

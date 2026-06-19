@@ -3,7 +3,7 @@
 "use client";
 
 import { type FormEvent, useEffect, useId, useRef, useState } from "react";
-import { CheckCircle2, Loader2, Mail } from "lucide-react";
+import { CheckCircle2, Download, Loader2, Mail } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 import Button from "@/components/ui/Button";
@@ -17,11 +17,21 @@ type NewsletterFormProps = {
   submitLabel?: string;
   successTitle?: string;
   successMessage?: string;
+  downloadUrl?: string;
+  downloadLabel?: string;
+  autoDownload?: boolean;
 };
 
 type FieldErrors = Partial<
   Record<"firstName" | "email" | "turnstileToken", string[]>
 >;
+
+type SubscribeResponse = {
+  ok?: boolean;
+  message?: string;
+  errors?: FieldErrors;
+  downloadUrl?: string;
+};
 
 const inputClassName =
   "h-13 w-full rounded-2xl border border-charcoal/10 bg-white/70 px-4 text-sm text-charcoal outline-none transition-[border-color,background-color,box-shadow] placeholder:text-muted/55 focus:border-teal/60 focus:bg-white focus:ring-4 focus:ring-teal/10 sm:px-5";
@@ -36,6 +46,16 @@ function FieldError({ message }: { message?: string }) {
   );
 }
 
+function triggerDownload(url: string) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "";
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
 export default function NewsletterForm({
   source,
   className,
@@ -44,6 +64,9 @@ export default function NewsletterForm({
   submitLabel = "Abonează-te",
   successTitle = "Te-ai abonat cu succes.",
   successMessage = "Mulțumim. Vei primi doar anunțuri rare și relevante.",
+  downloadUrl,
+  downloadLabel = "Descarcă resursa gratuită",
+  autoDownload = false,
 }: NewsletterFormProps) {
   const formId = useId();
   const startedAtRef = useRef<number | null>(null);
@@ -55,6 +78,9 @@ export default function NewsletterForm({
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [resolvedDownloadUrl, setResolvedDownloadUrl] = useState<string | null>(
+    downloadUrl ?? null,
+  );
   const [error, setError] = useState<string | null>(null);
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
@@ -90,23 +116,28 @@ export default function NewsletterForm({
         }),
       });
 
-      const result = (await response.json()) as {
-        ok?: boolean;
-        message?: string;
-        errors?: FieldErrors;
-      };
+      const result = (await response.json()) as SubscribeResponse;
 
       if (!response.ok) {
         setFieldErrors(result.errors || {});
         throw new Error(result.message || "Newsletter subscribe failed");
       }
 
+      const nextDownloadUrl = result.downloadUrl ?? downloadUrl ?? null;
+
       setSubmitted(true);
+      setResolvedDownloadUrl(nextDownloadUrl);
       setFirstName("");
       setEmail("");
       setTurnstileToken("");
       startedAtRef.current = Date.now();
       turnstileRef.current?.reset();
+
+      if (autoDownload && nextDownloadUrl) {
+        window.setTimeout(() => {
+          triggerDownload(nextDownloadUrl);
+        }, 350);
+      }
 
       onSuccess?.();
     } catch (submissionError) {
@@ -140,6 +171,18 @@ export default function NewsletterForm({
         <p className="font-display text-2xl text-charcoal">{successTitle}</p>
 
         <p className="mt-2 text-sm leading-6 text-muted">{successMessage}</p>
+
+        {resolvedDownloadUrl ? (
+          <Button
+            href={resolvedDownloadUrl}
+            className="mt-5 w-full justify-center rounded-full bg-charcoal text-cream hover:bg-charcoal/90"
+          >
+            <span className="inline-flex items-center gap-2">
+              <Download aria-hidden="true" className="h-4 w-4" />
+              {downloadLabel}
+            </span>
+          </Button>
+        ) : null}
       </div>
     );
   }

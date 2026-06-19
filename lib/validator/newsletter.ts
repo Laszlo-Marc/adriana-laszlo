@@ -21,7 +21,7 @@ export const newsletterSchema = z.object({
   turnstileToken: z.string().min(1, "Verificarea anti-spam este obligatorie."),
 
   website: z.string().optional().or(z.literal("")),
-
+  resourceKey: z.string().trim().max(80).optional(),
   startedAt: z.number(),
 });
 

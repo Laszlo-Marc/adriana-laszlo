@@ -203,10 +203,10 @@ export default function NewsletterPopup() {
                     id="newsletter-popup-title"
                     as="h2"
                     size="h3"
-                    className="mt-3 text-[1.85rem] leading-tight sm:text-[2rem]"
+                    className="mt-3 text-[1.5rem] leading-tight sm:text-[2rem]"
                     align="center"
                   >
-                    Primește un material exclusiv pe email
+                    Alătură-te comunității.
                   </Heading>
 
                   <Text
@@ -221,10 +221,12 @@ export default function NewsletterPopup() {
                   <NewsletterForm
                     className="mt-4 sm:mt-6"
                     source="Newsletter popup"
-                    resourceKey="exclusive-downloadable-resource"
+                    resourceKey="ghid-resurse-pozitive.pdf"
                     submitLabel="Primește resursa gratuită"
-                    successTitle="Verifică-ți emailul."
-                    successMessage="Ți-am trimis resursa gratuită pe email. Dacă nu o vezi în câteva minute, verifică și folderul Spam sau Promotions."
+                    successTitle="Resursa este pregătită."
+                    successMessage="Mulțumim pentru abonare. Poți descărca materialul gratuit folosind butonul de mai jos."
+                    downloadLabel="Descarcă resursa gratuită"
+                    autoDownload={false}
                   />
                   <p className="mt-4 text-center text-xs leading-5 text-muted">
                     Fără mesaje dese. Fără presiune. Te poți dezabona oricând.

@@ -264,7 +264,7 @@ export default function TestimonialsStack({
               size="lg"
               color="muted"
               align="center"
-              className="mx-auto mt-5 max-w-2xl text-pretty"
+              className="mx-auto mt-5 max-w-2xl text-pretty hidden lg:block"
             >
               {description}
             </Text>

@@ -1,172 +1,126 @@
-"use client";
-
-import { useCallback, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import Button from "@/components/ui/Button";
-import Text from "@/components/ui/Text";
 import Heading from "@/components/ui/Heading";
-import { methodSteps } from "./data";
-import { ScrollStepTrigger } from "./ScrollStepTrigger";
+import Text from "@/components/ui/Text";
+import Section from "@/components/ui/Section";
+
+const afEmdrMobileSpotlight = {
+  eyebrow: "Metodă specializată",
+  title: "AF-EMDR pentru lucrul profund cu trauma",
+  description:
+    "AF-EMDR este o formă avansată de lucru terapeutic, folosită pentru procesarea experiențelor dureroase, reglarea reacțiilor emoționale și reconectarea cu resursele interioare.",
+  points: [
+    "sprijină procesarea amintirilor și reacțiilor dificile",
+    "lucrează cu corpul, emoțiile și sistemul nervos",
+    "se desfășoară într-un ritm sigur, adaptat persoanei",
+  ],
+  cta: {
+    label: "Află mai multe",
+    href: "/terapie-af-emdr",
+  },
+  image: {
+    src: "/home-page/method.jpg",
+    alt: "Cabinet de psihoterapie calm, pregătit pentru o ședință AF-EMDR",
+  },
+};
 
 export default function EducationMethodMobileSection() {
-  const shouldReduceMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleActiveChange = useCallback((index: number) => {
-    setActiveIndex((currentIndex) =>
-      currentIndex === index ? currentIndex : index,
-    );
-  }, []);
-
-  const activeStep = methodSteps[activeIndex];
-
   return (
-    <div className="relative bg-cream lg:hidden">
-      <div className="relative h-[300svh]">
-        <div className="sticky top-0 h-svh overflow-hidden">
-          <div className="absolute inset-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStep.imageSrc}
-                initial={
-                  shouldReduceMotion
-                    ? { opacity: 1 }
-                    : { opacity: 0, scale: 1.04 }
-                }
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.55, ease: "easeOut" }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={activeStep.imageSrc}
-                  alt=""
-                  aria-hidden="true"
-                  fill
-                  sizes="(max-width: 1023px) 100vw, 1px"
-                  className="object-cover object-center"
-                />
-              </motion.div>
-            </AnimatePresence>
+    <Section
+      aria-labelledby="af-emdr-mobile-spotlight-title"
+      spacing="sm"
+      className="relative isolate overflow-hidden min-h-svh lg:hidden"
+    >
+      <Image
+        src={afEmdrMobileSpotlight.image.src}
+        alt={afEmdrMobileSpotlight.image.alt}
+        fill
+        sizes="100vw"
+        className="absolute inset-0 -z-20 object-cover object-center"
+      />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-charcoal/20"
-            />
-          </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-charcoal/35"
+      />
 
-          <Image
-            src="/backgrounds/df-teal-down.png"
-            alt=""
-            aria-hidden="true"
-            width={105}
-            height={105}
-            sizes="105px"
-            className="pointer-events-none absolute right-4 top-28 z-10 h-auto w-26.25 rotate-[-10deg] opacity-30"
-          />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-charcoal via-charcoal/70 to-transparent"
+      />
 
-          <div className="relative z-20 flex h-full items-end px-5 pb-12 pt-28">
-            <AnimatePresence mode="wait">
-              <motion.article
-                key={activeStep.title}
-                initial={
-                  shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }
-                }
-                animate={{ opacity: 1, y: 0 }}
-                exit={
-                  shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }
-                }
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="mx-auto w-full max-w-sm rounded-4xl border border-white/60 bg-cream/94 p-7 text-center shadow-[0_18px_55px_rgba(44,44,44,0.18)] backdrop-blur-md"
-              >
-                <Heading
-                  as={activeIndex === 0 ? "h2" : "h3"}
-                  size="h2"
-                  color="charcoal"
-                  align="center"
-                  className="mt-4 text-balance leading-[1.08]"
-                >
-                  {activeStep.title}
-                </Heading>
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-1/2 bg-gradient-to-b from-charcoal/45 to-transparent"
+      />
+
+      <Image
+        src="/backgrounds/df-teal-down.png"
+        alt=""
+        aria-hidden="true"
+        width={105}
+        height={105}
+        sizes="105px"
+        className="pointer-events-none absolute right-4 top-20 z-10 h-auto w-26.25 rotate-[-10deg] opacity-35"
+      />
+
+      <div className="relative z-20 mx-auto flex min-h-svh w-full max-w-md items-center px-5">
+        <article className="w-full rounded-4xl border border-white/55 bg-cream/94 p-7 text-center shadow-[0_18px_55px_rgba(0,0,0,0.22)] backdrop-blur-md">
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-gold">
+            {afEmdrMobileSpotlight.eyebrow}
+          </p>
+
+          <Heading
+            id="af-emdr-mobile-spotlight-title"
+            as="h2"
+            size="h2"
+            color="charcoal"
+            align="center"
+            className="mt-4 text-balance leading-[1.04]"
+          >
+            {afEmdrMobileSpotlight.title}
+          </Heading>
+
+          <Text
+            as="p"
+            size="base"
+            color="muted"
+            align="center"
+            className="mt-5 text-pretty leading-7"
+          >
+            {afEmdrMobileSpotlight.description}
+          </Text>
+
+          <div className="mx-auto mt-6 h-px w-16 bg-gold/35" />
+
+          <ul className="mt-6 space-y-3 text-left">
+            {afEmdrMobileSpotlight.points.map((point) => (
+              <li key={point} className="flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
 
                 <Text
-                  as="p"
-                  size="base"
-                  color="muted"
-                  align="center"
-                  className="mt-5 text-pretty leading-7"
+                  as="span"
+                  size="sm"
+                  color="charcoal"
+                  className="text-pretty leading-6"
                 >
-                  {activeStep.body}
+                  {point}
                 </Text>
-
-                {activeStep.points.length ? (
-                  <>
-                    <div className="mx-auto mt-6 h-px w-16 bg-gold/35" />
-
-                    <div className="mt-6 space-y-3">
-                      {activeStep.points.map((point) => (
-                        <div key={point} className="flex items-start gap-3 ">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-
-                          <Text
-                            as="p"
-                            size="sm"
-                            color="charcoal"
-                            align="center"
-                            className="text-pretty leading-6"
-                          >
-                            {point}
-                          </Text>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                ) : null}
-
-                {activeStep.cta ? (
-                  <Button
-                    href={activeStep.cta.href}
-                    variant="primary"
-                    size="sm"
-                    className="mt-7"
-                  >
-                    {activeStep.cta.label}
-                  </Button>
-                ) : null}
-              </motion.article>
-            </AnimatePresence>
-          </div>
-
-          <div
-            aria-hidden="true"
-            className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2"
-          >
-            {methodSteps.map((step, index) => (
-              <span
-                key={step.title}
-                className={[
-                  "h-1.5 rounded-full transition-[width,background-color] duration-300 motion-reduce:transition-none",
-                  activeIndex === index
-                    ? "w-6 bg-gold"
-                    : "w-1.5 bg-charcoal/25",
-                ].join(" ")}
-              />
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
 
-        <div className="pointer-events-none absolute inset-0 z-30">
-          {methodSteps.map((step, index) => (
-            <ScrollStepTrigger
-              key={step.title}
-              index={index}
-              onActive={handleActiveChange}
-            />
-          ))}
-        </div>
+          <Button
+            href={afEmdrMobileSpotlight.cta.href}
+            variant="primary"
+            size="md"
+            className="mt-7"
+          >
+            {afEmdrMobileSpotlight.cta.label}
+          </Button>
+        </article>
       </div>
-    </div>
+    </Section>
   );
 }
