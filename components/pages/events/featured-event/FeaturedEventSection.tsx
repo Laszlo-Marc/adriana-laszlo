@@ -89,38 +89,6 @@ export default function FeaturedEventSection({
                 {event.description}
               </Text>
 
-              <div className="-mx-4 mt-9 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:hidden [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex snap-x snap-mandatory gap-3">
-                  {event.facts.map((fact) => (
-                    <article
-                      key={fact.label}
-                      className="min-h-35 w-[72vw] max-w-68 shrink-0 snap-center rounded-3xl border border-white/70 bg-white/55 px-5 py-5 text-center"
-                    >
-                      <Text
-                        as="p"
-                        size="xs"
-                        weight="medium"
-                        transform="upper"
-                        color="gold"
-                        align="center"
-                        className="tracking-[0.22em]"
-                      >
-                        {fact.label}
-                      </Text>
-
-                      <Text
-                        as="p"
-                        size="base"
-                        align="center"
-                        className="mt-3 leading-relaxed text-charcoal/78"
-                      >
-                        {fact.value}
-                      </Text>
-                    </article>
-                  ))}
-                </div>
-              </div>
-
               <div className="mt-10 hidden min-w-0 gap-6 sm:grid sm:grid-cols-2">
                 {event.facts.map((fact) => (
                   <article

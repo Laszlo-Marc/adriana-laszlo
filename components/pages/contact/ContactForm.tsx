@@ -4,8 +4,9 @@ import { FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
+import Heading from "@/components/ui/Heading";
 import { cn } from "@/lib/utils";
-import React from "react";
+import ContactSuccessPanel from "./ContentSuccessPanel";
 
 type FormState = {
   name: string;
@@ -60,10 +61,6 @@ function baseInputClassName(hasError?: boolean) {
 
 export default function ContactForm() {
   const startedAtRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    startedAtRef.current = Date.now();
-  }, []);
   const turnstileRef = useRef<TurnstileInstance>(null);
 
   const [form, setForm] = useState<FormState>(initialState);
@@ -74,6 +71,10 @@ export default function ContactForm() {
   const [error, setError] = useState<string | null>(null);
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -138,167 +139,187 @@ export default function ContactForm() {
     }
   }
 
+  function handleResetForm() {
+    setSubmitted(false);
+    setError(null);
+    setFieldErrors({});
+    setForm(initialState);
+    setTurnstileToken("");
+    startedAtRef.current = Date.now();
+    turnstileRef.current?.reset();
+  }
+
+  if (submitted) {
+    return <ContactSuccessPanel onReset={handleResetForm} />;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="hidden"
-      />
+    <>
+      <div className="mb-5 space-y-1.5 sm:mb-7 sm:space-y-2">
+        <Heading as="h2" size="h3">
+          Trimite un mesaj
+        </Heading>
+      </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 sm:space-y-6"
+        noValidate
+      >
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
+
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+          <div>
+            <FieldLabel htmlFor="name">Nume</FieldLabel>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              value={form.name}
+              onChange={(event) => updateField("name", event.target.value)}
+              className={baseInputClassName(Boolean(fieldErrors.name))}
+              placeholder="Numele tău"
+              aria-invalid={Boolean(fieldErrors.name)}
+            />
+
+            <FieldError message={fieldErrors.name?.[0]} />
+          </div>
+
+          <div>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={form.email}
+              onChange={(event) => updateField("email", event.target.value)}
+              className={baseInputClassName(Boolean(fieldErrors.email))}
+              placeholder="adresa@email.com"
+              aria-invalid={Boolean(fieldErrors.email)}
+            />
+
+            <FieldError message={fieldErrors.email?.[0]} />
+          </div>
+        </div>
+
         <div>
-          <FieldLabel htmlFor="name">Nume</FieldLabel>
+          <FieldLabel htmlFor="phone">Telefon</FieldLabel>
 
           <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-            value={form.name}
-            onChange={(event) => updateField("name", event.target.value)}
-            className={baseInputClassName(Boolean(fieldErrors.name))}
-            placeholder="Numele tău"
-            aria-invalid={Boolean(fieldErrors.name)}
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            value={form.phone}
+            onChange={(event) => updateField("phone", event.target.value)}
+            className={baseInputClassName(Boolean(fieldErrors.phone))}
+            placeholder="Număr de telefon"
+            aria-invalid={Boolean(fieldErrors.phone)}
           />
 
-          <FieldError message={fieldErrors.name?.[0]} />
+          <FieldError message={fieldErrors.phone?.[0]} />
         </div>
 
         <div>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <FieldLabel htmlFor="message">Mesaj</FieldLabel>
 
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
+          <textarea
+            id="message"
+            name="message"
             required
-            value={form.email}
-            onChange={(event) => updateField("email", event.target.value)}
-            className={baseInputClassName(Boolean(fieldErrors.email))}
-            placeholder="adresa@email.com"
-            aria-invalid={Boolean(fieldErrors.email)}
+            rows={5}
+            value={form.message}
+            onChange={(event) => updateField("message", event.target.value)}
+            className={cn(
+              baseInputClassName(Boolean(fieldErrors.message)),
+              "min-h-35 resize-y leading-relaxed sm:min-h-55",
+            )}
+            placeholder="Scrie aici câteva detalii despre motivul pentru care dorești să iei legătura."
+            aria-invalid={Boolean(fieldErrors.message)}
           />
 
-          <FieldError message={fieldErrors.email?.[0]} />
+          <FieldError message={fieldErrors.message?.[0]} />
         </div>
-      </div>
 
-      <div>
-        <FieldLabel htmlFor="phone">Telefon</FieldLabel>
-
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          autoComplete="tel"
-          value={form.phone}
-          onChange={(event) => updateField("phone", event.target.value)}
-          className={baseInputClassName(Boolean(fieldErrors.phone))}
-          placeholder="Număr de telefon"
-          aria-invalid={Boolean(fieldErrors.phone)}
-        />
-
-        <FieldError message={fieldErrors.phone?.[0]} />
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="message">Mesaj</FieldLabel>
-
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          value={form.message}
-          onChange={(event) => updateField("message", event.target.value)}
-          className={cn(
-            baseInputClassName(Boolean(fieldErrors.message)),
-            "min-h-35 resize-y leading-relaxed sm:min-h-55",
-          )}
-          placeholder="Scrie aici câteva detalii despre motivul pentru care dorești să iei legătura."
-          aria-invalid={Boolean(fieldErrors.message)}
-        />
-
-        <FieldError message={fieldErrors.message?.[0]} />
-      </div>
-
-      <label className="flex gap-3 rounded-2xl border border-charcoal/10 bg-cream/45 p-4 text-sm leading-6 text-charcoal/70">
-        <input
-          type="checkbox"
-          name="newsletterConsent"
-          checked={form.newsletterConsent}
-          onChange={(event) =>
-            updateField("newsletterConsent", event.target.checked)
-          }
-          className="mt-1 h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal/30"
-        />
-
-        <span>
-          Doresc să primesc ocazional anunțuri despre evenimente, resurse
-          gratuite și materiale utile. Îmi pot retrage consimțământul oricând.
-        </span>
-      </label>
-
-      {siteKey ? (
-        <div className="overflow-hidden rounded-2xl">
-          <Turnstile
-            ref={turnstileRef}
-            siteKey={siteKey}
-            options={{
-              theme: "light",
-              size: "flexible",
-              language: "ro",
-            }}
-            onSuccess={setTurnstileToken}
-            onExpire={() => setTurnstileToken("")}
-            onError={() => setTurnstileToken("")}
+        <label className="flex gap-3 rounded-2xl border border-charcoal/10 bg-cream/45 p-4 text-sm leading-6 text-charcoal/70">
+          <input
+            type="checkbox"
+            name="newsletterConsent"
+            checked={form.newsletterConsent}
+            onChange={(event) =>
+              updateField("newsletterConsent", event.target.checked)
+            }
+            className="mt-1 h-4 w-4 rounded border-charcoal/20 text-teal focus:ring-teal/30"
           />
 
-          <FieldError message={fieldErrors.turnstileToken?.[0]} />
+          <span>
+            Doresc să primesc ocazional anunțuri despre evenimente, resurse
+            gratuite și materiale utile. Îmi pot retrage consimțământul oricând.
+          </span>
+        </label>
+
+        {siteKey ? (
+          <div className="overflow-hidden rounded-2xl">
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={siteKey}
+              options={{
+                theme: "light",
+                size: "flexible",
+                language: "ro",
+              }}
+              onSuccess={setTurnstileToken}
+              onExpire={() => setTurnstileToken("")}
+              onError={() => setTurnstileToken("")}
+            />
+
+            <FieldError message={fieldErrors.turnstileToken?.[0]} />
+          </div>
+        ) : null}
+
+        <div className="space-y-2.5 pt-0.5 sm:space-y-3 sm:pt-1">
+          <button
+            type="submit"
+            disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charcoal px-6 py-3 text-sm font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-13.5 sm:w-auto sm:px-7 sm:text-[15px]"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2
+                  className="mr-2 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
+                Se trimite...
+              </>
+            ) : (
+              "Trimite mesajul"
+            )}
+          </button>
+
+          <p className="text-xs leading-relaxed text-charcoal/55 sm:text-sm">
+            Îți voi răspunde în cel mai scurt timp posibil.
+          </p>
+
+          {error ? (
+            <p className="text-sm text-red-600" role="alert">
+              {error}
+            </p>
+          ) : null}
         </div>
-      ) : null}
-
-      <div className="space-y-2.5 pt-0.5 sm:space-y-3 sm:pt-1">
-        <button
-          type="submit"
-          disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
-          className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-charcoal px-6 py-3 text-sm font-medium text-white transition hover:opacity-92 disabled:cursor-not-allowed disabled:opacity-70 sm:min-h-13.5 sm:w-auto sm:px-7 sm:text-[15px]"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-              Se trimite...
-            </>
-          ) : (
-            "Trimite mesajul"
-          )}
-        </button>
-
-        <p className="text-xs leading-relaxed text-charcoal/55 sm:text-sm">
-          Îți voi răspunde în cel mai scurt timp posibil.
-        </p>
-
-        {submitted ? (
-          <p className="text-sm text-teal" role="status">
-            Mesajul a fost trimis. Îți mulțumesc!
-          </p>
-        ) : null}
-
-        {error ? (
-          <p className="text-sm text-red-600" role="alert">
-            {error}
-          </p>
-        ) : null}
-      </div>
-    </form>
+      </form>
+    </>
   );
 }

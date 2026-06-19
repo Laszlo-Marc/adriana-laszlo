@@ -1,15 +1,13 @@
 import Image from "next/image";
-
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
-import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
 import { MarqueeAnimation } from "@/components/ui/MarqueeAnimation";
 
 import { afEmdrSpecialistContent } from "../afEmdrContent";
 
 export default function AfEmdrSpecialistMobile() {
-  const { title, description, images, credentials, testimonial, cta } =
+  const { title, images, credentials, testimonial, cta } =
     afEmdrSpecialistContent;
 
   return (
@@ -45,24 +43,6 @@ export default function AfEmdrSpecialistMobile() {
             </div>
           </div>
         </div>
-
-        <div className="mt-9 text-center">
-          <Heading
-            as="h2"
-            size="h3"
-            align="center"
-            className="mx-auto mt-4 max-w-sm text-balance text-charcoal"
-          >
-            {title}
-          </Heading>
-
-          <Text
-            align="center"
-            className="mx-auto mt-5 max-w-sm text-pretty text-charcoal/70"
-          >
-            {description}
-          </Text>
-        </div>
       </Container>
 
       <div className="mt-8 border-y border-charcoal/10 py-3">
@@ -96,6 +76,11 @@ export default function AfEmdrSpecialistMobile() {
         <div className="mt-8 flex justify-center">
           <Button href={cta.href} variant="primary">
             {cta.label}
+          </Button>
+        </div>
+        <div className="mt-4 flex justify-center">
+          <Button href="/despre" variant="purple">
+            Afla Despre mine
           </Button>
         </div>
       </Container>

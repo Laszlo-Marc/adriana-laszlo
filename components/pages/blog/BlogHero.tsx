@@ -52,19 +52,10 @@ export default function BlogHero() {
               as="h1"
               size="display"
               align="center"
-              className="text-balance"
+              className="text-balance text-[4rem]"
             >
-              Articole & resurse
+              <AccentText>ARTICOLE & RESURSE</AccentText>
             </Heading>
-
-            <Text
-              align="center"
-              className="mx-auto mt-6 max-w-2xl text-charcoal/75"
-            >
-              Ghiduri simple, exerciții practice și materiale create pentru a te
-              ajuta să înțelegi mai bine emoțiile, relațiile, trauma și pașii
-              mici prin care poți reveni la mai multă siguranță interioară.
-            </Text>
           </div>
         </Container>
       </div>

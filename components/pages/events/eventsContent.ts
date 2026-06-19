@@ -12,7 +12,7 @@ export type EventItem = {
   };
 };
 export const featuredEvent = {
-  slug: "grup-af-emdr-anxietate-stres-perfectionism",
+  slug: "grup-af-emdr",
   eyebrow: "Program recomandat",
   title: "Program AF-EMDR de Grup",
   intro:

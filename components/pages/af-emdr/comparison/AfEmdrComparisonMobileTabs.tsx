@@ -120,16 +120,6 @@ export default function AfEmdrComparisonMobileTabs({
           </motion.article>
         </AnimatePresence>
       </div>
-
-      {insight ? (
-        <Text
-          size="sm"
-          align="center"
-          className="mx-auto mt-6 max-w-sm text-pretty text-charcoal/64"
-        >
-          {insight}
-        </Text>
-      ) : null}
     </div>
   );
 }

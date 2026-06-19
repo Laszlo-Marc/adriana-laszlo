@@ -228,25 +228,6 @@ export function FullscreenPanel({
             </nav>
 
             <div className="flex-1" />
-
-            <motion.div variants={itemVariants} className="mt-10 grid gap-3">
-              <Button
-                variant="primary"
-                href={WHATSAPP_HREF}
-                onClick={handleClose}
-                leftIcon={<FaWhatsapp size={18} />}
-              >
-                WhatsApp
-              </Button>
-
-              <Button variant="outline" href={PHONE_HREF} onClick={handleClose}>
-                {PHONE_DISPLAY}
-              </Button>
-
-              <Button variant="purple" href="/contact" onClick={handleClose}>
-                Contact
-              </Button>
-            </motion.div>
           </div>
         </motion.div>
       )}

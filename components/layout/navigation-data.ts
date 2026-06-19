@@ -26,13 +26,14 @@ export const navItems: NavbarItem[] = [
       {
         id: "af-emdr-grup",
         title: "Grup AF-EMDR",
-        url: "/evenimente/program-de-grup-af-emdr-anxietate-stres-perfectionism",
+        url: "/evenimente/program-de-grup-af-emdr",
         description: "Program de lucru ghidat în grup",
       },
     ],
   },
   { id: 5, title: "Blog", url: "/blog" },
   { id: 6, title: "AF-EMDR", url: "/af-emdr" },
+  { id: 7, title: "Contact", url: "/contact" },
 ];
 
 export const footerNavItems = navItems.map(({ title, url }) => ({

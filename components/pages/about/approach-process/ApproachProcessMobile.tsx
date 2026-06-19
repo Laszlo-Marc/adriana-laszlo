@@ -47,17 +47,6 @@ export default function ApproachProcessMobile() {
               <Text className="text-charcoal/76" align="center">
                 {approachProcessContent.paragraphs[0]}
               </Text>
-
-              <div className="border-y border-border/70 py-5">
-                <Text
-                  as="p"
-                  size="sm"
-                  align="center"
-                  className="leading-7 text-charcoal/68"
-                >
-                  {approachProcessContent.paragraphs[1]}
-                </Text>
-              </div>
             </div>
 
             <div className="mt-8 flex flex-col gap-3">

@@ -117,25 +117,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
             <div className="mx-auto mt-10 w-full min-w-0 max-w-full overflow-hidden px-0 lg:hidden">
               <FeaturedEventSignupForm eventTitle={event.title} />
             </div>
-            {/* Mobile snap carousel */}
-            <div className="-mx-4 mt-8 min-w-0 overflow-hidden lg:hidden">
-              <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-5 scrollbar-hide">
-                {steps.map((step, index) => (
-                  <article
-                    key={step.label}
-                    className="min-h-42 w-[78vw] max-w-74 shrink-0 snap-start rounded-3xl border border-white/70 bg-white/68 p-5 text-left shadow-[0_16px_50px_rgba(44,44,44,0.08)] backdrop-blur-md"
-                  >
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold">
-                      {String(index + 1).padStart(2, "0")} · {step.label}
-                    </p>
 
-                    <Text className="mt-4 text-charcoal/70">{step.text}</Text>
-                  </article>
-                ))}
-
-                <div aria-hidden="true" className="w-4 shrink-0" />
-              </div>
-            </div>
             {/* Desktop steps stay in the left column */}
             <div className="mt-10 hidden max-w-2xl space-y-5 text-left lg:block">
               {steps.map((step) => (

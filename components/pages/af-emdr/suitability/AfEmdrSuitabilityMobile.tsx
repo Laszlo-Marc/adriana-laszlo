@@ -80,17 +80,6 @@ export default function AfEmdrSuitabilityMobile({
                   >
                     {pattern.description}
                   </Text>
-
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {pattern.signs.map((sign) => (
-                      <span
-                        key={sign}
-                        className="rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-[0.7rem] font-medium text-white/72 backdrop-blur-sm"
-                      >
-                        {sign}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>

@@ -55,16 +55,6 @@ export default function EventsHero() {
             <AccentText>Evenimente, grupuri și ateliere</AccentText>
           </Heading>
 
-          <Text
-            size="lg"
-            align="center"
-            className="mt-6 max-w-2xl text-charcoal/75"
-          >
-            Programe de grup, workshopuri și ateliere create pentru oameni care
-            vor să lucreze cu trauma, anxietatea, stresul și relația cu sine
-            într-un cadru sigur, cald și structurat.
-          </Text>
-
           <div className="mt-8 flex w-full max-w-xs flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center">
             <Button href="#programe" variant="primary">
               Vezi programele

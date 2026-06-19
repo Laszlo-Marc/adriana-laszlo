@@ -107,8 +107,7 @@ export const afEmdrComparisonContent = {
 export const afEmdrSuitabilityContent = {
   chapter: "03 / Pentru cine",
   eyebrow: "Când poate fi potrivită AF-EMDR?",
-  title:
-    "Atunci când trecutul se simte încă prezent în relații, corp sau imaginea de sine.",
+  title: "Atunci când trecutul se simte încă prezent",
   lead: "AF-EMDR poate fi relevantă atunci când dificultățile de azi nu par să vină dintr-un singur eveniment, ci din experiențe relaționale repetate care au modelat felul în care te simți în siguranță, iubești, ai încredere sau îți pui limite.",
 
   patterns: [
@@ -181,7 +180,7 @@ export const afEmdrSuitabilityContent = {
 export const afEmdrSpecialistContent = {
   chapter: "04 / Specialist",
   eyebrow: "De ce cu Adriana?",
-  title: "Un cadru sigur pentru lucrul cu trauma de atașament",
+  title: "Un cadru sigur",
   description:
     "În terapia AF-EMDR, metoda contează — dar la fel de mult contează siguranța relației terapeutice. Adriana integrează formarea în AF-EMDR cu experiența în lucrul cu trauma de atașament, reglarea emoțională și tiparele relaționale care se repetă în viața adultă.",
 
@@ -222,7 +221,6 @@ export const afEmdrSpecialistContent = {
     href: "/despre",
   },
 };
-
 
 export const afEmdrFinalCtaContent = {
   title: "Poate fi acesta următorul pas pentru tine?",

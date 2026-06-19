@@ -72,16 +72,6 @@ export default function AfEmdrComparisonSection() {
           >
             {title}
           </Heading>
-
-          {lead ? (
-            <Text
-              size="lg"
-              align="center"
-              className="mx-auto mt-6 max-w-2xl text-pretty text-charcoal/70"
-            >
-              {lead}
-            </Text>
-          ) : null}
         </div>
 
         <div className="relative mt-16 hidden lg:block">

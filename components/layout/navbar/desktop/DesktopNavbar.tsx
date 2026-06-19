@@ -299,37 +299,6 @@ function DesktopFullscreenPanel({
                 );
               })}
             </motion.nav>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.28,
-                duration: 0.3,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mx-auto mt-12 flex w-full max-w-xl flex-col items-center justify-center gap-3 border-t border-charcoal/10 pt-8 sm:flex-row"
-            >
-              <Button
-                href="/contact"
-                variant="primary"
-                size="lg"
-                leftIcon={<Mail size={18} />}
-                onClick={onClose}
-              >
-                Contact
-              </Button>
-
-              <Button
-                href={WHATSAPP_HREF}
-                variant="purple"
-                size="lg"
-                leftIcon={<MessageCircle size={18} />}
-                onClick={onClose}
-              >
-                WhatsApp
-              </Button>
-            </motion.div>
           </div>
         </motion.div>
       )}
