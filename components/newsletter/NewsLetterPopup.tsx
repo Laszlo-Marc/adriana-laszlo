@@ -226,7 +226,7 @@ export default function NewsletterPopup() {
                     successTitle="Resursa este pregătită."
                     successMessage="Mulțumim pentru abonare. Poți descărca materialul gratuit folosind butonul de mai jos."
                     downloadLabel="Descarcă resursa gratuită"
-                    autoDownload={false}
+                    autoDownload={true}
                   />
                   <p className="mt-4 text-center text-xs leading-5 text-muted">
                     Fără mesaje dese. Fără presiune. Te poți dezabona oricând.
