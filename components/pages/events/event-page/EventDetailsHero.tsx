@@ -74,7 +74,7 @@ export default function EventDetailHero({
         <motion.h1
           id="event-detail-hero-title"
           variants={fadeIn}
-          className="mt-6 font-accent text-[clamp(3.8rem,16vw,5.4rem)] font-medium leading-[1.04] tracking-[0.08em] text-charcoal lg:text-[clamp(6.5rem,8vw,8rem)]"
+          className="mt-6 font-display text-[clamp(2rem,10vw,3rem)] uppercase leading-[1.04] tracking-[0.08em] text-charcoal lg:text-[clamp(6.5rem,8vw,8rem)]"
         >
           {event.title}
         </motion.h1>

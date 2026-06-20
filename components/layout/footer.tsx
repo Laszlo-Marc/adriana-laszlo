@@ -112,10 +112,10 @@ export default function Footer() {
                 <Button
                   variant="purple"
                   size="md"
-                  href={PHONE_HREF}
+                  href="/contact"
                   className="md:max-w-55"
                 >
-                  {PHONE_DISPLAY}
+                  Contact
                 </Button>
               </div>
             </div>

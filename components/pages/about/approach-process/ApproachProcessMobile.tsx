@@ -9,7 +9,49 @@ import { approachProcessContent } from "./approachProcessContent";
 
 export default function ApproachProcessMobile() {
   return (
-    <div className="relative overflow-hidden lg:hidden">
+    <div className="relative overflow-hidden lg:hidden pb-15">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-10 top-90 z-20 w-30 opacity-30"
+      >
+        <Image
+          src="/backgrounds/df-teal-down.png"
+          alt=""
+          width={48}
+          height={48}
+          sizes="120px"
+          className="h-auto w-full object-contain"
+        />
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-40 left-10 z-20 w-30 opacity-30"
+      >
+        <Image
+          src="/backgrounds/df-purple-down.png"
+          alt=""
+          width={48}
+          height={48}
+          sizes="120px"
+          className="h-auto w-full object-contain"
+        />
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-50 z-0 w-80 -translate-x-1/2 opacity-30"
+      >
+        <Image
+          src="/backgrounds/double-split.png"
+          alt=""
+          width={160}
+          height={500}
+          sizes="320px"
+          className="h-auto w-full object-contain"
+        />
+      </div>
+
       <div className="relative  ">
         <div className="relative mx-auto max-w-md">
           <div className="relative h-50">

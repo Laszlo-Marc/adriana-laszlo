@@ -13,7 +13,7 @@ type NewsletterFormProps = {
   source: string;
   className?: string;
   onSuccess?: () => void;
-  resourceKey?: string;
+  resourceId?: string;
   submitLabel?: string;
   successTitle?: string;
   successMessage?: string;
@@ -25,12 +25,12 @@ type NewsletterFormProps = {
 type FieldErrors = Partial<
   Record<"firstName" | "email" | "turnstileToken", string[]>
 >;
-
 type SubscribeResponse = {
   ok?: boolean;
   message?: string;
   errors?: FieldErrors;
   downloadUrl?: string;
+  downloadHref?: string;
 };
 
 const inputClassName =
@@ -60,7 +60,7 @@ export default function NewsletterForm({
   source,
   className,
   onSuccess,
-  resourceKey,
+  resourceId,
   submitLabel = "Abonează-te",
   successTitle = "Te-ai abonat cu succes.",
   successMessage = "Mulțumim. Vei primi doar anunțuri rare și relevante.",
@@ -109,7 +109,7 @@ export default function NewsletterForm({
           firstName,
           email,
           source,
-          resourceKey,
+          resourceId,
           website,
           startedAt: startedAtRef.current ?? Date.now(),
           turnstileToken,
@@ -123,7 +123,8 @@ export default function NewsletterForm({
         throw new Error(result.message || "Newsletter subscribe failed");
       }
 
-      const nextDownloadUrl = result.downloadUrl ?? downloadUrl ?? null;
+      const nextDownloadUrl =
+        result.downloadUrl ?? result.downloadHref ?? downloadUrl ?? null;
 
       setSubmitted(true);
       setResolvedDownloadUrl(nextDownloadUrl);

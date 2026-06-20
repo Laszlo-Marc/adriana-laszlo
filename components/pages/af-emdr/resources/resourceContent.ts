@@ -7,7 +7,7 @@ export type DownloadResource = {
   imageAlt: string;
   fileLabel: string;
   submitLabel: string;
-  downloadHref?: string;
+  downloadHref: string;
 };
 
 export const downloadResources: DownloadResource[] = [
@@ -21,6 +21,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Jurnal de conștientizare emoțională",
     fileLabel: "Jurnal de conștientizare emoțională",
     submitLabel: "Descarcă jurnalul",
+    downloadHref: "/resources/jurnal-de-terapie.pdf",
   },
   {
     id: "constientizarea-corporala",
@@ -32,6 +33,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Conștientizarea corporală",
     fileLabel: "Conștientizarea corporală",
     submitLabel: "Descarcă ghidul",
+    downloadHref: "/resources/constientizare-corporala.pdf",
   },
   {
     id: "infuzia-de-pozitiv",
@@ -43,5 +45,10 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Infuzia de pozitiv pentru cupluri",
     fileLabel: "Infuzia de pozitiv pentru cupluri",
     submitLabel: "Descarcă materialul",
+    downloadHref: "/resources/infuzia-de-pozitiv.pdf",
   },
 ];
+
+export function getDownloadableResourceById(id: string) {
+  return downloadResources.find((resource) => resource.id === id);
+}

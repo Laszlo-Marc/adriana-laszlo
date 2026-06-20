@@ -7,7 +7,7 @@ export const approachProcessContent = {
     "Ritmul este clar și atent: ne orientăm, construim resurse, lucrăm cu experiențele profunde și integrăm schimbarea în viața de zi cu zi.",
   ],
   image: {
-    src: "/about/approach2.jpg",
+    src: "/home-page/services/individual.jpg",
     alt: "Spațiu terapeutic calm și sigur",
   },
   ctas: {

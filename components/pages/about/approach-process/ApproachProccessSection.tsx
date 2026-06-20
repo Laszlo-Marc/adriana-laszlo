@@ -8,7 +8,7 @@ export default function ApproachProcessSection() {
   return (
     <Section
       background="cream"
-      spacing="sm"
+      spacing="none"
       aria-labelledby="approach-process-heading"
       className="relative overflow-hidden"
     >

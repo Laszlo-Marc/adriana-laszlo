@@ -270,7 +270,10 @@ export default function ResourceDownloadForm({
           </label>
 
           <FieldError message={fieldErrors.consent?.[0]} />
-
+          <NewsletterConsentCheckbox
+            checked={form.newsletterConsent}
+            onChange={(checked) => updateField("newsletterConsent", checked)}
+          />
           {siteKey ? (
             <div className="overflow-hidden rounded-2xl">
               <Turnstile
@@ -298,10 +301,7 @@ export default function ResourceDownloadForm({
               <FieldError message={fieldErrors.turnstileToken?.[0]} />
             </div>
           ) : null}
-          <NewsletterConsentCheckbox
-            checked={form.newsletterConsent}
-            onChange={(checked) => updateField("newsletterConsent", checked)}
-          />
+
           <Button
             type="submit"
             disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
@@ -323,10 +323,18 @@ export default function ResourceDownloadForm({
             </p>
           ) : null}
 
-          <p className="text-center text-xs leading-5 text-muted">
-            Fără spam. Datele sunt folosite doar pentru trimiterea resursei și,
-            dacă alegi ulterior, pentru materiale utile similare.
-          </p>
+          <div className="rounded-2xl border border-charcoal/8 bg-white/45 px-4 py-3">
+            <p className="text-center text-[11px] leading-4 text-muted sm:text-xs sm:leading-5">
+              Prin abonare accepți{" "}
+              <a
+                href="/politica-de-confidentialitate"
+                className="font-medium text-charcoal underline decoration-charcoal/25 underline-offset-4 transition hover:text-teal hover:decoration-teal/40"
+              >
+                politica de confidențialitate
+              </a>
+              .
+            </p>
+          </div>
         </form>
       )}
     </div>

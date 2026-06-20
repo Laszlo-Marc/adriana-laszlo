@@ -17,7 +17,7 @@ export default function HeroMobile() {
       allowOverflow
     >
       <Container size="full" padding="none">
-        <div className="relative min-h-svh overflow-hidden bg-cream">
+        <div className="relative min-h-svh overflow-hidden flex-col items-center bg-cream">
           <video
             className="absolute inset-0 h-full w-full object-cover object-center"
             autoPlay
@@ -55,7 +55,7 @@ export default function HeroMobile() {
             className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-linear-to-b from-transparent via-cream/78 to-cream"
           />
 
-          <div className="relative z-10 flex min-h-svh items-center justify-center px-6 pb-14 pt-10">
+          <div className="relative z-10 flex min-h-svh items-center justify-center px-6 pb-6 pt-30">
             <div className="mx-auto max-w-sm">
               <Text
                 as="p"
@@ -94,6 +94,34 @@ export default function HeroMobile() {
                 >
                   Programează o discuție
                 </Button>
+              </div>
+              <div className="mx-auto mt-6 px-5 py-4">
+                <Text
+                  as="p"
+                  size="lg"
+                  weight="medium"
+                  transform="upper"
+                  align="center"
+                  className="mb-5 tracking-[0.18em]"
+                >
+                  O metodă unică în România
+                </Text>
+
+                <div className="text-center">
+                  <AccentText
+                    as="span"
+                    className="block text-[2.35rem] mb-5 leading-[0.9] text-charcoal"
+                  >
+                    Attachment-Focused
+                  </AccentText>
+
+                  <AccentText
+                    as="span"
+                    className="mt-1 block text-[4rem] leading-[0.78] text-charcoal"
+                  >
+                    EMDR
+                  </AccentText>
+                </div>
               </div>
             </div>
           </div>

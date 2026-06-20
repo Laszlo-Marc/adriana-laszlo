@@ -60,11 +60,12 @@ export default function NewsletterCTASection({
             <div className="rounded-4xl border border-white/70 bg-white/82 p-4 shadow-[0_18px_60px_rgba(44,44,44,0.08)] backdrop-blur-sm sm:p-6">
               <NewsletterForm
                 className="mt-4 sm:mt-6"
-                source="Newsletter popup"
-                resourceKey="exclusive-downloadable-resource"
+                source={source}
+                resourceId="ghid-resurse-pozitive"
                 submitLabel="Primește resursa gratuită"
-                successTitle="Verifică-ți emailul."
-                successMessage="Ți-am trimis resursa gratuită pe email. Dacă nu o vezi în câteva minute, verifică și folderul Spam sau Promotions."
+                successTitle="Resursa este pregătită."
+                successMessage="Ți-am trimis resursa gratuită pe email. O poți descărca și folosind butonul de mai jos."
+                downloadLabel="Descarcă resursa gratuită"
               />
             </div>
 

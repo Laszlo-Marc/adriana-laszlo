@@ -85,18 +85,18 @@ export default function HomeAboutTeaserMobile() {
 
       <div className="mx-auto max-w-xl px-6 pb-20 pt-6">
         <div className="relative mx-auto max-w-sm">
-          <div className="relative z-30 max-w-[18rem]">
+          <div className="relative z-30 ">
             <AccentText
               as="h2"
-              className="block text-[3rem] leading-[0.95] text-charcoal"
+              className="block text-[2.5rem] leading-[0.95] text-charcoal text-center"
             >
               {aboutMobileCopy.welcome}
             </AccentText>
           </div>
 
-          <div className="relative z-10 -mt-6 ml-auto w-[95%] overflow-hidden bg-sand/10">
+          <div className="relative z-10 ml-auto w-[95%] overflow-hidden bg-sand/10">
             <Image
-              src="/home-page/about2.jpg"
+              src="/home-page/about-2.jpg"
               alt="Adriana Laszlo într-un cabinet de psihoterapie calm"
               width={1536}
               height={944}
@@ -116,7 +116,7 @@ export default function HomeAboutTeaserMobile() {
           </div>
 
           <div className="relative z-20 mt-8">
-            <AccentText className="block text-[3.15rem] leading-[0.95] text-charcoal">
+            <AccentText className="block text-[3.15rem] text-center leading-[0.95] text-charcoal">
               {aboutMobileCopy.accentStart}{" "}
               <AnimatedTextCycle
                 words={aboutMobileCopy.accentWords}
@@ -129,13 +129,17 @@ export default function HomeAboutTeaserMobile() {
 
         <div className="relative z-10 mt-8">
           <div className="mt-8 space-y-4">
-            <Text as="p" className="text-pretty text-[1.3rem] italic">
+            <Text
+              as="p"
+              className="text-pretty text-[1.3rem] italic"
+              align="center"
+            >
               Sunt psihoterapeut specializat în lucrul cu{" "}
               <AccentText className="text-4xl">trauma.</AccentText>
             </Text>
 
             <div className="py-2">
-              <AccentText className="block text-[2.45rem] leading-[1.03] text-charcoal">
+              <AccentText className="block text-[2.45rem] leading-[1.03] text-center text-charcoal">
                 {aboutMobileCopy.accent}
               </AccentText>
             </div>

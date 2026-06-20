@@ -131,7 +131,7 @@ export const mobileServiceSlides: MobileServiceSlide[] = [
     title: "Psihoterapie individuală",
     description:
       "Un spațiu sigur în care poți înțelege ce trăiești, de unde vine suferința și ce ai nevoie să se schimbe.",
-    imageSrc: "/home-page/services/individuala.jpg",
+    imageSrc: "/home-page/services/individual-2.jpg",
     imageAlt: "Cabinet de psihoterapie individuală într-un cadru liniștit",
     href: "/servicii/psihoterapie-individuala",
     ctaLabel: "Vezi detalii",
@@ -142,7 +142,7 @@ export const mobileServiceSlides: MobileServiceSlide[] = [
     title: "Psihoterapie online",
     description:
       "Sprijin terapeutic flexibil, într-un cadru confidențial, atunci când nu poți ajunge fizic la cabinet.",
-    imageSrc: "/home-page/services/online-mobile.jpg",
+    imageSrc: "/home-page/services/online-2.jpg",
     imageAlt: "Ședință de psihoterapie online într-un cadru privat și calm",
     href: "/servicii/psihoterapie-online",
     ctaLabel: "Vezi detalii",
@@ -153,7 +153,7 @@ export const mobileServiceSlides: MobileServiceSlide[] = [
     title: "Evenimente & workshopuri",
     description:
       "Programe, workshopuri și experiențe de grup dedicate reglării emoționale, lucrului cu trauma și reconectării.",
-    imageSrc: "/home-page/services/events.jpg",
+    imageSrc: "/home-page/services/events-2.jpg",
     imageAlt: "Spațiu de terapie de grup cu scaune așezate în cerc",
     href: "/evenimente",
     ctaLabel: "Vezi evenimentele",

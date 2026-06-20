@@ -7,17 +7,22 @@ import Heading from "@/components/ui/Heading";
 const fees = [
   {
     label: "Psihoterapie individuală",
-    value: "250 lei",
+    value: "330 lei",
     detail: "50 minute",
   },
   {
     label: "Ședință terapie AF-EMDR",
-    value: "300 lei",
+    value: "360 lei",
     detail: "50 minute",
   },
   {
-    label: "Terapie online",
-    value: "250 lei",
+    label: "Terapie online România",
+    value: "360 lei",
+    detail: "50 minute",
+  },
+  {
+    label: "Terapie online extern",
+    value: "80 EUR",
     detail: "50 minute",
   },
   {
@@ -81,11 +86,6 @@ export default function FeesSection() {
               </div>
             ))}
           </div>
-
-          <p className="mx-auto mt-5 max-w-xl text-xs leading-5 text-charcoal/65 sm:mt-8 sm:text-sm sm:leading-6">
-            Pentru programe de grup, workshopuri sau evenimente, tariful poate
-            varia în funcție de durată, format și numărul de participanți.
-          </p>
 
           <div className="mt-5 flex justify-center sm:mt-8">
             <Button

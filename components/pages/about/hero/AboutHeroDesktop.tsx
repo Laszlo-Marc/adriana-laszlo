@@ -18,11 +18,6 @@ export default function AboutHeroDesktop() {
             className="absolute left-1/2 top-1/2 h-136 w-136 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/20 blur-2xl"
           />
 
-          <div
-            aria-hidden="true"
-            className="absolute right-8 top-24 h-52 w-52 rounded-full bg-purple/10 blur-3xl"
-          />
-
           <div className="relative grid min-h-[calc(100svh-5rem)] grid-cols-[0.95fr_1fr_0.95fr] items-center gap-20">
             <div className="relative z-20 order-3 text-left motion-safe:animate-[heroFadeUp_700ms_cubic-bezier(0.22,1,0.36,1)_both]">
               <p className="font-script text-4xl leading-tight text-charcoal/80">
@@ -31,11 +26,6 @@ export default function AboutHeroDesktop() {
             </div>
 
             <div className="relative z-10 order-2 flex min-h-155 items-end justify-center">
-              <div
-                aria-hidden="true"
-                className="absolute bottom-16 left-1/2 h-115 w-115 -translate-x-1/2 rounded-full bg-teal/25"
-              />
-
               <div className="relative z-10">
                 <Image
                   src={aboutHeroContent.desktopImage.src}
@@ -59,7 +49,7 @@ export default function AboutHeroDesktop() {
               <AccentText>{aboutHeroContent.eyebrow}</AccentText>
 
               <Heading as="h1" size="h3" className="mt-4">
-                Psihoterapeut specializat în traumă și{" "}
+                Psihoterapeut integrativ specializat în traumă și{" "}
                 <span className="text-teal">
                   {aboutHeroContent.highlightedTitle}
                 </span>

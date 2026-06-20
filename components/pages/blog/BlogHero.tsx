@@ -3,7 +3,6 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
-import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 
 export default function BlogHero() {
@@ -16,7 +15,7 @@ export default function BlogHero() {
     >
       <div className="relative min-h-[65svh] overflow-hidden lg:min-h-[78svh]">
         <Image
-          src="/blogs/blog-hero.jpg"
+          src="/blogs/blog-mobile.jpg"
           alt="Spațiu calm de reflecție, cu lumină naturală"
           fill
           priority
@@ -42,11 +41,7 @@ export default function BlogHero() {
           padding="default"
           className="relative z-10 flex min-h-[65svh] items-center justify-center pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
         >
-          <div className="mx-auto max-w-4xl text-center">
-            <AccentText className="mb-4 block">
-              Resurse pentru claritate și echilibru
-            </AccentText>
-
+          <div className="mx-auto max-w-4xl mt-20 text-center">
             <Heading
               id="blog-hero-heading"
               as="h1"
@@ -54,7 +49,7 @@ export default function BlogHero() {
               align="center"
               className="text-balance text-[4rem]"
             >
-              <AccentText>ARTICOLE & RESURSE</AccentText>
+              ARTICOLE & RESURSE
             </Heading>
           </div>
         </Container>

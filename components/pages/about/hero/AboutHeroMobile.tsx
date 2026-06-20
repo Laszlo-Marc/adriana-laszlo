@@ -26,11 +26,6 @@ export default function AboutHeroMobile() {
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-cream via-cream/90 to-transparent"
           />
-
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-teal/20 blur-3xl"
-          />
         </div>
 
         <div className="relative z-10 -mt-20 px-4 pb-12">
@@ -38,7 +33,7 @@ export default function AboutHeroMobile() {
             <AccentText>{aboutHeroContent.eyebrow}</AccentText>
 
             <Heading as="h1" size="h3" align="center" className="mt-4">
-              Psihoterapeut specializat în traumă și{" "}
+              Psihoterapeut integrativ specializat în traumă și{" "}
               <span className="text-teal">
                 {aboutHeroContent.highlightedTitle}
               </span>

@@ -5,13 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { subscribeToNewsletter } from "@/lib/newsletter/mailchimp";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
 import { newsletterSchema } from "@/lib/validator/newsletter";
+import { sendNewsletterResourceEmail } from "@/lib/email/newsletter-resource-email";
+import { getDownloadableResourceById } from "@/components/pages/af-emdr/resources/resourceContent";
 
 export const runtime = "nodejs";
-
-const RESOURCE_DOWNLOAD_URLS: Record<string, string> = {
-  "exclusive-downloadable-resource":
-    "/api/resources/exclusive-downloadable-resource",
-};
 
 function getClientIp(request: NextRequest) {
   return (
@@ -20,20 +17,6 @@ function getClientIp(request: NextRequest) {
     request.headers.get("x-real-ip") ||
     "unknown"
   );
-}
-
-function getResourceTag(resourceKey?: string) {
-  if (resourceKey === "exclusive-downloadable-resource") {
-    return "resource-exclusive-downloadable";
-  }
-
-  return null;
-}
-
-function getDownloadUrl(resourceKey?: string) {
-  if (!resourceKey) return undefined;
-
-  return RESOURCE_DOWNLOAD_URLS[resourceKey];
 }
 
 export async function POST(request: NextRequest) {
@@ -46,6 +29,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Datele introduse nu sunt valide.",
           errors: parsed.error.flatten().fieldErrors,
         },
@@ -55,14 +39,12 @@ export async function POST(request: NextRequest) {
 
     const data = parsed.data;
 
-    // Honeypot: fake success, no download URL.
     if (data.website) {
       return NextResponse.json({ ok: true });
     }
 
     const secondsSinceStart = (Date.now() - data.startedAt) / 1000;
 
-    // Bot speed trap: fake success, no download URL.
     if (secondsSinceStart < 3) {
       return NextResponse.json({ ok: true });
     }
@@ -75,24 +57,26 @@ export async function POST(request: NextRequest) {
     if (!isHuman) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Verificarea anti-spam nu a reușit. Te rog să reîncerci.",
+          errors: {
+            turnstileToken: ["Verificarea anti-spam nu a reușit."],
+          },
         },
         { status: 403 },
       );
     }
 
-    const resourceTag = getResourceTag(data.resourceKey);
-
-    const result = await subscribeToNewsletter({
+    const subscribeResult = await subscribeToNewsletter({
       email: data.email,
       firstName: data.firstName,
-      source: data.source || "Newsletter form",
-      tags: ["newsletter", resourceTag].filter(Boolean) as string[],
+      source: data.source,
     });
 
-    if (!result.ok) {
+    if (!subscribeResult.ok) {
       return NextResponse.json(
         {
+          ok: false,
           message:
             "Abonarea nu a putut fi finalizată. Te rog să încerci din nou.",
         },
@@ -100,15 +84,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const resource = data.resourceKey
+      ? getDownloadableResourceById(data.resourceKey)
+      : null;
+
+    if (data.resourceKey && !resource) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: "Resursa solicitată nu există.",
+        },
+        { status: 404 },
+      );
+    }
+
+    if (resource) {
+      const emailResult = await sendNewsletterResourceEmail({
+        to: data.email,
+        firstName: data.firstName,
+        resourceTitle: resource.title,
+        downloadPath: resource.downloadHref,
+      });
+
+      if (emailResult.error) {
+        console.error("Newsletter resource email error:", emailResult.error);
+
+        return NextResponse.json(
+          {
+            ok: false,
+            message:
+              "Abonarea a fost salvată, dar emailul cu resursa nu a putut fi trimis. Te rog să ne contactezi dacă problema persistă.",
+          },
+          { status: 500 },
+        );
+      }
+    }
+
     return NextResponse.json({
       ok: true,
-      downloadUrl: getDownloadUrl(data.resourceKey),
+      message: "Te-ai abonat cu succes.",
+      downloadUrl: resource?.downloadHref,
     });
   } catch (error) {
     console.error("Newsletter subscribe error:", error);
 
     return NextResponse.json(
       {
+        ok: false,
         message: "A apărut o problemă la abonare. Te rog să încerci din nou.",
       },
       { status: 500 },

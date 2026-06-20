@@ -8,7 +8,7 @@ export default function AfEmdrSection() {
   return (
     <Section
       background="cream"
-      spacing="md"
+      spacing="none"
       aria-labelledby="about-af-emdr-heading"
       className="relative overflow-hidden"
     >

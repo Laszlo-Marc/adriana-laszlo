@@ -9,7 +9,7 @@ import { afEmdrContent } from "./afEmdrContent";
 
 export default function AfEmdrDesktop() {
   return (
-    <div className="relative hidden lg:block">
+    <div className="relative hidden lg:block pt-20 my-20">
       <div className="grid grid-cols-[1fr_1fr]">
         <div className="relative flex items-center pl-20">
           <div className="relative z-10 max-w-3xl">

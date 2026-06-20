@@ -70,7 +70,7 @@ export default function HomeProblemsMobileStory() {
 
         <div className="relative z-10 mx-auto h-60 w-48 overflow-hidden shadow-[0_18px_55px_rgba(44,44,44,0.16)]">
           <Image
-            src="/home-page/problems.jpg"
+            src="/home-page/problema.jpg"
             alt="Moment de liniște și reflecție într-un proces terapeutic"
             fill
             sizes="(max-width: 1023px) 192px, 1px"

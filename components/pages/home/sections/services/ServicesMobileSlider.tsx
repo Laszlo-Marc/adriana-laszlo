@@ -117,12 +117,12 @@ export default function ServicesMobileSlider({
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-charcoal/35"
+                className="absolute inset-0 bg-charcoal/25"
               />
 
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-[72%] bg-linear-to-t from-charcoal via-charcoal/75 to-transparent"
+                className="absolute inset-x-0 bottom-0 h-[52%] bg-linear-to-t from-charcoal via-charcoal/65 to-transparent"
               />
 
               <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-10 pt-24">

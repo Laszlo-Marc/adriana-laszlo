@@ -217,16 +217,15 @@ export default function NewsletterPopup() {
                     Abonează-te și îți trimitem gratuit o resursă descărcabilă
                     care nu este disponibilă public pe site.
                   </Text>
-
                   <NewsletterForm
                     className="mt-4 sm:mt-6"
                     source="Newsletter popup"
-                    resourceKey="ghid-resurse-pozitive.pdf"
+                    resourceId="ghid-resurse-pozitive"
                     submitLabel="Primește resursa gratuită"
                     successTitle="Resursa este pregătită."
-                    successMessage="Mulțumim pentru abonare. Poți descărca materialul gratuit folosind butonul de mai jos."
+                    successMessage="Mulțumim pentru abonare. Ți-am trimis resursa și pe email. O poți descărca și folosind butonul de mai jos."
                     downloadLabel="Descarcă resursa gratuită"
-                    autoDownload={true}
+                    autoDownload={false}
                   />
                   <p className="mt-4 text-center text-xs leading-5 text-muted">
                     Fără mesaje dese. Fără presiune. Te poți dezabona oricând.

@@ -23,7 +23,7 @@ export const problemsContent = {
   ],
   closing: "În terapie, începem cu siguranță, ritm și înțelegere.",
   image: {
-    src: "/home-page/problems.jpg",
+    src: "/home-page/problema.jpg",
     alt: "Moment de liniște și reflecție într-un proces terapeutic",
   },
 } as const;

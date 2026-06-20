@@ -42,7 +42,7 @@ export default function EventsHero() {
       <Container
         size="wide"
         padding="default"
-        className="relative z-10 flex min-h-svh items-center justify-center py-28"
+        className="relative z-10 flex min-h-svh items-center justify-center py-18"
       >
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
           <Heading
@@ -50,9 +50,9 @@ export default function EventsHero() {
             as="h1"
             size="display"
             align="center"
-            className="text-[clamp(3.75rem,16vw,5.2rem)] text-charcoal lg:text-[clamp(6rem,8vw,7rem)]"
+            className="text-[clamp(3.75rem,16vw,5.2rem)] mb-10 lg:text-[clamp(6rem,8vw,7rem)]"
           >
-            <AccentText>Evenimente, grupuri și ateliere</AccentText>
+            <AccentText>Evenimente Grupuri Ateliere</AccentText>
           </Heading>
 
           <div className="mt-8 flex w-full max-w-xs flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center">
