@@ -17,9 +17,10 @@ type NewsletterResourceWelcomeEmailProps = {
 };
 
 const main = {
+  margin: 0,
   backgroundColor: "#fffaf2",
   fontFamily:
-    "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    "Poppins, Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   color: "#2c2c2c",
 };
 

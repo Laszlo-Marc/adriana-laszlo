@@ -1,12 +1,9 @@
-// components/newsletter/NewsletterForm.tsx
-
 "use client";
 
 import { type FormEvent, useEffect, useId, useRef, useState } from "react";
 import { CheckCircle2, Download, Loader2, Mail } from "lucide-react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
-import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 type NewsletterFormProps = {
@@ -25,6 +22,7 @@ type NewsletterFormProps = {
 type FieldErrors = Partial<
   Record<"firstName" | "email" | "turnstileToken", string[]>
 >;
+
 type SubscribeResponse = {
   ok?: boolean;
   message?: string;
@@ -34,7 +32,7 @@ type SubscribeResponse = {
 };
 
 const inputClassName =
-  "h-13 w-full rounded-2xl border border-charcoal/10 bg-white/70 px-4 text-sm text-charcoal outline-none transition-[border-color,background-color,box-shadow] placeholder:text-muted/55 focus:border-teal/60 focus:bg-white focus:ring-4 focus:ring-teal/10 sm:px-5";
+  "h-12 w-full rounded-2xl border border-charcoal/10 bg-white/70 px-4 text-sm text-charcoal outline-none transition-[border-color,background-color,box-shadow] placeholder:text-muted/55 focus:border-teal/60 focus:bg-white focus:ring-4 focus:ring-teal/10 sm:h-13 sm:px-5";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -137,7 +135,7 @@ export default function NewsletterForm({
       if (autoDownload && nextDownloadUrl) {
         window.setTimeout(() => {
           triggerDownload(nextDownloadUrl);
-        }, 350);
+        }, 450);
       }
 
       onSuccess?.();
@@ -159,7 +157,7 @@ export default function NewsletterForm({
     return (
       <div
         className={cn(
-          "rounded-3xl border border-teal/30 bg-teal/10 p-5 text-center",
+          "rounded-3xl border border-teal/30 bg-teal/10 p-4 text-center sm:p-5",
           className,
         )}
         role="status"
@@ -169,20 +167,21 @@ export default function NewsletterForm({
           className="mx-auto mb-3 h-8 w-8 text-muted-teal"
         />
 
-        <p className="font-display text-2xl text-charcoal">{successTitle}</p>
+        <p className="font-display text-xl text-charcoal sm:text-2xl">
+          {successTitle}
+        </p>
 
         <p className="mt-2 text-sm leading-6 text-muted">{successMessage}</p>
 
         {resolvedDownloadUrl ? (
-          <Button
+          <a
             href={resolvedDownloadUrl}
-            className="mt-5 w-full justify-center rounded-full bg-charcoal text-cream hover:bg-charcoal/90"
+            download
+            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-charcoal px-5 py-3 text-sm font-semibold text-cream transition hover:bg-charcoal/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
-            <span className="inline-flex items-center gap-2">
-              <Download aria-hidden="true" className="h-4 w-4" />
-              {downloadLabel}
-            </span>
-          </Button>
+            <Download aria-hidden="true" className="h-4 w-4" />
+            {downloadLabel}
+          </a>
         ) : null}
       </div>
     );
@@ -191,7 +190,7 @@ export default function NewsletterForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn("space-y-4", className)}
+      className={cn("space-y-3.5 sm:space-y-4", className)}
       noValidate
     >
       <input
@@ -203,11 +202,11 @@ export default function NewsletterForm({
         className="hidden"
       />
 
-      <div className="grid gap-4">
+      <div className="grid gap-3.5 sm:gap-4">
         <div>
           <label
             htmlFor={`${formId}-first-name`}
-            className="mb-2 block text-sm font-medium text-charcoal"
+            className="mb-1.5 block text-sm font-medium text-charcoal sm:mb-2"
           >
             Prenume
           </label>
@@ -239,7 +238,7 @@ export default function NewsletterForm({
         <div>
           <label
             htmlFor={`${formId}-email`}
-            className="mb-2 block text-sm font-medium text-charcoal"
+            className="mb-1.5 block text-sm font-medium text-charcoal sm:mb-2"
           >
             Email
           </label>
@@ -271,62 +270,69 @@ export default function NewsletterForm({
       </div>
 
       {siteKey ? (
-        <div className="rounded-[1.25rem] border border-charcoal/10 bg-white/60 p-2 shadow-[0_10px_30px_rgba(44,44,44,0.04)]">
-          <div className="overflow-hidden rounded-2xl">
-            <Turnstile
-              ref={turnstileRef}
-              siteKey={siteKey}
-              options={{
-                theme: "light",
-                size: "flexible",
-                language: "ro",
-              }}
-              onSuccess={setTurnstileToken}
-              onExpire={() => setTurnstileToken("")}
-              onError={() => setTurnstileToken("")}
-            />
-          </div>
+        <div className="overflow-hidden rounded-2xl border border-charcoal/10 bg-white/70 p-1">
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={siteKey}
+            onSuccess={(token) => {
+              setTurnstileToken(token);
 
-          <FieldError message={fieldErrors.turnstileToken?.[0]} />
+              if (fieldErrors.turnstileToken) {
+                setFieldErrors((prev) => ({
+                  ...prev,
+                  turnstileToken: undefined,
+                }));
+              }
+            }}
+            onError={() => setTurnstileToken("")}
+            onExpire={() => setTurnstileToken("")}
+            options={{
+              theme: "light",
+              size: "normal",
+            }}
+          />
         </div>
       ) : null}
 
-      <Button
-        type="submit"
-        className="min-h-13 w-full justify-center rounded-full bg-charcoal text-cream hover:bg-charcoal/90 disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
-      >
-        {isSubmitting ? (
-          <span className="inline-flex items-center gap-2">
-            <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
-            Se trimite...
-          </span>
-        ) : (
-          <span className="inline-flex items-center gap-2">
-            <Mail aria-hidden="true" className="h-4 w-4" />
-            {submitLabel}
-          </span>
-        )}
-      </Button>
+      <FieldError message={fieldErrors.turnstileToken?.[0]} />
 
       {error ? (
-        <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
+        <p
+          className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-700"
+          role="alert"
+        >
           {error}
         </p>
       ) : null}
 
-      <div className="rounded-2xl border border-charcoal/8 bg-white/45 px-4 py-3">
-        <p className="text-center text-[11px] leading-4 text-muted sm:text-xs sm:leading-5">
-          Prin abonare accepți{" "}
-          <a
-            href="/politica-de-confidentialitate"
-            className="font-medium text-charcoal underline decoration-charcoal/25 underline-offset-4 transition hover:text-teal hover:decoration-teal/40"
-          >
-            politica de confidențialitate
-          </a>
-          .
-        </p>
-      </div>
+      <button
+        type="submit"
+        disabled={isSubmitting || Boolean(siteKey && !turnstileToken)}
+        className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-charcoal px-5 text-xs font-semibold uppercase tracking-[0.16em] text-cream transition hover:bg-charcoal/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:cursor-not-allowed disabled:opacity-55 sm:h-13 sm:text-sm"
+      >
+        {isSubmitting ? (
+          <>
+            <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
+            Se trimite...
+          </>
+        ) : (
+          <>
+            <Mail aria-hidden="true" className="h-4 w-4" />
+            {submitLabel}
+          </>
+        )}
+      </button>
+
+      <p className="rounded-full border border-charcoal/8 bg-white/60 px-4 py-2 text-center text-[11px] leading-5 text-muted sm:text-xs">
+        Prin abonare accepți{" "}
+        <a
+          href="/politica-de-confidentialitate"
+          className="font-medium text-charcoal underline underline-offset-4"
+        >
+          politica de confidențialitate
+        </a>
+        .
+      </p>
     </form>
   );
 }

@@ -1,11 +1,10 @@
-// app/api/resources/download/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 
 import {
   sendResourceDownloadEmail,
   sendResourceDownloadNotification,
 } from "@/lib/email/resource-download-email";
+import { subscribeToNewsletter } from "@/lib/newsletter/mailchimp";
 import { getDownloadableResourceById } from "@/lib/resources/downloadable-resources";
 import { verifyTurnstileToken } from "@/lib/security/turnstile";
 import { resourceDownloadSchema } from "@/lib/validator/resources-download";
@@ -40,12 +39,10 @@ export async function POST(request: NextRequest) {
 
     const data = parsed.data;
 
-    // Honeypot trap.
     if (data.website) {
       return NextResponse.json({ ok: true });
     }
 
-    // Timing trap.
     const secondsSinceStart = (Date.now() - data.startedAt) / 1000;
 
     if (secondsSinceStart < 3) {
@@ -69,20 +66,9 @@ export async function POST(request: NextRequest) {
     const resource = getDownloadableResourceById(data.resourceId);
 
     if (!resource) {
-      console.error("Resource download error: resource not found", {
-        selectedResourceId: data.resourceId,
-      });
-
       return NextResponse.json(
         {
           message: "Resursa solicitată nu există.",
-          ...(process.env.NODE_ENV === "development"
-            ? {
-                debug: {
-                  selectedResourceId: data.resourceId,
-                },
-              }
-            : {}),
         },
         { status: 404 },
       );
@@ -103,6 +89,22 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 },
       );
+    }
+
+    if (data.newsletterConsent) {
+      const newsletterResult = await subscribeToNewsletter({
+        email: data.email,
+        firstName: data.name,
+        source: `Resource download: ${resource.id}`,
+      });
+
+      if (!newsletterResult.ok) {
+        console.error("Newsletter subscribe from resource form failed:", {
+          resourceId: resource.id,
+          email: data.email,
+          message: newsletterResult.message,
+        });
+      }
     }
 
     const notificationResult = await sendResourceDownloadNotification({

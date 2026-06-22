@@ -1,5 +1,3 @@
-// components/newsletter/NewsletterCTASection.tsx
-
 import Image from "next/image";
 
 import Container from "@/components/ui/Container";
@@ -35,7 +33,6 @@ export default function NewsletterCTASection({
     >
       <Container size="wide" className="relative z-10">
         <div className="mx-auto max-w-5xl">
-          {/* Top centered intro */}
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs uppercase tracking-[0.26em] text-muted">
               {eyebrow}
@@ -54,9 +51,7 @@ export default function NewsletterCTASection({
             </Text>
           </div>
 
-          {/* Bottom split area */}
           <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-6">
-            {/* Left: form only */}
             <div className="rounded-4xl border border-white/70 bg-white/82 p-4 shadow-[0_18px_60px_rgba(44,44,44,0.08)] backdrop-blur-sm sm:p-6">
               <NewsletterForm
                 className="mt-4 sm:mt-6"
@@ -66,12 +61,11 @@ export default function NewsletterCTASection({
                 successTitle="Resursa este pregătită."
                 successMessage="Ți-am trimis resursa gratuită pe email. O poți descărca și folosind butonul de mai jos."
                 downloadLabel="Descarcă resursa gratuită"
+                autoDownload={false}
               />
             </div>
 
-            {/* Right: helper content + decoration */}
             <div className="relative hidden overflow-hidden rounded-4xl border border-white/50 bg-charcoal px-5 py-6 text-cream shadow-[0_18px_60px_rgba(44,44,44,0.10)] sm:px-7 sm:py-8 md:block">
-              {/* decorations */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0"

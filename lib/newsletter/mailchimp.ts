@@ -1,25 +1,14 @@
-// lib/newsletter/mailchimp.ts
-
 import crypto from "node:crypto";
 
-type MailchimpSubscribeInput = {
+type SubscribeToNewsletterInput = {
   email: string;
   firstName?: string;
   source?: string;
-  tags?: string[];
 };
 
-type MailchimpMergeFields = {
-  FNAME?: string;
-  SOURCE?: string;
-};
-
-type MailchimpRequestBody = {
-  email_address: string;
-  status_if_new: "subscribed";
-  status?: "subscribed";
-  merge_fields?: MailchimpMergeFields;
-  tags?: string[];
+type SubscribeToNewsletterResult = {
+  ok: boolean;
+  message?: string;
 };
 
 function getMailchimpConfig() {
@@ -28,7 +17,7 @@ function getMailchimpConfig() {
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 
   if (!apiKey || !serverPrefix || !audienceId) {
-    throw new Error("Missing Mailchimp environment variables");
+    throw new Error("Missing Mailchimp environment variables.");
   }
 
   return {
@@ -41,57 +30,96 @@ function getMailchimpConfig() {
 function getSubscriberHash(email: string) {
   return crypto
     .createHash("md5")
-    .update(email.toLowerCase().trim())
+    .update(email.trim().toLowerCase())
     .digest("hex");
+}
+
+function getAuthHeader(apiKey: string) {
+  return `Basic ${Buffer.from(`anystring:${apiKey}`).toString("base64")}`;
 }
 
 export async function subscribeToNewsletter({
   email,
   firstName,
-  source = "Website",
-  tags = [],
-}: MailchimpSubscribeInput) {
-  const { apiKey, serverPrefix, audienceId } = getMailchimpConfig();
+  source,
+}: SubscribeToNewsletterInput): Promise<SubscribeToNewsletterResult> {
+  try {
+    const { apiKey, serverPrefix, audienceId } = getMailchimpConfig();
 
-  const subscriberHash = getSubscriberHash(email);
+    const normalizedEmail = email.trim().toLowerCase();
+    const subscriberHash = getSubscriberHash(normalizedEmail);
+    const authHeader = getAuthHeader(apiKey);
 
-  const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}`;
+    const memberResponse = await fetch(
+      `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: authHeader,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email_address: normalizedEmail,
+          status_if_new: "subscribed",
+          status: "subscribed",
+          merge_fields: {
+            FNAME: firstName?.trim() || "",
+          },
+        }),
+      },
+    );
 
-  const body: MailchimpRequestBody = {
-    email_address: email,
-    status_if_new: "subscribed",
-    status: "subscribed",
-    merge_fields: {
-      ...(firstName ? { FNAME: firstName } : {}),
-      SOURCE: source,
-    },
-    tags,
-  };
+    if (!memberResponse.ok) {
+      const errorBody = await memberResponse.text();
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString(
-        "base64",
-      )}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+      console.error("Mailchimp member upsert failed:", {
+        status: memberResponse.status,
+        body: errorBody,
+      });
 
-  const result = await response.json();
+      return {
+        ok: false,
+        message: "Abonarea la newsletter nu a putut fi finalizată.",
+      };
+    }
 
-  if (!response.ok) {
-    console.error("Mailchimp subscribe error:", result);
+    if (source) {
+      const tagResponse = await fetch(
+        `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}/tags`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: authHeader,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            tags: [
+              {
+                name: source,
+                status: "active",
+              },
+            ],
+          }),
+        },
+      );
+
+      if (!tagResponse.ok) {
+        const errorBody = await tagResponse.text();
+
+        console.error("Mailchimp tag update failed:", {
+          status: tagResponse.status,
+          body: errorBody,
+        });
+      }
+    }
+
+    return { ok: true };
+  } catch (error) {
+    console.error("Mailchimp subscribe error:", error);
 
     return {
       ok: false,
-      error: result,
+      message: "Abonarea la newsletter nu a putut fi finalizată.",
     };
   }
-
-  return {
-    ok: true,
-    data: result,
-  };
 }

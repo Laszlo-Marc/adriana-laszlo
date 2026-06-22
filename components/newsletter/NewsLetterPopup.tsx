@@ -73,6 +73,7 @@ export default function NewsletterPopup() {
   }, [isVisible]);
 
   if (!isVisible) return null;
+
   return (
     <div
       role="dialog"
@@ -80,9 +81,8 @@ export default function NewsletterPopup() {
       aria-labelledby="newsletter-popup-title"
       className="fixed inset-0 z-160 bg-charcoal/60 backdrop-blur-[6px]"
     >
-      <div className="flex min-h-svh items-center justify-center p-2 sm:p-6">
-        <div className="relative h-[calc(100svh-1rem)] w-full max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-charcoal text-cream shadow-[0_40px_120px_rgba(20,20,20,0.35)] sm:h-auto sm:max-h-[calc(100svh-3rem)] sm:rounded-4xl lg:min-h-[min(82svh,760px)]">
-          {/* Decorative layer */}
+      <div className="flex min-h-svh items-end justify-center p-3 sm:items-center sm:p-6">
+        <div className="relative max-h-[calc(100svh-1.5rem)] w-full max-w-6xl overflow-y-auto rounded-[1.75rem] border border-white/10 bg-charcoal text-cream shadow-[0_40px_120px_rgba(20,20,20,0.35)] sm:max-h-[calc(100svh-3rem)] sm:rounded-4xl">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
@@ -131,9 +131,8 @@ export default function NewsletterPopup() {
             <X aria-hidden="true" className="h-5 w-5" strokeWidth={1.9} />
           </button>
 
-          <div className="relative grid h-full lg:grid-cols-[1.05fr_0.95fr]">
-            {/* Left editorial panel - desktop only */}
-            <div className="relative hidden min-h-0 overflow-hidden px-5 pb-4 pt-6 sm:px-10 sm:py-10 lg:block lg:min-h-[min(82svh,760px)] lg:px-14 lg:py-14">
+          <div className="relative grid lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="relative hidden overflow-hidden px-5 pb-4 pt-6 sm:px-10 sm:py-10 lg:block lg:min-h-[min(82svh,760px)] lg:px-14 lg:py-14">
               <p className="text-xs uppercase tracking-[0.28em] text-cream/60">
                 Newsletter
               </p>
@@ -183,18 +182,15 @@ export default function NewsletterPopup() {
                 </div>
               </div>
 
-              <div className="mt-8">
-                <p className="text-sm italic text-cream/55">
-                  Un spațiu blând și bine structurat pentru a rămâne aproape de
-                  resursele care te pot susține.
-                </p>
-              </div>
+              <p className="mt-8 text-sm italic text-cream/55">
+                Un spațiu blând și bine structurat pentru a rămâne aproape de
+                resursele care te pot susține.
+              </p>
             </div>
 
-            {/* Form panel */}
-            <div className="relative min-h-full bg-cream/95 p-4 text-charcoal sm:p-8 lg:min-h-[min(82svh,760px)] lg:border-l lg:border-white/10 lg:bg-white/94 lg:p-10">
-              <div className="mx-auto flex h-full w-full max-w-xl items-center">
-                <div className="w-full rounded-3xl border border-charcoal/8 bg-white/70 p-5 shadow-[0_18px_50px_rgba(44,44,44,0.06)] sm:rounded-[1.75rem] sm:bg-cream/72 sm:p-7">
+            <div className="relative bg-cream/95 p-3.5 pt-14 text-charcoal sm:p-8 lg:min-h-[min(82svh,760px)] lg:border-l lg:border-white/10 lg:bg-white/94 lg:p-10">
+              <div className="mx-auto flex w-full max-w-xl items-center lg:h-full">
+                <div className="w-full rounded-3xl border border-charcoal/8 bg-white/78 p-4 shadow-[0_18px_50px_rgba(44,44,44,0.06)] sm:rounded-[1.75rem] sm:bg-cream/72 sm:p-7">
                   <p className="text-center text-[10px] uppercase tracking-[0.24em] text-muted sm:text-xs">
                     Resursă gratuită
                   </p>
@@ -203,7 +199,7 @@ export default function NewsletterPopup() {
                     id="newsletter-popup-title"
                     as="h2"
                     size="h3"
-                    className="mt-3 text-[1.5rem] leading-tight sm:text-[2rem]"
+                    className="mt-2 text-[1.35rem] leading-tight sm:mt-3 sm:text-[2rem]"
                     align="center"
                   >
                     Alătură-te comunității.
@@ -211,23 +207,25 @@ export default function NewsletterPopup() {
 
                   <Text
                     color="muted"
-                    className="mt-3 text-sm leading-6 sm:text-base"
+                    className="mt-2 text-sm leading-6 sm:mt-3 sm:text-base"
                     align="center"
                   >
                     Abonează-te și îți trimitem gratuit o resursă descărcabilă
                     care nu este disponibilă public pe site.
                   </Text>
+
                   <NewsletterForm
-                    className="mt-4 sm:mt-6"
+                    className="mt-3.5 sm:mt-6"
                     source="Newsletter popup"
                     resourceId="ghid-resurse-pozitive"
                     submitLabel="Primește resursa gratuită"
                     successTitle="Resursa este pregătită."
                     successMessage="Mulțumim pentru abonare. Ți-am trimis resursa și pe email. O poți descărca și folosind butonul de mai jos."
                     downloadLabel="Descarcă resursa gratuită"
-                    autoDownload={false}
+                    autoDownload={true}
                   />
-                  <p className="mt-4 text-center text-xs leading-5 text-muted">
+
+                  <p className="mt-3 text-center text-xs leading-5 text-muted sm:mt-4">
                     Fără mesaje dese. Fără presiune. Te poți dezabona oricând.
                   </p>
                 </div>

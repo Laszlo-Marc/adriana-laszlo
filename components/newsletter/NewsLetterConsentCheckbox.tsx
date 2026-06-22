@@ -1,5 +1,3 @@
-// components/newsletter/NewsletterConsentCheckbox.tsx
-
 type NewsletterConsentCheckboxProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
