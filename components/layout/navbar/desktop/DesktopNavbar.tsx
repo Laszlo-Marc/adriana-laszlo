@@ -3,12 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Mail, Menu, MessageCircle, X } from "lucide-react";
-
-import Button from "@/components/ui/Button";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
-import { NavbarItem, WHATSAPP_HREF } from "../../navigation-data";
+import { NavbarItem } from "../../navigation-data";
 
 type DesktopNavbarProps = {
   isOpen: boolean;

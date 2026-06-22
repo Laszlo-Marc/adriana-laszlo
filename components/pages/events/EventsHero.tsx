@@ -1,9 +1,10 @@
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
-import Text from "@/components/ui/Text";
+
 import Section from "@/components/ui/Section";
 import AccentText from "@/components/ui/AccentText";
+import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export default function EventsHero() {
   return (
@@ -13,19 +14,15 @@ export default function EventsHero() {
       aria-labelledby="events-hero-title"
       className="relative min-h-svh"
     >
-      <video
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/events/events-hero-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="/events/events-bg.mp4" type="video/mp4" />
-        Browserul tău nu suportă redarea video.
-      </video>
+      <BackgroundVideo
+        src="/events/events-bg.mp4"
+        posterSrc="/events/events-hero-poster.jpg"
+        priority
+        fetchPriority="high"
+        className="z-0"
+        imageClassName="object-cover object-center"
+        videoClassName="object-cover object-center"
+      />
 
       <div aria-hidden="true" className="absolute inset-0 bg-cream/40" />
 
@@ -44,15 +41,15 @@ export default function EventsHero() {
         padding="default"
         className="relative z-10 flex min-h-svh items-center justify-center py-18"
       >
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
+        <div className="mx-auto flex  flex-col items-center justify-center text-center">
           <Heading
             id="events-hero-title"
             as="h1"
             size="display"
             align="center"
-            className="text-[clamp(3.75rem,16vw,5.2rem)] mb-10 lg:text-[clamp(6rem,8vw,7rem)]"
+            className="text-[clamp(3.75rem,16vw,5.2rem)] mb-10 lg:text-[clamp(6rem,8vw,6rem)]"
           >
-            <AccentText>Evenimente Grupuri Ateliere</AccentText>
+            <AccentText>Evenimente. Grupuri. Ateliere.</AccentText>
           </Heading>
 
           <div className="mt-8 flex w-full max-w-xs flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center">

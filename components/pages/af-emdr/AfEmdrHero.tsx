@@ -1,6 +1,5 @@
-import Image from "next/image";
-
 import Button from "@/components/ui/Button";
+import BackgroundVideo from "@/components/ui/BackgroundVideo";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
@@ -17,27 +16,14 @@ export default function AfEmdrHero() {
       aria-labelledby="af-emdr-hero-title"
       className="relative isolate min-h-svh overflow-hidden"
     >
-      <Image
-        src={media.posterSrc}
-        alt=""
-        aria-hidden="true"
-        fill
+      <BackgroundVideo
+        src={media.videoSrc}
+        posterSrc={media.posterSrc}
         priority
         fetchPriority="high"
-        sizes="100vw"
-        className="z-0 object-cover object-center"
-      />
-
-      <video
-        className="absolute inset-0 z-[1] size-full object-cover object-center"
-        src={media.videoSrc}
-        poster={media.posterSrc}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
+        className="z-0"
+        imageClassName="object-cover object-center"
+        videoClassName="object-cover object-center"
       />
 
       <div aria-hidden="true" className="absolute inset-0 z-10 bg-cream/20" />

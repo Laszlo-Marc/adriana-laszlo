@@ -39,16 +39,15 @@ export default function AboutTimelineMobile() {
             Parcursul meu în psihoterapie
           </Heading>
         </div>
-
-        <div className="-mx-4 mt-10 overflow-x-auto px-4 pb-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex snap-x snap-mandatory gap-4">
+        <div className="-mx-4 mt-10 overflow-x-auto px-4 pb-3 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex snap-x snap-mandatory items-start gap-4">
             {storyItems.map((item, index) => {
               const isActive = activeIndex === index;
 
               return (
                 <div
                   key={`${item.year}-${item.title}`}
-                  className="min-w-[82%] max-w-88 snap-center"
+                  className="min-w-[82%] max-w-88 shrink-0 snap-center"
                 >
                   <StoryCard
                     item={item}
@@ -68,7 +67,7 @@ export default function AboutTimelineMobile() {
           </div>
         </div>
 
-        <div className="mt-1 flex justify-center gap-2">
+        <div className="flex justify-center gap-2">
           {storyItems.map((item, index) => (
             <span
               key={`${item.year}-indicator`}

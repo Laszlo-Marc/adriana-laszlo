@@ -190,7 +190,7 @@ export const afEmdrSpecialistContent = {
       alt: "Detaliu calm din cabinet, într-o lumină caldă și sigură",
     },
     portrait: {
-      src: "/adriana/adriana3.webp",
+      src: "/adriana/adriana10.webp",
       alt: "Adriana Laszlo, psihoterapeut specializat în AF-EMDR",
     },
   },

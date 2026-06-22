@@ -46,10 +46,6 @@ export default function ServicesHero() {
             >
               Programează o discuție
             </Button>
-
-            <Button href="#af-emdr" variant="purple" size="lg">
-              Află despre AF-EMDR
-            </Button>
           </div>
         </div>
       </Container>

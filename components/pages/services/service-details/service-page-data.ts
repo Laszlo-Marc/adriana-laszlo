@@ -52,8 +52,8 @@ export const serviceDetails = [
     imagePosition: "object-center",
 
     cta: {
-      label: "Programează o discuție",
-      href: "/contact",
+      label: "Află mai multe",
+      href: "/af-emdr",
       variant: "primary",
     },
   },

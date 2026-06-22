@@ -9,8 +9,6 @@ import Button from "../ui/Button";
 import {
   LOCATION_LABEL,
   LOCATION_TEXT,
-  PHONE_DISPLAY,
-  PHONE_HREF,
   TRAUMA_EMAIL_HREF,
 } from "./navigation-data";
 import { navItems } from "./navigation-data";
@@ -42,7 +40,7 @@ export default function Footer() {
         <div className="grid gap-10 xl:grid-cols-[1.15fr_0.9fr_0.8fr_1fr] xl:items-start xl:gap-10">
           {/* Brand block */}
           <div className="mx-auto flex max-w-sm flex-col items-center text-center xl:mx-0 xl:items-start xl:text-left">
-            <Logo size="md" />
+            <Logo size="lg" />
 
             <Text
               className="mt-5 max-w-[34ch] text-sm leading-6 md:text-base md:text-start"

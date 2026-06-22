@@ -5,6 +5,7 @@ import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Button from "@/components/ui/Button";
 import AccentText from "@/components/ui/AccentText";
+import Text from "@/components/ui/Text";
 
 import { socialReels } from "./socialContent";
 
@@ -29,9 +30,19 @@ export default function BlogSocialSection() {
           <Heading id="blog-social-heading" as="h2" size="h2" align="center">
             Materiale video scurte pe Instagram
           </Heading>
+
+          <Text
+            as="p"
+            size="base"
+            align="center"
+            className="mx-auto mt-5 max-w-xl text-pretty leading-7 text-charcoal/65"
+          >
+            Fragmente video despre traumă, atașament și resurse interioare,
+            explicate într-un mod accesibil.
+          </Text>
         </div>
 
-        <div className="-mx-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-6 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-4 overflow-x-auto px-4 pb-3 scrollbar-none sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-6 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex snap-x snap-mandatory gap-4 sm:contents">
             {socialReels.map((reel) => (
               <ReelCard key={reel.id} reel={reel} />
@@ -60,8 +71,8 @@ type SocialReel = (typeof socialReels)[number];
 
 function ReelCard({ reel }: { reel: SocialReel }) {
   return (
-    <article className="w-[72vw] max-w-[18rem] shrink-0 snap-center overflow-hidden rounded-[1.75rem] border border-white/70 bg-white shadow-[0_18px_50px_rgba(44,44,44,0.08)] sm:w-auto sm:max-w-none sm:shrink sm:snap-none">
-      <div className="relative aspect-9/13 overflow-hidden bg-charcoal sm:aspect-9/14 lg:aspect-9/13">
+    <article className="w-[72vw] max-w-68 shrink-0 snap-center sm:w-auto sm:max-w-none sm:shrink sm:snap-none">
+      <div className="relative aspect-9/14 overflow-hidden rounded-4xl bg-charcoal ring-1 ring-charcoal/10">
         <video
           className="h-full w-full object-cover"
           src={reel.videoSrc}
@@ -72,16 +83,6 @@ function ReelCard({ reel }: { reel: SocialReel }) {
           preload="none"
           aria-label={reel.title}
         />
-      </div>
-
-      <div className="px-4 pb-5 pt-4">
-        <h3 className="font-display text-xl leading-tight text-charcoal">
-          {reel.title}
-        </h3>
-
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">
-          {reel.description}
-        </p>
       </div>
     </article>
   );

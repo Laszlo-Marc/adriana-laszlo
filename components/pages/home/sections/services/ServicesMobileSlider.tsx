@@ -89,21 +89,20 @@ export default function ServicesMobileSlider({
   if (!services.length) return null;
 
   return (
-    <Section
+    <section
       aria-labelledby="mobile-services-slider-title"
-      className="relative min-h-svh lg:hidden"
-      spacing="none"
+      className="relative h-[100dvh] min-h-[100svh] overflow-hidden lg:hidden"
     >
       <h2 id="mobile-services-slider-title" className="sr-only">
         Servicii de psihoterapie
       </h2>
 
-      <div ref={emblaRef} className="h-svh overflow-hidden">
+      <div ref={emblaRef} className="h-[100dvh] min-h-[100svh] overflow-hidden">
         <div className="flex h-full touch-pan-y">
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="relative h-svh min-w-0 flex-[0_0_100%] overflow-hidden"
+              className="relative h-[100dvh] min-h-[100svh] min-w-0 flex-[0_0_100%] overflow-hidden"
               aria-label={service.title}
             >
               <Image
@@ -139,7 +138,7 @@ export default function ServicesMobileSlider({
                   <Heading
                     as="h3"
                     size="h3"
-                    className="max-w-[11ch] text-balance  leading-[0.95] text-white"
+                    className="max-w-[11ch] text-balance leading-[0.95] text-white"
                   >
                     {service.title}
                   </Heading>
@@ -148,8 +147,8 @@ export default function ServicesMobileSlider({
                     {service.description}
                   </Text>
 
-                  <Button className="mt-7">
-                    <Link href={service.href}>{service.ctaLabel}</Link>
+                  <Button href={service.href} className="mt-7">
+                    {service.ctaLabel}
                   </Button>
                 </div>
               </div>
@@ -206,6 +205,6 @@ export default function ServicesMobileSlider({
           />
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

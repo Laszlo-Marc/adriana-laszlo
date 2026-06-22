@@ -1,7 +1,12 @@
+"use client";
+
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
+import { cn } from "@/lib/utils";
 
 type SuitabilityPattern = {
   id: string;
@@ -22,6 +27,71 @@ export default function AfEmdrSuitabilityMobile({
   patterns,
   insight,
 }: AfEmdrSuitabilityMobileProps) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const updateActiveIndex = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const cards = Array.from(
+      container.querySelectorAll<HTMLElement>("[data-suitability-card-index]"),
+    );
+
+    if (!cards.length) return;
+
+    const containerCenter = container.scrollLeft + container.clientWidth / 2;
+
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    cards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const distance = Math.abs(containerCenter - cardCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setActiveIndex(closestIndex);
+  }, []);
+
+  const scrollToCard = useCallback(
+    (index: number) => {
+      const container = scrollRef.current;
+      if (!container) return;
+
+      const nextIndex = Math.min(Math.max(index, 0), patterns.length - 1);
+
+      const card = container.querySelector<HTMLElement>(
+        `[data-suitability-card-index="${nextIndex}"]`,
+      );
+
+      card?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+
+      setActiveIndex(nextIndex);
+    },
+    [patterns.length],
+  );
+
+  const scrollByDirection = useCallback(
+    (direction: "prev" | "next") => {
+      const nextIndex =
+        direction === "next"
+          ? Math.min(activeIndex + 1, patterns.length - 1)
+          : Math.max(activeIndex - 1, 0);
+
+      scrollToCard(nextIndex);
+    },
+    [activeIndex, patterns.length, scrollToCard],
+  );
+
   if (!patterns.length) return null;
 
   return (
@@ -36,11 +106,16 @@ export default function AfEmdrSuitabilityMobile({
         </p>
       </div>
 
-      <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-5 [scrollbar-width:none] sm:-mx-6 sm:px-6 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {patterns.map((pattern) => (
+      <div
+        ref={scrollRef}
+        onScroll={updateActiveIndex}
+        className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-5 scrollbar-none sm:-mx-6 sm:px-6 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {patterns.map((pattern, index) => (
           <article
             key={pattern.id}
-            className="relative min-w-[88%] snap-start overflow-hidden rounded-4xl sm:min-w-[72%]"
+            data-suitability-card-index={index}
+            className="relative min-w-[88%] snap-center overflow-hidden rounded-4xl sm:min-w-[72%]"
           >
             <div className="relative h-108">
               <Image
@@ -87,15 +162,43 @@ export default function AfEmdrSuitabilityMobile({
         ))}
       </div>
 
-      {insight ? (
-        <Text
-          size="sm"
-          align="center"
-          className="mx-auto mt-3 max-w-sm text-pretty text-charcoal/62"
+      <div className="mt-3 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={() => scrollByDirection("prev")}
+          disabled={activeIndex === 0}
+          aria-label="Tiparul anterior"
+          className="inline-flex size-12 items-center justify-center rounded-full border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm transition hover:bg-white disabled:pointer-events-none disabled:opacity-35"
         >
-          {insight}
-        </Text>
-      ) : null}
+          <ArrowLeft className="size-4" aria-hidden="true" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {patterns.map((pattern, index) => (
+            <button
+              key={pattern.id}
+              type="button"
+              onClick={() => scrollToCard(index)}
+              aria-label={`Mergi la tiparul ${index + 1}`}
+              aria-current={activeIndex === index ? "true" : undefined}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                activeIndex === index ? "w-8 bg-gold" : "w-2 bg-charcoal/20",
+              )}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => scrollByDirection("next")}
+          disabled={activeIndex === patterns.length - 1}
+          aria-label="Tiparul următor"
+          className="inline-flex size-12 items-center justify-center rounded-full border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm transition hover:bg-white disabled:pointer-events-none disabled:opacity-35"
+        >
+          <ArrowRight className="size-4" aria-hidden="true" />
+        </button>
+      </div>
     </div>
   );
 }

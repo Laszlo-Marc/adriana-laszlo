@@ -12,20 +12,20 @@ export const socialReels: SocialReel[] = [
     title: "Ce înseamna reprocesarea traumei în EMDR?",
     description: "Semnele subtile prin care trecutul rămâne prezent.",
     videoSrc: "/blogs/reels/reel1.mp4",
-    posterSrc: "/images/reels/trauma-relationala.jpg",
+    posterSrc: "/poster-reels.png",
   },
   {
     id: "limite-sanatoase",
     title: "De ce avem nevoie de resurse pozitive?",
     description: "Cum începi să spui nu fără să te pierzi pe tine.",
     videoSrc: "/blogs/reels/reel2.mp4",
-    posterSrc: "/images/reels/limite-sanatoase.jpg",
+    posterSrc: "/poster-reels.png",
   },
   {
     id: "atasament",
     title: "Atașament și siguranță",
     description: "De ce apropierea poate activa frică, nu doar iubire.",
     videoSrc: "/blogs/reels/reel-3.mp4",
-    posterSrc: "/images/reels/atasament-si-siguranta.jpg",
+    posterSrc: "/poster-reels.png",
   },
 ];

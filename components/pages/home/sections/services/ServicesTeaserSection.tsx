@@ -1,6 +1,7 @@
 import Section from "@/components/ui/Section";
 import ServicesTeaserDesktop from "./ServiceTeaserDesktop";
 import ServicesTeaserMobile from "./ServiceTeaserMobile";
+
 export default function ServicesTeaserSection() {
   return (
     <Section

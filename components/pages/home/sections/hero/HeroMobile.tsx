@@ -6,6 +6,7 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 import Heading from "@/components/ui/Heading";
+import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export default function HeroMobile() {
   return (
@@ -17,23 +18,13 @@ export default function HeroMobile() {
       allowOverflow
     >
       <Container size="full" padding="none">
-        <div className="relative min-h-svh overflow-hidden flex-col items-center bg-cream">
-          <video
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/home-page/hero/hero-mobile-poster.jpg"
-            aria-hidden="true"
-          >
-            <source src="/home-page/hero/hero-video.mp4" type="video/mp4" />
-            <source
-              src="/home-page/hero/hero-mobile-video.mp4"
-              type="video/mp4"
-            />
-          </video>
+        <div className="relative min-h-svh overflow-hidden bg-cream">
+          <BackgroundVideo
+            src="/home-page/hero/hero-video.mp4"
+            posterSrc="/home-page/hero/right-hero.jpg"
+            priority
+            fetchPriority="high"
+          />
 
           <div
             aria-hidden="true"
@@ -95,6 +86,7 @@ export default function HeroMobile() {
                   Programează o discuție
                 </Button>
               </div>
+
               <div className="mx-auto mt-6 px-5 py-4">
                 <Text
                   as="p"
@@ -110,7 +102,7 @@ export default function HeroMobile() {
                 <div className="text-center">
                   <AccentText
                     as="span"
-                    className="block text-[2.35rem] mb-5 leading-[0.9] text-charcoal"
+                    className="mb-5 block text-[2.35rem] leading-[0.9] text-charcoal"
                   >
                     Attachment-Focused
                   </AccentText>

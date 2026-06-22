@@ -19,14 +19,14 @@ const textSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
 
 const circleSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
   sm: "h-12 w-12 md:h-14 md:w-14",
-  md: "h-14 w-14 md:h-16 md:w-16",
-  lg: "h-16 w-16 md:h-20 md:w-20",
+  md: "h-18 w-18 md:h-18 md:w-18",
+  lg: "h-20 w-20 md:h-24 md:w-24",
 };
 
 const imageSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
   sm: "h-9 w-9 md:h-10 md:w-10",
-  md: "h-10 w-10 md:h-12 md:w-12",
-  lg: "h-12 w-12 md:h-14 md:w-14",
+  md: "h-14 w-14 md:h-16 md:w-16",
+  lg: "h-16 w-16 md:h-18 md:w-18",
 };
 
 export default function Logo({
