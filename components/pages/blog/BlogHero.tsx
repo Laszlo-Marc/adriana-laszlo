@@ -3,7 +3,17 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
-import AccentText from "@/components/ui/AccentText";
+
+const heroImages = {
+  mobile: {
+    src: "/blogs/blog-mobile.jpg",
+    alt: "Spațiu calm de reflecție, cu lumină naturală",
+  },
+  desktop: {
+    src: "/blogs/hero-desktop.jpg",
+    alt: "Spațiu calm de reflecție, cu lumină naturală",
+  },
+};
 
 export default function BlogHero() {
   return (
@@ -14,14 +24,26 @@ export default function BlogHero() {
       className="relative overflow-hidden"
     >
       <div className="relative min-h-[65svh] overflow-hidden lg:min-h-[78svh]">
+        {/* Mobile image */}
         <Image
-          src="/blogs/blog-mobile.jpg"
-          alt="Spațiu calm de reflecție, cu lumină naturală"
+          src={heroImages.mobile.src}
+          alt={heroImages.mobile.alt}
           fill
           priority
           fetchPriority="high"
-          sizes="100vw"
-          className="object-cover object-center md:object-right"
+          sizes="(max-width: 767px) 100vw, 0vw"
+          className="object-cover object-center md:hidden"
+        />
+
+        {/* Desktop / tablet image */}
+        <Image
+          src={heroImages.desktop.src}
+          alt={heroImages.desktop.alt}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="(min-width: 768px) 100vw, 0vw"
+          className="hidden object-cover object-top md:block"
         />
 
         <div aria-hidden="true" className="absolute inset-0 bg-cream/50" />
@@ -41,7 +63,7 @@ export default function BlogHero() {
           padding="default"
           className="relative z-10 flex min-h-[65svh] items-center justify-center pb-16 pt-20 lg:min-h-[78svh] lg:pb-20"
         >
-          <div className="mx-auto max-w-4xl mt-20 text-center">
+          <div className="mx-auto mt-20 max-w-4xl text-center">
             <Heading
               id="blog-hero-heading"
               as="h1"

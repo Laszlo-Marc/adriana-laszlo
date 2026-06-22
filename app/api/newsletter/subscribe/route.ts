@@ -83,6 +83,10 @@ export async function POST(request: NextRequest) {
       email: data.email,
       firstName: data.firstName,
       source: data.source,
+      tags: [
+        "newsletter",
+        resource ? `resource:${resource.id}` : "newsletter-only",
+      ],
     });
 
     if (!subscribeResult.ok) {
@@ -104,7 +108,7 @@ export async function POST(request: NextRequest) {
         to: data.email,
         firstName: data.firstName,
         resourceTitle: resource.fileLabel || resource.title,
-        downloadPath: resource.downloadHref,
+        downloadPath: resource.publicFileHref,
       });
 
       if (emailResult.error) {
@@ -119,7 +123,7 @@ export async function POST(request: NextRequest) {
       message: emailSent
         ? "Te-ai abonat cu succes. Ți-am trimis resursa pe email."
         : "Te-ai abonat cu succes.",
-      downloadHref: resource?.downloadHref,
+      downloadHref: resource?.publicFileHref,
       emailSent,
     });
   } catch (error) {

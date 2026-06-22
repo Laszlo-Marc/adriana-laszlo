@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Datele introduse nu sunt valide.",
           errors: parsed.error.flatten().fieldErrors,
         },
@@ -57,6 +58,7 @@ export async function POST(request: NextRequest) {
     if (!isHuman) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Verificarea anti-spam nu a reușit. Te rog să reîncerci.",
         },
         { status: 403 },
@@ -68,6 +70,7 @@ export async function POST(request: NextRequest) {
     if (!resource) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Resursa solicitată nu există.",
         },
         { status: 404 },
@@ -84,6 +87,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(
         {
+          ok: false,
           message:
             "Emailul cu resursa nu a putut fi trimis. Te rog să încerci din nou.",
         },
@@ -96,6 +100,7 @@ export async function POST(request: NextRequest) {
         email: data.email,
         firstName: data.name,
         source: `Resource download: ${resource.id}`,
+        tags: ["newsletter", "resource-download", `resource:${resource.id}`],
       });
 
       if (!newsletterResult.ok) {
@@ -121,13 +126,14 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      downloadHref: resource.downloadHref,
+      downloadHref: resource.publicFileHref,
     });
   } catch (error) {
     console.error("Resource download form error:", error);
 
     return NextResponse.json(
       {
+        ok: false,
         message:
           "A apărut o problemă la trimiterea formularului. Te rog să încerci din nou.",
       },

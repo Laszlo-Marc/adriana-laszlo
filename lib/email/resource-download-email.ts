@@ -24,6 +24,14 @@ function getBaseUrl() {
   ).replace(/\/$/, "");
 }
 
+function getAbsoluteDownloadUrl(resource: DownloadableResourceConfig) {
+  const downloadPath = resource.publicFileHref || resource.downloadHref;
+
+  return downloadPath.startsWith("http")
+    ? downloadPath
+    : `${getBaseUrl()}${downloadPath}`;
+}
+
 export async function sendResourceDownloadEmail({
   data,
   resource,
@@ -39,10 +47,7 @@ export async function sendResourceDownloadEmail({
 
   const safeName = escapeHtml(data.name);
   const safeResourceTitle = escapeHtml(resource.title);
-
-  const downloadUrl = resource.downloadHref.startsWith("http")
-    ? resource.downloadHref
-    : `${getBaseUrl()}${resource.downloadHref}`;
+  const downloadUrl = getAbsoluteDownloadUrl(resource);
 
   return resend.emails.send({
     from,

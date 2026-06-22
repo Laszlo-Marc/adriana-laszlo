@@ -84,6 +84,7 @@ export async function POST(request: NextRequest) {
         email: data.email,
         firstName: data.name,
         source: "Contact form",
+        tags: ["newsletter", "contact-form"],
       });
 
       if (!newsletterResult.ok) {

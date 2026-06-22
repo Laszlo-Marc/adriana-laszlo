@@ -4,6 +4,7 @@ type SubscribeToNewsletterInput = {
   email: string;
   firstName?: string;
   source?: string;
+  tags?: string[];
 };
 
 type SubscribeToNewsletterResult = {
@@ -42,6 +43,7 @@ export async function subscribeToNewsletter({
   email,
   firstName,
   source,
+  tags = [],
 }: SubscribeToNewsletterInput): Promise<SubscribeToNewsletterResult> {
   try {
     const { apiKey, serverPrefix, audienceId } = getMailchimpConfig();
@@ -83,7 +85,11 @@ export async function subscribeToNewsletter({
       };
     }
 
-    if (source) {
+    const allTags = Array.from(
+      new Set([source, ...tags].filter(Boolean)),
+    ) as string[];
+
+    if (allTags.length > 0) {
       const tagResponse = await fetch(
         `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members/${subscriberHash}/tags`,
         {
@@ -93,12 +99,10 @@ export async function subscribeToNewsletter({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            tags: [
-              {
-                name: source,
-                status: "active",
-              },
-            ],
+            tags: allTags.map((tag) => ({
+              name: tag,
+              status: "active",
+            })),
           }),
         },
       );

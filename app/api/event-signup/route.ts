@@ -97,6 +97,7 @@ export async function POST(request: NextRequest) {
         email: data.email,
         firstName: data.name,
         source: "Event signup form",
+        tags: ["newsletter", "event-interest"],
       });
 
       if (!newsletterResult.ok) {

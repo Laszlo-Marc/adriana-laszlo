@@ -8,22 +8,21 @@ export type DownloadResource = {
   fileLabel: string;
   submitLabel: string;
 
-  /**
-   * Route used by forms and emails.
-   * This points to our API route, not directly to the public PDF.
-   */
+  /** Route used by the app if you want to force an attachment download. */
   downloadHref: string;
 
-  /**
-   * Actual static file inside /public.
-   * Example:
-   * public/downloadable-resources/ghid-resurse-pozitive.pdf
-   */
+  /** Direct public file URL. This must exist under /public. */
   publicFileHref: string;
 
   downloadName: string;
   contentType: string;
+
+  /** Keep newsletter-only resources out of the visible resource section. */
+  isNewsletterExclusive?: boolean;
 };
+
+/** Backwards-compatible alias for older resource email code. */
+export type DownloadableResourceConfig = DownloadResource;
 
 export const downloadResources: DownloadResource[] = [
   {
@@ -40,6 +39,7 @@ export const downloadResources: DownloadResource[] = [
     publicFileHref: "/downloadable-resources/ghid-resurse-pozitive.pdf",
     downloadName: "ghid-resurse-pozitive.pdf",
     contentType: "application/pdf",
+    isNewsletterExclusive: true,
   },
   {
     id: "constientizare-emotionala",
@@ -52,7 +52,7 @@ export const downloadResources: DownloadResource[] = [
     fileLabel: "Jurnal de conștientizare emoțională",
     submitLabel: "Descarcă jurnalul",
     downloadHref: "/api/resources/constientizare-emotionala",
-    publicFileHref: "/resources/constientizare-emotionala.pdf",
+    publicFileHref: "/downloadable-resources/constientizare-emotionala.pdf",
     downloadName: "constientizare-emotionala.pdf",
     contentType: "application/pdf",
   },
@@ -67,7 +67,7 @@ export const downloadResources: DownloadResource[] = [
     fileLabel: "Conștientizarea corporală",
     submitLabel: "Descarcă ghidul",
     downloadHref: "/api/resources/constientizarea-corporala",
-    publicFileHref: "/resources/constientizarea-corporala.pdf",
+    publicFileHref: "/downloadable-resources/constientizarea-corporala.pdf",
     downloadName: "constientizarea-corporala.pdf",
     contentType: "application/pdf",
   },
@@ -82,11 +82,15 @@ export const downloadResources: DownloadResource[] = [
     fileLabel: "Infuzia de pozitiv pentru cupluri",
     submitLabel: "Descarcă materialul",
     downloadHref: "/api/resources/infuzia-de-pozitiv",
-    publicFileHref: "/resources/infuzia-de-pozitiv.pdf",
+    publicFileHref: "/downloadable-resources/infuzia-de-pozitiv.pdf",
     downloadName: "infuzia-de-pozitiv.pdf",
     contentType: "application/pdf",
   },
 ];
+
+export const publicDownloadResources = downloadResources.filter(
+  (resource) => !resource.isNewsletterExclusive,
+);
 
 export function getDownloadableResourceById(id: string) {
   return downloadResources.find((resource) => resource.id === id);
