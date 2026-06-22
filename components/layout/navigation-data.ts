@@ -31,7 +31,7 @@ export const navItems: NavbarItem[] = [
       },
     ],
   },
-  { id: 5, title: "Blog", url: "/blog" },
+  { id: 5, title: "Blog & Resurse", url: "/blog" },
   { id: 6, title: "AF-EMDR", url: "/af-emdr" },
   { id: 7, title: "Contact", url: "/contact" },
 ];

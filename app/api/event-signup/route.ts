@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Datele introduse nu sunt valide.",
           errors: parsed.error.flatten().fieldErrors,
         },
@@ -60,6 +61,7 @@ export async function POST(request: NextRequest) {
     if (!isHuman) {
       return NextResponse.json(
         {
+          ok: false,
           message: "Verificarea anti-spam nu a reușit. Te rog să reîncerci.",
         },
         { status: 403 },
@@ -73,6 +75,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json(
         {
+          ok: false,
           message:
             "Înscrierea nu a putut fi trimisă. Te rog să încerci din nou.",
         },
@@ -94,14 +97,13 @@ export async function POST(request: NextRequest) {
         email: data.email,
         firstName: data.name,
         source: "Event signup form",
-        tags: ["newsletter", "event-interest"],
       });
 
       if (!newsletterResult.ok) {
-        console.error(
-          "Newsletter subscription failed:",
-          newsletterResult.error,
-        );
+        console.error("Newsletter subscription from event form failed:", {
+          email: data.email,
+          message: newsletterResult.message,
+        });
       }
     }
 
@@ -111,6 +113,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
+        ok: false,
         message:
           "A apărut o problemă la trimiterea formularului. Te rog să încerci din nou.",
       },

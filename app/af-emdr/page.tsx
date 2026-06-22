@@ -4,7 +4,6 @@ import AfEmdrComparisonSection from "@/components/pages/af-emdr/comparison/AfEmd
 import AfEmdrMethodSection from "@/components/pages/af-emdr/method-explanation/AfEmdrMethodIntro";
 import AfEmdrSpecialistSection from "@/components/pages/af-emdr/specialist/AfEmdrSpecialistSection";
 import AfEmdrSuitabilitySection from "@/components/pages/af-emdr/suitability/AfEmdrSuitabilitySection";
-import DownloadResourcesSection from "@/components/pages/af-emdr/resources/DownloadResourcesSection";
 import { afEmdrFaqContent } from "@/components/sections/faq-data";
 import FaqSection from "@/components/sections/FaqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -49,7 +48,7 @@ export default function AfEmdrPage() {
       <AfEmdrComparisonSection />
       <AfEmdrSuitabilitySection />
       <AfEmdrSpecialistSection />
-      <DownloadResourcesSection />
+
       <FaqSection
         id="af-emdr-faq"
         items={afEmdrFaqContent}
