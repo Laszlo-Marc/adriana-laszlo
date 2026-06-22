@@ -7,21 +7,13 @@ export type DownloadResource = {
   imageAlt: string;
   fileLabel: string;
   submitLabel: string;
-
-  /** Route used by the app if you want to force an attachment download. */
   downloadHref: string;
-
-  /** Direct public file URL. This must exist under /public. */
   publicFileHref: string;
-
   downloadName: string;
   contentType: string;
-
-  /** Keep newsletter-only resources out of the visible resource section. */
   isNewsletterExclusive?: boolean;
 };
 
-/** Backwards-compatible alias for older resource email code. */
 export type DownloadableResourceConfig = DownloadResource;
 
 export const downloadResources: DownloadResource[] = [
@@ -35,7 +27,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Ghidul resurselor pozitive",
     fileLabel: "Ghidul resurselor pozitive",
     submitLabel: "Primește ghidul gratuit",
-    downloadHref: "/api/resources/ghid-resurse-pozitive",
+    downloadHref: "/downloadable-resources/ghid-resurse-pozitive.pdf",
     publicFileHref: "/downloadable-resources/ghid-resurse-pozitive.pdf",
     downloadName: "ghid-resurse-pozitive.pdf",
     contentType: "application/pdf",
@@ -51,7 +43,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Jurnal de conștientizare emoțională",
     fileLabel: "Jurnal de conștientizare emoțională",
     submitLabel: "Descarcă jurnalul",
-    downloadHref: "/api/resources/constientizare-emotionala",
+    downloadHref: "/downloadable-resources/constientizare-emotionala.pdf",
     publicFileHref: "/downloadable-resources/constientizare-emotionala.pdf",
     downloadName: "constientizare-emotionala.pdf",
     contentType: "application/pdf",
@@ -66,7 +58,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Conștientizarea corporală",
     fileLabel: "Conștientizarea corporală",
     submitLabel: "Descarcă ghidul",
-    downloadHref: "/api/resources/constientizarea-corporala",
+    downloadHref: "/downloadable-resources/constientizarea-corporala.pdf",
     publicFileHref: "/downloadable-resources/constientizarea-corporala.pdf",
     downloadName: "constientizarea-corporala.pdf",
     contentType: "application/pdf",
@@ -81,7 +73,7 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Infuzia de pozitiv pentru cupluri",
     fileLabel: "Infuzia de pozitiv pentru cupluri",
     submitLabel: "Descarcă materialul",
-    downloadHref: "/api/resources/infuzia-de-pozitiv",
+    downloadHref: "/downloadable-resources/infuzia-de-pozitiv.pdf",
     publicFileHref: "/downloadable-resources/infuzia-de-pozitiv.pdf",
     downloadName: "infuzia-de-pozitiv.pdf",
     contentType: "application/pdf",

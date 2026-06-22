@@ -123,7 +123,6 @@ export async function POST(request: NextRequest) {
         notificationResult.error,
       );
     }
-
     return NextResponse.json({
       ok: true,
       downloadHref: resource.publicFileHref,
