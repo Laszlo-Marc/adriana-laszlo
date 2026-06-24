@@ -77,26 +77,27 @@ export default function TherapistIntroSection() {
 
               <div className="mx-auto mt-6 max-w-sm space-y-4">
                 <Text className="text-charcoal/80" align="center">
-                  În terapie, ritmul tău contează. Lucrăm împreună cu blândețe,
-                  claritate și respect pentru povestea ta.
+                  Munca mea este o pasiune. Cea mai mare satisfacție apare în
+                  momentele în care văd un zâmbet regăsit, un licăr de speranță
+                  în privire sau o răsuflare ușurată de povara durerii.
                 </Text>
 
                 <Text className="text-charcoal/75" align="center">
-                  Abordarea mea îmbină prezența umană, siguranța relației
-                  terapeutice și metode orientate spre procesarea traumelor,
-                  anxietății și dificultăților emoționale profunde.
+                  Şi, în special când apare conștientizarea: „Da, trauma nu
+                  trebuie să mă mai definească. Este o experiență pe care o pot
+                  integra.”
                 </Text>
               </div>
 
               <div className="mt-8 flex flex-col items-center gap-3">
-                <Button href="/contact" size="lg" className="w-full max-w-xs">
+                <Button href="/contact" size="md" className="w-full max-w-xs">
                   Programează o ședință
                 </Button>
 
                 <Button
                   href="/despre"
                   variant="purple"
-                  size="lg"
+                  size="md"
                   className="w-full max-w-xs"
                 >
                   Află mai multe

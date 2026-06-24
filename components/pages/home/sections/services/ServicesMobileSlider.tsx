@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -10,7 +9,6 @@ import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import { cn } from "@/lib/utils";
-import Section from "@/components/ui/Section";
 
 export type MobileServiceSlide = {
   id: string;
@@ -91,18 +89,18 @@ export default function ServicesMobileSlider({
   return (
     <section
       aria-labelledby="mobile-services-slider-title"
-      className="relative h-[100dvh] min-h-[100svh] overflow-hidden lg:hidden"
+      className="relative h-dvh min-h-svh overflow-hidden lg:hidden"
     >
       <h2 id="mobile-services-slider-title" className="sr-only">
         Servicii de psihoterapie
       </h2>
 
-      <div ref={emblaRef} className="h-[100dvh] min-h-[100svh] overflow-hidden">
+      <div ref={emblaRef} className="h-dvh min-h-svh overflow-hidden">
         <div className="flex h-full touch-pan-y">
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="relative h-[100dvh] min-h-[100svh] min-w-0 flex-[0_0_100%] overflow-hidden"
+              className="relative h-dvh min-h-svh min-w-0 flex-[0_0_100%] overflow-hidden"
               aria-label={service.title}
             >
               <Image

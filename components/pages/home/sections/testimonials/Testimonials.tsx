@@ -250,10 +250,11 @@ export default function TestimonialsStack({
           <Heading
             id="testimonials-heading"
             as="h2"
-            size="h1"
+            size="h2"
             className="mt-4"
             align="center"
             font="display"
+            textCase="uppercase"
           >
             {title}
           </Heading>

@@ -28,7 +28,7 @@ export default function AboutHeroMobile() {
           />
         </div>
 
-        <div className="relative z-10 -mt-20 px-4 pb-12">
+        <div className="relative z-10 -mt-30 px-4 pb-12">
           <div className="mx-auto max-w-md text-center">
             <AccentText>{aboutHeroContent.eyebrow}</AccentText>
 

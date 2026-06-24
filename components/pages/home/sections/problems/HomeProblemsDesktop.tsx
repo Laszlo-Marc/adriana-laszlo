@@ -106,8 +106,9 @@ export default function HomeProblemsDesktop() {
                   <div className="mx-auto max-w-120 rounded-4xl border border-white/45 bg-cream/68 px-8 py-8 text-center shadow-[0_18px_50px_rgba(44,44,44,0.10)] backdrop-blur-lg">
                     <Heading
                       as="h2"
-                      size="h2"
+                      size="h3"
                       align="center"
+                      textCase="uppercase"
                       className="mx-auto max-w-md text-balance text-charcoal"
                     >
                       {problemsContent.title}

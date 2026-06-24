@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Container from "@/components/ui/Container";
-import Heading from "@/components/ui/Heading";
+
 import Button from "@/components/ui/Button";
 import { MarqueeAnimation } from "@/components/ui/MarqueeAnimation";
 
 import { afEmdrSpecialistContent } from "../afEmdrContent";
 
 export default function AfEmdrSpecialistMobile() {
-  const { title, images, credentials, testimonial, cta } =
-    afEmdrSpecialistContent;
+  const { images, credentials, testimonial, cta } = afEmdrSpecialistContent;
 
   return (
     <div className="relative overflow-hidden lg:hidden">
@@ -16,8 +15,8 @@ export default function AfEmdrSpecialistMobile() {
         <div className="relative">
           <div className="relative aspect-4/5 overflow-hidden">
             <Image
-              src={images.atmosphere.src}
-              alt={images.atmosphere.alt}
+              src={images.atmosphereMobile.src}
+              alt={images.atmosphereMobile.alt}
               fill
               sizes="(max-width: 1023px) 100vw, 1px"
               className="object-cover object-center"
@@ -31,7 +30,7 @@ export default function AfEmdrSpecialistMobile() {
             />
           </div>
 
-          <div className="absolute bottom-4 right-4 w-[52%] max-w-60 overflow-hidden rounded-xl shadow-[0_20px_60px_rgba(44,44,44,0.16)]">
+          <div className="absolute bottom-0 right-0 w-[52%] max-w-60 overflow-hidden rounded-xl shadow-[0_20px_60px_rgba(44,44,44,0.16)]">
             <div className="relative aspect-3/4">
               <Image
                 src={images.portrait.src}

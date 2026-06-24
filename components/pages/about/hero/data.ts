@@ -4,7 +4,7 @@ export const aboutHeroContent = {
   titleStart: "Psihoterapeut integrativ în traumă și",
   highlightedTitle: "AF-EMDR",
   description:
-    "Lucrez cu persoane care trec prin anxietate, traumă, dificultăți relaționale sau blocaje emoționale, într-un ritm sigur, clar și adaptat fiecărei persoane.",
+    "Ceea ce mă definește sunt creativitatea, libertatea de a explora, experimenta, dar şi structura clară, pragmatismul şi munca susţinută. Cred în găsirea unor soluții concrete și eficiente pentru vindecarea traumelor, dar și în libertatea de a adapta fiecare proces terapeutic persoanei din fața mea.",
   editorialLine: "Un spațiu sigur pentru vindecare.",
   primaryCta: {
     label: "Programează o discuție",

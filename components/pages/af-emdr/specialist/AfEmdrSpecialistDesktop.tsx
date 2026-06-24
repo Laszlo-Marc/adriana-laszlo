@@ -18,11 +18,11 @@ export default function AfEmdrSpecialistDesktop() {
           <div className="relative min-h-168">
             <div className="relative h-168 overflow-hidden">
               <Image
-                src={images.atmosphere.src}
-                alt={images.atmosphere.alt}
+                src={images.atmosphereDesktop.src}
+                alt={images.atmosphereDesktop.alt}
                 fill
                 sizes="(max-width: 1023px) 1px, (min-width: 1280px) 58vw, 62vw"
-                className="object-cover object-center"
+                className="object-cover object-right"
               />
 
               <div
@@ -36,7 +36,7 @@ export default function AfEmdrSpecialistDesktop() {
               />
             </div>
 
-            <div className="absolute -right-10 bottom-16 w-[58%] max-w-84 overflow-hidden rounded-xl shadow-[0_24px_80px_rgba(44,44,44,0.18)]">
+            <div className="absolute -right-10 -bottom-20 w-[58%] max-w-84 overflow-hidden rounded-xl ">
               <div className="relative aspect-3/4">
                 <Image
                   src={images.portrait.src}
@@ -59,7 +59,8 @@ export default function AfEmdrSpecialistDesktop() {
           <div className="lg:pl-6">
             <Heading
               as="h2"
-              size="h3"
+              size="h2"
+              textCase="uppercase"
               className="mt-5 text-balance text-charcoal"
             >
               {title}

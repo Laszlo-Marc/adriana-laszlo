@@ -19,7 +19,7 @@ const aboutMobileCopy = {
       și nu trebuie să ai deja toate răspunsurile.
     </>
   ),
-  accent: "Lucrez cu blândețe, dar și cu profunzime.",
+  accent: "Sunt aici pentru a fi împreună în procesul vindecării.",
   depth: (
     <>
       Nu doar pentru a gestiona simptomele, ci pentru a înțelege ce se află la{" "}

@@ -35,6 +35,7 @@ export default function ServicesTeaserDesktop() {
             id="home-services-title"
             as="h2"
             size="h2"
+            textCase="uppercase"
             className="mt-3 text-charcoal"
             align="center"
           >

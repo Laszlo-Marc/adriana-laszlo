@@ -9,6 +9,7 @@ import Text from "@/components/ui/Text";
 import Container from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 import { afEmdrMethodContent } from "../afEmdrContent";
+import Section from "@/components/ui/Section";
 
 export default function AfEmdrMethodMobile() {
   const { lead, steps } = afEmdrMethodContent;
@@ -53,14 +54,7 @@ export default function AfEmdrMethodMobile() {
   );
 
   return (
-    <section className="relative overflow-hidden bg-cream py-16 lg:hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-20 -translate-x-1/2 text-[31vw] font-semibold uppercase leading-none tracking-[-0.08em] text-charcoal/[0.035]"
-      >
-        EMDR
-      </div>
-
+    <Section className="relative overflow-hidden  lg:hidden" spacing="sm">
       <Container padding="default" className="relative z-10">
         <div className="mx-auto max-w-sm text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
@@ -71,6 +65,7 @@ export default function AfEmdrMethodMobile() {
             as="h2"
             size="h2"
             align="center"
+            textCase="uppercase"
             className="mt-4 text-balance text-charcoal"
           >
             Cum funcționează
@@ -87,13 +82,13 @@ export default function AfEmdrMethodMobile() {
         <div
           ref={scrollRef}
           onScroll={updateActiveIndex}
-          className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {steps.map((step, index) => (
             <article
               key={step.title}
               data-method-card-index={index}
-              className="relative min-h-[31rem] min-w-[86%] snap-center overflow-hidden rounded-[2rem] bg-charcoal"
+              className="relative min-h-124 min-w-[86%] snap-center overflow-hidden rounded-4xl bg-charcoal"
             >
               <Image
                 src={step.image}
@@ -118,7 +113,7 @@ export default function AfEmdrMethodMobile() {
                 className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-charcoal/30 to-transparent"
               />
 
-              <div className="relative z-10 flex min-h-[31rem] flex-col items-center justify-center px-6 py-10 text-center text-white">
+              <div className="relative z-10 flex min-h-124 flex-col items-center justify-center px-6 py-10 text-center text-white">
                 <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-white/72">
                   {String(index + 1).padStart(2, "0")}
                 </p>
@@ -196,6 +191,6 @@ export default function AfEmdrMethodMobile() {
           </button>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

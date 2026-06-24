@@ -27,19 +27,19 @@ export const eventsFaqItems = [
 ];
 export const afEmdrFaqContent = [
   {
-    question: "Cât durează o ședință AF-EMDR?",
+    question: "Ce inseamna reprocesarea traumelor?",
     answer:
-      "Durata unei ședințe poate varia în funcție de cadrul terapeutic stabilit, dar de obicei este similară cu o ședință clasică de psihoterapie. Ritmul procesului se adaptează la nevoile și resursele fiecărei persoane.",
+      "Înseamna a “redigera” și integra într-un mod adaptativ şi funcţional informaţia traumatică blocată în sistemul nervos, cu ajutorul stimulării bilaterale(tapping, mişcări oculare) şi a reduce intensitatea emoţională asociată. Nu este doar despre a retrăi şi repovesti trauma pentru a înţelege, este despre a curăţa, vindeca, descâlci asocieri negative, a elimina încărcătura negativă din sistem. ",
   },
   {
-    question: "De câte ședințe este nevoie?",
+    question: "De câte ședințe este nevoie pentru a vedea un rezultat?",
     answer:
-      "Nu există un număr fix de ședințe valabil pentru toată lumea. Depinde de istoricul personal, de obiectivele terapiei, de nivelul de stabilizare și de complexitatea experiențelor lucrate.",
+      "Numărul lor depinde de fiecare persoană şi nu poate fi estimat decât după ce vom începe sedinţele de reprocesare efectivă a traumelor, în functţie de obiectivele stabilite. Un minim de 10 sedinte este necesar pentru a iniţia şi evalua modul în care funcţionează metoda pentru tine.",
   },
   {
-    question: "Trebuie să povestesc trauma în detaliu?",
+    question: "Ce nu pot promite?",
     answer:
-      "Nu. AF-EMDR nu presupune să retrăiești totul în detaliu sau să forțezi povestirea experiențelor dureroase. Procesul este ghidat gradual, cu accent pe siguranță, resurse și reglare emoțională.",
+      "Magie si rapiditate, AF-EMDR este foarte eficienta dar fiecare persoana e unica, si are ritmul ei. Este un proces terapeutic nu o procedura  medicală sau o soluţie magică. Presupune colaborare, ajustare, adaptare, şi răbdarea oferită corpului, minţii şi sufletului pentru a se vindeca.",
   },
 ];
 
@@ -50,9 +50,9 @@ export const aboutFaqItems = [
       "Prima ședință este un spațiu de orientare. Discutăm despre ce te aduce în terapie, ce ai nevoie acum și ce ritm ar fi potrivit pentru tine.",
   },
   {
-    question: "Trebuie să vorbesc despre tot din prima?",
+    question: "Cum decurge terapia? Structura procesului terapeutic",
     answer:
-      "Nu. Procesul nu începe prin a forța povestea. Lucrăm gradual, cu atenție la siguranță, limite și la ceea ce este posibil pentru tine în acel moment.",
+      "Primele minim 5 şedinţe sunt despre a ne cunoaşte şi înţelege istoricul ,tău de viaţă, obiectivele, a crea relaţia terapeutică de încredere şi resursele pozitive interioare necesare reglajului emoţional şi intervenţiei terapeutice. Vor urma şedinte de procesare cu tehnica EMDR care alternează cu sesiuni de discuţii si integrare a conştientizărilor survenite, până ajungem la o rezolvare sau la atingerea obiectivelor propuse.",
   },
   {
     question: "Cum știu dacă terapia este potrivită pentru mine?",

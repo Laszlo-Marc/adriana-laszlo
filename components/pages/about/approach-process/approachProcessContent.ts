@@ -1,10 +1,10 @@
 export const approachProcessContent = {
   eyebrow: "Cum lucrăm",
   title: "O abordare profundă, dar atentă la ritmul tău",
-  lead: "Procesul terapeutic nu începe prin a forța povestea, ci prin a crea un cadru în care corpul, emoțiile și mintea pot începe să se simtă în siguranță.",
+  lead: "Pentru mine, terapia nu înseamnă aplicarea rigidă a unor tehnici. Înseamnă îmbinarea cunoștințelor, metodelor și experienței într-un mod creativ, autentic și adaptat fiecărui om.",
   paragraphs: [
-    "Lucrăm cu ceea ce este prezent acum — anxietate, blocaje, relații dificile, rușine, frică sau tipare care se repetă — dar fără să pierdem din vedere rădăcina lor.",
-    "Ritmul este clar și atent: ne orientăm, construim resurse, lucrăm cu experiențele profunde și integrăm schimbarea în viața de zi cu zi.",
+    "Ceea ce mă definește sunt creativitatea, libertatea de a explora, experimenta, dar şi structura clară, pragmatismul şi munca susţinută. ",
+    "Cred în găsirea unor soluții concrete și eficiente pentru vindecarea traumelor, dar și în libertatea de a adapta fiecare proces terapeutic persoanei din fața mea.",
   ],
   image: {
     src: "/home-page/services/individual.jpg",

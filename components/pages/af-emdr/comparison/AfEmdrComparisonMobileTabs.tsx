@@ -93,7 +93,8 @@ export default function AfEmdrComparisonMobileTabs({
 
             <Heading
               as="h3"
-              size="h3"
+              size="h4"
+              textCase="uppercase"
               className="mt-4 text-balance text-charcoal"
             >
               {activeItem.title}

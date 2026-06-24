@@ -12,8 +12,7 @@ import AfEmdrComparisonMobileTabs from "./AfEmdrComparisonMobileTabs";
 type ComparisonItem = (typeof afEmdrComparisonContent.items)[number];
 
 export default function AfEmdrComparisonSection() {
-  const { eyebrow, title, lead, items, bridge, insight } =
-    afEmdrComparisonContent;
+  const { eyebrow, title, items, bridge, insight } = afEmdrComparisonContent;
 
   const [emdr, afEmdr] = items;
 
@@ -68,6 +67,7 @@ export default function AfEmdrComparisonSection() {
             as="h2"
             size="h1"
             align="center"
+            textCase="uppercase"
             className="mt-5 text-balance text-charcoal"
           >
             {title}
@@ -157,6 +157,7 @@ function ComparisonPanel({ item, tone }: ComparisonPanelProps) {
         <Heading
           as="h3"
           size="h3"
+          textCase="uppercase"
           className="mt-6 max-w-xl text-balance text-charcoal"
         >
           {item.title}

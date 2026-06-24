@@ -30,7 +30,13 @@ export default function AboutStoryPathTimelineDesktop() {
         <div className="mx-auto max-w-6xl text-center">
           <AccentText>Povestea profesională</AccentText>
 
-          <Heading as="h2" size="h2" align="center" className="mt-4">
+          <Heading
+            as="h2"
+            size="h2"
+            textCase="uppercase"
+            align="center"
+            className="mt-4"
+          >
             Parcursul meu în psihoterapie
           </Heading>
         </div>

@@ -52,9 +52,12 @@ export default function ApproachProcessDesktop() {
 
           <div className="relative flex items-center pl-20">
             <div className="relative z-10">
-              <AccentText>{approachProcessContent.eyebrow}</AccentText>
-
-              <Heading as="h2" size="h2" className="mt-4 max-w-3xl">
+              <Heading
+                as="h2"
+                size="h3"
+                textCase="uppercase"
+                className="mt-4 max-w-2xl"
+              >
                 {approachProcessContent.title}
               </Heading>
 

@@ -13,9 +13,7 @@ export default function AfEmdrDesktop() {
       <div className="grid grid-cols-[1fr_1fr]">
         <div className="relative flex items-center pl-20">
           <div className="relative z-10 max-w-3xl">
-            <AccentText>{afEmdrContent.eyebrow}</AccentText>
-
-            <Heading as="h2" size="h2" className="mt-4">
+            <Heading as="h2" size="h3" textCase="uppercase" className="mt-4">
               {afEmdrContent.title}
             </Heading>
 

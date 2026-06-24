@@ -37,12 +37,12 @@ const stats: Stat[] = [
     suffix: "+",
   },
   {
-    value: "1000+",
+    value: "5000+",
     label: "procese terapeutice susținute",
     icon: "/backgrounds/df-purple-down.png",
     iconClassName: "rotate-[-4deg]",
     isNumeric: true,
-    number: 1000,
+    number: 5000,
     suffix: "+",
   },
   {

@@ -74,8 +74,9 @@ export default function HomeAboutTeaserDesktop() {
                 <Heading
                   id="home-about-title"
                   as="h2"
-                  size="h2"
-                  className="text-charcoal"
+                  size="h3"
+                  textCase="uppercase"
+                  className="text-charcoal max-w-2xl"
                 >
                   Un spațiu în care poți fi ascultat cu adevărat.
                 </Heading>

@@ -1,240 +1,137 @@
-"use client";
-
-import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useReducedMotion,
-} from "framer-motion";
 
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import { afEmdrMethodContent } from "../afEmdrContent";
-
-type ScrollStepTriggerProps = {
-  index: number;
-  onActive: (index: number) => void;
-};
-
-function ScrollStepTrigger({ index, onActive }: ScrollStepTriggerProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  const isInView = useInView(ref, {
-    margin: "-50% 0px -40% 0px",
-    amount: "some",
-  });
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    onActive(index);
-  }, [index, isInView, onActive]);
-
-  return <div ref={ref} className="h-[115svh]" />;
-}
+import Section from "@/components/ui/Section";
 
 export default function AfEmdrMethodDesktop() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const shouldReduceMotion = useReducedMotion() ?? false;
-
   const { eyebrow, lead, thesis, note, steps } = afEmdrMethodContent;
-  const activeStep = steps[activeIndex] ?? steps[0];
 
-  const handleActiveChange = useCallback((index: number) => {
-    setActiveIndex((currentIndex) =>
-      currentIndex === index ? currentIndex : index,
-    );
-  }, []);
-
-  if (!activeStep) return null;
+  if (!steps.length) return null;
 
   return (
-    <div className="relative hidden bg-cream lg:block">
-      <div className="relative h-[460svh]">
-        <div className="sticky top-0 h-svh overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="/af-emdr/method/af-emdr-method.jpg"
-              alt=""
-              aria-hidden="true"
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-            />
+    <Section
+      className="relative hidden overflow-hidden  lg:block "
+      background="cream"
+      spacing="sm"
+    >
+      <div className="absolute inset-0">
+        <Image
+          src="/af-emdr/method/af-emdr-method.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-20"
+        />
 
-            <div aria-hidden="true" className="absolute inset-0 bg-cream/78" />
+        <div aria-hidden="true" className="absolute inset-0 bg-cream/84" />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-cream via-cream/95 to-transparent"
-            />
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-cream via-cream/95 to-transparent"
+        />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-cream via-cream/90 to-transparent"
-            />
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-cream via-cream/92 to-transparent"
+        />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-44 bg-linear-to-b from-cream via-cream/80 to-transparent"
-            />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-cream via-cream/80 to-transparent"
+        />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-cream via-cream/85 to-transparent"
-            />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-cream via-cream/85 to-transparent"
+        />
+      </div>
+
+      <Container size="wider" padding="default" className="relative z-10">
+        <div className="grid items-center gap-16 lg:grid-cols-[0.78fr_1.22fr] xl:gap-24">
+          <div className="max-w-2xl">
+            <Heading
+              as="h2"
+              size="h2"
+              textCase="uppercase"
+              className="text-balance text-charcoal"
+            >
+              {eyebrow}
+            </Heading>
+
+            <Text className="mt-6 max-w-xl text-pretty text-charcoal/70">
+              {lead}
+            </Text>
+
+            <div className="mt-10 border-l border-gold/45 pl-6">
+              <p className="text-balance text-2xl font-medium leading-snug text-charcoal xl:text-3xl">
+                {thesis}
+              </p>
+
+              <Text size="sm" className="mt-5 max-w-lg text-charcoal/62">
+                {note}
+              </Text>
+            </div>
           </div>
 
-          <Container
-            size="wider"
-            padding="default"
-            className="relative z-10 h-full"
-          >
-            <div className="grid h-full grid-cols-[0.9fr_1.1fr] items-center gap-16 xl:gap-24">
-              <div className="max-w-2xl">
-                <Heading
-                  as="h2"
-                  size="h2"
-                  className="mt-6 text-balance text-charcoal"
+          <div className="grid gap-5 xl:gap-6">
+            <div className="grid grid-cols-2 gap-5 xl:gap-6">
+              {steps.map((step, index) => (
+                <article
+                  key={step.title}
+                  className="group relative min-h-84 overflow-hidden rounded-4xl bg-charcoal "
                 >
-                  {eyebrow}
-                </Heading>
+                  <Image
+                    src={step.image}
+                    alt={step.imageAlt}
+                    fill
+                    sizes="(max-width: 1023px) 1px, (min-width: 1280px) 24vw, 28vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  />
 
-                <Text className="mt-6 max-w-xl text-pretty text-charcoal/70">
-                  {lead}
-                </Text>
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-linear-to-t from-charcoal/78 via-charcoal/32 to-charcoal/8"
+                  />
 
-                <div className="mt-10 border-l border-gold/45 pl-6">
-                  <p className="text-balance text-2xl font-medium leading-snug text-charcoal xl:text-3xl">
-                    {thesis}
-                  </p>
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-charcoal/82 via-charcoal/38 to-transparent"
+                  />
 
-                  <Text size="sm" className="mt-5 max-w-lg text-charcoal/62">
-                    {note}
-                  </Text>
-                </div>
-              </div>
+                  <div className="relative z-10 flex h-full min-h-[21rem] flex-col justify-end p-6 xl:p-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/62">
+                      {step.label}
+                    </p>
 
-              <div className="relative ml-auto w-full max-w-3xl">
-                <div className="relative">
-                  <div className="relative h-136 overflow-hidden rounded-[2.5rem] shadow-[0_34px_110px_rgba(44,44,44,0.14)]">
-                    <AnimatePresence mode="wait" initial={false}>
-                      <motion.div
-                        key={activeStep.title}
-                        className="absolute inset-0"
-                        initial={
-                          shouldReduceMotion
-                            ? false
-                            : { opacity: 0, scale: 1.03 }
-                        }
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={
-                          shouldReduceMotion
-                            ? undefined
-                            : { opacity: 0, scale: 0.985 }
-                        }
-                        transition={{
-                          duration: shouldReduceMotion ? 0 : 0.55,
-                          ease: "easeOut",
-                        }}
-                      >
-                        <Image
-                          src={activeStep.image}
-                          alt={activeStep.imageAlt}
-                          fill
-                          sizes="(max-width: 1023px) 1px, (min-width: 1280px) 48vw, 54vw"
-                          className="object-cover object-center"
-                        />
+                    <h3 className="mt-3 text-balance text-3xl font-semibold leading-none text-white xl:text-4xl">
+                      {step.title}
+                    </h3>
 
-                        <div
-                          aria-hidden="true"
-                          className="absolute inset-0 bg-linear-to-t from-charcoal/62 via-charcoal/18 to-transparent"
-                        />
+                    <p className="mt-3 text-pretty text-base leading-relaxed text-white/82 xl:text-lg">
+                      {step.subtitle}
+                    </p>
 
-                        <div
-                          aria-hidden="true"
-                          className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-charcoal/70 via-charcoal/30 to-transparent"
-                        />
-                      </motion.div>
-                    </AnimatePresence>
+                    <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-white/68">
+                      {step.description}
+                    </p>
 
-                    <div className="absolute inset-x-0 bottom-0 z-10 p-8 xl:p-10">
-                      <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                          key={activeStep.title}
-                          initial={
-                            shouldReduceMotion ? false : { opacity: 0, y: 18 }
-                          }
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={
-                            shouldReduceMotion
-                              ? undefined
-                              : { opacity: 0, y: -12 }
-                          }
-                          transition={{
-                            duration: shouldReduceMotion ? 0 : 0.45,
-                            ease: "easeOut",
-                          }}
-                        >
-                          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/65">
-                            Cum funcționează / {activeStep.label}
-                          </p>
-
-                          <h3 className="mt-4 max-w-xl text-balance text-5xl font-semibold leading-none text-white">
-                            {activeStep.title}
-                          </h3>
-
-                          <p className="mt-3 max-w-xl text-balance text-xl text-white/85">
-                            {activeStep.subtitle}
-                          </p>
-
-                          <Text className="mt-5 max-w-2xl text-pretty text-white/78">
-                            {activeStep.description}
-                          </Text>
-                        </motion.div>
-                      </AnimatePresence>
+                    <div className="mt-6 flex items-center gap-3">
+                      <span className="h-px w-10 bg-gold" />
+                      <span className="text-xs font-medium uppercase tracking-[0.22em] text-white/58">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
                     </div>
                   </div>
-
-                  <div className="mt-5 grid grid-cols-4 gap-3 px-2">
-                    {steps.map((step, index) => {
-                      const isActive = index === activeIndex;
-
-                      return (
-                        <div
-                          key={step.title}
-                          className="h-1.5 overflow-hidden rounded-full bg-charcoal/12"
-                        >
-                          <div
-                            className={
-                              isActive
-                                ? "h-full w-full rounded-full bg-gold transition-[width,background-color] duration-500 motion-reduce:transition-none"
-                                : "h-full w-0 rounded-full bg-gold transition-[width,background-color] duration-500 motion-reduce:transition-none"
-                            }
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+                </article>
+              ))}
             </div>
-          </Container>
+          </div>
         </div>
-
-        <div className="pointer-events-none absolute inset-0 z-20">
-          {steps.map((step, index) => (
-            <ScrollStepTrigger
-              key={step.title}
-              index={index}
-              onActive={handleActiveChange}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 }

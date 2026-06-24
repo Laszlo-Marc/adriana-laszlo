@@ -7,7 +7,7 @@ import Section from "@/components/ui/Section";
 import { afEmdrHeroContent } from "./afEmdrContent";
 
 export default function AfEmdrHero() {
-  const { eyebrow, title, subtitle, primaryCta, media } = afEmdrHeroContent;
+  const { title2, title, subtitle, primaryCta, media } = afEmdrHeroContent;
 
   return (
     <Section
@@ -49,19 +49,15 @@ export default function AfEmdrHero() {
         className="relative z-30 flex min-h-svh items-center justify-center pb-32 pt-32 lg:pb-28 lg:pt-28"
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-charcoal/60">
-            {eyebrow}
-          </p>
-
           <Heading
             id="af-emdr-hero-title"
             as="h1"
             size="display"
             font="accent"
             align="center"
-            className="mx-auto text-balance text-[clamp(5.2rem,24vw,9rem)] leading-[0.78] text-charcoal drop-shadow-[0_2px_20px_rgba(255,250,242,0.8)] lg:text-[clamp(9rem,13vw,13rem)]"
+            className="mx-auto mt-5 text-balance text-[clamp(6rem,24vw,9rem)]  text-charcoal drop-shadow-[0_2px_20px_rgba(255,250,242,0.8)] lg:text-[clamp(9rem,13vw,13rem)]"
           >
-            {title}
+            {title} {title2}
           </Heading>
 
           <p className="mt-7 max-w-3xl text-balance font-display text-[clamp(1.7rem,4vw,3.6rem)] leading-[0.95] tracking-[0.08em] text-charcoal">

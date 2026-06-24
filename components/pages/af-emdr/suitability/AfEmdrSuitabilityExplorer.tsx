@@ -111,6 +111,7 @@ export default function AfEmdrSuitabilityExplorer({
                   as="h3"
                   size="h2"
                   color="cream"
+                  textCase="uppercase"
                   className="mt-4 max-w-2xl text-balance leading-none xl:text-5xl"
                 >
                   {activePattern.title}

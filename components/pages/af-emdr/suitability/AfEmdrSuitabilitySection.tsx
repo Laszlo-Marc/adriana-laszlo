@@ -64,6 +64,7 @@ export default function AfEmdrSuitabilitySection() {
               as="h2"
               size="h2"
               font="display"
+              textCase="uppercase"
               className="mt-5 text-balance lg:text-left"
               align="center"
             >

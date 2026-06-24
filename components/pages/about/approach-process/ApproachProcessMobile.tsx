@@ -75,9 +75,13 @@ export default function ApproachProcessMobile() {
           </div>
 
           <div className="relative z-20 mt-20 px-6 text-center">
-            <AccentText>{approachProcessContent.eyebrow}</AccentText>
-
-            <Heading as="h2" size="h3" align="center" className="mt-4">
+            <Heading
+              as="h2"
+              size="h3"
+              textCase="uppercase"
+              align="center"
+              className="mt-4"
+            >
               {approachProcessContent.title}
             </Heading>
 

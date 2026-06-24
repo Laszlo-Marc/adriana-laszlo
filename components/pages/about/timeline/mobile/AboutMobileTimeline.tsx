@@ -35,7 +35,13 @@ export default function AboutTimelineMobile() {
         <div className="mx-auto max-w-md text-center">
           <AccentText>Povestea profesională</AccentText>
 
-          <Heading as="h2" size="h2" align="center" className="mt-4">
+          <Heading
+            as="h2"
+            size="h2"
+            textCase="uppercase"
+            align="center"
+            className="mt-4"
+          >
             Parcursul meu în psihoterapie
           </Heading>
         </div>

@@ -1,6 +1,7 @@
 export const afEmdrHeroContent = {
   eyebrow: "Attachment Focused EMDR",
-  title: "AF-EMDR",
+  title: "AF",
+  title2: "EMDR",
   subtitle: "Terapie pentru trauma de atașament",
   description:
     "O metodă terapeutică blândă și structurată, care susține procesarea experiențelor dureroase fără a te lăsa copleșit/ă de ele.",
@@ -18,7 +19,7 @@ export const afEmdrMethodContent = {
   chapter: "01 / Metoda",
   eyebrow: "Ce este AF-EMDR?",
   title: "O metodă modernă pentru trauma de atașament",
-  lead: "Attachment Focused EMDR este o orientare a terapiei EMDR centrată pe experiențele relaționale care au influențat siguranța interioară, atașamentul și modul în care o persoană se raportează la sine și la ceilalți.",
+  lead: "Este o noua orientare în practica terapiei EMDR, centrată în special pe vindecarea traumelor de ataşament şi a deficienţelor survenite pe parcursul dezvoltării noastre, în relaţiile de ataşament. Atachment Focused EMDR (sau EMDR centrat pe atasament) aduce un plus terapiei clasice EMDR, punând accentul pe vindecarea traumelor de ataşament. ",
   thesis:
     "AF-EMDR nu lucrează doar cu simptomele, ci cu rădăcina relațională a suferinței.",
   note: "Prin stimulare bilaterală și un protocol terapeutic structurat, metoda susține creierul în reprocesarea experiențelor traumatice fără a forța retraumatizarea.",
@@ -89,9 +90,9 @@ export const afEmdrComparisonContent = {
       description:
         "AF-EMDR păstrează baza EMDR, dar o adaptează pentru trauma de atașament, experiențe relaționale dureroase și tipare formate în timp, mai ales în relațiile importante de dezvoltare.",
       points: [
-        "focus pe atașament",
-        "mai multă pregătire și siguranță",
-        "lucru cu tipare relaționale",
+        "focus pe atașament și tipare relaționale",
+        "siguranța relației terapeutice",
+        "dezvoltarea resurselor interioare",
       ],
     },
   ],
@@ -107,14 +108,14 @@ export const afEmdrComparisonContent = {
 export const afEmdrSuitabilityContent = {
   chapter: "03 / Pentru cine",
   eyebrow: "Când poate fi potrivită AF-EMDR?",
-  title: "Atunci când trecutul se simte încă prezent",
-  lead: "AF-EMDR poate fi relevantă atunci când dificultățile de azi nu par să vină dintr-un singur eveniment, ci din experiențe relaționale repetate care au modelat felul în care te simți în siguranță, iubești, ai încredere sau îți pui limite.",
+  title: "Atunci când trecutul te definește",
+  lead: "AF-EMDR este o metodă potrivită atunci când dificultățile de azi nu par să vină dintr-un singur eveniment, ci din experiențe relaționale repetate care au modelat felul în care te simți în siguranță, iubești, ai încredere sau îți pui limite.",
 
   patterns: [
     {
       id: "relatii",
       label: "Relații",
-      title: "Când apropierea se simte nesigură.",
+      title: "Când apropierea e prea multă/puțină.",
       description:
         "Poate apărea frica de abandon, teama de respingere, dificultatea de a avea încredere sau atracția repetată către relații indisponibile ori dureroase.",
       signs: [
@@ -144,7 +145,7 @@ export const afEmdrSuitabilityContent = {
     {
       id: "rusine",
       label: "Rușine",
-      title: "Când vocea interioară a rămas dură.",
+      title: "Când vocea interioară te critică.",
       description:
         "Experiențele relaționale dureroase pot lăsa în urmă rușine, vinovăție, autocritică și sentimentul persistent că nu ești suficient/ă.",
       signs: [
@@ -161,7 +162,7 @@ export const afEmdrSuitabilityContent = {
       label: "Limite",
       title: "Când îți este greu să rămâi aproape de tine.",
       description:
-        "AF-EMDR poate fi utilă când apar people-pleasing, dificultăți în a spune nu, frică de conflict sau limite greu de păstrat în relații.",
+        "Când apar tiparele people-pleasing, dificultăți în a spune nu, frică de conflict sau limite greu de păstrat în relații.",
       signs: [
         "people-pleasing",
         "dificultate de a spune nu",
@@ -182,13 +183,18 @@ export const afEmdrSpecialistContent = {
   eyebrow: "De ce cu Adriana?",
   title: "Un cadru sigur",
   description:
-    "În terapia AF-EMDR, metoda contează — dar la fel de mult contează siguranța relației terapeutice. Adriana integrează formarea în AF-EMDR cu experiența în lucrul cu trauma de atașament, reglarea emoțională și tiparele relaționale care se repetă în viața adultă.",
+    "În terapia AF-EMDR, metoda contează, dar la fel de mult contează siguranța relației terapeutice. Adriana integrează formarea în AF-EMDR cu experiența în lucrul cu trauma de atașament, reglarea emoțională și tiparele relaționale care se repetă în viața adultă.",
 
   images: {
-    atmosphere: {
-      src: "/af-emdr/specialist.jpg",
+    atmosphereMobile: {
+      src: "/af-emdr/specialist/spec-mobile.jpg",
       alt: "Detaliu calm din cabinet, într-o lumină caldă și sigură",
     },
+    atmosphereDesktop: {
+      src: "/af-emdr/specialist/spec-desk.jpg",
+      alt: "Detaliu calm din cabinet, într-o lumină caldă și sigură",
+    },
+
     portrait: {
       src: "/adriana/adriana10.webp",
       alt: "Adriana Laszlo, psihoterapeut specializat în AF-EMDR",

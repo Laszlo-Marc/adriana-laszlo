@@ -25,7 +25,6 @@ type AfEmdrSuitabilityMobileProps = {
 
 export default function AfEmdrSuitabilityMobile({
   patterns,
-  insight,
 }: AfEmdrSuitabilityMobileProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -144,7 +143,12 @@ export default function AfEmdrSuitabilityMobile({
                     </span>
                   </div>
 
-                  <Heading as="h3" size="h3" className="mt-4 text-white">
+                  <Heading
+                    as="h3"
+                    size="h4"
+                    textCase="uppercase"
+                    className="mt-4 text-white"
+                  >
                     {pattern.title}
                   </Heading>
 
