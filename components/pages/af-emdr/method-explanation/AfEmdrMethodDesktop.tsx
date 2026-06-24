@@ -102,7 +102,7 @@ export default function AfEmdrMethodDesktop() {
                     className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-charcoal/82 via-charcoal/38 to-transparent"
                   />
 
-                  <div className="relative z-10 flex h-full min-h-[21rem] flex-col justify-end p-6 xl:p-7">
+                  <div className="relative z-10 flex h-full min-h-84 flex-col justify-end p-6 xl:p-7">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/62">
                       {step.label}
                     </p>

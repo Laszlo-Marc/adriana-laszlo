@@ -21,8 +21,9 @@ export default function DownloadResourcesSection() {
           <Heading
             id="download-resources-heading"
             as="h2"
-            size="h1"
+            size="h2"
             align="center"
+            textCase="uppercase"
           >
             Resurse gratuite
           </Heading>

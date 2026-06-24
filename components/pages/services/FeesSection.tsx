@@ -59,6 +59,7 @@ export default function FeesSection() {
             as="h2"
             size="h2"
             align="center"
+            textCase="uppercase"
             className="text-3xl md:text-5xl lg:text-6xl"
           >
             Tarife

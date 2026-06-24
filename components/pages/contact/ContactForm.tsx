@@ -156,7 +156,7 @@ export default function ContactForm() {
   return (
     <>
       <div className="mb-5 space-y-1.5 sm:mb-7 sm:space-y-2">
-        <Heading as="h2" size="h3">
+        <Heading as="h2" size="h3" textCase="uppercase" align="center">
           Trimite un mesaj
         </Heading>
       </div>

@@ -27,8 +27,14 @@ export default function BlogSocialSection() {
             Gânduri scurte, explicate simplu
           </AccentText>
 
-          <Heading id="blog-social-heading" as="h2" size="h2" align="center">
-            Materiale video scurte pe Instagram
+          <Heading
+            id="blog-social-heading"
+            as="h2"
+            size="h2"
+            align="center"
+            textCase="uppercase"
+          >
+            Materiale video scurte
           </Heading>
 
           <Text

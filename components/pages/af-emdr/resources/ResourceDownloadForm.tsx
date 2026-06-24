@@ -148,7 +148,7 @@ export default function ResourceDownloadForm({
   return (
     <div className="rounded-4xl border border-white/70 bg-white/78 p-6 backdrop-blur-sm sm:p-8 lg:p-10">
       <div className="mb-7">
-        <Heading as="h3" size="h3" align="center">
+        <Heading as="h3" size="h4" align="center" textCase="uppercase">
           {resource.title}
         </Heading>
 

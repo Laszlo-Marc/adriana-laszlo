@@ -1,6 +1,8 @@
+import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import EducationMethodSection from "@/components/pages/home/sections/education-method/EducationMethodSection";
 import Hero from "@/components/pages/home/sections/hero/Hero";
+import HomeStatsStrip from "@/components/pages/home/sections/HomeStatsStrip";
 import HomeProblemsSection from "@/components/pages/home/sections/problems/HomeProblemsSection";
 import HomeResourcesSection from "@/components/pages/home/sections/resources/HomeResourcesSection";
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
@@ -36,6 +38,7 @@ export default function HomePage() {
       />
       <Hero />
       <HomeProblemsSection />
+      <HomeStatsStrip />
       <HomeAboutTeaser />
       <ServicesTeaserSection />
       <TestimonialsStack items={testimonialItems} />

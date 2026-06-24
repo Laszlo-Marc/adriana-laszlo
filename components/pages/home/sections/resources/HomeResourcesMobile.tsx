@@ -20,6 +20,7 @@ export function HomeResourcesMobile() {
               size="h1"
               align="center"
               className="mt-4 text-balance"
+              textCase="uppercase"
             >
               Continuă procesul
             </Heading>

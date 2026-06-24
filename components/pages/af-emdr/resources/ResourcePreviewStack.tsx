@@ -130,14 +130,6 @@ export default function ResourcePreviewStack({
               <div className="absolute left-5 top-5 rounded-full bg-purple px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-sm">
                 {resource.eyebrow}
               </div>
-
-              {isActive ? (
-                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-charcoal/78 to-transparent p-6 text-left">
-                  <p className="max-w-xs font-display text-2xl leading-tight text-white">
-                    {resource.title}
-                  </p>
-                </div>
-              ) : null}
             </motion.button>
           );
         })}

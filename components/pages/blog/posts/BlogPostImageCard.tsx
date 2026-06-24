@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import type { BlogPostCard } from "../post-page/blogPosts";
+import Heading from "@/components/ui/Heading";
 
 type BlogPostImageCardProps = {
   post: BlogPostCard;
@@ -46,9 +47,15 @@ export default function BlogPostImageCard({
             ) : null}
           </div>
 
-          <h3 className="text-balance font-display text-2xl leading-tight text-white sm:text-3xl">
+          <Heading
+            as="h4"
+            size="h4"
+            textCase="uppercase"
+            color="cream"
+            className="max-w-xl"
+          >
             {post.title}
-          </h3>
+          </Heading>
 
           <p className="mt-4 line-clamp-3 max-w-88 text-sm leading-6 text-white/82">
             {post.excerpt}

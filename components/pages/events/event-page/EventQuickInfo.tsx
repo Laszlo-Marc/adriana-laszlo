@@ -91,6 +91,7 @@ export default function EventQuickInfo({ event }: EventQuickInfoProps) {
             size="h2"
             align="center"
             className="mt-3"
+            textCase="uppercase"
           >
             Informații esențiale
           </Heading>

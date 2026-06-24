@@ -144,6 +144,7 @@ export default function ResourcesFlipReveal({
               as="h3"
               size="h3"
               align="center"
+              textCase="uppercase"
               className="text-balance text-white"
             >
               {activePanel.title}

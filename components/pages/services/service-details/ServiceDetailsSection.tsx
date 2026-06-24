@@ -95,6 +95,7 @@ export default function ServiceDetailSection({
               id={`${id}-heading`}
               as="h2"
               size="h2"
+              textCase="uppercase"
               className="mx-auto max-w-84 text-center lg:mx-0 lg:max-w-none lg:text-left"
             >
               {title}

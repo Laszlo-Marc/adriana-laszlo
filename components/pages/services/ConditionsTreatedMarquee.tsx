@@ -15,6 +15,7 @@ import {
 import Section from "@/components/ui/Section";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Heading from "@/components/ui/Heading";
 
 export type ConditionItem = {
   label: string;
@@ -62,12 +63,16 @@ export default function ConditionMarqueeSection() {
           În procesul terapeutic
         </p>
 
-        <h2
+        <Heading
           id="conditions-marquee-heading"
-          className="mt-3 font-display text-4xl uppercase leading-tight tracking-[0.16em] text-charcoal md:text-5xl lg:text-6xl"
+          as="h2"
+          size="h2"
+          textCase="uppercase"
+          align="center"
+          className="mt-5"
         >
           Cu ce te pot ajuta
-        </h2>
+        </Heading>
       </div>
 
       <div className="relative mt-12 overflow-hidden space-y-4 py-2 md:mt-16">

@@ -22,7 +22,6 @@ type AfEmdrComparisonMobileTabsProps = {
 
 export default function AfEmdrComparisonMobileTabs({
   items,
-  insight,
 }: AfEmdrComparisonMobileTabsProps) {
   const [activeId, setActiveId] = useState(items[1]?.id ?? items[0]?.id);
   const shouldReduceMotion = useReducedMotion() ?? false;

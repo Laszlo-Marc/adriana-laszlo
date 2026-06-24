@@ -1,5 +1,3 @@
-// components/ui/BackgroundVideo.tsx
-
 "use client";
 
 import Image from "next/image";
@@ -9,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 type BackgroundVideoProps = {
   src: string;
+  mobileSrc?: string;
   posterSrc: string;
   posterAlt?: string;
   priority?: boolean;
@@ -17,10 +16,13 @@ type BackgroundVideoProps = {
   className?: string;
   imageClassName?: string;
   videoClassName?: string;
+  objectPosition?: string;
+  decorative?: boolean;
 };
 
 export default function BackgroundVideo({
   src,
+  mobileSrc,
   posterSrc,
   posterAlt = "",
   priority = false,
@@ -29,90 +31,76 @@ export default function BackgroundVideo({
   className,
   imageClassName,
   videoClassName,
+  objectPosition,
+  decorative = true,
 }: BackgroundVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-
     if (!video) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-
-    if (prefersReducedMotion) {
-      video.pause();
-      return;
-    }
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const tryPlay = async () => {
-      if (document.hidden) return;
+      if (document.hidden || mediaQuery.matches) {
+        video.pause();
+        setIsPlaying(false);
+        return;
+      }
 
       try {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
         await video.play();
       } catch {
-        // Autoplay can still be blocked by iOS Safari, Low Power Mode,
-        // Data Saver, or browser-level autoplay heuristics.
-        // The poster remains visible as the fallback.
+        setIsPlaying(false);
       }
     };
 
-    const handleVisibilityChange = () => {
-      if (!document.hidden) {
-        void tryPlay();
-      }
-    };
-
-    const handlePageShow = () => {
-      void tryPlay();
-    };
-
-    const handleCanPlay = () => {
-      void tryPlay();
-    };
+    const handleVisibilityChange = () => void tryPlay();
+    const handleCanPlay = () => void tryPlay();
+    const handleMotionChange = () => void tryPlay();
 
     video.addEventListener("canplay", handleCanPlay);
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    window.addEventListener("pageshow", handlePageShow);
+    mediaQuery.addEventListener("change", handleMotionChange);
 
     void tryPlay();
 
     return () => {
       video.removeEventListener("canplay", handleCanPlay);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("pageshow", handlePageShow);
+      mediaQuery.removeEventListener("change", handleMotionChange);
     };
   }, []);
 
   return (
     <div
-      aria-hidden="true"
+      aria-hidden={decorative ? "true" : undefined}
       className={cn("absolute inset-0 overflow-hidden", className)}
     >
       <Image
         src={posterSrc}
-        alt={posterAlt}
+        alt={decorative ? "" : posterAlt}
         fill
         priority={priority}
         fetchPriority={fetchPriority}
         sizes={sizes}
-        className={cn("object-cover object-center", imageClassName)}
+        className={cn("object-cover", imageClassName)}
+        style={objectPosition ? { objectPosition } : undefined}
       />
 
       <video
         ref={videoRef}
         className={cn(
-          "absolute inset-0 size-full object-cover object-center transition-opacity duration-700",
+          "absolute inset-0 size-full object-cover transition-opacity duration-700 motion-reduce:hidden",
           isPlaying ? "opacity-100" : "opacity-0",
           videoClassName,
         )}
-        src={src}
+        style={objectPosition ? { objectPosition } : undefined}
         poster={posterSrc}
         autoPlay
         muted
@@ -125,7 +113,12 @@ export default function BackgroundVideo({
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
         onError={() => setIsPlaying(false)}
-      />
+      >
+        {mobileSrc ? (
+          <source src={mobileSrc} type="video/mp4" media="(max-width: 767px)" />
+        ) : null}
+        <source src={src} type="video/mp4" />
+      </video>
     </div>
   );
 }

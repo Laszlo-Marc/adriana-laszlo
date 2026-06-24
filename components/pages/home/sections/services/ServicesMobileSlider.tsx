@@ -135,7 +135,8 @@ export default function ServicesMobileSlider({
 
                   <Heading
                     as="h3"
-                    size="h3"
+                    size="h2"
+                    textCase="uppercase"
                     className="max-w-[11ch] text-balance leading-[0.95] text-white"
                   >
                     {service.title}

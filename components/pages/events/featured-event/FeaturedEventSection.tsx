@@ -42,6 +42,7 @@ export default function FeaturedEventSection({
             as="h2"
             size="h1"
             align="center"
+            textCase="uppercase"
             className="mt-5 text-charcoal"
           >
             {event.title}
@@ -64,7 +65,7 @@ export default function FeaturedEventSection({
                 />
 
                 <Text as="p" size="xl" className="font-accent text-charcoal/80">
-                  Despre program
+                  Detalii
                 </Text>
 
                 <span
@@ -77,9 +78,10 @@ export default function FeaturedEventSection({
                 as="h3"
                 size="h2"
                 align="center"
+                textCase="uppercase"
                 className="max-w-2xl text-charcoal lg:text-left"
               >
-                {event.title}
+                Despre program
               </Heading>
 
               <Text

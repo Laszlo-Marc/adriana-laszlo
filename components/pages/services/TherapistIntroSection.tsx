@@ -129,8 +129,13 @@ export default function TherapistIntroSection() {
                     <AccentText>Despre mine</AccentText>
                   </div>
 
-                  <Heading as="h2" size="h2" className="text-charcoal">
-                    Un spațiu în care poți fi ascultat cu adevărat.
+                  <Heading
+                    as="h2"
+                    size="h2"
+                    className="text-charcoal"
+                    textCase="uppercase"
+                  >
+                    Mă bucur să te cunosc.
                   </Heading>
 
                   <div className="mt-8 max-w-120 space-y-5">

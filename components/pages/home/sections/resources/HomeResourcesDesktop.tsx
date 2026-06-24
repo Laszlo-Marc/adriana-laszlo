@@ -59,7 +59,7 @@ function ResourceCard({ item, index }: { item: ResourcePanel; index: number }) {
           as="h3"
           size={index === 0 ? "h3" : "h4"}
           color="cream"
-          textCase="none"
+          textCase="uppercase"
           className="mt-5"
           align="center"
         >
@@ -76,7 +76,7 @@ function ResourceCard({ item, index }: { item: ResourcePanel; index: number }) {
           {item.desktopDescription ?? item.description}
         </Text>
 
-        <Button href={item.href} variant="cream" className="mt-5" size="sm">
+        <Button href={item.href} variant="cream" className="mt-5" size="md">
           {item.cta}
         </Button>
       </div>

@@ -28,9 +28,13 @@ export const methodSteps: MethodStep[] = [
     imageTitle: "Formare continuă",
     imageSubtitle:
       "O practică susținută de studiu, experiență și atenție clinică.",
+    cta: {
+      label: "Află mai multe",
+      href: "/despre",
+    },
   },
   {
-    title: "O metodă blândă pentru lucru profund cu trauma.",
+    title: "o noua orientare în practica terapiei EMDR",
     body: "AF-EMDR este o abordare adaptată pentru procesarea experiențelor dificile, cu atenție la atașament, reglare emoțională și resursele interioare ale persoanei.",
     points: [
       "Procesare atentă a amintirilor încărcate emoțional",
@@ -48,7 +52,7 @@ export const methodSteps: MethodStep[] = [
     },
   },
   {
-    title: "Un cadru ghidat pentru reglare, claritate și reconectare.",
+    title: "Terapie de grup",
     body: "Pentru anumite teme, lucrul în grup poate oferi structură, normalizare și sprijin. Programele AF-EMDR sunt gândite pentru persoane care vor un cadru clar, sigur și orientat spre schimbare.",
     points: [
       "Program structurat pe teme specifice",

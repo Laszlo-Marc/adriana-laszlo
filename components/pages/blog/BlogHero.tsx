@@ -69,6 +69,7 @@ export default function BlogHero() {
               as="h1"
               size="display"
               align="center"
+              textCase="uppercase"
               className="text-balance text-[4rem]"
             >
               ARTICOLE & RESURSE

@@ -49,6 +49,7 @@ export default function OtherEventsSection({
             size="h2"
             align="center"
             className="mt-5 text-charcoal"
+            textCase="uppercase"
           >
             Workshopuri & ateliere tematice
           </Heading>
@@ -98,6 +99,7 @@ export default function OtherEventsSection({
                   size="h3"
                   align="center"
                   className="mt-4 text-charcoal"
+                  textCase="uppercase"
                 >
                   Mai multe evenimente vor fi anunțate în curând
                 </Heading>

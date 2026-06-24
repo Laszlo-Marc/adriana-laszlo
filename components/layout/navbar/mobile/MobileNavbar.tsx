@@ -29,8 +29,8 @@ function MobileNavbar({
           type="button"
           onClick={() => onOpenChange(!isOpen)}
           className={cn(
-            "inline-flex size-11 items-center justify-center rounded-full text-charcoal transition",
-            isSolidNavbar ? "bg-white/35" : "bg-transparent",
+            "inline-flex size-14 items-center justify-center rounded-full text-charcoal transition",
+            isSolidNavbar ? "bg-transparent" : "bg-white/65",
           )}
           whileTap={{ scale: 0.94 }}
           aria-label={isOpen ? "Închide meniul" : "Deschide meniul"}

@@ -4,7 +4,6 @@ import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
-import AccentText from "@/components/ui/AccentText";
 
 import { approachProcessContent } from "./approachProcessContent";
 

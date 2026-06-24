@@ -193,20 +193,11 @@ export default function FeaturedEventSignupForm({
               as="h3"
               size="h3"
               align="center"
+              textCase="uppercase"
               className="mx-auto max-w-[16rem] text-balance sm:max-w-none"
             >
-              Îți dorești să participi?
+              Înscriere
             </Heading>
-
-            <Text
-              as="p"
-              size="sm"
-              color="muted"
-              align="center"
-              className="mx-auto mt-3 max-w-sm"
-            >
-              Lasă-ne datele tale și revenim cu detalii despre program.
-            </Text>
           </div>
 
           <div className="mt-7 grid min-w-0 gap-4">

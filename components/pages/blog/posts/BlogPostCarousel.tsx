@@ -24,8 +24,9 @@ export default function BlogPostsCarousel({ posts }: BlogPostsCarouselProps) {
           <Heading
             id="blog-posts-heading"
             as="h2"
-            size="h1"
+            size="h2"
             align="center"
+            textCase="uppercase"
             className="text-charcoal"
           >
             Articole utile
