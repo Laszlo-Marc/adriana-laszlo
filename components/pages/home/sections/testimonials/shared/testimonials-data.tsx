@@ -1,4 +1,4 @@
-import { TestimonialItem } from "./shared/TestimonialContent";
+import { TestimonialItem } from "./TestimonialContent";
 
 export const testimonialItems: TestimonialItem[] = [
   {
