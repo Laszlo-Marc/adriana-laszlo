@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 import { services } from "./data";
 import { ServicesAccordion } from "./ServicesAccordion";
@@ -16,7 +17,7 @@ export default function ServicesTeaserDesktop() {
         width={140}
         height={140}
         sizes="140px"
-        className="pointer-events-none absolute right-[10%] top-5 z-0 h-auto w-35 -rotate-12 opacity-25"
+        className="pointer-events-none absolute right-[10%] top-5 z-0 h-auto w-35 -rotate-12"
       />
 
       <Image
@@ -26,11 +27,11 @@ export default function ServicesTeaserDesktop() {
         width={110}
         height={110}
         sizes="110px"
-        className="pointer-events-none absolute left-[10%] top-10 z-0 h-auto w-27.5 rotate-10 opacity-40"
+        className="pointer-events-none absolute left-[10%] top-10 z-0 h-auto w-27.5 rotate-10"
       />
 
       <Container size="wide" padding="default" className="relative z-10">
-        <div className="mx-auto max-w-none text-center">
+        <ScrollReveal className="mx-auto max-w-none text-center">
           <Heading
             id="home-services-title"
             as="h2"
@@ -41,11 +42,11 @@ export default function ServicesTeaserDesktop() {
           >
             Servicii Oferite
           </Heading>
-        </div>
+        </ScrollReveal>
 
-        <div className="relative mt-10">
+        <ScrollReveal className="relative mt-10" delay="sm">
           <ServicesAccordion items={services} />
-        </div>
+        </ScrollReveal>
       </Container>
     </div>
   );

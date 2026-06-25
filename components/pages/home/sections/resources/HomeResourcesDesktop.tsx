@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import Text from "@/components/ui/Text";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +18,9 @@ const toneStyles: Record<ResourcePanel["tone"], string> = {
 
 function ResourceCard({ item, index }: { item: ResourcePanel; index: number }) {
   return (
-    <article
+    <ScrollReveal
+      as="article"
+      delay={index === 0 ? "none" : index === 1 ? "sm" : "md"}
       className={cn(
         "group relative overflow-hidden rounded-4xl border border-white/50 shadow-[0_18px_60px_rgba(44,44,44,0.08)]",
         index === 0 ? "lg:min-h-136" : "lg:min-h-80",
@@ -80,7 +83,7 @@ function ResourceCard({ item, index }: { item: ResourcePanel; index: number }) {
           {item.cta}
         </Button>
       </div>
-    </article>
+    </ScrollReveal>
   );
 }
 
@@ -90,7 +93,17 @@ export default function ResourcesDesktopSection() {
   if (!featured) return null;
 
   return (
-    <div className="relative hidden overflow-hidden py-20 lg:block">
+    <div className="relative hidden overflow-hidden bg-cream py-20 lg:block">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-32 bg-linear-to-b from-cream via-cream/85 to-transparent"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-linear-to-t from-cream via-cream/85 to-transparent"
+      />
+
       <Image
         src="/backgrounds/double-df.png"
         alt=""
@@ -98,7 +111,7 @@ export default function ResourcesDesktopSection() {
         width={420}
         height={700}
         sizes="420px"
-        className="pointer-events-none absolute -left-10 -top-25 z-0 h-auto w-105 opacity-30"
+        className="pointer-events-none absolute -left-30 -top-25 z-0 h-auto w-105 "
       />
 
       <Image
@@ -116,32 +129,34 @@ export default function ResourcesDesktopSection() {
         className="pointer-events-none absolute right-[18%] top-1/2 z-0 h-96 w-96 -translate-y-1/2 rounded-full bg-purple/10 blur-3xl"
       />
 
-      <Container size="wider" padding="default" className="relative z-10">
+      <Container size="wider" padding="default" className="relative z-20">
         <div className="grid items-start gap-14 lg:grid-cols-[0.82fr_1.18fr] xl:gap-20">
           <div className="sticky top-32">
-            <Heading
-              id="home-resources-title"
-              as="h2"
-              size="h2"
-              textCase="none"
-              className="mt-4 text-charcoal"
-            >
-              Continuă procesul terapeutic
-            </Heading>
+            <ScrollReveal>
+              <Heading
+                id="home-resources-title"
+                as="h2"
+                size="h2"
+                textCase="uppercase"
+                className="mt-4 text-charcoal"
+              >
+                Continuă procesul terapeutic
+              </Heading>
 
-            <Text
-              as="p"
-              size="lg"
-              color="muted"
-              className="mt-7 max-w-md leading-8"
-            >
-              Articole, materiale gratuite și conținut educațional gândite
-              pentru mai multă claritate, siguranță și înțelegere de sine.
-            </Text>
+              <Text
+                as="p"
+                size="lg"
+                color="muted"
+                className="mt-7 max-w-md leading-8"
+              >
+                Articole, materiale gratuite și conținut educațional gândite
+                pentru mai multă claritate, siguranță și înțelegere de sine.
+              </Text>
 
-            <div className="mt-9">
-              <Button href="/blog">Explorează resursele</Button>
-            </div>
+              <div className="mt-9">
+                <Button href="/blog">Explorează resursele</Button>
+              </div>
+            </ScrollReveal>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">

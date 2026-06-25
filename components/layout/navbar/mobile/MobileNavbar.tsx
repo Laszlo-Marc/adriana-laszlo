@@ -21,7 +21,7 @@ function MobileNavbar({
   return (
     <div className="grid h-20 grid-cols-2 items-center xl:hidden">
       <div className="flex justify-start">
-        <Logo size="md" />
+        <Logo size="lg" asText />
       </div>
 
       <div className="flex justify-end">

@@ -14,7 +14,7 @@ type LogoProps = {
 const textSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
   sm: "text-sm md:text-[0.9375rem]",
   md: "text-base md:text-lg",
-  lg: "text-xl md:text-2xl",
+  lg: "text-xl md:text-4xl",
 };
 
 const circleSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {

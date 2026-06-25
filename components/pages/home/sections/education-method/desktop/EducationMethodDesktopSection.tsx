@@ -3,13 +3,14 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import Text from "@/components/ui/Text";
 
 import { methodSteps } from "../data";
 
 export default function EducationMethodDesktopSection() {
   return (
-    <section className="relative hidden overflow-hidden bg-cream py-24 lg:block xl:py-32">
+    <section className="relative hidden overflow-hidden bg-cream pt-24 pb-36 lg:block xl:pt-32 xl:pb-44">
       <div className="absolute inset-0">
         <Image
           src="/home-page/method.jpg"
@@ -29,7 +30,7 @@ export default function EducationMethodDesktopSection() {
 
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-cream via-cream/85 to-transparent"
+          className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-t from-cream via-cream/90 to-transparent"
         />
       </div>
 
@@ -40,11 +41,30 @@ export default function EducationMethodDesktopSection() {
         width={150}
         height={150}
         sizes="150px"
-        className="pointer-events-none absolute right-[7%] top-20 h-auto w-37.5 rotate-[-10deg] opacity-20"
+        className="pointer-events-none absolute right-[7%] top-20 h-auto w-37.5 rotate-[-10deg] "
+      />
+      <Image
+        src="/backgrounds/df-purple-up.png"
+        alt=""
+        aria-hidden="true"
+        width={150}
+        height={150}
+        sizes="150px"
+        className="pointer-events-none absolute right-[15%] top-20 h-auto w-37.5 rotate-[-10deg] "
+      />
+
+      <Image
+        src="/backgrounds/double-df.png"
+        alt=""
+        aria-hidden="true"
+        width={420}
+        height={900}
+        sizes="420px"
+        className="pointer-events-none absolute -left-20 -bottom-32 z-0 h-auto w-105 "
       />
 
       <Container size="wider" padding="default" className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
             Formare, metodă și programe
           </p>
@@ -58,12 +78,14 @@ export default function EducationMethodDesktopSection() {
           >
             Un parcurs terapeutic construit cu grijă
           </Heading>
-        </div>
+        </ScrollReveal>
 
         <div className="mt-14 grid grid-cols-3 gap-5 xl:gap-7">
           {methodSteps.map((step, index) => (
-            <article
+            <ScrollReveal
               key={step.title}
+              as="article"
+              delay={index === 0 ? "none" : index === 1 ? "sm" : "md"}
               className="group relative min-h-152 overflow-hidden rounded-[2.25rem] bg-charcoal shadow-[0_26px_90px_rgba(44,44,44,0.13)]"
             >
               <Image
@@ -148,10 +170,15 @@ export default function EducationMethodDesktopSection() {
                   </Button>
                 ) : null}
               </div>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
       </Container>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-36 bg-linear-to-b from-transparent via-cream/75 to-cream"
+      />
     </section>
   );
 }

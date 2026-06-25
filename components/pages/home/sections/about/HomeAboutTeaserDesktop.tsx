@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function HomeAboutTeaserDesktop() {
   return (
@@ -16,7 +17,7 @@ export default function HomeAboutTeaserDesktop() {
         width={170}
         height={170}
         sizes="170px"
-        className="pointer-events-none absolute right-[9%] top-[20%] z-0 hidden h-auto w-42.5 rotate-[-10deg] opacity-25 xl:block"
+        className="pointer-events-none absolute right-[9%] top-[20%] z-0 hidden h-auto w-42.5 rotate-[-10deg] xl:block"
       />
 
       <div
@@ -28,7 +29,10 @@ export default function HomeAboutTeaserDesktop() {
         <div className="relative z-10 overflow-hidden">
           <div className="grid min-h-svh grid-cols-[0.82fr_1.18fr] items-center">
             <div className="relative flex h-full items-center justify-center px-8 xl:px-12">
-              <div className="relative h-[min(85vh,850px)] w-full max-w-130">
+              <ScrollReveal
+                preset="fade-in"
+                className="relative h-[min(85vh,850px)] w-full max-w-130"
+              >
                 <Image
                   src="/adriana/adriana8.webp"
                   alt="Adriana Laszlo într-un spațiu calm și primitor"
@@ -36,26 +40,11 @@ export default function HomeAboutTeaserDesktop() {
                   sizes="(max-width: 1023px) 1px, (min-width: 1536px) 34vw, 38vw"
                   className="object-cover object-top"
                 />
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-linear-to-l from-cream/80 via-cream/30 to-transparent"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-linear-to-b from-cream/70 via-cream/20 to-transparent"
-                />
-
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-cream/80 via-cream/25 to-transparent"
-                />
-              </div>
+              </ScrollReveal>
             </div>
 
             <div className="relative flex items-center px-14 xl:px-20 2xl:px-24">
-              <div className="relative max-w-180">
+              <ScrollReveal className="relative max-w-180">
                 <Image
                   src="/backgrounds/df-purple-up.png"
                   alt=""
@@ -63,7 +52,7 @@ export default function HomeAboutTeaserDesktop() {
                   width={96}
                   height={96}
                   sizes="96px"
-                  className="pointer-events-none absolute -right-8 -top-12 h-auto w-24 rotate-[8deg] opacity-25"
+                  className="pointer-events-none absolute -right-8 -top-12 h-auto w-24 rotate-[8deg]"
                 />
 
                 <div className="mb-8 flex items-center gap-4">
@@ -76,7 +65,7 @@ export default function HomeAboutTeaserDesktop() {
                   as="h2"
                   size="h3"
                   textCase="uppercase"
-                  className="text-charcoal max-w-2xl"
+                  className="max-w-2xl text-charcoal"
                 >
                   Un spațiu în care poți fi ascultat cu adevărat.
                 </Heading>
@@ -105,7 +94,7 @@ export default function HomeAboutTeaserDesktop() {
                     Află mai multe
                   </Button>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>

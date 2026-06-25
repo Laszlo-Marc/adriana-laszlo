@@ -1,18 +1,17 @@
 "use client";
 
-import * as React from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useReducedMotion } from "framer-motion";
 
-import Heading from "@/components/ui/Heading";
-import AccentText from "@/components/ui/AccentText";
-import Text from "@/components/ui/Text";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
-import type { TestimonialItem } from "./TestimonialContent";
-import { TestimonialsMobileCard } from "./TestimonialMobileCard";
-import { TestimonialsDesktopCard } from "./TestimonialDesktopCard";
+import type { TestimonialItem } from "./shared/TestimonialContent";
+
+import { TestimonialsDesktopCard } from "./desktop/TestimonialDesktopCard";
+import CarouselArrowButton from "./shared/CarouselArrowButton";
+import { useTestimonialsCarousel } from "./shared/useTestimonialCarousel";
+import TestimonialsHeader from "./shared/TestimonialsHeading";
+import { TestimonialsMobileCard } from "./mobile/TestimonialMobileCard";
 
 type TestimonialsStackProps = {
   items: TestimonialItem[];
@@ -21,187 +20,25 @@ type TestimonialsStackProps = {
   description?: string;
 };
 
-const MOBILE_AUTOPLAY_MS = 4500;
-const MOBILE_AUTOPLAY_RESUME_DELAY = 7000;
-const SWIPE_THRESHOLD = 44;
-
-function getWrappedIndex(index: number, total: number) {
-  if (total <= 0) return 0;
-
-  return ((index % total) + total) % total;
-}
-
 export default function TestimonialsStack({
   items,
   className,
   title = "Ce spun clienții",
   description = "Un spațiu terapeutic sigur începe cu încredere, claritate și sentimentul că ești cu adevărat înțeles.",
 }: TestimonialsStackProps) {
-  const shouldReduceMotion = useReducedMotion();
-
-  const [activeIndex, setActiveIndex] = React.useState(0);
-
-  const orderedItems = React.useMemo(() => {
-    if (items.length === 0) return [];
-
-    return items.map((_, index) => {
-      const itemIndex = getWrappedIndex(activeIndex + index, items.length);
-      return items[itemIndex];
-    });
-  }, [items, activeIndex]);
-
-  const normalizedActiveIndex = getWrappedIndex(activeIndex, items.length);
-
-  const pointerStartX = React.useRef<number | null>(null);
-  const autoplayIntervalRef = React.useRef<number | null>(null);
-  const resumeTimeoutRef = React.useRef<number | null>(null);
-
-  const clearAutoplayTimers = React.useCallback(() => {
-    if (autoplayIntervalRef.current !== null) {
-      window.clearInterval(autoplayIntervalRef.current);
-      autoplayIntervalRef.current = null;
-    }
-
-    if (resumeTimeoutRef.current !== null) {
-      window.clearTimeout(resumeTimeoutRef.current);
-      resumeTimeoutRef.current = null;
-    }
-  }, []);
-
-  const handleMove = React.useCallback(
-    (steps: number) => {
-      if (!steps || items.length === 0) return;
-
-      setActiveIndex((current) =>
-        getWrappedIndex(current + steps, items.length),
-      );
-    },
-    [items.length],
-  );
-
-  const goToMobileIndex = React.useCallback(
-    (index: number) => {
-      if (items.length === 0) return;
-
-      setActiveIndex(getWrappedIndex(index, items.length));
-    },
-    [items.length],
-  );
-
-  const nextMobile = React.useCallback(() => {
-    if (items.length === 0) return;
-
-    setActiveIndex((current) => getWrappedIndex(current + 1, items.length));
-  }, [items.length]);
-
-  const prevMobile = React.useCallback(() => {
-    if (items.length === 0) return;
-
-    setActiveIndex((current) => getWrappedIndex(current - 1, items.length));
-  }, [items.length]);
-
-  const startMobileAutoplay = React.useCallback(() => {
-    clearAutoplayTimers();
-
-    if (shouldReduceMotion || items.length <= 1 || document.hidden) return;
-
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
-    if (!mobileQuery.matches) return;
-
-    autoplayIntervalRef.current = window.setInterval(() => {
-      if (!document.hidden) {
-        nextMobile();
-      }
-    }, MOBILE_AUTOPLAY_MS);
-  }, [clearAutoplayTimers, items.length, nextMobile, shouldReduceMotion]);
-
-  const pauseMobileAutoplay = React.useCallback(() => {
-    clearAutoplayTimers();
-
-    if (shouldReduceMotion || items.length <= 1) return;
-
-    resumeTimeoutRef.current = window.setTimeout(() => {
-      startMobileAutoplay();
-    }, MOBILE_AUTOPLAY_RESUME_DELAY);
-  }, [
-    clearAutoplayTimers,
-    items.length,
-    shouldReduceMotion,
-    startMobileAutoplay,
-  ]);
-
-  React.useEffect(() => {
-    if (items.length <= 1 || shouldReduceMotion) return;
-
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        clearAutoplayTimers();
-        return;
-      }
-
-      startMobileAutoplay();
-    };
-
-    const handleMediaChange = () => {
-      startMobileAutoplay();
-    };
-
-    startMobileAutoplay();
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    mobileQuery.addEventListener("change", handleMediaChange);
-
-    return () => {
-      clearAutoplayTimers();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      mobileQuery.removeEventListener("change", handleMediaChange);
-    };
-  }, [
-    clearAutoplayTimers,
-    items.length,
-    shouldReduceMotion,
-    startMobileAutoplay,
-  ]);
-
-  const handlePointerDown = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      pointerStartX.current = event.clientX;
-    },
-    [],
-  );
-
-  const handlePointerUp = React.useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (pointerStartX.current === null) return;
-
-      const deltaX = event.clientX - pointerStartX.current;
-      pointerStartX.current = null;
-
-      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
-
-      pauseMobileAutoplay();
-
-      if (deltaX < 0) {
-        nextMobile();
-      } else {
-        prevMobile();
-      }
-    },
-    [nextMobile, pauseMobileAutoplay, prevMobile],
-  );
-
-  const handlePointerCancel = React.useCallback(() => {
-    pointerStartX.current = null;
-  }, []);
-
-  const visibleItems = React.useMemo(() => {
-    return orderedItems.map((item, index) => ({
-      item,
-      position: index,
-    }));
-  }, [orderedItems]);
+  const {
+    normalizedActiveIndex,
+    orderedItems,
+    visibleItems,
+    handleMove,
+    goToMobileIndex,
+    nextMobile,
+    prevMobile,
+    pauseMobileAutoplay,
+    handlePointerDown,
+    handlePointerUp,
+    handlePointerCancel,
+  } = useTestimonialsCarousel(items);
 
   if (!items.length) return null;
 
@@ -237,42 +74,14 @@ export default function TestimonialsStack({
           width={48}
           height={48}
           sizes="80px"
-          className="h-auto w-full object-contain rotate-x-180"
+          className="h-auto w-full rotate-x-180 object-contain"
         />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <AccentText className="block text-center text-2xl text-gold">
-            Testimoniale
-          </AccentText>
+        <TestimonialsHeader title={title} description={description} />
 
-          <Heading
-            id="testimonials-heading"
-            as="h2"
-            size="h2"
-            className="mt-4"
-            align="center"
-            font="display"
-            textCase="uppercase"
-          >
-            {title}
-          </Heading>
-
-          {description ? (
-            <Text
-              as="p"
-              size="lg"
-              color="muted"
-              align="center"
-              className="mx-auto mt-5 max-w-2xl text-pretty hidden lg:block"
-            >
-              {description}
-            </Text>
-          ) : null}
-        </div>
-
-        <div className="mt-12 md:hidden">
+        <ScrollReveal className="mt-12 md:hidden" delay="sm">
           <div
             className="overflow-hidden"
             onPointerDown={handlePointerDown}
@@ -282,7 +91,7 @@ export default function TestimonialsStack({
             aria-label="Testimoniale clienți"
           >
             <div
-              className="flex touch-pan-y transition-transform duration-500 ease-out motion-reduce:transition-none"
+              className="flex touch-pan-y transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] motion-reduce:transition-none"
               style={{
                 transform: `translateX(-${normalizedActiveIndex * 100}%)`,
               }}
@@ -338,9 +147,12 @@ export default function TestimonialsStack({
               }}
             />
           </div>
-        </div>
+        </ScrollReveal>
 
-        <div className="relative mt-14 hidden h-120 overflow-hidden md:block sm:h-128">
+        <ScrollReveal
+          className="relative mt-14 hidden h-120 overflow-hidden md:block sm:h-128"
+          delay="sm"
+        >
           {visibleItems.map(({ item }, index) => {
             let position = index;
 
@@ -358,9 +170,12 @@ export default function TestimonialsStack({
               />
             );
           })}
-        </div>
+        </ScrollReveal>
 
-        <div className="mt-8 hidden items-center justify-center gap-3 md:flex">
+        <ScrollReveal
+          className="mt-8 hidden items-center justify-center gap-3 md:flex"
+          delay="md"
+        >
           <CarouselArrowButton
             direction="previous"
             size="desktop"
@@ -372,41 +187,8 @@ export default function TestimonialsStack({
             size="desktop"
             onClick={() => handleMove(1)}
           />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
-  );
-}
-
-function CarouselArrowButton({
-  direction,
-  size,
-  onClick,
-}: {
-  direction: "previous" | "next";
-  size: "mobile" | "desktop";
-  onClick: () => void;
-}) {
-  const Icon = direction === "previous" ? ChevronLeft : ChevronRight;
-
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "inline-flex items-center justify-center rounded-full border",
-        "border-charcoal/10 bg-white text-charcoal transition-[background-color,border-color,color] motion-reduce:transition-none",
-        "hover:border-teal/20 hover:bg-teal hover:text-white",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2",
-        size === "mobile" ? "h-11 w-11" : "h-12 w-12",
-      )}
-      aria-label={
-        direction === "previous"
-          ? "Testimonial anterior"
-          : "Testimonial următor"
-      }
-    >
-      <Icon className="h-5 w-5" aria-hidden="true" />
-    </button>
   );
 }

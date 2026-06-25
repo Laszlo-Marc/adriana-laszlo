@@ -89,18 +89,18 @@ export default function ServicesMobileSlider({
   return (
     <section
       aria-labelledby="mobile-services-slider-title"
-      className="relative h-dvh min-h-svh overflow-hidden lg:hidden"
+      className="relative h-svh  overflow-hidden lg:hidden"
     >
       <h2 id="mobile-services-slider-title" className="sr-only">
         Servicii de psihoterapie
       </h2>
 
-      <div ref={emblaRef} className="h-dvh min-h-svh overflow-hidden">
+      <div ref={emblaRef} className="h-svh  overflow-hidden">
         <div className="flex h-full touch-pan-y">
           {services.map((service, index) => (
             <article
               key={service.id}
-              className="relative h-dvh min-h-svh min-w-0 flex-[0_0_100%] overflow-hidden"
+              className="relative h-svh  min-w-0 flex-[0_0_100%] overflow-hidden"
               aria-label={service.title}
             >
               <Image

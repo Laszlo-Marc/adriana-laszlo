@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
 import { cn } from "@/lib/utils";
 
 type BackgroundVideoProps = {
@@ -18,6 +17,7 @@ type BackgroundVideoProps = {
   videoClassName?: string;
   objectPosition?: string;
   decorative?: boolean;
+  preload?: "none" | "metadata" | "auto";
 };
 
 export default function BackgroundVideo({
@@ -33,9 +33,11 @@ export default function BackgroundVideo({
   videoClassName,
   objectPosition,
   decorative = true,
+  preload = "auto",
 }: BackgroundVideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [canShowVideo, setCanShowVideo] = useState(false);
+  const [shouldRenderVideo, setShouldRenderVideo] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -43,39 +45,113 @@ export default function BackgroundVideo({
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    let retryTimeout: number | null = null;
+    let retryCount = 0;
+    let isMounted = true;
+
+    const clearRetryTimeout = () => {
+      if (retryTimeout !== null) {
+        window.clearTimeout(retryTimeout);
+        retryTimeout = null;
+      }
+    };
+
     const tryPlay = async () => {
+      if (!isMounted) return;
+
       if (document.hidden || mediaQuery.matches) {
         video.pause();
-        setIsPlaying(false);
+        setShouldRenderVideo(!mediaQuery.matches);
+        setCanShowVideo(false);
         return;
       }
+
+      setShouldRenderVideo(true);
 
       try {
         video.muted = true;
         video.defaultMuted = true;
         video.playsInline = true;
+        video.autoplay = true;
+        video.loop = true;
+
         await video.play();
+
+        if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+          setCanShowVideo(true);
+        }
+
+        retryCount = 0;
       } catch {
-        setIsPlaying(false);
+        setCanShowVideo(false);
+
+        if (retryCount < 5) {
+          retryCount += 1;
+
+          clearRetryTimeout();
+
+          retryTimeout = window.setTimeout(() => {
+            void tryPlay();
+          }, 350 * retryCount);
+        }
       }
     };
 
-    const handleVisibilityChange = () => void tryPlay();
-    const handleCanPlay = () => void tryPlay();
-    const handleMotionChange = () => void tryPlay();
+    const handleReady = () => {
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        setCanShowVideo(true);
+      }
 
-    video.addEventListener("canplay", handleCanPlay);
+      retryCount = 0;
+      void tryPlay();
+    };
+
+    const handleVisibilityChange = () => {
+      retryCount = 0;
+      void tryPlay();
+    };
+
+    const handleMotionChange = () => {
+      retryCount = 0;
+      void tryPlay();
+    };
+
+    const handleError = () => {
+      setCanShowVideo(false);
+    };
+
+    retryCount = 0;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.load();
+
+    video.addEventListener("loadeddata", handleReady);
+    video.addEventListener("canplay", handleReady);
+    video.addEventListener("playing", handleReady);
+    video.addEventListener("error", handleError);
+
     document.addEventListener("visibilitychange", handleVisibilityChange);
     mediaQuery.addEventListener("change", handleMotionChange);
 
     void tryPlay();
 
     return () => {
-      video.removeEventListener("canplay", handleCanPlay);
+      isMounted = false;
+      clearRetryTimeout();
+
+      video.removeEventListener("loadeddata", handleReady);
+      video.removeEventListener("canplay", handleReady);
+      video.removeEventListener("playing", handleReady);
+      video.removeEventListener("error", handleError);
+
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       mediaQuery.removeEventListener("change", handleMotionChange);
     };
-  }, []);
+  }, [src, mobileSrc]);
 
   return (
     <div
@@ -93,32 +169,42 @@ export default function BackgroundVideo({
         style={objectPosition ? { objectPosition } : undefined}
       />
 
-      <video
-        ref={videoRef}
-        className={cn(
-          "absolute inset-0 size-full object-cover transition-opacity duration-700 motion-reduce:hidden",
-          isPlaying ? "opacity-100" : "opacity-0",
-          videoClassName,
-        )}
-        style={objectPosition ? { objectPosition } : undefined}
-        poster={posterSrc}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        controls={false}
-        disablePictureInPicture
-        onPlaying={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
-        onError={() => setIsPlaying(false)}
-      >
-        {mobileSrc ? (
-          <source src={mobileSrc} type="video/mp4" media="(max-width: 767px)" />
-        ) : null}
-        <source src={src} type="video/mp4" />
-      </video>
+      {shouldRenderVideo ? (
+        <video
+          key={`${mobileSrc ?? ""}-${src}`}
+          ref={videoRef}
+          className={cn(
+            "absolute inset-0 size-full object-cover transition-opacity duration-700 motion-reduce:hidden",
+            canShowVideo ? "opacity-100" : "opacity-0",
+            videoClassName,
+          )}
+          style={objectPosition ? { objectPosition } : undefined}
+          poster={posterSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload={preload}
+          controls={false}
+          disablePictureInPicture
+          aria-hidden="true"
+          tabIndex={-1}
+          onLoadedData={() => setCanShowVideo(true)}
+          onCanPlay={() => setCanShowVideo(true)}
+          onPlaying={() => setCanShowVideo(true)}
+          onError={() => setCanShowVideo(false)}
+        >
+          {mobileSrc ? (
+            <source
+              src={mobileSrc}
+              type="video/mp4"
+              media="(max-width: 767px)"
+            />
+          ) : null}
+
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : null}
     </div>
   );
 }

@@ -6,8 +6,9 @@ import HomeStatsStrip from "@/components/pages/home/sections/HomeStatsStrip";
 import HomeProblemsSection from "@/components/pages/home/sections/problems/HomeProblemsSection";
 import HomeResourcesSection from "@/components/pages/home/sections/resources/HomeResourcesSection";
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
+import { testimonialItems } from "@/components/pages/home/sections/testimonials/shared/testimonials-data";
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
-import { testimonialItems } from "@/components/pages/home/sections/testimonials/testimonials-data";
+
 import FinalCTA from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/lib/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo/metadata";

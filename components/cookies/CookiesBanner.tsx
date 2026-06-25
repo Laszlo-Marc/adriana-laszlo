@@ -61,10 +61,14 @@ export default function CookiesBanner() {
     savePreferences,
     openSettings,
     closeSettings,
+    isReady,
   } = useCookieConsent();
-
   const [localPreferences, setLocalPreferences] =
     useState<CookieConsentPreferences>(() => preferences);
+
+  if (!isReady) {
+    return null;
+  }
 
   const shouldShowBanner = !hasDecision;
   const shouldShowSettings = isSettingsOpen;
@@ -73,7 +77,6 @@ export default function CookiesBanner() {
     setLocalPreferences(preferences);
     openSettings();
   }
-
   function updatePreference(
     key: keyof Omit<CookieConsentPreferences, "necessary">,
     value: boolean,

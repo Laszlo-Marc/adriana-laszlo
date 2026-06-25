@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
-import { TestimonialContent, type TestimonialItem } from "./TestimonialContent";
+import {
+  TestimonialContent,
+  type TestimonialItem,
+} from "../shared/TestimonialContent";
 
 type DesktopCardProps = {
   item: TestimonialItem;

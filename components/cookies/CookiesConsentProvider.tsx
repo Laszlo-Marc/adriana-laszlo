@@ -20,7 +20,13 @@ import {
   type StoredCookieConsent,
 } from "@/lib/cookies/cookiesConsent";
 
+type CookieConsentSnapshot = {
+  isReady: boolean;
+  consent: StoredCookieConsent | null;
+};
+
 type CookieConsentContextValue = {
+  isReady: boolean;
   consent: StoredCookieConsent | null;
   preferences: CookieConsentPreferences;
   hasDecision: boolean;
@@ -38,8 +44,14 @@ const CookieConsentContext = createContext<CookieConsentContextValue | null>(
 
 const COOKIE_CONSENT_CHANGE_EVENT = "adriana-cookie-consent-change";
 
+const serverConsentSnapshot: CookieConsentSnapshot = {
+  isReady: false,
+  consent: null,
+};
+
 let cachedRawConsent: string | null = null;
 let cachedParsedConsent: StoredCookieConsent | null = null;
+let cachedSnapshot: CookieConsentSnapshot | null = null;
 
 function readStoredConsent(): StoredCookieConsent | null {
   if (typeof window === "undefined") return null;
@@ -56,12 +68,23 @@ function readStoredConsent(): StoredCookieConsent | null {
   return cachedParsedConsent;
 }
 
-function getStoredConsentSnapshot(): StoredCookieConsent | null {
-  return readStoredConsent();
+function getStoredConsentSnapshot(): CookieConsentSnapshot {
+  const consent = readStoredConsent();
+
+  if (cachedSnapshot?.isReady === true && cachedSnapshot.consent === consent) {
+    return cachedSnapshot;
+  }
+
+  cachedSnapshot = {
+    isReady: true,
+    consent,
+  };
+
+  return cachedSnapshot;
 }
 
-function getServerConsentSnapshot(): StoredCookieConsent | null {
-  return null;
+function getServerConsentSnapshot(): CookieConsentSnapshot {
+  return serverConsentSnapshot;
 }
 
 function subscribeToConsentChanges(onStoreChange: () => void) {
@@ -87,16 +110,22 @@ function writeStoredConsent(consent: StoredCookieConsent) {
 
   cachedRawConsent = serializedConsent;
   cachedParsedConsent = consent;
+  cachedSnapshot = {
+    isReady: true,
+    consent,
+  };
 
   window.dispatchEvent(new Event(COOKIE_CONSENT_CHANGE_EVENT));
 }
 
 export function CookieConsentProvider({ children }: { children: ReactNode }) {
-  const consent = useSyncExternalStore(
+  const snapshot = useSyncExternalStore(
     subscribeToConsentChanges,
     getStoredConsentSnapshot,
     getServerConsentSnapshot,
   );
+
+  const { isReady, consent } = snapshot;
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -128,9 +157,10 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<CookieConsentContextValue>(
     () => ({
+      isReady,
       consent,
       preferences: consent ?? defaultCookieConsent,
-      hasDecision: consent !== null,
+      hasDecision: isReady && consent !== null,
       isSettingsOpen,
       acceptAll,
       rejectOptional,
@@ -139,13 +169,14 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
       closeSettings,
     }),
     [
-      acceptAll,
-      closeSettings,
+      isReady,
       consent,
       isSettingsOpen,
-      openSettings,
+      acceptAll,
       rejectOptional,
       savePreferences,
+      openSettings,
+      closeSettings,
     ],
   );
 
