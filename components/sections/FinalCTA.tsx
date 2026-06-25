@@ -42,7 +42,7 @@ const defaultDecorations: FinalCTADecoration[] = [
     width: 360,
     height: 760,
     className:
-      "pointer-events-none absolute left-1/2 top-1/2 z-0 h-auto w-62 -translate-x-1/2 -translate-y-1/2 md:w-66 lg:w-80",
+      "pointer-events-none absolute left-1/2 top-1/2 z-0 h-auto w-62 -translate-x-1/2 -translate-y-1/2 md:w-66 lg:w-60",
   },
   {
     src: "/backgrounds/df-purple-up.png",

@@ -3,15 +3,16 @@ import Image from "next/image";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import Button from "@/components/ui/Button";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 import { afEmdrContent } from "./afEmdrContent";
 
 export default function AfEmdrDesktop() {
   return (
-    <div className="relative hidden lg:block pt-20 my-20">
+    <div className="relative my-20 hidden pt-20 lg:block">
       <div className="grid grid-cols-[1fr_1fr]">
         <div className="relative flex items-center pl-20">
-          <div className="relative z-10 max-w-3xl">
+          <ScrollReveal className="relative z-10 max-w-3xl">
             <Heading as="h2" size="h3" textCase="uppercase" className="mt-4">
               {afEmdrContent.title}
             </Heading>
@@ -33,7 +34,7 @@ export default function AfEmdrDesktop() {
                 {afEmdrContent.secondaryCta.label}
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         <div className="relative flex items-center justify-center">
@@ -50,20 +51,22 @@ export default function AfEmdrDesktop() {
               height={260}
               sizes="300px"
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-14 right-0 z-10 h-auto w-75 object-contain opacity-45"
+              className="pointer-events-none absolute bottom-14 right-0 z-10 h-auto w-75 object-contain "
             />
 
             <div className="relative left-30 -top-20 z-20 w-[58%]">
-              <div className="relative overflow-hidden rounded-sm shadow-[0_28px_70px_rgba(44,44,44,0.16)]">
-                <Image
-                  src={afEmdrContent.image.src}
-                  alt={afEmdrContent.image.alt}
-                  width={820}
-                  height={500}
-                  sizes="(max-width: 1023px) 1px, (min-width: 1280px) 26vw, 30vw"
-                  className="h-auto w-full object-cover"
-                />
-              </div>
+              <ScrollReveal preset="fade-in">
+                <div className="relative overflow-hidden rounded-sm shadow-[0_28px_70px_rgba(44,44,44,0.16)]">
+                  <Image
+                    src={afEmdrContent.image.src}
+                    alt={afEmdrContent.image.alt}
+                    width={820}
+                    height={500}
+                    sizes="(max-width: 1023px) 1px, (min-width: 1280px) 26vw, 30vw"
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>

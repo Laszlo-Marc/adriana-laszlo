@@ -53,8 +53,7 @@ export default function AboutPage() {
         items={aboutFaqItems}
         title="Întrebări frecvente"
         tone="charcoal"
-        background="purple-soft"
-        spacing="md"
+        spacing="xl"
       />
       <FinalCTA
         title="Dacă simți că rezonăm, sunt aici."

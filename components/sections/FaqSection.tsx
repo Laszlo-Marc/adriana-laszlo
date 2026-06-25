@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 export type FaqItem = {
@@ -30,6 +32,7 @@ type FaqSectionProps = {
   spacing?: "none" | "sm" | "md" | "lg" | "xl";
   containerSize?: "narrow" | "default" | "wide" | "wider";
   className?: string;
+  showDecorations?: boolean;
 };
 
 const toneStyles: Record<
@@ -99,9 +102,10 @@ export default function FaqSection({
   description,
   tone = "charcoal",
   background = "cream",
-  spacing = "md",
+  spacing = "lg",
   containerSize = "narrow",
   className,
+  showDecorations = true,
 }: FaqSectionProps) {
   if (!items.length) return null;
 
@@ -116,92 +120,128 @@ export default function FaqSection({
       aria-labelledby={headingId}
       className={cn("relative overflow-hidden", className)}
     >
+      {showDecorations ? (
+        <>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sand/10 blur-3xl"
+          />
+
+          <Image
+            src="/backgrounds/df-purple-up.png"
+            alt=""
+            aria-hidden="true"
+            width={120}
+            height={120}
+            sizes="120px"
+            className="pointer-events-none absolute left-[8%] top-[18%] z-0 h-auto w-38 rotate-[-8deg] max-md:hidden"
+          />
+
+          <Image
+            src="/backgrounds/df-teal-down.png"
+            alt=""
+            aria-hidden="true"
+            width={130}
+            height={130}
+            sizes="130px"
+            className="pointer-events-none absolute right-[9%] bottom-[18%] z-0 h-auto w-38 rotate-[8deg]  max-md:hidden"
+          />
+        </>
+      ) : null}
+
       <Container
         size={containerSize}
         padding="default"
         className="relative z-10"
       >
         <div className="mx-auto max-w-3xl">
-          {eyebrow ? (
-            <Text
-              as="p"
-              size="xs"
-              weight="medium"
-              transform="upper"
-              align="center"
-              className={cn("mb-4 tracking-[0.18em]", styles.eyebrow)}
-            >
-              {eyebrow}
-            </Text>
-          ) : null}
+          <ScrollReveal>
+            {eyebrow ? (
+              <Text
+                as="p"
+                size="xs"
+                weight="medium"
+                transform="upper"
+                align="center"
+                className={cn("mb-4 tracking-[0.18em]", styles.eyebrow)}
+              >
+                {eyebrow}
+              </Text>
+            ) : null}
 
-          <AccentText
-            as="h2"
-            id={headingId}
-            className={cn(
-              "block text-center text-5xl leading-none md:text-7xl",
-              styles.title,
-            )}
-          >
-            {title}
-          </AccentText>
-
-          {description ? (
-            <Text
-              as="div"
-              size="lg"
-              align="center"
+            <AccentText
+              as="h2"
+              id={headingId}
               className={cn(
-                "mx-auto mt-5 max-w-2xl text-pretty",
-                styles.description,
+                "block text-center text-5xl leading-none md:text-7xl",
+                styles.title,
               )}
             >
-              {description}
-            </Text>
-          ) : null}
+              {title}
+            </AccentText>
 
-          <div className={cn("mt-10 border-t", styles.border)}>
-            {items.map((item) => (
-              <details
-                key={item.question}
-                className={cn("group border-b py-5", styles.border)}
+            {description ? (
+              <Text
+                as="div"
+                size="lg"
+                align="center"
+                className={cn(
+                  "mx-auto mt-5 max-w-2xl text-pretty",
+                  styles.description,
+                )}
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left marker:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-4 focus-visible:ring-offset-cream [&::-webkit-details-marker]:hidden">
-                  <span
-                    className={cn(
-                      "font-body text-base font-medium leading-6 md:text-lg",
-                      styles.question,
-                    )}
-                  >
-                    {item.question}
-                  </span>
+                {description}
+              </Text>
+            ) : null}
+          </ScrollReveal>
 
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "relative flex size-8 shrink-0 items-center justify-center transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none",
-                      styles.icon,
-                    )}
-                  >
-                    <span className="absolute h-px w-5 bg-current" />
-                    <span className="absolute h-5 w-px bg-current" />
-                  </span>
-                </summary>
-
-                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 group-open:grid-rows-[1fr] motion-reduce:transition-none">
-                  <div className="overflow-hidden">
-                    <Text
-                      as="div"
-                      size="base"
-                      className={cn("max-w-2xl pt-4 leading-7", styles.answer)}
+          <ScrollReveal delay="sm">
+            <div className={cn("mt-10 border-t", styles.border)}>
+              {items.map((item) => (
+                <details
+                  key={item.question}
+                  className={cn("group border-b py-5", styles.border)}
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left marker:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-4 focus-visible:ring-offset-cream [&::-webkit-details-marker]:hidden">
+                    <span
+                      className={cn(
+                        "font-body text-base font-medium leading-6 md:text-lg",
+                        styles.question,
+                      )}
                     >
-                      {item.answer}
-                    </Text>
+                      {item.question}
+                    </span>
+
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "relative flex size-8 shrink-0 items-center justify-center transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none",
+                        styles.icon,
+                      )}
+                    >
+                      <span className="absolute h-px w-5 bg-current" />
+                      <span className="absolute h-5 w-px bg-current" />
+                    </span>
+                  </summary>
+
+                  <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-open:grid-rows-[1fr] motion-reduce:transition-none">
+                    <div className="overflow-hidden">
+                      <Text
+                        as="div"
+                        size="base"
+                        className={cn(
+                          "max-w-2xl pt-4 leading-7",
+                          styles.answer,
+                        )}
+                      >
+                        {item.answer}
+                      </Text>
+                    </div>
                   </div>
-                </div>
-              </details>
-            ))}
-          </div>
+                </details>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </Container>
     </Section>
