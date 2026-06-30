@@ -60,7 +60,7 @@ export const methodSteps: MethodStep[] = [
       "Sprijin pentru depășirea blocajelor și atingerea obiectivelor",
     ],
     note: "Un prim pas poate fi mai simplu când știi la ce să te aștepți.",
-    imageSrc: "/home-page/programe.jpg",
+    imageSrc: "/home-page/services/events-2.jpg",
     imageAlt: "Spațiu terapeutic pregătit pentru lucru ghidat",
     imageTitle: "Programe ghidate",
     imageSubtitle: "Un format clar pentru teme emoționale specifice.",

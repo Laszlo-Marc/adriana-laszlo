@@ -12,17 +12,6 @@ export default function EducationMethodDesktopSection() {
   return (
     <section className="relative hidden overflow-hidden bg-cream pt-24 pb-36 lg:block xl:pt-32 xl:pb-44">
       <div className="absolute inset-0">
-        <Image
-          src="/home-page/method.jpg"
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-20"
-        />
-
-        <div aria-hidden="true" className="absolute inset-0 bg-cream/88" />
-
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-cream via-cream/80 to-transparent"
