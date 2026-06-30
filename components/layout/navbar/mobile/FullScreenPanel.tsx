@@ -4,16 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-
-import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import {
-  NavbarItem,
-  PHONE_DISPLAY,
-  PHONE_HREF,
-  WHATSAPP_HREF,
-} from "../../navigation-data";
+import { NavbarItem } from "../../navigation-data";
 
 const panelVariants: Variants = {
   closed: {

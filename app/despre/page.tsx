@@ -4,13 +4,12 @@ import ApproachProcessSection from "@/components/pages/about/approach-process/Ap
 import AboutHeroSection from "@/components/pages/about/hero/HeroSection";
 import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import AboutTimelineSection from "@/components/pages/about/timeline/TimelineSection";
-import { aboutFaqItems } from "@/components/sections/faq-data";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/lib/seo/JsonLd";
-import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/seo/schema";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
 import WhoThisWorkIsForSection from "@/components/pages/about/WhoThisWorksFor";
 import AboutEducationWorkshopsSection from "@/components/pages/about/education-workshops/AboutEducationWorkshopsSection";
 

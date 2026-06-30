@@ -11,7 +11,7 @@ export const afEmdrHeroContent = {
   },
   media: {
     videoSrc: "/af-emdr/emdr-hero.mp4",
-    posterSrc: "/images/af-emdr/af-emdr-hero-poster.jpg",
+    posterSrc: "/home-page/services/af-emdr.jpg",
     alt: "Lumină caldă filtrată prin natură, sugerând calm și siguranță interioară",
   },
 };
