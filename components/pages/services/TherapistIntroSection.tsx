@@ -135,21 +135,21 @@ export default function TherapistIntroSection() {
                     className="text-charcoal"
                     textCase="uppercase"
                   >
-                    Mă bucur să te cunosc.
+                    Hai să ne cunoaștem.
                   </Heading>
 
                   <div className="mt-8 max-w-120 space-y-5">
-                    <Text size="lg" className="text-charcoal/80">
-                      În terapie, ritmul tău contează. Lucrăm împreună cu
-                      blândețe, claritate și respect pentru povestea ta, astfel
-                      încât să poți înțelege mai bine ce trăiești și ce ai
-                      nevoie să se schimbe.
+                    <Text className="text-charcoal/80">
+                      Munca mea este o pasiune. Cea mai mare satisfacție apare
+                      în momentele în care văd un zâmbet regăsit, un licăr de
+                      speranță în privire sau o răsuflare ușurată de povara
+                      durerii.
                     </Text>
 
                     <Text className="text-charcoal/75">
-                      Abordarea mea îmbină prezența umană, siguranța relației
-                      terapeutice și metode orientate spre procesarea traumelor,
-                      anxietății și dificultăților emoționale profunde.
+                      Şi, în special când apare conștientizarea: „Da, trauma nu
+                      trebuie să mă mai definească. Este o experiență pe care o
+                      pot integra.”
                     </Text>
                   </div>
 

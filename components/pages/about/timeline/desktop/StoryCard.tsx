@@ -86,10 +86,10 @@ export function StoryCard({
         className={cn(
           "absolute inset-0 -z-10 bg-linear-to-t transition-opacity duration-500 motion-reduce:transition-none",
           compact
-            ? "from-charcoal/92 via-charcoal/58 to-charcoal/18"
+            ? "from-charcoal/68 via-charcoal/28 to-transparent"
             : isFeatured
-              ? "from-charcoal/88 via-charcoal/44 to-teal/10"
-              : "from-charcoal/88 via-charcoal/42 to-charcoal/8",
+              ? "from-charcoal/76 via-charcoal/34 to-teal/8"
+              : "from-charcoal/76 via-charcoal/32 to-transparent",
         )}
       />
 
@@ -97,7 +97,7 @@ export function StoryCard({
       {compact ? (
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-1/4 bottom-0 -z-10 bg-linear-to-t from-charcoal/88 via-charcoal/54 to-transparent"
+          className="absolute inset-x-0 bottom-0 -z-10 h-52 bg-linear-to-t from-charcoal/72 via-charcoal/32 to-transparent"
         />
       ) : null}
 
@@ -162,6 +162,7 @@ export function StoryCard({
             as="h3"
             size="h4"
             color="cream"
+            textCase="uppercase"
             className={cn(
               "drop-shadow-[0_2px_18px_rgba(0,0,0,0.32)]",
               compact && "text-[1.45rem] leading-tight",

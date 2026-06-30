@@ -67,7 +67,7 @@ const DesktopNavbar = function DesktopNavbar({
   return (
     <div className="hidden h-20 items-center justify-between xl:flex lg:h-30">
       <div className="relative z-131">
-        <Logo size="lg" asText />
+        <Logo size="lg" />
       </div>
 
       <button

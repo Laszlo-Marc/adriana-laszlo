@@ -18,7 +18,7 @@ export const methodSteps: MethodStep[] = [
     title: "Formare și acreditări",
     body: "Lucrul terapeutic este susținut de formare continuă, experiență clinică și o înțelegere atentă a modului în care trauma se poate manifesta în corp, emoții și relații.",
     points: [
-      "Formare în Psihoterapie Integrativă",
+      "Formare în Psihoterapie Integrativă în cadrul ARPI România",
       "Cursuri de specializare în Emotionally Focused Therapy (Terapia Centrată pe Emoţii)",
       "Specializare AF – EMDR (Attachment Focused – Eye Movement Desensitization and Reprocessing) a Institutului Parnell (parnellemdr.com)",
     ],
@@ -34,7 +34,7 @@ export const methodSteps: MethodStep[] = [
     },
   },
   {
-    title: "o noua orientare în practica terapiei EMDR",
+    title: "o nouă orientare în practica terapiei EMDR",
     body: "AF-EMDR este o abordare adaptată pentru procesarea experiențelor dificile, cu atenție la atașament, reglare emoțională și resursele interioare ale persoanei.",
     points: [
       "Procesare atentă a amintirilor încărcate emoțional",
@@ -53,11 +53,11 @@ export const methodSteps: MethodStep[] = [
   },
   {
     title: "Terapie de grup",
-    body: "Pentru anumite teme, lucrul în grup poate oferi structură, normalizare și sprijin. Programele AF-EMDR sunt gândite pentru persoane care vor un cadru clar, sigur și orientat spre schimbare.",
+    body: "Programele de grup abordează teme clare, oferă o structură și sprijin diferite de terapia individuală. Programele AF-EMDR sunt gândite pentru persoane care vor să aprofundeze procesul terapeutic într-un ritm accelerat, dar sigur și orientat spre schimbare.",
     points: [
       "Program structurat pe teme specifice",
       "Exerciții ghidate și psihoeducație",
-      "Sprijin pentru anxietate, stres și perfecționism",
+      "Sprijin pentru depășirea blocajelor și atingerea obiectivelor",
     ],
     note: "Un prim pas poate fi mai simplu când știi la ce să te aștepți.",
     imageSrc: "/home-page/programe.jpg",

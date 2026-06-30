@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 const supportAreas = [
   {
-    label: "Relații care se repetă dureros",
+    label: "Relații dificele, toxice si dinamica narcisică",
     icon: Repeat2,
   },
   {
@@ -27,7 +27,7 @@ const supportAreas = [
     icon: HeartCrack,
   },
   {
-    label: "Anxietate, hipercontrol și tensiune constantă",
+    label: "Blocaje emoționale, anxietate și tensiune constantă",
     icon: Waves,
   },
   {
@@ -39,7 +39,8 @@ const supportAreas = [
     icon: Scale,
   },
   {
-    label: "Blocaje emoționale greu de explicat",
+    label:
+      "Trauma - fie ca vorbim de traume mici sau mari, simple sau complexe",
     icon: CloudRain,
   },
 ];
@@ -119,18 +120,16 @@ export default function WhoThisWorkIsForSection() {
 
             <Text className="mt-6 max-w-2xl text-pretty leading-8 text-charcoal/72">
               Mulți oameni ajung în terapie nu pentru că nu au încercat
-              suficient, ci pentru că au dus singuri lucruri care au devenit
-              greu de purtat.
+              suficient, ci pentru că au conștientzat că trauma se trăiește în
+              singurătate dar se vindecă împreună.
             </Text>
 
             <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
-              În terapie, aceste reacții nu sunt privite ca defecte, ci ca
-              adaptări ale sistemului nervos și ale atașamentului. De aici
-              începe procesul: cu siguranță, claritate și pași suficient de
-              blânzi pentru ca schimbarea să poată fi integrată.
+              Astfel aici începe procesul terapeutic, atunci când te confrunți
+              cu:
             </Text>
 
-            <div className="mt-9 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            <div className="mt-9 grid gap-x-8 gap-y-2 sm:grid-cols-2">
               {supportAreas.map((area) => {
                 const Icon = area.icon;
 
@@ -156,6 +155,9 @@ export default function WhoThisWorkIsForSection() {
                 );
               })}
             </div>
+            <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
+              Și da, știu ca trauma se poate vindeca.
+            </Text>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact" variant="primary">

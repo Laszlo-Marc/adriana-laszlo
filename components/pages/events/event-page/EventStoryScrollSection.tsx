@@ -104,8 +104,8 @@ export default function EventStoryScrollSection({
 
                       <Heading
                         as={index === 0 ? "h2" : "h3"}
-                        size="h1"
-                        className="mt-8 max-w-3xl text-charcoal"
+                        size="h2"
+                        className="mt-8 max-w-xl text-charcoal"
                         textCase="uppercase"
                       >
                         {chapter.title}

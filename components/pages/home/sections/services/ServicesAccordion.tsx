@@ -143,6 +143,7 @@ function AccordionContent({
             as="h3"
             size="h4"
             color="cream"
+            textCase="uppercase"
             className="font-display text-[1.7rem] leading-tight"
           >
             {item.title}

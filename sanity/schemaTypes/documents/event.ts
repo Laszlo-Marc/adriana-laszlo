@@ -127,19 +127,13 @@ export const event = defineType({
               type: "string",
               validation: (Rule) => Rule.required().max(120),
             }),
-            defineField({
-              name: "shortText",
-              title: "Short Description",
-              type: "text",
-              rows: 4,
-              validation: (Rule) => Rule.required().max(300),
-            }),
+
             defineField({
               name: "description",
               title: "Description",
               type: "text",
               rows: 4,
-              validation: (Rule) => Rule.required().max(700),
+              validation: (Rule) => Rule.required().max(900),
             }),
             defineField({
               name: "image",
@@ -167,7 +161,7 @@ export const event = defineType({
           },
         }),
       ],
-      validation: (Rule) => Rule.max(5),
+      validation: (Rule) => Rule.max(10),
     }),
     defineField({
       name: "faq",

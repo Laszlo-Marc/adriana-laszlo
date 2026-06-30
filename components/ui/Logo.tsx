@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 
 type LogoProps = {
@@ -12,21 +13,27 @@ type LogoProps = {
 };
 
 const textSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "text-sm md:text-[0.9375rem]",
-  md: "text-base md:text-lg",
-  lg: "text-xl md:text-4xl",
+  sm: "text-xs md:text-sm",
+  md: "text-sm md:text-base",
+  lg: "text-lg md:text-2xl",
 };
 
 const circleSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "h-12 w-12 md:h-14 md:w-14",
-  md: "h-18 w-18 md:h-18 md:w-18",
-  lg: "h-20 w-20 md:h-24 md:w-24",
+  sm: "h-10 w-10 md:h-11 md:w-11",
+  md: "h-12 w-12 md:h-14 md:w-14",
+  lg: "h-16 w-16 md:h-20 md:w-20",
 };
 
 const imageSizeClasses: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "h-9 w-9 md:h-10 md:w-10",
-  md: "h-14 w-14 md:h-16 md:w-16",
-  lg: "h-16 w-16 md:h-18 md:w-18",
+  sm: "h-8 w-8 md:h-9 md:w-9",
+  md: "h-10 w-10 md:h-12 md:w-12",
+  lg: "h-14 w-14 md:h-16 md:w-16",
+};
+
+const gapClasses: Record<NonNullable<LogoProps["size"]>, string> = {
+  sm: "gap-2.5",
+  md: "gap-3",
+  lg: "gap-4",
 };
 
 export default function Logo({
@@ -37,18 +44,22 @@ export default function Logo({
   priority = false,
   boxed = true,
 }: LogoProps) {
-  const colorClass =
+  const textColorClass =
     variant === "light"
-      ? "text-cream hover:text-teal"
-      : "text-charcoal hover:text-teal";
+      ? "text-cream group-hover/logo:text-teal"
+      : "text-charcoal group-hover/logo:text-teal";
+
+  const ringClass =
+    variant === "light"
+      ? "ring-cream/25 bg-white/90"
+      : "ring-charcoal/10 bg-white/85";
 
   const textContent = (
     <span
       className={cn(
-        "font-display font-medium tracking-[0.02em] transition-colors",
-        colorClass,
+        "font-display font-medium uppercase  transition-colors",
+        textColorClass,
         textSizeClasses[size],
-        className,
       )}
     >
       ADRIANA LASZLO
@@ -57,41 +68,54 @@ export default function Logo({
 
   const image = (
     <Image
-      src="/adriana-laszlo-logo.png"
-      alt="Adriana Laszlo"
+      src="/logo.png"
+      alt=""
       width={96}
       height={96}
       priority={priority}
-      sizes="(min-width: 768px) 56px, 48px"
+      sizes={
+        size === "lg"
+          ? "(min-width: 768px) 80px, 64px"
+          : size === "md"
+            ? "(min-width: 768px) 56px, 48px"
+            : "(min-width: 768px) 44px, 40px"
+      }
       className={cn("object-contain", imageSizeClasses[size])}
     />
   );
 
-  const imageContent = boxed ? (
+  const imageContent = (
     <span
+      aria-hidden="true"
       className={cn(
-        "inline-flex items-center justify-center rounded-full bg-white/85 shadow-sm ring-1 ring-charcoal/10 backdrop-blur-sm",
+        "inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full transition-transform duration-300 group-hover/logo:scale-[1.03]",
+        boxed && "shadow-sm ring-1 backdrop-blur-sm",
+        boxed && ringClass,
         circleSizeClasses[size],
-        className,
       )}
     >
       {image}
     </span>
-  ) : (
-    <span className={cn("inline-flex items-center justify-center", className)}>
-      {image}
-    </span>
   );
-
-  const content = asText ? textContent : imageContent;
 
   return (
     <Link
       href="/"
       aria-label="Adriana Laszlo — Acasă"
-      className="inline-flex shrink-0 items-center justify-center"
+      className={cn(
+        "group/logo inline-flex shrink-0 items-center justify-center transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
+        !asText && gapClasses[size],
+        className,
+      )}
     >
-      {content}
+      {asText ? (
+        textContent
+      ) : (
+        <>
+          {imageContent}
+          {textContent}
+        </>
+      )}
     </Link>
   );
 }

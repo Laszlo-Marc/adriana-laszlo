@@ -89,8 +89,8 @@ export default function ServicesHero() {
               className="text-cream/86 md:text-right"
             >
               Un spațiu terapeutic în care poți lucra cu experiențe dificile,
-              anxietate, atașament, blocaje emoționale și procese de schimbare
-              care au nevoie de siguranță.
+              anxietate, atașament, blocaje emoționale și traume către o
+              schimbare reală.
             </Text>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row md:justify-end">

@@ -2,7 +2,7 @@ export const problemsContent = {
   eyebrow: "Când trauma rămâne prezentă",
   title: "Poate te regăsești aici",
   description:
-    "Uneori, trauma nu apare ca o amintire clară. Apare în corp, în relații sau în reacții pe care nu le poți opri ușor.",
+    "Uneori, trauma nu apare ca o amintire clară. Apare în corp, în relații sau în reacții pe care nu le poți gestiona.",
   signs: [
     {
       number: "01",
@@ -18,7 +18,7 @@ export const problemsContent = {
     },
     {
       number: "04",
-      text: "Oboseala vine și din tot ce ai fost nevoit/ă să duci.",
+      text: "Apar dificultăți și în relațiile tale.",
     },
   ],
   closing: "În terapie, începem cu siguranță, ritm și înțelegere.",

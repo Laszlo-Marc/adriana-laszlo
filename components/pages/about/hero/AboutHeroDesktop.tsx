@@ -50,7 +50,7 @@ export default function AboutHeroDesktop() {
               <AccentText>{aboutHeroContent.eyebrow}</AccentText>
 
               <Heading as="h1" size="h3" className="mt-4">
-                Psihoterapeut integrativ specializat în traumă și{" "}
+                Psihoterapeut integrativ, specialistă AF-EMDR și{" "}
                 <span className="text-teal">
                   {aboutHeroContent.highlightedTitle}
                 </span>
