@@ -3,8 +3,9 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
-import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 
 type ServiceTone = "teal" | "purple" | "cream" | "white";
@@ -78,14 +79,17 @@ export default function ServiceDetailSection({
             isImageRight && "lg:[&>*:first-child]:order-2",
           )}
         >
-          <ServiceImage
-            imageSrc={imageSrc}
-            imageAlt={imageAlt}
-            imagePosition={imagePosition}
-            mobileFadeClassName={styles.mobileFade}
-          />
+          <ScrollReveal preset="scale-in" className="h-full">
+            <ServiceImage
+              imageSrc={imageSrc}
+              imageAlt={imageAlt}
+              imagePosition={imagePosition}
+              mobileFadeClassName={styles.mobileFade}
+            />
+          </ScrollReveal>
 
-          <div
+          <ScrollReveal
+            delay="sm"
             className={cn(
               "relative z-10 mx-auto -mt-12 max-w-xl px-5 pb-16 text-center sm:px-6 md:pb-20 lg:mt-0 lg:max-w-2xl lg:pb-0 lg:text-left",
               isImageRight ? "lg:mr-auto lg:pl-10" : "lg:ml-auto lg:pr-10",
@@ -119,7 +123,7 @@ export default function ServiceDetailSection({
                 </Button>
               ) : null}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </Container>
     </Section>

@@ -183,7 +183,7 @@ export const afEmdrSpecialistContent = {
   eyebrow: "De ce cu Adriana?",
   title: "Un cadru sigur",
   description:
-    "În terapia AF-EMDR, metoda contează, dar la fel de mult contează siguranța relației terapeutice. Adriana integrează formarea în AF-EMDR cu experiența în lucrul cu trauma de atașament, reglarea emoțională și tiparele relaționale care se repetă în viața adultă.",
+    "În terapia AF-EMDR, metoda contează, dar la fel de mult contează siguranța relației terapeutice. Eu integrez formarea în AF-EMDR cu experiența în lucrul cu trauma de atașament, reglarea emoțională și tiparele relaționale care se repetă în viața adultă.",
 
   images: {
     atmosphereMobile: {

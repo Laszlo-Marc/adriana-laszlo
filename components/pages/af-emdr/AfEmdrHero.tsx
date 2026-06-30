@@ -2,6 +2,7 @@ import Button from "@/components/ui/Button";
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 
 import { afEmdrHeroContent } from "./afEmdrContent";
@@ -49,26 +50,32 @@ export default function AfEmdrHero() {
         className="relative z-30 flex min-h-svh items-center justify-center pb-32 pt-32 lg:pb-28 lg:pt-28"
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
-          <Heading
-            id="af-emdr-hero-title"
-            as="h1"
-            size="display"
-            font="accent"
-            align="center"
-            className="mx-auto mt-5 text-balance text-[clamp(6rem,24vw,9rem)]  text-charcoal drop-shadow-[0_2px_20px_rgba(255,250,242,0.8)] lg:text-[clamp(9rem,13vw,13rem)]"
-          >
-            {title} {title2}
-          </Heading>
+          <Reveal preset="scale-in">
+            <Heading
+              id="af-emdr-hero-title"
+              as="h1"
+              size="display"
+              font="accent"
+              align="center"
+              className="mx-auto mt-5 text-balance text-[clamp(6rem,24vw,9rem)] text-charcoal drop-shadow-[0_2px_20px_rgba(255,250,242,0.8)] lg:text-[clamp(9rem,13vw,13rem)]"
+            >
+              {title} {title2}
+            </Heading>
+          </Reveal>
 
-          <p className="mt-7 max-w-3xl text-balance font-display text-[clamp(1.7rem,4vw,3.6rem)] leading-[0.95] tracking-[0.08em] text-charcoal">
-            {subtitle}
-          </p>
+          <Reveal preset="fade-up" delay="sm">
+            <p className="mt-7 max-w-3xl text-balance font-display text-[clamp(1.7rem,4vw,3.6rem)] leading-[0.95] tracking-[0.08em] text-charcoal">
+              {subtitle}
+            </p>
+          </Reveal>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button href={primaryCta.href} variant="primary">
-              {primaryCta.label}
-            </Button>
-          </div>
+          <Reveal preset="fade-up" delay="md">
+            <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button href={primaryCta.href} variant="primary">
+                {primaryCta.label}
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </Container>
     </Section>

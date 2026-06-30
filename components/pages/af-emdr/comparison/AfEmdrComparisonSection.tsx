@@ -4,6 +4,7 @@ import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 import { afEmdrComparisonContent } from "../afEmdrContent";
@@ -50,69 +51,81 @@ export default function AfEmdrComparisonSection() {
 
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <Text
-            as="p"
-            size="xs"
-            weight="medium"
-            transform="upper"
-            color="gold"
-            align="center"
-            className="mt-5 tracking-[0.28em]"
-          >
-            {eyebrow}
-          </Text>
+          <ScrollReveal preset="fade-down">
+            <Text
+              as="p"
+              size="xs"
+              weight="medium"
+              transform="upper"
+              color="gold"
+              align="center"
+              className="mt-5 tracking-[0.28em]"
+            >
+              {eyebrow}
+            </Text>
+          </ScrollReveal>
 
-          <Heading
-            id="af-emdr-comparison-title"
-            as="h2"
-            size="h1"
-            align="center"
-            textCase="uppercase"
-            className="mt-5 text-balance text-charcoal"
-          >
-            {title}
-          </Heading>
+          <ScrollReveal delay="sm">
+            <Heading
+              id="af-emdr-comparison-title"
+              as="h2"
+              size="h1"
+              align="center"
+              textCase="uppercase"
+              className="mt-5 text-balance text-charcoal"
+            >
+              {title}
+            </Heading>
+          </ScrollReveal>
         </div>
 
         <div className="relative mt-16 hidden lg:block">
           <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-8 xl:gap-12">
-            <ComparisonPanel item={emdr} tone="sand" />
+            <ScrollReveal preset="fade-up">
+              <ComparisonPanel item={emdr} tone="sand" />
+            </ScrollReveal>
 
-            <div className="flex w-28 flex-col items-center justify-center">
-              <div
-                aria-hidden="true"
-                className="h-24 w-px bg-linear-to-b from-transparent via-gold/55 to-transparent"
-              />
+            <ScrollReveal preset="fade-in" delay="sm">
+              <div className="flex h-full w-28 flex-col items-center justify-center">
+                <div
+                  aria-hidden="true"
+                  className="h-24 w-px bg-linear-to-b from-transparent via-gold/55 to-transparent"
+                />
 
-              <div className="my-5 rounded-full border border-gold/25 bg-cream/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold shadow-[0_14px_35px_rgba(44,44,44,0.05)]">
-                {bridge.label}
+                <div className="my-5 rounded-full border border-gold/25 bg-cream/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold shadow-[0_14px_35px_rgba(44,44,44,0.05)]">
+                  {bridge.label}
+                </div>
+
+                <div
+                  aria-hidden="true"
+                  className="h-24 w-px bg-linear-to-b from-transparent via-gold/55 to-transparent"
+                />
               </div>
+            </ScrollReveal>
 
-              <div
-                aria-hidden="true"
-                className="h-24 w-px bg-linear-to-b from-transparent via-gold/55 to-transparent"
-              />
-            </div>
-
-            <ComparisonPanel item={afEmdr} tone="teal" />
+            <ScrollReveal preset="fade-up" delay="md">
+              <ComparisonPanel item={afEmdr} tone="teal" />
+            </ScrollReveal>
           </div>
 
           {insight ? (
-            <div className="mx-auto mt-12 max-w-3xl rounded-4xl border border-white/70 bg-white/55 px-8 py-6 text-center shadow-[0_18px_60px_rgba(44,44,44,0.05)] backdrop-blur-sm">
-              <Text
-                size="lg"
-                align="center"
-                className="text-pretty text-charcoal/72"
-              >
-                {insight}
-              </Text>
-            </div>
+            <ScrollReveal delay="lg">
+              <div className="mx-auto mt-12 max-w-3xl rounded-4xl border border-white/70 bg-white/55 px-8 py-6 text-center shadow-[0_18px_60px_rgba(44,44,44,0.05)] backdrop-blur-sm">
+                <Text
+                  size="lg"
+                  align="center"
+                  className="text-pretty text-charcoal/72"
+                >
+                  {insight}
+                </Text>
+              </div>
+            </ScrollReveal>
           ) : null}
         </div>
 
-        <div className="mt-10 lg:hidden">
+        <ScrollReveal delay="md" className="mt-10 lg:hidden">
           <AfEmdrComparisonMobileTabs items={items} insight={insight} />
-        </div>
+        </ScrollReveal>
       </Container>
     </Section>
   );

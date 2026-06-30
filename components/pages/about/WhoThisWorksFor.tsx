@@ -6,7 +6,6 @@ import {
   ShieldAlert,
   Scale,
   CloudRain,
-  ArrowRight,
 } from "lucide-react";
 
 import Container from "@/components/ui/Container";
@@ -15,11 +14,12 @@ import Section from "@/components/ui/Section";
 import Text from "@/components/ui/Text";
 import AccentText from "@/components/ui/AccentText";
 import Button from "@/components/ui/Button";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 const supportAreas = [
   {
-    label: "Relații dificele, toxice si dinamica narcisică",
+    label: "Relații dificile, toxice și dinamică narcisică",
     icon: Repeat2,
   },
   {
@@ -40,10 +40,12 @@ const supportAreas = [
   },
   {
     label:
-      "Trauma - fie ca vorbim de traume mici sau mari, simple sau complexe",
+      "Traumă — fie că vorbim despre traume mici sau mari, simple sau complexe",
     icon: CloudRain,
   },
 ];
+
+const revealDelays = ["none", "sm", "md", "lg", "xl"] as const;
 
 export default function WhoThisWorkIsForSection() {
   return (
@@ -73,6 +75,7 @@ export default function WhoThisWorkIsForSection() {
         aria-hidden="true"
         className="pointer-events-none absolute right-6 top-12 hidden h-auto w-32 opacity-68 md:block"
       />
+
       <Image
         src="/backgrounds/dragonfly.png"
         alt=""
@@ -85,8 +88,11 @@ export default function WhoThisWorkIsForSection() {
 
       <Container size="wide" padding="default" className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1fr] lg:items-center xl:gap-16">
-          <div className="relative">
-            <div className="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-teal/14 blur-2xl" />
+          <ScrollReveal as="div" preset="scale-in" className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-teal/14 blur-2xl"
+            />
 
             <div className="relative overflow-hidden rounded-[2rem] border border-sand/35 bg-white/40 shadow-[0_26px_80px_rgba(44,44,44,0.08)] md:rounded-[2.75rem]">
               <Image
@@ -95,7 +101,7 @@ export default function WhoThisWorkIsForSection() {
                 width={900}
                 height={1040}
                 sizes="(max-width: 1023px) 100vw, 44vw"
-                className="aspect-[4/4.6] w-full object-cover object-center "
+                className="aspect-[4/4.6] w-full object-cover object-center"
               />
 
               <div
@@ -103,45 +109,55 @@ export default function WhoThisWorkIsForSection() {
                 className="absolute inset-0 bg-linear-to-t from-charcoal/24 via-transparent to-cream/10"
               />
             </div>
-          </div>
+          </ScrollReveal>
 
           <div className="lg:pl-2">
-            <AccentText>Când terapia devine necesară</AccentText>
+            <ScrollReveal>
+              <AccentText>Când terapia devine necesară</AccentText>
+            </ScrollReveal>
 
-            <Heading
-              id="who-this-work-is-for-title"
-              as="h2"
-              size="h3"
-              textCase="uppercase"
-              className="mt-4 max-w-3xl text-charcoal"
-            >
-              Când simți că ai dus prea mult, prea mult timp
-            </Heading>
+            <ScrollReveal delay="sm">
+              <Heading
+                id="who-this-work-is-for-title"
+                as="h2"
+                size="h3"
+                textCase="uppercase"
+                className="mt-4 max-w-3xl text-charcoal"
+              >
+                Când simți că ai dus prea mult, prea mult timp
+              </Heading>
+            </ScrollReveal>
 
-            <Text className="mt-6 max-w-2xl text-pretty leading-8 text-charcoal/72">
-              Mulți oameni ajung în terapie nu pentru că nu au încercat
-              suficient, ci pentru că au conștientzat că trauma se trăiește în
-              singurătate dar se vindecă împreună.
-            </Text>
+            <ScrollReveal delay="md">
+              <Text className="mt-6 max-w-2xl text-pretty leading-8 text-charcoal/72">
+                Mulți oameni ajung în terapie nu pentru că nu au încercat
+                suficient, ci pentru că au conștientizat că trauma se trăiește
+                în singurătate, dar se vindecă împreună.
+              </Text>
+            </ScrollReveal>
 
-            <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
-              Astfel aici începe procesul terapeutic, atunci când te confrunți
-              cu:
-            </Text>
+            <ScrollReveal delay="lg">
+              <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
+                Aici începe procesul terapeutic, atunci când te confrunți cu:
+              </Text>
+            </ScrollReveal>
 
             <div className="mt-9 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-              {supportAreas.map((area) => {
+              {supportAreas.map((area, index) => {
                 const Icon = area.icon;
+                const delay = revealDelays[index % revealDelays.length];
 
                 return (
-                  <div
+                  <ScrollReveal
                     key={area.label}
-                    className="group flex items-start gap-3  pb-4"
+                    delay={delay}
+                    preset="fade-up"
+                    className="group flex items-start gap-3 pb-4"
                   >
                     <span
                       className={cn(
                         "mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full",
-                        " bg-teal/10 text-teal",
+                        "bg-teal/10 text-teal",
                         "transition duration-300 group-hover:border-gold/35 group-hover:bg-gold/10 group-hover:text-gold",
                       )}
                     >
@@ -151,23 +167,28 @@ export default function WhoThisWorkIsForSection() {
                     <p className="text-sm font-medium leading-6 text-charcoal/78">
                       {area.label}
                     </p>
-                  </div>
+                  </ScrollReveal>
                 );
               })}
             </div>
-            <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
-              Și da, știu ca trauma se poate vindeca.
-            </Text>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact" variant="primary">
-                Programează o discuție
-              </Button>
+            <ScrollReveal delay="sm">
+              <Text className="mt-5 max-w-2xl text-pretty leading-8 text-charcoal/72">
+                Și da, știu că trauma se poate vindeca.
+              </Text>
+            </ScrollReveal>
 
-              <Button href="/servicii" variant="outline">
-                Vezi serviciile
-              </Button>
-            </div>
+            <ScrollReveal delay="md">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button href="/contact" variant="primary">
+                  Programează o discuție
+                </Button>
+
+                <Button href="/servicii" variant="outline">
+                  Vezi serviciile
+                </Button>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </Container>

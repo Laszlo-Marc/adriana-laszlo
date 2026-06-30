@@ -1,9 +1,10 @@
-import { ArrowDown, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 import BackgroundVideo from "@/components/ui/BackgroundVideo";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
+import Reveal from "@/components/ui/Reveal";
 import Text from "@/components/ui/Text";
 import { cn } from "@/lib/utils";
 
@@ -56,33 +57,42 @@ export default function ServicesHero() {
       >
         <div className="relative flex min-h-[calc(100svh-7rem)] flex-col justify-center md:min-h-svh md:block">
           <div className="max-w-5xl md:absolute md:left-0 md:top-[47%] md:-translate-y-1/2 lg:max-w-6xl">
-            <Heading
-              as="h5"
-              size="eyebrow"
-              color="cream"
-              className="mb-5 text-cream/78"
-            >
-              Servicii de psihoterapie în Cluj-Napoca
-            </Heading>
+            <Reveal preset="fade-down">
+              <Heading
+                as="h5"
+                size="eyebrow"
+                color="cream"
+                className="mb-5 text-cream/78"
+              >
+                Servicii de psihoterapie în Cluj-Napoca
+              </Heading>
+            </Reveal>
 
-            <Heading
-              id="services-hero-heading"
-              as="h1"
-              size="display"
-              color="cream"
-              className="max-w-5xl text-balance"
-            >
-              <span className="hidden lg:block">
-                Psihoterapie pentru traumă, relații și reglare emoțională.
-              </span>
+            <Reveal delay="sm">
+              <Heading
+                id="services-hero-heading"
+                as="h1"
+                size="display"
+                color="cream"
+                className="max-w-5xl text-balance"
+              >
+                <span className="hidden lg:block">
+                  Psihoterapie pentru traumă, relații și reglare emoțională.
+                </span>
 
-              <span className="block lg:hidden">Psihoterapia traumei</span>
-            </Heading>
+                <span className="block lg:hidden">Psihoterapia traumei</span>
+              </Heading>
+            </Reveal>
 
-            <div className="mt-7 h-px w-32 bg-cream/60 md:mt-9 md:w-44" />
+            <Reveal preset="fade-in" delay="md">
+              <div className="mt-7 h-px w-32 bg-cream/60 md:mt-9 md:w-44" />
+            </Reveal>
           </div>
 
-          <div className="mt-10 max-w-xl md:absolute md:bottom-[15svh] md:right-0 md:mt-0 lg:max-w-136">
+          <Reveal
+            delay="lg"
+            className="mt-10 max-w-xl md:absolute md:bottom-[15svh] md:right-0 md:mt-0 lg:max-w-136"
+          >
             <Text
               size="xl"
               color="cream"
@@ -112,25 +122,27 @@ export default function ServicesHero() {
                 Vezi serviciile
               </Button>
             </div>
-          </div>
+          </Reveal>
 
-          <a
-            href={servicesListHref}
-            aria-label="Mergi la lista de servicii"
-            className={cn(
-              "group absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex",
-              "size-28 items-center justify-center rounded-full",
-              "border border-cream/50 bg-cream/14 text-teal",
-              "shadow-[0_18px_48px_rgba(44,44,44,0.24)] backdrop-blur-md",
-              "transition duration-300 hover:border-cream/80 hover:bg-cream/24 hover:text-teal",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/60 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent",
-            )}
-          >
-            <ArrowDown
-              className="size-8 transition duration-300 motion-safe:animate-hero-arrow group-hover:translate-y-1 group-hover:scale-110"
-              aria-hidden="true"
-            />
-          </a>
+          <Reveal preset="scale-in" delay="xl">
+            <a
+              href={servicesListHref}
+              aria-label="Mergi la lista de servicii"
+              className={cn(
+                "group absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex",
+                "size-28 items-center justify-center rounded-full",
+                "border border-cream/50 bg-cream/14 text-teal",
+                "shadow-[0_18px_48px_rgba(44,44,44,0.24)] backdrop-blur-md",
+                "transition duration-300 hover:border-cream/80 hover:bg-cream/24 hover:text-teal",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/60 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent",
+              )}
+            >
+              <ArrowDown
+                className="size-8 transition duration-300 motion-safe:animate-hero-arrow group-hover:translate-y-1 group-hover:scale-110"
+                aria-hidden="true"
+              />
+            </a>
+          </Reveal>
         </div>
       </Container>
     </section>

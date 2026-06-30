@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Heading from "@/components/ui/Heading";
 import AccentText from "@/components/ui/AccentText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 import { storyItems } from "../desktop/data";
@@ -94,86 +95,98 @@ export default function AboutTimelineMobile() {
 
       <Container size="wide" padding="default" className="relative z-10">
         <div className="mx-auto max-w-md text-center">
-          <AccentText>Povestea profesională</AccentText>
+          <ScrollReveal>
+            <AccentText>Povestea profesională</AccentText>
+          </ScrollReveal>
 
-          <Heading
-            as="h2"
-            size="h2"
-            textCase="uppercase"
-            align="center"
-            className="mt-4"
-          >
-            Parcursul meu în psihoterapie
-          </Heading>
-        </div>
-
-        <div
-          ref={scrollRef}
-          onScroll={updateActiveIndex}
-          className="-mx-4 mt-10 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-4 pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {storyItems.map((item, index) => (
-            <div
-              key={`${item.year}-${item.title}`}
-              data-story-card-index={index}
-              className="min-w-[82%] max-w-88 shrink-0 snap-center"
+          <ScrollReveal delay="sm">
+            <Heading
+              as="h2"
+              size="h2"
+              textCase="uppercase"
+              align="center"
+              className="mt-4"
             >
-              <StoryCard item={item} index={index} compact isActive />
-            </div>
-          ))}
+              Parcursul meu în psihoterapie
+            </Heading>
+          </ScrollReveal>
         </div>
 
-        <div className="mt-5 flex items-center justify-between">
-          <button
-            type="button"
-            onClick={() => scrollToCard("prev")}
-            disabled={activeIndex === 0}
-            aria-label="Etapa anterioară"
-            className={cn(
-              "inline-flex size-12 items-center justify-center rounded-full",
-              "border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm",
-              "transition hover:bg-white disabled:pointer-events-none disabled:opacity-35",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
-            )}
+        <ScrollReveal delay="md" preset="fade-up">
+          <div
+            ref={scrollRef}
+            onScroll={updateActiveIndex}
+            className="-mx-4 mt-10 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-4 pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
-            <ArrowLeft className="size-4" aria-hidden="true" />
-          </button>
-
-          <div className="flex items-center gap-2">
             {storyItems.map((item, index) => (
-              <button
-                key={`${item.year}-indicator`}
-                type="button"
-                onClick={() => goToCard(index)}
-                aria-label={`Mergi la etapa ${index + 1}`}
-                aria-current={activeIndex === index ? "true" : undefined}
-                className={cn(
-                  "h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none",
-                  activeIndex === index ? "w-8 bg-gold" : "w-2 bg-charcoal/20",
-                )}
-              />
+              <div
+                key={`${item.year}-${item.title}`}
+                data-story-card-index={index}
+                className="min-w-[82%] max-w-88 shrink-0 snap-center"
+              >
+                <StoryCard item={item} index={index} compact isActive />
+              </div>
             ))}
           </div>
+        </ScrollReveal>
 
-          <button
-            type="button"
-            onClick={() => scrollToCard("next")}
-            disabled={activeIndex === storyItems.length - 1}
-            aria-label="Etapa următoare"
-            className={cn(
-              "inline-flex size-12 items-center justify-center rounded-full",
-              "border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm",
-              "transition hover:bg-white disabled:pointer-events-none disabled:opacity-35",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
-            )}
-          >
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </button>
-        </div>
+        <ScrollReveal delay="lg">
+          <div className="mt-5 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => scrollToCard("prev")}
+              disabled={activeIndex === 0}
+              aria-label="Etapa anterioară"
+              className={cn(
+                "inline-flex size-12 items-center justify-center rounded-full",
+                "border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm",
+                "transition hover:bg-white disabled:pointer-events-none disabled:opacity-35",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
+              )}
+            >
+              <ArrowLeft className="size-4" aria-hidden="true" />
+            </button>
 
-        <p className="mt-5 text-center text-xs font-medium uppercase tracking-[0.18em] text-charcoal/45">
-          Glisează sau folosește săgețile
-        </p>
+            <div className="flex items-center gap-2">
+              {storyItems.map((item, index) => (
+                <button
+                  key={`${item.year}-indicator`}
+                  type="button"
+                  onClick={() => goToCard(index)}
+                  aria-label={`Mergi la etapa ${index + 1}`}
+                  aria-current={activeIndex === index ? "true" : undefined}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none",
+                    activeIndex === index
+                      ? "w-8 bg-gold"
+                      : "w-2 bg-charcoal/20",
+                  )}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollToCard("next")}
+              disabled={activeIndex === storyItems.length - 1}
+              aria-label="Etapa următoare"
+              className={cn(
+                "inline-flex size-12 items-center justify-center rounded-full",
+                "border border-charcoal/15 bg-white/70 text-charcoal shadow-sm backdrop-blur-sm",
+                "transition hover:bg-white disabled:pointer-events-none disabled:opacity-35",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-cream",
+              )}
+            >
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay="xl" preset="fade-in">
+          <p className="mt-5 text-center text-xs font-medium uppercase tracking-[0.18em] text-charcoal/45">
+            Glisează sau folosește săgețile
+          </p>
+        </ScrollReveal>
       </Container>
     </div>
   );
