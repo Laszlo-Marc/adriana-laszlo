@@ -7,7 +7,7 @@ import "./globals.css";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar/Navbar";
 import NewsletterPopup from "@/components/newsletter/NewsLetterPopup";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import CookieBanner from "@/components/cookies/CookiesBanner";
 import { CookieConsentProvider } from "@/components/cookies/CookiesConsentProvider";
 import ConsentScripts from "@/components/cookies/ConsentScripts";
@@ -64,14 +64,11 @@ export default function RootLayout({
           <JsonLd data={websiteSchema()} />
           <JsonLd data={personSchema()} />
           <JsonLd data={professionalServiceSchema()} />
-
           <Navbar />
           <NewsletterPopup />
-
           <main>{children}</main>
-
+          <SpeedInsights />
           <Footer />
-
           <CookieBanner />
           <ConsentScripts />
         </CookieConsentProvider>
