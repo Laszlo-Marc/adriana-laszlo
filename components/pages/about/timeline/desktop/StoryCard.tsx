@@ -29,6 +29,13 @@ export function StoryCard({
 }: StoryCardProps) {
   const isFeatured = index === 2;
 
+  /**
+   * Desktop cards can still expand/collapse.
+   * Mobile/compact cards should always show the text and should not have the + button.
+   */
+  const canExpand = isExpandable && !compact;
+  const showDetails = compact || isActive || !isExpandable;
+
   const cardClasses = cn(
     "group/card relative isolate w-full overflow-hidden rounded-[2rem] text-left",
     "border border-white/20 bg-charcoal",
@@ -55,34 +62,44 @@ export function StoryCard({
         className={cn(
           "absolute inset-0 -z-30 object-cover object-center opacity-90 transition-transform duration-700 motion-reduce:transition-none",
           !compact && "group-hover/card:scale-105",
-          compact && isActive && "scale-100",
-          compact && !isActive && "scale-105",
+          compact && "scale-100",
+          !compact && !isActive && "scale-105",
         )}
       />
 
+      {/* Base wash */}
       <div
         aria-hidden="true"
         className={cn(
           "absolute inset-0 -z-20",
-          isFeatured ? "bg-teal/20" : "bg-charcoal/20",
+          compact
+            ? "bg-charcoal/30"
+            : isFeatured
+              ? "bg-teal/20"
+              : "bg-charcoal/20",
         )}
       />
 
+      {/* Main readability gradient */}
       <div
         aria-hidden="true"
         className={cn(
           "absolute inset-0 -z-10 bg-linear-to-t transition-opacity duration-500 motion-reduce:transition-none",
-          isFeatured
-            ? "from-cream/94 via-cream/58 to-teal/10"
-            : "from-cream/92 via-cream/48 to-cream/5",
-          compact && !isActive && "from-cream/88 via-cream/36 to-cream/5",
+          compact
+            ? "from-charcoal/92 via-charcoal/58 to-charcoal/18"
+            : isFeatured
+              ? "from-charcoal/88 via-charcoal/44 to-teal/10"
+              : "from-charcoal/88 via-charcoal/42 to-charcoal/8",
         )}
       />
 
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-linear-to-t from-charcoal/85 to-transparent"
-      />
+      {/* Extra text protection on mobile */}
+      {compact ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-1/4 bottom-0 -z-10 bg-linear-to-t from-charcoal/88 via-charcoal/54 to-transparent"
+        />
+      ) : null}
 
       <div
         className={cn(
@@ -108,7 +125,7 @@ export function StoryCard({
         ) : null}
       </div>
 
-      {isExpandable ? (
+      {canExpand ? (
         <span
           aria-hidden="true"
           className={cn(
@@ -134,16 +151,21 @@ export function StoryCard({
 
       <div
         className={cn(
-          "relative z-10 flex flex-col justify-end",
-          compact ? "min-h-100 p-5" : "min-h-80 p-7",
+          "relative z-10 flex flex-col",
+          compact
+            ? "min-h-[25rem] justify-center px-5 pb-8 pt-20"
+            : "min-h-80 justify-end p-7",
         )}
       >
-        <div>
+        <div className={cn(compact && "mx-auto max-w-[17rem] text-center")}>
           <Heading
             as="h3"
             size="h4"
             color="cream"
-            className={cn(compact && "max-w-60 text-[1.45rem] leading-tight")}
+            className={cn(
+              "drop-shadow-[0_2px_18px_rgba(0,0,0,0.32)]",
+              compact && "text-[1.45rem] leading-tight",
+            )}
           >
             {item.title}
           </Heading>
@@ -151,27 +173,19 @@ export function StoryCard({
           <div
             className={cn(
               "grid transition-[grid-template-rows,margin-top] duration-500 ease-out motion-reduce:transition-none",
-              isActive ? "mt-4 grid-rows-[1fr]" : "mt-0 grid-rows-[0fr]",
+              showDetails ? "mt-4 grid-rows-[1fr]" : "mt-0 grid-rows-[0fr]",
             )}
           >
             <div className="overflow-hidden">
               <Text
                 size="sm"
                 className={cn(
-                  "text-white/74",
-                  compact && "text-[0.92rem] leading-6",
+                  "text-white/86 drop-shadow-[0_2px_12px_rgba(0,0,0,0.36)]",
+                  compact && "text-[0.94rem] leading-6",
                 )}
               >
                 {item.description}
               </Text>
-
-              <div className="mt-5 flex items-center gap-4 border-t border-white/14 pt-4">
-                <span className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/45">
-                  Etapa {String(index + 1).padStart(2, "0")}
-                </span>
-
-                <span className="h-px flex-1 bg-gold/55" />
-              </div>
             </div>
           </div>
         </div>
@@ -179,7 +193,7 @@ export function StoryCard({
     </>
   );
 
-  if (isExpandable) {
+  if (canExpand) {
     return (
       <button
         type="button"

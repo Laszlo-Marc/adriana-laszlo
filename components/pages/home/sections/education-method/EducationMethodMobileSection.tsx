@@ -169,7 +169,7 @@ export default function EducationMethodMobileSection() {
                   <span className={cn("h-px w-14", tone.line)} />
                 </div>
 
-                <div className="my-auto text-left">
+                <div className="my-auto text-center">
                   <p
                     className={cn(
                       "text-xs font-semibold uppercase tracking-[0.22em] mt-5",
@@ -180,7 +180,7 @@ export default function EducationMethodMobileSection() {
                   </p>
 
                   <Heading
-                    align="left"
+                    align="center"
                     color="charcoal"
                     as="h2"
                     size="h3"
@@ -192,9 +192,9 @@ export default function EducationMethodMobileSection() {
 
                   <Text
                     size="sm"
-                    align="left"
+                    align="center"
                     className={cn(
-                      "mx-auto mt-6 text-pretty leading-6",
+                      "mx-auto max-w-xl mt-6 text-pretty leading-6",
                       tone.body,
                     )}
                   >
@@ -215,6 +215,7 @@ export default function EducationMethodMobileSection() {
                           as="span"
                           size="sm"
                           className={cn("text-pretty leading-6", tone.point)}
+                          align="left"
                         >
                           {point}
                         </Text>

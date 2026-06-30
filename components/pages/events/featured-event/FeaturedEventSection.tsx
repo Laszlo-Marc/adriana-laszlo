@@ -7,6 +7,7 @@ import Text from "@/components/ui/Text";
 
 import type { FeaturedEventViewModel } from "@/sanity/adapters/event";
 import FeaturedEventSignupForm from "./SignUpForm";
+import Link from "next/link";
 
 type FeaturedEventSectionProps = {
   event: FeaturedEventViewModel;
@@ -15,6 +16,8 @@ type FeaturedEventSectionProps = {
 export default function FeaturedEventSection({
   event,
 }: FeaturedEventSectionProps) {
+  const eventHref = event.detailsHref ?? `/evenimente/${event.slug}`;
+
   return (
     <Section
       id="programe"
@@ -45,13 +48,18 @@ export default function FeaturedEventSection({
             textCase="uppercase"
             className="mt-5 text-charcoal"
           >
-            {event.title}
+            <Link
+              href={eventHref}
+              className="transition-colors duration-300 hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+            >
+              {event.title}
+            </Link>
           </Heading>
         </div>
       </Container>
 
       <div className="relative z-10 mt-12">
-        <ImageMarquee images={event.images} speed="slow" />
+        <ImageMarquee images={event.images} href={eventHref} speed="slow" />
       </div>
 
       <Container size="wide" padding="default" className="relative z-10 mt-14">

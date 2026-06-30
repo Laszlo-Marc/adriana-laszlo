@@ -38,25 +38,11 @@ type FinalCTAProps = {
 
 const defaultDecorations: FinalCTADecoration[] = [
   {
-    src: "/backgrounds/double-simple.png",
+    src: "/backgrounds/double-df.png",
     width: 360,
     height: 760,
     className:
-      "pointer-events-none absolute left-1/2 top-1/2 z-0 h-auto w-62 -translate-x-1/2 -translate-y-1/2 md:w-66 lg:w-60",
-  },
-  {
-    src: "/backgrounds/df-purple-up.png",
-    width: 140,
-    height: 140,
-    className:
-      "pointer-events-none absolute left-6 top-1/2 z-0 h-auto w-30 -translate-y-1/2  md:left-14 md:w-35",
-  },
-  {
-    src: "/backgrounds/df-teal-down.png",
-    width: 140,
-    height: 140,
-    className:
-      "pointer-events-none absolute bottom-24 right-6 z-0 h-auto w-32  md:right-16 md:w-38",
+      "pointer-events-none absolute left-1/2 top-1/2 z-0 h-auto w-72 -translate-x-1/2 -translate-y-1/2 md:w-76 lg:w-90",
   },
 ];
 

@@ -60,7 +60,7 @@ export default function ApproachProcessMobile() {
               className="absolute top-0 h-40 w-full bg-teal-soft"
             />
 
-            <div className="relative z-20 mx-auto w-[80%] pt-10">
+            <div className="relative mb-10 z-20 mx-auto w-[80%] pt-10">
               <ScrollReveal preset="fade-in">
                 <div className="relative overflow-hidden shadow-[0_24px_70px_rgba(44,44,44,0.12)]">
                   <Image
@@ -83,7 +83,7 @@ export default function ApproachProcessMobile() {
                 size="h3"
                 textCase="uppercase"
                 align="center"
-                className="mt-4"
+                className="mt-10"
               >
                 {approachProcessContent.title}
               </Heading>

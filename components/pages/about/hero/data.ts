@@ -15,7 +15,7 @@ export const aboutHeroContent = {
     href: "/servicii",
   },
   desktopImage: {
-    src: "/adriana-hero.png",
+    src: "/adriana/adriana-hero.png",
     alt: "Adriana Laszlo, psihoterapeut specializat în traumă și Attachment-Focused EMDR",
   },
   mobileImage: {
