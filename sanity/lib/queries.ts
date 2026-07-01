@@ -63,6 +63,33 @@ export const eventCardFields = groq`
   }
 `;
 
+export const eventDetailFields = groq`
+  ${eventCardFields},
+  signup,
+  storySections[] {
+    eyebrow,
+    title,
+    description[] {
+      ...,
+      markDefs[] {
+        ...,
+        _type == "link" => {
+          _type,
+          href
+        }
+      }
+    },
+    image {
+      ...,
+      alt
+    }
+  },
+  faq[] {
+    ...
+  },
+  seo
+`;
+
 export const eventsQuery = groq`
   *[
     _type == "event" &&
@@ -78,19 +105,6 @@ export const eventBySlugQuery = groq`
     _type == "event" &&
     slug.current == $slug
   ][0] {
-    ${eventCardFields},
-    signup,
-    storySections[] {
-      eyebrow,
-      title,
-      description,
-      body,
-      image {
-        ...,
-        alt
-      }
-    },
-    faq,
-    seo
+    ${eventDetailFields}
   }
 `;

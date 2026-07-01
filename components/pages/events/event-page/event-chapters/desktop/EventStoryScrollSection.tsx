@@ -8,13 +8,14 @@ import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import { EventStoryChapter } from "../../eventData";
 import FlowArt, { FlowSection } from "./story-scroll";
+import PortableTextContent from "@/components/ui/PortableTextContent";
 
 type EventStoryDesktopStoryScrollProps = {
   chapters: EventStoryChapter[];
 };
 
 function getChapterBody(chapter: EventStoryChapter) {
-  return chapter.body ?? chapter.description;
+  return chapter.description;
 }
 
 export default function EventStoryDesktopStoryScroll({
@@ -129,9 +130,10 @@ export default function EventStoryDesktopStoryScroll({
                       </Text>
 
                       <div className="mt-5 space-y-5">
-                        <Text className="text-lg leading-8 sm:text-xl sm:leading-8">
-                          {chapterBody}
-                        </Text>
+                        <PortableTextContent
+                          value={chapter.description}
+                          className="mt-5"
+                        />
                       </div>
                     </article>
                   </div>

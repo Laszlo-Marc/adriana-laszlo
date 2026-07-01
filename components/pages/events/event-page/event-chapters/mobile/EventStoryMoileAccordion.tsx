@@ -9,13 +9,14 @@ import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
 import { cn } from "@/lib/utils";
 import { EventStoryChapter } from "../../eventData";
+import PortableTextContent from "@/components/ui/PortableTextContent";
 
 type EventStoryMobileAccordionProps = {
   chapters: EventStoryChapter[];
 };
 
 function getChapterBody(chapter: EventStoryChapter) {
-  return chapter.body ?? chapter.description;
+  return chapter.description;
 }
 
 function getChapterId(chapter: EventStoryChapter, index: number) {
@@ -156,16 +157,11 @@ export default function EventStoryMobileAccordion({
                         </div>
                       </div>
 
-                      <div className="px-5 pb-9 pt-3 sm:px-8">
-                        <Text
-                          size="base"
-                          color="muted"
-                          align="center"
-                          className="mx-auto max-w-xl leading-8"
-                        >
-                          {chapterBody}
-                        </Text>
-
+                      <div className="px-5 pb-9 pt-3 sm:px-8 text-center">
+                        <PortableTextContent
+                          value={chapter.description}
+                          className="mt-5"
+                        />
                         {isLast ? (
                           <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
                             <Button href="#inscriere" variant="primary">

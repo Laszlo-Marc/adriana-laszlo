@@ -1,9 +1,9 @@
+import type { PortableTextBlock } from "next-sanity";
+
 export type EventStoryChapter = {
   eyebrow: string;
   title: string;
-
-  description: string;
-  body: string;
+  description: PortableTextBlock[];
   image: string;
   imageAlt: string;
 };

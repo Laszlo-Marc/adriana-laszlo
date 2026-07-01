@@ -1,7 +1,18 @@
 // sanity/schemaTypes/documents/event.ts
 
 import { defineArrayMember, defineField, defineType } from "sanity";
+type PortableTextChild = {
+  text?: string;
+};
 
+type PortableTextBlock = {
+  _type?: string;
+  children?: PortableTextChild[];
+};
+
+function isPortableTextBlock(block: unknown): block is PortableTextBlock {
+  return typeof block === "object" && block !== null && "_type" in block;
+}
 export const event = defineType({
   name: "event",
   title: "Event",
@@ -127,13 +138,63 @@ export const event = defineType({
               type: "string",
               validation: (Rule) => Rule.required().max(120),
             }),
-
             defineField({
               name: "description",
               title: "Description",
-              type: "text",
-              rows: 4,
-              validation: (Rule) => Rule.required().max(900),
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "block",
+                  styles: [{ title: "Normal", value: "normal" }],
+                  lists: [
+                    { title: "Bullet", value: "bullet" },
+                    { title: "Numbered", value: "number" },
+                  ],
+                  marks: {
+                    decorators: [
+                      { title: "Bold", value: "strong" },
+                      { title: "Italic", value: "em" },
+                    ],
+                    annotations: [
+                      defineArrayMember({
+                        name: "link",
+                        title: "Link",
+                        type: "object",
+                        fields: [
+                          defineField({
+                            name: "href",
+                            title: "URL",
+                            type: "url",
+                            validation: (Rule) =>
+                              Rule.uri({
+                                scheme: ["http", "https", "mailto", "tel"],
+                              }),
+                          }),
+                        ],
+                      }),
+                    ],
+                  },
+                }),
+              ],
+              validation: (Rule) =>
+                Rule.required().custom((value) => {
+                  if (!Array.isArray(value) || value.length === 0) {
+                    return "Description is required";
+                  }
+
+                  const textLength = value
+                    .filter(isPortableTextBlock)
+                    .filter((block) => block._type === "block")
+                    .flatMap((block) => block.children ?? [])
+                    .map((child) => child.text ?? "")
+                    .join("").length;
+
+                  if (textLength > 1200) {
+                    return "Description should be under 1200 characters";
+                  }
+
+                  return true;
+                }),
             }),
             defineField({
               name: "image",
