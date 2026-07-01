@@ -5,7 +5,7 @@ import EventDetailHero from "@/components/pages/events/event-page/EventDetailsHe
 import EventSignupSection from "@/components/pages/events/event-page/EventSignUpSection";
 import EventQuickInfo from "@/components/pages/events/event-page/EventQuickInfo";
 import FaqSection from "@/components/sections/FaqSection";
-import EventStoryScrollLoader from "@/components/pages/events/event-page/EventStoryScrollLoader";
+
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getEventBySlug, getEvents } from "@/sanity/lib/fetchers";
 import { getSanityEventOgImage, toEventDetail } from "@/sanity/adapters/event";
@@ -16,6 +16,8 @@ import {
   faqSchema,
   webPageSchema,
 } from "@/lib/seo/schema";
+import EventStoryScrollLoader from "@/components/pages/events/event-page/event-chapters/desktop/EventStoryScrollLoader";
+import EventChaptersSection from "@/components/pages/events/event-page/event-chapters/EventChaptersSection";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -118,7 +120,7 @@ export default async function EventDetailPage({
 
       <EventDetailHero event={event} />
       <EventQuickInfo event={event} />
-      <EventStoryScrollLoader event={event} />
+      <EventChaptersSection event={event} />
       <EventSignupSection event={event} />
 
       {event.faq.length > 0 ? (

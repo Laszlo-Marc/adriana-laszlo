@@ -16,7 +16,7 @@ export default function EventsHero() {
     >
       <BackgroundVideo
         src="/events/events-bg.mp4"
-        posterSrc="/events/events-hero-poster.jpg"
+        posterSrc="/events/events-hero.jpg"
         priority
         fetchPriority="high"
         className="z-0"
@@ -48,7 +48,7 @@ export default function EventsHero() {
               as="h1"
               size="display"
               align="center"
-              className="mb-10 text-[clamp(3.75rem,16vw,5.2rem)] lg:text-[clamp(6rem,8vw,6rem)]"
+              className="mb-10 text-[clamp(3.75rem,16vw,5.2rem)] lg:text-[clamp(8rem,8vw,8rem)]"
             >
               <AccentText>Evenimente. Grupuri. Ateliere.</AccentText>
             </Heading>

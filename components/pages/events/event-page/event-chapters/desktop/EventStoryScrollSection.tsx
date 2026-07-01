@@ -3,38 +3,25 @@
 import Image from "next/image";
 
 import Button from "@/components/ui/Button";
-import FlowArt, {
-  FlowSection,
-} from "@/components/pages/events/event-page/story-scroll";
-import type { EventDetail, EventStoryChapter } from "./eventData";
+
 import Heading from "@/components/ui/Heading";
 import Text from "@/components/ui/Text";
+import { EventStoryChapter } from "../../eventData";
+import FlowArt, { FlowSection } from "./story-scroll";
 
-type EventStoryScrollSectionProps = {
-  event: EventDetail;
+type EventStoryDesktopStoryScrollProps = {
+  chapters: EventStoryChapter[];
 };
 
 function getChapterBody(chapter: EventStoryChapter) {
   return chapter.body ?? chapter.description;
 }
 
-export default function EventStoryScrollSection({
-  event,
-}: EventStoryScrollSectionProps) {
-  const chapters = event.storyChapters;
-
-  if (!chapters.length) return null;
-
+export default function EventStoryDesktopStoryScroll({
+  chapters,
+}: EventStoryDesktopStoryScrollProps) {
   return (
-    <section
-      id="structura"
-      aria-labelledby="event-story-scroll-title"
-      className="relative overflow-visible bg-cream"
-    >
-      <h2 id="event-story-scroll-title" className="sr-only">
-        Ce conține programul
-      </h2>
-
+    <div className="hidden lg:block">
       <FlowArt aria-label="Ce conține programul">
         {chapters.map((chapter, index) => {
           const chapterBody = getChapterBody(chapter);
@@ -146,21 +133,6 @@ export default function EventStoryScrollSection({
                           {chapterBody}
                         </Text>
                       </div>
-
-                      {isLast ? (
-                        <div className="mt-8 flex flex-col gap-3 lg:hidden">
-                          <Button href="#inscriere" variant="primary">
-                            Înscrie-te în program
-                          </Button>
-
-                          <Button
-                            href="#event-quick-info-title"
-                            variant="secondary"
-                          >
-                            Vezi detaliile
-                          </Button>
-                        </div>
-                      ) : null}
                     </article>
                   </div>
                 </div>
@@ -169,6 +141,6 @@ export default function EventStoryScrollSection({
           );
         })}
       </FlowArt>
-    </section>
+    </div>
   );
 }
