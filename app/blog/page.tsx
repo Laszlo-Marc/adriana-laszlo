@@ -9,7 +9,7 @@ import { toSanityBlogPostCards } from "@/sanity/adapters/blog";
 import { JsonLd } from "@/lib/seo/JsonLd";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
 import NewsletterCTASection from "@/components/newsletter/NewsLetterCtaSection";
-import DownloadResourcesSection from "@/components/pages/af-emdr/resources/DownloadResourcesSection";
+import DownloadResourcesSection from "@/components/pages/blog/resources/DownloadResourcesSection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog despre psihoterapie, traumă și vindecare emoțională",

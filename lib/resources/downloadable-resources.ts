@@ -43,9 +43,9 @@ export const downloadResources: DownloadResource[] = [
     imageAlt: "Coperta PDF-ului Jurnal de conștientizare emoțională",
     fileLabel: "Jurnal de conștientizare emoțională",
     submitLabel: "Descarcă jurnalul",
-    downloadHref: "/downloadable-resources/constientizare-emotionala.pdf",
-    publicFileHref: "/downloadable-resources/constientizare-emotionala.pdf",
-    downloadName: "constientizare-emotionala.pdf",
+    downloadHref: "/downloadable-resources/jurnal-de-terapie.pdf",
+    publicFileHref: "/downloadable-resources/jurnal-de-terapie.pdf",
+    downloadName: "jurnal-de-terapie.pdf",
     contentType: "application/pdf",
   },
   {
