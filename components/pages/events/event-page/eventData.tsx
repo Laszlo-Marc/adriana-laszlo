@@ -1,9 +1,9 @@
-import type { PortableTextBlock } from "next-sanity";
+import { RichTextValue } from "@/sanity/types/portabletext";
 
 export type EventStoryChapter = {
   eyebrow: string;
   title: string;
-  description: PortableTextBlock[];
+  description: RichTextValue;
   image: string;
   imageAlt: string;
 };

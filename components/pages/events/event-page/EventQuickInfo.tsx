@@ -107,7 +107,7 @@ export default function EventQuickInfo({ event }: EventQuickInfoProps) {
         </div>
 
         <div className="-mx-4 mt-9 overflow-hidden md:hidden">
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-5 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {infoItems.map((item, index) => (
               <InfoCard
                 key={item.label}

@@ -100,7 +100,7 @@ export default function EducationMethodDesktopSection() {
                 className="absolute inset-x-0 bottom-0 h-4/5 bg-linear-to-t from-charcoal via-charcoal/72 to-transparent"
               />
 
-              <div className="relative z-10 flex min-h-[38rem] flex-col justify-end p-7 text-white xl:p-8">
+              <div className="relative z-10 flex min-h-152 flex-col justify-end p-7 text-white xl:p-8">
                 <div className="mb-auto flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">
                     {String(index + 1).padStart(2, "0")}

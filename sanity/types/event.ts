@@ -1,4 +1,5 @@
 import type { Image } from "sanity";
+import { RichTextValue } from "./portabletext";
 
 export type SanityImageWithAlt = Image & {
   alt?: string;
@@ -44,15 +45,12 @@ export type SanityEventCard = {
     groupSize?: string;
   };
 };
-
 export type SanityEventStorySection = {
   eyebrow?: string;
   title: string;
-  description: string;
-  body?: string;
+  description?: RichTextValue;
   image?: SanityImageWithAlt;
 };
-
 export type SanityEventFaqItem = {
   question: string;
   answer: string;

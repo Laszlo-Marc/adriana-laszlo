@@ -14,8 +14,8 @@ const revealDelays = ["none", "sm", "md", "lg"] as const;
 export default function AboutEducationWorkshopsDesktop() {
   return (
     <div className="mt-12 hidden gap-6 lg:grid lg:grid-cols-[1.08fr_0.92fr]">
-      <ScrollReveal preset="scale-in" className="min-h-[38rem]">
-        <article className="group relative isolate min-h-[38rem] overflow-hidden rounded-[2.25rem] border border-white/20 bg-charcoal p-8 text-cream shadow-[0_28px_90px_rgba(44,44,44,0.14)]">
+      <ScrollReveal preset="scale-in" className="min-h-152">
+        <article className="group relative isolate min-h-152 overflow-hidden rounded-[2.25rem] border border-white/20 bg-charcoal p-8 text-cream shadow-[0_28px_90px_rgba(44,44,44,0.14)]">
           <Image
             src="/events/events-hero.jpg"
             alt=""
@@ -35,7 +35,7 @@ export default function AboutEducationWorkshopsDesktop() {
             className="absolute inset-0 -z-10 bg-linear-to-t from-charcoal/94 via-charcoal/62 to-charcoal/12"
           />
 
-          <div className="flex min-h-[34rem] flex-col justify-end">
+          <div className="flex min-h-136 flex-col justify-end">
             <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-teal/25 bg-teal/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-teal backdrop-blur-md">
               <CalendarDays className="size-4" aria-hidden="true" />
               Programe AF-EMDR
@@ -85,7 +85,7 @@ export default function AboutEducationWorkshopsDesktop() {
             <ScrollReveal key={card.title} delay={delay}>
               <article
                 className={cn(
-                  "group rounded-[2rem] border p-7 transition duration-300 motion-reduce:transition-none",
+                  "group rounded-4xl border p-7 transition duration-300 motion-reduce:transition-none",
                   "hover:-translate-y-1 hover:shadow-[0_22px_70px_rgba(44,44,44,0.08)]",
                   isWarm
                     ? "border-gold/20 bg-gold/8"

@@ -14,6 +14,8 @@ import type {
   SanityImageWithAlt,
 } from "@/sanity/types/event";
 
+import { RichTextValue } from "../types/portabletext";
+
 const FALLBACK_EVENT_IMAGE = "/events/events-hero.jpg";
 
 export type FeaturedEventViewModel = {
@@ -174,25 +176,36 @@ export function getSanityEventOgImage(event: SanityEvent) {
   });
 }
 
+function hasPortableText(
+  value: RichTextValue | undefined | null,
+): value is RichTextValue {
+  return Array.isArray(value) && value.length > 0;
+}
 function toEventStoryChapters(event: SanityEvent): EventStoryChapter[] {
-  return (event.storySections ?? []).map((section, index) => {
+  return (event.storySections ?? []).flatMap((section, index) => {
+    const description = section.description;
+
+    if (!section.title || !hasPortableText(description)) {
+      return [];
+    }
+
     const chapterImage = section.image?.asset?._ref
       ? section.image
       : event.mainImage;
 
-    return {
-      eyebrow:
-        section.eyebrow ?? `${String(index + 1).padStart(2, "0")} — Program`,
-      title: section.title,
-
-      description: section.description,
-      body: section.body ?? section.description,
-      image: getEventImageUrl(chapterImage, {
-        width: 1600,
-        height: 1000,
-      }),
-      imageAlt: chapterImage?.alt ?? section.title,
-    };
+    return [
+      {
+        eyebrow:
+          section.eyebrow ?? `${String(index + 1).padStart(2, "0")} — Program`,
+        title: section.title,
+        description,
+        image: getEventImageUrl(chapterImage, {
+          width: 1600,
+          height: 1000,
+        }),
+        imageAlt: chapterImage?.alt ?? section.title,
+      },
+    ];
   });
 }
 function getEventGalleryImages(event: SanityEventCard) {

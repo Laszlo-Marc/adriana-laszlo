@@ -14,10 +14,6 @@ type EventStoryDesktopStoryScrollProps = {
   chapters: EventStoryChapter[];
 };
 
-function getChapterBody(chapter: EventStoryChapter) {
-  return chapter.description;
-}
-
 export default function EventStoryDesktopStoryScroll({
   chapters,
 }: EventStoryDesktopStoryScrollProps) {
@@ -25,7 +21,6 @@ export default function EventStoryDesktopStoryScroll({
     <div className="hidden lg:block">
       <FlowArt aria-label="Ce conține programul">
         {chapters.map((chapter, index) => {
-          const chapterBody = getChapterBody(chapter);
           const isLast = index === chapters.length - 1;
 
           return (

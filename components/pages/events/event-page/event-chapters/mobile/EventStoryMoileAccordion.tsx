@@ -15,10 +15,6 @@ type EventStoryMobileAccordionProps = {
   chapters: EventStoryChapter[];
 };
 
-function getChapterBody(chapter: EventStoryChapter) {
-  return chapter.description;
-}
-
 function getChapterId(chapter: EventStoryChapter, index: number) {
   return `${chapter.eyebrow}-${index}`
     .toLowerCase()
@@ -72,7 +68,7 @@ export default function EventStoryMobileAccordion({
             const isActive = activeId === chapterId;
             const isPurple = index % 2 === 1;
             const isLast = index === chapters.length - 1;
-            const chapterBody = getChapterBody(chapter);
+
             const step = formatStep(index);
 
             return (
@@ -119,7 +115,7 @@ export default function EventStoryMobileAccordion({
                 >
                   <div className="overflow-hidden">
                     <div className="bg-cream">
-                      <div className="relative h-[28rem] overflow-hidden">
+                      <div className="relative h-112 overflow-hidden">
                         <Image
                           src={chapter.image}
                           alt={chapter.imageAlt}
