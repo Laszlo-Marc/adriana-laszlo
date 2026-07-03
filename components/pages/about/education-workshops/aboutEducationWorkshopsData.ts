@@ -36,7 +36,7 @@ export const educationCards: EducationCard[] = [
     title: "Trauma Center",
     description:
       "Un spațiu construit pentru oameni care caută terapie, claritate și sprijin profesionist în lucrul cu trauma și vindecarea relațională.",
-    href: "/",
+    href: "https://traumacenter.ro/",
     cta: "Descoperă centrul",
     icon: UsersRound,
   },
