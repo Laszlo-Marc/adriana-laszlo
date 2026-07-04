@@ -68,7 +68,7 @@ export default function Logo({
 
   const image = (
     <Image
-      src="/logo.png"
+      src="/logo2.png"
       alt=""
       width={96}
       height={96}
