@@ -100,6 +100,7 @@ export default function EventSignupSection({ event }: EventSignupSectionProps) {
               id="event-signup-title"
               as="h2"
               size="h3"
+              textCase="uppercase"
               className="text-charcoal lg:text-left"
               align="center"
             >

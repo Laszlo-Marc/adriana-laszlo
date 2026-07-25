@@ -48,11 +48,11 @@ export default function BlogPostImageCard({
           </div>
 
           <Heading
+            font="body"
             as="h4"
             size="h4"
-            textCase="uppercase"
             color="cream"
-            className="max-w-xl"
+            className="max-w-lg"
           >
             {post.title}
           </Heading>
