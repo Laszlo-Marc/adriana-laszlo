@@ -1,4 +1,3 @@
-import AboutStatsStrip from "@/components/pages/about/StatsStrip";
 import HomeAboutTeaser from "@/components/pages/home/sections/about/HomeAboutTeaser";
 import EducationMethodSection from "@/components/pages/home/sections/education-method/EducationMethodSection";
 import Hero from "@/components/pages/home/sections/hero/Hero";
@@ -8,32 +7,30 @@ import HomeResourcesSection from "@/components/pages/home/sections/resources/Hom
 import ServicesTeaserSection from "@/components/pages/home/sections/services/ServicesTeaserSection";
 import { testimonialItems } from "@/components/pages/home/sections/testimonials/shared/testimonials-data";
 import TestimonialsStack from "@/components/pages/home/sections/testimonials/Testimonials";
-
 import FinalCTA from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/lib/seo/JsonLd";
-import { buildMetadata } from "@/lib/seo/metadata";
 import { webPageSchema } from "@/lib/seo/schema";
 import type { Metadata } from "next";
-export const metadata: Metadata = buildMetadata({
-  title: "Psihoterapie în Cluj-Napoca | Adriana Laszlo",
+
+export const metadata: Metadata = {
+  title: "Psihoterapie în Cluj-Napoca",
   description:
-    "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, pentru persoane care caută claritate, siguranță emoțională și sprijin profesionist.",
-  path: "/",
-  image: "/og/default-og.jpg",
-  keywords: [
-    "psihoterapie Cluj-Napoca",
-    "psihoterapeut Cluj",
-    "terapie traumă Cluj",
-  ],
-});
+    "Psihoterapie integrativă și AF-EMDR în Cluj-Napoca, cu accent pe traumă, atașament și reglare emoțională.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: "/",
+  },
+};
 export default function HomePage() {
   return (
     <>
       <JsonLd
         data={webPageSchema({
-          title: "Psihoterapie în Cluj-Napoca | Adriana Laszlo",
+          title: "Psihoterapie în Cluj-Napoca",
           description:
-            "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, pentru persoane care caută claritate, siguranță emoțională și sprijin profesionist.",
+            "Psihoterapie integrativă și AF-EMDR în Cluj-Napoca, cu accent pe traumă, atașament și reglare emoțională.",
           path: "/",
         })}
       />

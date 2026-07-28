@@ -16,7 +16,7 @@ export const siteConfig = {
     "psihoterapie individuală Cluj",
   ],
   address: {
-    locality: "Cluj-Napoca",
+    locality: "Strada Artelor nr.35, Cluj-Napoca, Romania",
     region: "Cluj",
     country: "RO",
   },
@@ -29,3 +29,12 @@ export const siteConfig = {
   },
   defaultOgImage: "/og/default-og.jpg",
 } as const;
+const rawSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://adrianalaszlo.ro";
+
+export const SITE_URL = rawSiteUrl.replace(/\/+$/, "");
+export function absoluteUrl(path = "/") {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  return new URL(normalizedPath, `${SITE_URL}/`).toString();
+}

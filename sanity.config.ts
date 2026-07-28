@@ -1,28 +1,19 @@
-// sanity.config.ts
+"use client";
 
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { visionTool } from "@sanity/vision";
-
-import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schemaTypes } from "./sanity/schemaTypes";
-import { structure } from "./sanity/structure";
 
 export default defineConfig({
-  name: "adriana-laszlo",
-  title: "Adriana Laszlo CMS",
+  name: "default",
+  title: "Adriana Laszlo",
 
-  projectId,
-  dataset,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 
-  plugins: [
-    structureTool({
-      structure,
-    }),
-    visionTool({
-      defaultApiVersion: apiVersion,
-    }),
-  ],
+  basePath: "/studio",
+
+  plugins: [structureTool()],
 
   schema: {
     types: schemaTypes,

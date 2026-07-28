@@ -6,30 +6,31 @@ import TherapistIntroSection from "@/components/pages/services/TherapistIntroSec
 import ServicesDetails from "@/components/pages/services/service-details/ServiceDetails";
 import FinalCTA from "@/components/sections/FinalCTA";
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/lib/seo/JsonLd";
 import { breadcrumbSchema, webPageSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Servicii de psihoterapie în Cluj-Napoca | Adriana Laszlo",
+export const metadata: Metadata = {
+  title: "Servicii de psihoterapie în Cluj-Napoca",
   description:
-    "Servicii de psihoterapie individuală, AF-EMDR, terapie online și evenimente terapeutice în Cluj-Napoca, într-un cadru profesionist și sigur.",
-  path: "/servicii",
-  image: "/og/services-og.jpg",
-  keywords: [
-    "servicii psihoterapie Cluj",
-    "psihoterapie individuală Cluj",
-    "terapie online Cluj",
-    "terapie traumă Cluj",
-  ],
-});
+    "Psihoterapie individuală, AF-EMDR, terapie online și programe terapeutice în Cluj-Napoca, într-un cadru profesionist și sigur.",
+  alternates: {
+    canonical: "/servicii",
+  },
+  openGraph: {
+    title: "Servicii de psihoterapie în Cluj-Napoca",
+    description:
+      "Psihoterapie individuală, AF-EMDR, terapie online și programe terapeutice în Cluj-Napoca.",
+    url: "/servicii",
+    type: "website",
+  },
+};
 export default function ServicesPage() {
   return (
     <>
       <JsonLd
         data={[
           webPageSchema({
-            title: "Servicii de psihoterapie în Cluj-Napoca | Adriana Laszlo",
+            title: "Servicii de psihoterapie în Cluj-Napoca",
             description:
               "Servicii de psihoterapie individuală, AF-EMDR, terapie online și evenimente terapeutice în Cluj-Napoca, într-un cadru profesionist și sigur.",
             path: "/servicii",

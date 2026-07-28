@@ -22,7 +22,7 @@ export default function HeroMobile() {
         <div className="relative min-h-svh overflow-hidden bg-cream">
           <BackgroundVideo
             src="/home-page/hero/hero-video.mp4"
-            posterSrc="/home-page/hero/right-hero.jpg"
+            posterSrc="/home-page/hero/mobile-hero-poster.webp"
             priority
             fetchPriority="high"
           />

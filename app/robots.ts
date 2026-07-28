@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://adrianalaszlo.ro";
+import { absoluteUrl, SITE_URL } from "@/lib/seo/siteConfig";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/studio", "/api"],
+      disallow: ["/studio", "/studio/", "/api/", "/_next/"],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: absoluteUrl("/sitemap.xml"),
+    host: SITE_URL,
   };
 }

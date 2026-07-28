@@ -1,24 +1,9 @@
 import type { Metadata } from "next";
-import { Cinzel, Poppins } from "next/font/google";
-import { Allura } from "next/font/google";
+import { Allura, Cinzel, Poppins } from "next/font/google";
 
 import "./globals.css";
 
-import Footer from "@/components/layout/footer";
-import Navbar from "@/components/layout/navbar/Navbar";
-import NewsletterPopup from "@/components/newsletter/NewsLetterPopup";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import CookieBanner from "@/components/cookies/CookiesBanner";
-import { CookieConsentProvider } from "@/components/cookies/CookiesConsentProvider";
-import ConsentScripts from "@/components/cookies/ConsentScripts";
-
-import { buildMetadata } from "@/lib/seo/metadata";
-import { JsonLd } from "@/lib/seo/JsonLd";
-import {
-  personSchema,
-  professionalServiceSchema,
-  websiteSchema,
-} from "@/lib/seo/schema";
+import { siteConfig } from "@/lib/seo/siteConfig";
 
 const allura = Allura({
   subsets: ["latin"],
@@ -41,38 +26,27 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: "Adriana Laszlo | Psihoterapie și AF-EMDR în Cluj-Napoca",
-  description:
-    "Psihoterapie individuală, AF-EMDR și evenimente terapeutice în Cluj-Napoca, într-un cadru profesionist, calm și sigur.",
-  path: "/",
-});
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: "Adriana Laszlo | Psihoterapeut în Cluj-Napoca",
+    template: "%s | Adriana Laszlo",
+  },
+  description: siteConfig.description,
+};
 
-export default function RootLayout({
-  children,
-}: {
+type RootLayoutProps = Readonly<{
   children: React.ReactNode;
-}) {
+}>;
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="ro"
       data-scroll-behavior="smooth"
       className={`${cinzel.variable} ${poppins.variable} ${allura.variable}`}
     >
-      <body>
-        <CookieConsentProvider>
-          <JsonLd data={websiteSchema()} />
-          <JsonLd data={personSchema()} />
-          <JsonLd data={professionalServiceSchema()} />
-          <Navbar />
-          <NewsletterPopup />
-          <main>{children}</main>
-          <SpeedInsights />
-          <Footer />
-          <CookieBanner />
-          <ConsentScripts />
-        </CookieConsentProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
