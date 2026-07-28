@@ -1,0 +1,1530 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "initialValue": "Psihoterapeut",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Author image"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "bio",
+        "type": "text",
+        "title": "Short bio"
+      }
+    ],
+    "name": "author",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 90
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "publishedAt",
+        "type": "datetime",
+        "title": "Published date"
+      },
+      {
+        "name": "updatedAt",
+        "type": "datetime",
+        "title": "Updated date"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "to": [
+          {
+            "type": "author"
+          }
+        ],
+        "name": "author",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Example: \"6 min\"",
+        "name": "readTime",
+        "type": "string",
+        "title": "Reading time"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Psihoterapie",
+              "value": "psihoterapie"
+            },
+            {
+              "title": "Traumă",
+              "value": "trauma"
+            },
+            {
+              "title": "AF-EMDR",
+              "value": "af-emdr"
+            },
+            {
+              "title": "Relații",
+              "value": "relatii"
+            },
+            {
+              "title": "Reglare emoțională",
+              "value": "reglare-emotionala"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "psihoterapie",
+                  "trauma",
+                  "af-emdr",
+                  "relatii",
+                  "reglare-emotionala"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 80
+              },
+              {
+                "flag": "max",
+                "constraint": 260
+              }
+            ]
+          }
+        ],
+        "description": "Used for blog cards, article intro and fallback meta description.",
+        "name": "summary",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image",
+        "title": "Main image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "body",
+        "type": "portableText",
+        "title": "Article body"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured post"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "disableNew": true
+            },
+            "to": [
+              {
+                "type": "blogPost"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to blog post"
+          }
+        ],
+        "name": "relatedPosts",
+        "type": "array",
+        "title": "Related posts"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "blogPost",
+    "type": "document",
+    "title": "Blog post"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 80
+              },
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "summary",
+        "type": "text",
+        "title": "Short summary"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image",
+        "title": "Main image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 8
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "galleryImage",
+            "title": "Gallery image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Draft",
+              "value": "draft"
+            },
+            {
+              "title": "Upcoming",
+              "value": "upcoming"
+            },
+            {
+              "title": "Sold out",
+              "value": "soldOut"
+            },
+            {
+              "title": "Past",
+              "value": "past"
+            },
+            {
+              "title": "Cancelled",
+              "value": "cancelled"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "initialValue": "draft",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "draft",
+                  "upcoming",
+                  "soldOut",
+                  "past",
+                  "cancelled"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "status",
+        "type": "string",
+        "title": "Event status"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Open",
+              "value": "open"
+            },
+            {
+              "title": "Limited places",
+              "value": "limited"
+            },
+            {
+              "title": "Waitlist",
+              "value": "waitlist"
+            },
+            {
+              "title": "Closed",
+              "value": "closed"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "initialValue": "open",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "open",
+                  "limited",
+                  "waitlist",
+                  "closed"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "registrationStatus",
+        "type": "string",
+        "title": "Registration status"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "schedule",
+        "type": "eventSchedule"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "details",
+        "type": "eventDetails"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "signup",
+        "type": "eventSignup"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 10
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 80
+                      }
+                    ]
+                  }
+                ],
+                "name": "eyebrow",
+                "type": "string",
+                "title": "Small label"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 120
+                      }
+                    ]
+                  }
+                ],
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "custom"
+                      }
+                    ]
+                  }
+                ],
+                "of": [
+                  {
+                    "lists": [
+                      {
+                        "value": "bullet",
+                        "title": "Bullet"
+                      },
+                      {
+                        "value": "number",
+                        "title": "Numbered"
+                      }
+                    ],
+                    "marks": {
+                      "annotations": [
+                        {
+                          "fields": [
+                            {
+                              "validation": [
+                                {
+                                  "level": "error",
+                                  "rules": [
+                                    {
+                                      "flag": "uri",
+                                      "constraint": {
+                                        "options": {
+                                          "scheme": [
+                                            "/^http$/",
+                                            "/^https$/",
+                                            "/^mailto$/",
+                                            "/^tel$/"
+                                          ],
+                                          "allowRelative": false,
+                                          "relativeOnly": false,
+                                          "allowCredentials": false
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ],
+                              "name": "href",
+                              "type": "url",
+                              "title": "URL"
+                            }
+                          ],
+                          "name": "link",
+                          "type": "object"
+                        }
+                      ],
+                      "decorators": [
+                        {
+                          "value": "strong",
+                          "title": "Bold"
+                        },
+                        {
+                          "value": "em",
+                          "title": "Italic"
+                        }
+                      ]
+                    },
+                    "of": [],
+                    "styles": [
+                      {
+                        "value": "normal",
+                        "title": "Normal"
+                      }
+                    ],
+                    "type": "block"
+                  }
+                ],
+                "name": "description",
+                "type": "array"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "validation": [
+                      {
+                        "level": "error",
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          },
+                          {
+                            "flag": "max",
+                            "constraint": 160
+                          }
+                        ]
+                      }
+                    ],
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alternative text"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "storySection",
+            "title": "Story section"
+          }
+        ],
+        "name": "storySections",
+        "type": "array",
+        "title": "Story sections"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 8
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "faqItem",
+            "title": "FAQ item"
+          }
+        ],
+        "name": "faq",
+        "type": "array",
+        "title": "FAQ"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured event"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "event",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "siteTitle",
+        "type": "string",
+        "title": "Site title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 170
+              }
+            ]
+          }
+        ],
+        "name": "defaultSeoDescription",
+        "type": "text",
+        "title": "Default SEO description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "defaultSeoImage",
+        "type": "image",
+        "title": "Default SEO image"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document",
+    "title": "Site settings"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ]
+          }
+        ],
+        "description": "Recommended: 45–60 characters. This can override the default page title.",
+        "name": "title",
+        "type": "string",
+        "title": "Google title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 170
+              }
+            ]
+          }
+        ],
+        "description": "Recommended: 140–160 characters. This can override the default meta description.",
+        "name": "description",
+        "type": "text",
+        "title": "Google description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Social sharing image"
+      },
+      {
+        "initialValue": false,
+        "description": "Only turn this on for drafts, private pages, test content, or pages that should not appear in Google.",
+        "name": "noIndex",
+        "type": "boolean",
+        "title": "Hide from Google?"
+      }
+    ],
+    "name": "seo",
+    "type": "object",
+    "title": "SEO"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 140
+              }
+            ]
+          }
+        ],
+        "name": "question",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 700
+              }
+            ]
+          }
+        ],
+        "name": "answer",
+        "type": "text"
+      }
+    ],
+    "name": "faqItem",
+    "type": "object",
+    "title": "FAQ item"
+  },
+  {
+    "of": [
+      {
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "level": "error",
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/",
+                                "/^mailto$/",
+                                "/^tel$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                },
+                {
+                  "initialValue": false,
+                  "name": "openInNewTab",
+                  "type": "boolean",
+                  "title": "Open in new tab"
+                }
+              ],
+              "name": "link",
+              "type": "object"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Strong"
+            },
+            {
+              "value": "em",
+              "title": "Emphasis"
+            }
+          ]
+        },
+        "of": [],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "type": "block"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "type": "image"
+      }
+    ],
+    "name": "portableText",
+    "type": "array",
+    "title": "Body content"
+  },
+  {
+    "options": {
+      "hotspot": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "alt",
+        "type": "string",
+        "title": "Alternative text"
+      }
+    ],
+    "name": "galleryImage",
+    "type": "image",
+    "title": "Gallery image"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "startDate",
+        "type": "datetime",
+        "title": "Start date and time"
+      },
+      {
+        "name": "endDate",
+        "type": "datetime",
+        "title": "End date and time"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Example: \"18:00 – 21:00\"",
+        "name": "timeLabel",
+        "type": "string",
+        "title": "Displayed time"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Example: \"3 ore\"",
+        "name": "duration",
+        "type": "string"
+      }
+    ],
+    "name": "eventSchedule",
+    "type": "object",
+    "title": "Event schedule"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 140
+              }
+            ]
+          }
+        ],
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Fizic",
+              "value": "fizic"
+            },
+            {
+              "title": "Online",
+              "value": "online"
+            },
+            {
+              "title": "Hibrid",
+              "value": "hibrid"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "fizic",
+                  "online",
+                  "hibrid"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "format",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "description": "Example: \"350 lei\" or \"Preț comunicat la înscriere\"",
+        "name": "price",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "description": "Example: \"8–12 participante\"",
+        "name": "groupSize",
+        "type": "string",
+        "title": "Group size"
+      }
+    ],
+    "name": "eventDetails",
+    "type": "object",
+    "title": "Event details"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Signup title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text",
+        "title": "Signup description"
+      },
+      {
+        "initialValue": "Mă înscriu",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 50
+              }
+            ]
+          }
+        ],
+        "name": "ctaLabel",
+        "type": "string",
+        "title": "Button label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "External form link if the event uses a Google Form, Typeform, etc.",
+        "name": "formUrl",
+        "type": "url",
+        "title": "Form URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "mapEmbedUrl",
+        "type": "url",
+        "title": "Google Maps embed URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "mapLink",
+        "type": "url",
+        "title": "Google Maps link"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 240
+              }
+            ]
+          }
+        ],
+        "name": "note",
+        "type": "text",
+        "title": "Small note"
+      }
+    ],
+    "name": "eventSignup",
+    "type": "object",
+    "title": "Signup section"
+  }
+]

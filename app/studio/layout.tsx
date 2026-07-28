@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preloadModule } from "react-dom";
 
 export const metadata: Metadata = {
   title: "Studio | Adriana Laszlo",
@@ -11,10 +12,19 @@ export const metadata: Metadata = {
   },
 };
 
-type StudioLayoutProps = Readonly<{
-  children: React.ReactNode;
-}>;
+const bridgeScript = "https://core.sanity-cdn.com/bridge.js";
 
-export default function StudioLayout({ children }: StudioLayoutProps) {
-  return children;
+export default function StudioLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  preloadModule(bridgeScript, { as: "script" });
+
+  return (
+    <>
+      <script src={bridgeScript} async type="module" />
+      {children}
+    </>
+  );
 }
