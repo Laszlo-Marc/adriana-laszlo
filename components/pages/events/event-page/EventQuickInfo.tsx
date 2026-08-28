@@ -167,7 +167,7 @@ function InfoCard({
         align="center"
         className="mt-5 tracking-[0.24em] text-charcoal font-semibold"
       >
-        {item.number} · {item.label}
+        {item.label}
       </Text>
 
       <Text
